@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.forgotten_ice.name",
+  "icon": "enigmaticaddons:forgotten_ice",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/forgotten_ice",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 90,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.forgotten_ice.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:forgotten_ice",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.forgotten_ice.heading.1",
+      "text": "book.enigmaticaddons.entry.forgotten_ice.page.2"
+    }
+  ]
+}

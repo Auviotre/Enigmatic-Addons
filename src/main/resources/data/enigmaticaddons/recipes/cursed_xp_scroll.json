@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:cursed_xp_scroll"
+    }
+  ],
+  "pattern": [
+    "QTQ",
+    "WXW",
+    "QGQ"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:xp_scroll"
+    },
+    "Q": {
+      "item": "minecraft:experience_bottle"
+    },
+    "G": {
+      "item": "minecraft:emerald_block"
+    },
+    "T": {
+      "item": "enigmaticlegacy:twisted_heart"
+    },
+    "W": {
+      "item": "enigmaticlegacy:evil_essence"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:cursed_xp_scroll"
+  }
+}

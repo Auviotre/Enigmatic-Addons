@@ -1,0 +1,24 @@
+{
+  "name": "book.enigmaticaddons.entry.hell_blade_charm.name",
+  "icon": "enigmaticaddons:hell_blade_charm",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/hell_blade_charm",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 40,
+  "pages": [
+    {
+      "type": "text",
+      "title": "meh",
+      "text": "book.enigmaticaddons.entry.hell_blade_charm.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:hell_blade_charm",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.hell_blade_charm.title",
+      "text": "book.enigmaticaddons.entry.hell_blade_charm.page.2"
+    }
+  ]
+}

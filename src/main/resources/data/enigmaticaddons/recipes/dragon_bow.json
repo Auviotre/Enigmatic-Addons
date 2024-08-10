@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:dragon_bow"
+    }
+  ],
+  "pattern": [
+    "DLD",
+    "NXD",
+    "DLD"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:dragon_head"
+    },
+    "D": {
+      "item": "minecraft:dragon_breath"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "L": {
+      "item": "enigmaticlegacy:ender_rod"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:dragon_bow"
+  }
+}

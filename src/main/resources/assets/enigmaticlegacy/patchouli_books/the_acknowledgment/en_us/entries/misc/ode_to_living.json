@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.ode_to_living.name",
+  "icon": "enigmaticaddons:ode_to_living",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticaddons:book/misc/ode_to_living",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 60,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.ode_to_living.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:ode_to_living",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.ode_to_living.page.2"
+    }
+  ]
+}

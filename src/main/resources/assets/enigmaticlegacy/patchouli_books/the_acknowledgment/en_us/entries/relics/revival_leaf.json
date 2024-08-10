@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.revival_leaf.name",
+  "icon": "enigmaticaddons:revival_leaf",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/revival_leaf",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 90,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.revival_leaf.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:revival_leaf",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.revival_leaf.heading.1",
+      "text": "book.enigmaticaddons.entry.revival_leaf.page.2"
+    }
+  ]
+}

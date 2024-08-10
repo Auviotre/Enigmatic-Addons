@@ -1,0 +1,26 @@
+{
+  "name": "book.enigmaticaddons.entry.astral_potion.name",
+  "icon": "enigmaticaddons:astral_potion",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticaddons:book/misc/astral_potion",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 110,
+  "extra_recipe_mappings": {
+    "enigmaticaddons:astral_potion": 1
+  },
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.astral_potion.page.1"
+    },
+    {
+      "type": "enigmaticlegacy:brewing_addon",
+      "recipe": "enigmaticaddons:astral_potion",
+      "index": 0,
+      "heading": "book.enigmaticaddons.entry.astral_potion.heading",
+      "text": "book.enigmaticaddons.entry.astral_potion.page.2"
+    }
+  ]
+}

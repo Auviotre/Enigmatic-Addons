@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.quartz_ring.name",
+  "icon": "enigmaticaddons:quartz_ring",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/quartz_ring",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 25,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.quartz_ring.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:quartz_ring",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.quartz_ring.page.2"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.night_scroll.name",
+  "icon": "enigmaticaddons:night_scroll",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/night_scroll",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 130,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.night_scroll.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:night_scroll",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.night_scroll.page.2"
+    }
+  ]
+}

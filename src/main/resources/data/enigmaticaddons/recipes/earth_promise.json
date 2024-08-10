@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:earth_promise"
+    }
+  ],
+  "pattern": [
+    "mem",
+    "aXa",
+    "nbn"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:golden_ring"
+    },
+    "n": {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    "m": {
+      "item": "minecraft:golden_apple"
+    },
+    "b": {
+      "item": "enigmaticlegacy:mining_charm"
+    },
+    "a": {
+      "item": "enigmaticlegacy:twisted_heart"
+    },
+    "e": {
+      "item": "enigmaticlegacy:cosmic_heart"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:earth_promise"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "book.enigmaticaddons.entry.dragon_bow.name",
+  "icon": "enigmaticaddons:dragon_bow",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/dragon_bow",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 100,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.dragon_bow.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:dragon_bow",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.dragon_bow.page.2"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.dragon_bow.page.3"
+    },
+    {
+      "type": "empty",
+      "draw_filler": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "enigmaticaddons:item/earth_promise"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "broken": 1.0
+      },
+      "model": "enigmaticaddons:item/earth_promise_broken"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.earth_promise.name",
+  "icon": "enigmaticaddons:earth_promise",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/earth_promise",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 35,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.earth_promise.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:earth_promise",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.earth_promise.page.2"
+    }
+  ]
+}

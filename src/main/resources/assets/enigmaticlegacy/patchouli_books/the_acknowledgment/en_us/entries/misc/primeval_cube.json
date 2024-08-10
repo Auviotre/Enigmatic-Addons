@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.primeval_cube.name",
+  "icon": "minecraft:gold_block",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticlegacy:main/discover_spellstone",
+  "secret": true,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 500,
+  "extra_recipe_mappings": {
+    "enigmaticaddons:primeval_cube": 0
+  },
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.primeval_cube.page.1"
+    },
+    {
+      "type": "enigmaticlegacy:prime_cube"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "book.enigmaticaddons.entry.frozen_heart_potion.name",
+  "icon": "enigmaticaddons:common_potion#1{EnigmaticPotion:'frozen_heart'}",
+  "category": "enigmaticlegacy:brewing",
+  "advancement": "enigmaticaddons:book/brewing/frozen_heart_potion",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 15,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.frozen_heart_potion.page.1"
+    },
+    {
+      "type": "enigmaticlegacy:brewing_addon",
+      "recipe": "enigmaticaddons:frozen_heart",
+      "index": 0,
+      "heading": "book.enigmaticaddons.entry.frozen_heart_potion.heading.1",
+      "text": "book.enigmaticaddons.entry.frozen_heart_potion.page.2"
+    },
+    {
+      "type": "enigmaticlegacy:brewing_addon",
+      "recipe": "enigmaticaddons:long_frozen_heart",
+      "index": 0,
+      "heading": "book.enigmaticaddons.entry.frozen_heart_potion.heading.2",
+      "text": "book.enigmaticaddons.entry.frozen_heart_potion.page.3"
+    },
+    {
+      "type": "enigmaticlegacy:brewing_addon",
+      "recipe": "enigmaticaddons:frozen_heart",
+      "index": 1,
+      "heading": "book.enigmaticaddons.entry.frozen_heart_potion.heading.3",
+      "text": "book.enigmaticaddons.entry.frozen_heart_potion.page.4"
+    },
+    {
+      "type": "enigmaticlegacy:brewing_addon",
+      "recipe": "enigmaticaddons:frozen_heart",
+      "index": 2,
+      "heading": "book.enigmaticaddons.entry.frozen_heart_potion.heading.4",
+      "text": "book.enigmaticaddons.entry.frozen_heart_potion.page.5"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:night_scroll"
+    }
+  ],
+  "pattern": [
+    "nen",
+    "aXf",
+    "nbn"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:darkest_scroll"
+    },
+    "n": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "b": {
+      "item": "minecraft:ender_eye"
+    },
+    "a": {
+      "item": "minecraft:wither_rose"
+    },
+    "e": {
+      "item": "enigmaticlegacy:twisted_heart"
+    },
+    "f": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:night_scroll"
+  }
+}

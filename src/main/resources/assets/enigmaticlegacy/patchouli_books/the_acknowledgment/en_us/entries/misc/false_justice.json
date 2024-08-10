@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.false_justice.name",
+  "icon": "enigmaticaddons:false_justice",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticaddons:book/misc/false_justice",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 140,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.false_justice.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:false_justice",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.false_justice.page.2"
+    }
+  ]
+}

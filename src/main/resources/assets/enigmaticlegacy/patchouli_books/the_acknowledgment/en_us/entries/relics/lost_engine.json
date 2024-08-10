@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.lost_engine.name",
+  "icon": "enigmaticaddons:lost_engine",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/lost_engine",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 90,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.lost_engine.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:lost_engine",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.lost_engine.heading.1",
+      "text": "book.enigmaticaddons.entry.lost_engine.page.2"
+    }
+  ]
+}

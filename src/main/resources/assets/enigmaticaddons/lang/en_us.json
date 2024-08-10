@@ -1,0 +1,213 @@
+{
+  "tooltip.enigmaticaddons.armor": "%1$s§d Armor",
+  "tooltip.enigmaticaddons.armor_toughness": "%1$s§d Armor Toughness",
+  "tooltip.enigmaticaddons.damage": "%1$s§d Attack Damage",
+  "tooltip.enigmaticaddons.knockback_resistance": "%1$s§d Knockback Resistance",
+  "tooltip.enigmaticaddons.magic_resistance": "%1$s§d Magic Resistance",
+  "tooltip.enigmaticaddons.speed": "%1$s§d Speed",
+  "tooltip.enigmaticaddons.luck": "%1$s§d Luck",
+
+  "tooltip.enigmaticaddons.legacy_future1": "§5Possible items that may be implemented in the next",
+  "tooltip.enigmaticaddons.legacy_future2": "§5version of §dEnigmatic Legacy (I Guess form Addon)",
+
+  "item.enigmaticaddons.earth_heart_fragment": "Fragment of the Earth",
+
+  "item.enigmaticaddons.ode_to_living": "Ode to Living Beings",
+
+  "tooltip.enigmaticaddons.livingOde1": "§5While in your inventory, your attacks can't",
+  "tooltip.enigmaticaddons.livingOde2": "§5deal damage to animals.",
+  "tooltip.enigmaticaddons.livingOde3": "§5Most animals around you are rendered passive.",
+  "tooltip.enigmaticaddons.livingOde4": "§dAlteration of the §6Second Curse§d:",
+  "tooltip.enigmaticaddons.livingOde5": "§5- Neutral animals will not actively attack.",
+  "tooltip.enigmaticaddons.livingOde6": "§6Use to appease animals.",
+
+  "book.enigmaticaddons.entry.ode_to_living.name": "Ode to the Living Beings",
+  "book.enigmaticaddons.entry.ode_to_living.page.1": "The previous guidebook seemed unable to make all animal friends recognize you, but this hymn can soothe the emotions of some animal friends. It also inherits the functionality of the previous version of the guidebook.",
+  "book.enigmaticaddons.entry.ode_to_living.page.2": "The content of the ode is still too obscure for you, so you can only carry it with you for any time you need it.",
+
+  "item.enigmaticaddons.night_scroll": "Pact of Dark Night",
+
+  "tooltip.enigmaticaddons.nightScroll1": "§6Phantoms §5will spawn less in your proximity.",
+  "tooltip.enigmaticaddons.nightScroll2": "§5In the dark, you will receive the following boosts:",
+  "tooltip.enigmaticaddons.nightScroll3": "§6+%1$s §dAttack Damage",
+  "tooltip.enigmaticaddons.nightScroll4": "§6+%1$s §dDamage Resistance",
+  "tooltip.enigmaticaddons.nightScroll5": "§6+%1$s §dLifesteal",
+
+  "book.enigmaticaddons.entry.night_scroll.name": "Pact of Dark Night",
+  "book.enigmaticaddons.entry.night_scroll.page.1": "Although insomnia is not worth mentioning to demigods, those lurking figures in the darkness are truly annoying, with incessant cries and flying figures. You decide to use their remains to make a scroll.<br2/>The power of the dark night not only scares the Phantom, but also allows you to unleash more abilities in the darkness.",
+  "book.enigmaticaddons.entry.night_scroll.page.2": "",
+
+  "item.enigmaticaddons.quartz_ring": "Magic Quartz Ring",
+
+  "book.enigmaticaddons.entry.quartz_ring.name": "Magic Quartz Ring",
+  "book.enigmaticaddons.entry.quartz_ring.page.1": "When you discover quartz in the nether, you surprised by its widespread distribution in the nether. At the same time, when it comes to acquiring new materials, it seems that with your skills, you can create stronger defense rings.<br2/>However, simply exploring physical defense capabilities has already reached its limit for rings, so can we develop some other uses?",
+  "book.enigmaticaddons.entry.quartz_ring.page.2": "Therefore, the addition of lapis lazuli as an enchanting material in the recipe enhances the magic performance of the ring, allowing you to increase your resistance slightly when facing magic attacks. A little is better than nothing.",
+
+  "item.enigmaticaddons.earth_promise": "Promise of the Earth",
+
+  "tooltip.enigmaticaddons.earthPromise1": "§5When dealing damage equal to§6 %1$s §5of current",
+  "tooltip.enigmaticaddons.earthPromise2": "§5health, block this attack and then cooldown",
+  "tooltip.enigmaticaddons.earthPromise3": "§dAlteration of the §6First Curse§d:",
+  "tooltip.enigmaticaddons.earthPromise4": "§5- Reduce the effect of the §6First Curse §5by %1$s",
+
+  "book.enigmaticaddons.entry.earth_promise.name": "Promise from The Earth",
+  "book.enigmaticaddons.entry.earth_promise.page.1": "Whenever you watch the heart of the earth gradually twisted in your hand, do you feel excited inside? The mournful cry from the depths of the earth has never become a lingering sound in your ears. But when the power of the cosmic resonates with the heart of the earth in your hands, you seem to have re recognized the true power from the earth.",
+  "book.enigmaticaddons.entry.earth_promise.page.2": "The earth promise to provide protection and try to block those deadly injuries, but the gold material does not have such high tolerance, so it is important to pay attention to whether this blessing ring is in complete form.",
+
+  "item.enigmaticaddons.forgotten_ice": "Forgotten Ice Crystal",
+
+  "tooltip.enigmaticaddons.forgottenIce1": "§dActive ability:",
+  "tooltip.enigmaticaddons.forgottenIce2": "§6- Freeze the surrounding Mobs.",
+  "tooltip.enigmaticaddons.forgottenIceCooldown": "§dСooldown: §6%1$s§6 seconds",
+  "tooltip.enigmaticaddons.forgottenIce3": "§dPassive abilities:",
+  "tooltip.enigmaticaddons.forgottenIce4": "§5- Freeze immunity and Frost Walker",
+  "tooltip.enigmaticaddons.forgottenIce5": "§5- The attack target is gradually freezing",
+  "tooltip.enigmaticaddons.forgottenIce6": "§5- Freezes those who attack you in melee",
+  "tooltip.enigmaticaddons.forgottenIce7": "§5- Deal more damage to frozen targets",
+  "tooltip.enigmaticaddons.forgottenIce8": "§5- §6%1$s§d Projectile & Sonic Damage Resistance",
+  "tooltip.enigmaticaddons.forgottenIce9": "§5- You are vulnerable to §dFire Damage§5 and §dFall Damage",
+
+  "book.enigmaticaddons.entry.forgotten_ice.name": "Forgotten Ice Crystal",
+  "book.enigmaticaddons.entry.forgotten_ice.heading.1": "The Spellstone",
+  "book.enigmaticaddons.entry.forgotten_ice.page.1": "When it comes to Spellstones, names that represent flames, void, and so on will occupy people's minds, but in the distant snowy plains, there is still a force waiting for you to excavate.<br2/>This spellstone awakens the power of freezing, and the frozen air slows down the fast-moving things around it. At the same time, the abilities",
+  "book.enigmaticaddons.entry.forgotten_ice.page.2": "of Frost walker and Freezing are also included in this spellstone.<br2/>But the power of frost goes beyond that. This magic stone allows you to discover various flaws that exist in frozen creatures. But like the Will of the Ocean, you should realize that flames are still deadly.",
+
+  "item.enigmaticaddons.lost_engine": "Lost Engine",
+
+  "tooltip.enigmaticaddons.lostEngine1": "§dActive ability:",
+  "tooltip.enigmaticaddons.lostEngine2": "§4- Absent.",
+  "tooltip.enigmaticaddons.lostEngineCooldown": "§dСooldown: §6%1$s§6 seconds",
+  "tooltip.enigmaticaddons.lostEngine3": "§dPassive abilities:",
+  "tooltip.enigmaticaddons.lostEngine4": "§5- Enhance mobility and toughness.",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- Reduce item cooldowns by half.",
+  "tooltip.enigmaticaddons.lostEngine6": "§5- Immune to §dFall §5& §dExplosion §5damage.",
+  "tooltip.enigmaticaddons.lostEngine7": "§5- Add §6%1$s§d Crit damage§5.",
+  "tooltip.enigmaticaddons.lostEngine8": "§5- Golems will not target you actively.",
+  "tooltip.enigmaticaddons.lostEngine9": "§5- You are vulnerable to §dMagic Damage§5 and §dLightning Damage§5.",
+
+  "book.enigmaticaddons.entry.lost_engine.name": "Lost Engine",
+  "book.enigmaticaddons.entry.lost_engine.heading.1": "The Spellstone",
+  "book.enigmaticaddons.entry.lost_engine.page.1": "When you discover this spellstone, it still silently drives in the corner.<br2/>This ancient spellstone, with engine energy from the old era, can enhance your mobility and resistance, allowing you to increase your power by almost four times after squatting, while also being able to jet air to reduce the impact of gravity. Although it",
+  "book.enigmaticaddons.entry.lost_engine.page.2": "makes your footsteps heavier, it also greatly increases the critical damage. The rhythm of the engine seems to resonate with the golems around it, which you think is great, especially in keeping the Shulker in neutral.<br2/>Like the Heart of the Golem, magic remains deadly.",
+
+  "item.enigmaticaddons.revival_leaf": "Revival Leaves",
+
+  "tooltip.enigmaticaddons.revivalLeaf1": "§dActive ability:",
+  "tooltip.enigmaticaddons.revivalLeaf2": "§6- surrounding mobs regeneration, at cost of experience.",
+  "tooltip.enigmaticaddons.revivalLeafCooldown": "§dСooldown: §6%1$s§6 seconds",
+  "tooltip.enigmaticaddons.revivalLeaf3": "§dPassive abilities:",
+  "tooltip.enigmaticaddons.revivalLeaf4": "§5- Slow natural regeneration.",
+  "tooltip.enigmaticaddons.revivalLeaf5": "§5- The attack target will be poisoned.",
+  "tooltip.enigmaticaddons.revivalLeaf6": "§5- Immune to §dHunger§5, §dPoison§5 and §dWithering§5 effect.",
+  "tooltip.enigmaticaddons.revivalLeaf7": "§5- The surrounding crops are growing faster",
+  "tooltip.enigmaticaddons.revivalLeaf8": "§5- All effects last longer.",
+  "tooltip.enigmaticaddons.revivalLeaf9": "§5- You are vulnerable to §dFire Damage§5 and §dProjectile Damage§5.",
+
+  "book.enigmaticaddons.entry.revival_leaf.name": "Revival Leaves",
+  "book.enigmaticaddons.entry.revival_leaf.heading.1": "The Spellstone",
+  "book.enigmaticaddons.entry.revival_leaf.page.1": "Another unique spellstone that gathers the power of nature can also be found in the ancient jungle temple.<br2/>This spellstone can provide the power of natural: enhance your vitality, slowly restore your health, and immunize you against some minor adverse effects and reasonably regulate bodily functions to make effects last longer.",
+  "book.enigmaticaddons.entry.revival_leaf.page.2": "In addition, it can also extract the deadly part from nature, leaving your hands stained with toxins. This can also resonate with crops, make surrounding crops grow more vigorously.<br2/>However, it should also be noted that besides flames, sharp arrows can easily pierce you.",
+
+
+  "item.enigmaticaddons.dragon_bow": "Dragon Breath Bow",
+
+  "book.enigmaticaddons.entry.dragon_bow.name": "The Dragon Breath",
+  "book.enigmaticaddons.entry.dragon_bow.page.1": "Can Dragon Breath only be used for brewing? You may have thought about this issue. Recalling the ender dragon using its deadly dragon breath to burn your armor and skin, you also want others to experience it. And the strange dragon head hanging on the ender ship that can only be used for decoration...<br2/>Therefore, driven by various",
+  "book.enigmaticaddons.entry.dragon_bow.page.2": "reasons, this bow infused with magic was born.<br2/>This bow can shoot dragon breath arrows without any ammo, but it requires a slightly longer charging time. When the dragon breath arrow",
+  "book.enigmaticaddons.entry.dragon_bow.page.3": "hits, it will turn into a ranged dragon breath and try to retain or chase every person passing by in its way.<br2/>However, one thing to note is that this bow only allows you to utilize the power of the dragon breath. It cannot make you roam in the dragon breath Happily and Foolishly.",
+
+  "item.enigmaticaddons.false_justice": "Deceptive Justice",
+
+  "tooltip.enigmaticaddons.falseJustice1": "§5While in your inventory",
+  "tooltip.enigmaticaddons.falseJustice2": "§5- All damage you received will be converted into real damage.",
+  "tooltip.enigmaticaddons.falseJustice3": "§5- All damage you caused will be converted into real damage.",
+
+  "book.enigmaticaddons.entry.false_justice.name": "Deceptive Justice",
+  "book.enigmaticaddons.entry.false_justice.page.1": "We have no way of exploring what is contained within the Acknowledgment to enable it to endlessly display knowledge. But we can use the essence of the Wither to extract the most chaotic part of  the Acknowledgment to change the rules of the battle.<br2/>At the cost of knowledge, this book begins to emit a chaotic atmosphere.",
+  "book.enigmaticaddons.entry.false_justice.page.2": "Now, all attacks related to you go beyond the original rules. Defense? Immunization? In the face of real chaos, it is nothing but an illusion. All you need to do is dodge attacks and give the target an irresistible strike.",
+
+  "item.enigmaticaddons.cursed_xp_scroll": "Scroll of Ignorance Curse",
+
+  "tooltip.enigmaticaddons.xpTome2": "§5The scroll interaction is same as Ageless Wisdom.",
+  "tooltip.enigmaticaddons.xpTome3": "§5Improve your abilities based on experience level,",
+  "tooltip.enigmaticaddons.xpTome4": "§5But the EXP gained from experience orb will decrease,",
+  "tooltip.enigmaticaddons.xpTome5": "§5Lose all experiences after death.",
+
+  "book.enigmaticaddons.entry.cursed_xp_scroll.name": "Ignorance Curse",
+  "book.enigmaticaddons.entry.cursed_xp_scroll.page.1": "When your period reaches a certain stage, experience may not be very useful except for being used for others, but now, through the power of curse, the nature of this scroll has undergone a huge change.<br2/>The greedy curse of ignorance expands the hunting range of the scroll and devours most of the experience gained, leaving you with very little.",
+  "book.enigmaticaddons.entry.cursed_xp_scroll.page.2": "Of course, the benefits brought by curse should not be underestimated, greatly enhancing your combat abilities. And please remember that the curse is always waiting for chances. When you are most vulnerable, it will take everything away.",
+
+  "item.enigmaticaddons.hell_blade_charm": "Charm of Hell Blade",
+
+  "tooltip.enigmaticaddons.hellBladeCharm1": "§5- Your armor will be ineffective.",
+  "tooltip.enigmaticaddons.hellBladeCharm2": "§5- All damage you caused will be doubled.",
+  "tooltip.enigmaticaddons.hellBladeCharm3": "§5- When your damage reaches §6%1$s§5 of the target's health,",
+  "tooltip.enigmaticaddons.hellBladeCharm4": "§5- causing significant additional damage and heal yourself.",
+
+  "book.enigmaticaddons.entry.hell_blade_charm.name": "Charm of Hell Blade",
+  "book.enigmaticaddons.entry.hell_blade_charm.title": "Double-edged Hell",
+  "book.enigmaticaddons.entry.hell_blade_charm.page.1": "This charm seems to have been waiting for your arrival somewhere in nether, waiting for you to nurture it with your own blood.<br2/>Anyone who notices the powerful power this charm gives, even if it honestly indicates the cost, will inevitably be tempted to wear it. Generally speaking, these wearers end up with a",
+  "book.enigmaticaddons.entry.hell_blade_charm.page.2": "very foolish death.<br2/>So, please wear this charm carefully, especially those who bear the seven curses at the same time.",
+
+  "item.enigmaticaddons.astral_potion": "Potion of Cosmic",
+
+  "tooltip.enigmaticaddons.astralPotion1": "§5Behold, the stars has rich taste!",
+  "tooltip.enigmaticaddons.astralPotion2": "§4You think you shouldn't drink too much...",
+
+  "book.enigmaticaddons.entry.astral_potion.name": "Potion of Cosmic",
+  "book.enigmaticaddons.entry.astral_potion.heading": "Brewing the Potion",
+  "book.enigmaticaddons.entry.astral_potion.page.1": "Star dust has enormous potential in potion brewing, which you must have experienced before. But when faced with some unfamiliar potions, it seems that you cannot simply catalyze their stardust, let alone those effects that cannot be obtained from potions.<br2/>You turned your sight to honey.",
+  "book.enigmaticaddons.entry.astral_potion.page.2": "From the results, it appears that this mysterious substance can prolong the duration of the potion effects on you. But if you want another bottle, emm, be careful of the consequences...",
+
+  "item.enigmaticaddons.primeval_cube": "Primeval Cube",
+
+  "tooltip.enigmaticaddons.primevalCube": "§5Useless Stone...",
+
+  "book.enigmaticaddons.entry.primeval_cube.name": "Useless Stone...",
+  "book.enigmaticaddons.entry.primeval_cube.page.1": "You have discovered this ancient record, which seems to be about the rebirth of spellstones.<br2/>Under the catalysis of the radiance of the stars...<br/>Six becomes one...<br/>Accompanied by the power of two \"Heart\".",
+
+  "death.attack.false_justice": "%1$s disappeared into the void of judgement.",
+
+  "entity.enigmaticaddons.cobweb_ball": "Spider Web Ball",
+  "entity.enigmaticaddons.dragon_breath_arrow": "Dragon Breath Arrow",
+  "entity.enigmaticaddons.enigmatic_potion_entity": "Ultimate Potion",
+  "entity.enigmaticaddons.split_dragon_breath": "Split Dragon Breath",
+  "entity.enigmaticaddons.ultimate_dragon_fireball": "Ultimate Dragon Fireball",
+
+  "effect.enigmaticaddons.dragon_breath": "Dragon Breath",
+  "effect.enigmaticaddons.frozen_heart": "Frozen Heart",
+
+  "item.enigmaticaddons.common_potion.effect.frozen_heart": "Potion of Frozen Heart",
+  "item.enigmaticaddons.common_potion.effect.long_frozen_heart": "Potion of Frozen Heart",
+  "item.enigmaticaddons.ultimate_potion.effect.ultimate_frozen_heart": "Potion of Frozen Heart",
+  "item.enigmaticaddons.common_potion_splash.effect.frozen_heart": "Splash Potion of Frozen Heart",
+  "item.enigmaticaddons.common_potion_splash.effect.long_frozen_heart": "Splash Potion of Frozen Heart",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.ultimate_frozen_heart": "Splash Potion of Frozen Heart",
+  "item.enigmaticaddons.common_potion_lingering.effect.frozen_heart": "Lingering Potion of Frozen Heart",
+  "item.enigmaticaddons.common_potion_lingering.effect.long_frozen_heart": "Lingering Potion of Frozen Heart",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.ultimate_frozen_heart": "Lingering Potion of Frozen Heart",
+
+  "item.enigmaticaddons.common_potion.effect.mining_fatigue": "Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion.effect.long_mining_fatigue": "Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion.effect.strong_mining_fatigue": "Potion of Mining Fatigue",
+  "item.enigmaticaddons.ultimate_potion.effect.ultimate_mining_fatigue": "Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion_splash.effect.mining_fatigue": "Splash Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion_splash.effect.long_mining_fatigue": "Splash Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion_splash.effect.strong_mining_fatigue": "Splash Potion of Mining Fatigue",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.ultimate_mining_fatigue": "Splash Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion_lingering.effect.mining_fatigue": "Lingering Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion_lingering.effect.long_mining_fatigue": "Lingering Potion of Mining Fatigue",
+  "item.enigmaticaddons.common_potion_lingering.effect.strong_mining_fatigue": "Lingering Potion of Mining Fatigue",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.ultimate_mining_fatigue": "Lingering Potion of Mining Fatigue",
+
+  "book.enigmaticaddons.entry.frozen_heart_potion.name": "Potion of Frozen Heart",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.1": "Brewing the Potion",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.2": "Extending Duration",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.3": "Splash Version",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.4": "Lingering Version",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.1": "Blue ice, the purest existence in the ice block family. After careful consideration, you decided to add it to the brewing process as an attempt.<br2/>After tasting, although it is too cold, you find that there is no feeling of coldness in your body. Instead, it allows you to feel the power from those cold air in the snowy mountains and glaciers.",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.2": "Ultimately, you will gain the ability to immune freeze and be able to apply a cold aura to others, and deal more damage to those frozen targets.",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.3": "Its effect can be extended using redstone dust.",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.4": "You can also brew it into splash...",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.5": "...or lingering types, just like you can any other regular potion."
+}

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:false_justice"
+    }
+  ],
+  "pattern": [
+    "ene",
+    "aXa",
+    "nen"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:the_acknowledgment"
+    },
+    "n": {
+      "item": "minecraft:ghast_tear"
+    },
+    "a": {
+      "item": "minecraft:ender_pearl"
+    },
+    "e": {
+      "item": "enigmaticlegacy:evil_essence"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:false_justice"
+  }
+}

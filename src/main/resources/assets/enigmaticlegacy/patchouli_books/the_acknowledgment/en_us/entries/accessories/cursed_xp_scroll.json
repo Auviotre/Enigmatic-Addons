@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.cursed_xp_scroll.name",
+  "icon": "enigmaticaddons:cursed_xp_scroll",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/cursed_xp_scroll",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 130,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.cursed_xp_scroll.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:cursed_xp_scroll",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.cursed_xp_scroll.page.2"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:quartz_ring"
+    }
+  ],
+  "pattern": [
+    "QLQ",
+    "QXQ",
+    "LGL"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:golden_ring"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "G": {
+      "item": "minecraft:ghast_tear"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:quartz_ring"
+  }
+}

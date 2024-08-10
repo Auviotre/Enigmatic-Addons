@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "enigmaticaddons:item/3d/ode_to_living_3d"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "enigmaticaddons:item/gui/ode_to_living_gui"
+    },
+    "fixed": {
+      "parent": "enigmaticaddons:item/3d/ode_to_living_3d"
+    },
+    "ground": {
+      "parent": "enigmaticaddons:item/3d/ode_to_living_3d"
+    }
+  }
+}

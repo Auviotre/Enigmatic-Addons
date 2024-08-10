@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "enigmaticlegacy:iron_ring"
+  },
+  "result": "minecraft:iron_ingot",
+  "experience": 2.0,
+  "cookingtime": 100
+}

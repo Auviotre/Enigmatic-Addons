@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:ode_to_living"
+    }
+  ],
+  "pattern": [
+    "nen",
+    "aXa",
+    "nbn"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:animal_guidebook"
+    },
+    "n": {
+      "item": "minecraft:gold_nugget"
+    },
+    "b": {
+      "item": "minecraft:experience_bottle"
+    },
+    "a": {
+      "item": "minecraft:golden_apple"
+    },
+    "e": {
+      "item": "enigmaticlegacy:earth_heart"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:ode_to_living"
+  }
+}

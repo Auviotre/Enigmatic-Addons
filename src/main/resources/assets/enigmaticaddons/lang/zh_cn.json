@@ -1,0 +1,212 @@
+{
+  "tooltip.enigmaticaddons.armor": "%1$s§d 护甲值",
+  "tooltip.enigmaticaddons.armor_toughness": "%1$s§d 盔甲韧性",
+  "tooltip.enigmaticaddons.damage": "%1$s§d 攻击伤害",
+  "tooltip.enigmaticaddons.knockback_resistance": "%1$s§d 击退抗性",
+  "tooltip.enigmaticaddons.magic_resistance": "%1$s§d 魔法抗性",
+  "tooltip.enigmaticaddons.speed": "%1$s§d 速度",
+  "tooltip.enigmaticaddons.luck": "%1$s§d 幸运值",
+
+  "tooltip.enigmaticaddons.legacy_future1": "§5下个版本§d神秘遗物可能会",
+  "tooltip.enigmaticaddons.legacy_future2": "§5实现的物品（猜测，来自扩展）",
+
+  "item.enigmaticaddons.earth_heart_fragment": "大地之心碎片",
+
+  "item.enigmaticaddons.ode_to_living": "生灵颂词",
+
+  "tooltip.enigmaticaddons.livingOde1": "§5放在物品栏中时，你的攻击",
+  "tooltip.enigmaticaddons.livingOde2": "§5不会伤害动物。",
+  "tooltip.enigmaticaddons.livingOde3": "§5在你周围的大部分动物变得被动。",
+  "tooltip.enigmaticaddons.livingOde4": "§d修正§6第二诅咒§d的方法：",
+  "tooltip.enigmaticaddons.livingOde5": "§5- 中立动物不会主动攻击。",
+  "tooltip.enigmaticaddons.livingOde6": "§6对动物使用来安抚对方。",
+
+  "book.enigmaticaddons.entry.ode_to_living.name": "生灵颂词",
+  "book.enigmaticaddons.entry.ode_to_living.page.1": "之前的指南似乎无法让所有的动物朋友去认可你，这本颂词能够安抚一些动物朋友的情绪。它也继承了前一版指南的功能。<br2/>颂词的内容对你来说还是过于晦涩，因此只能随身携带，以便随时需要。",
+  "book.enigmaticaddons.entry.ode_to_living.page.2": "",
+
+  "item.enigmaticaddons.night_scroll": "暗夜契约卷轴",
+
+  "tooltip.enigmaticaddons.nightScroll1": "§6幻翼§5更少地在身边生成。",
+  "tooltip.enigmaticaddons.nightScroll2": "§5在暗处将会得到以下加成：",
+  "tooltip.enigmaticaddons.nightScroll3": "§6+%1$s §d攻击伤害",
+  "tooltip.enigmaticaddons.nightScroll4": "§6+%1$s §d伤害减免",
+  "tooltip.enigmaticaddons.nightScroll5": "§6+%1$s §d生命窃取",
+
+  "book.enigmaticaddons.entry.night_scroll.name": "暗夜契约卷轴",
+  "book.enigmaticaddons.entry.night_scroll.page.1": "虽说失眠症对于半神而言不值一提，但那些夜幕中的潜伏者着实令人生厌，不止的撕叫声，上下翻飞的身影。你决定用他们的残体来制作一份卷轴。<br2/>暗夜的力量不仅使幻翼们害怕，而且允许你在黑暗之中发挥出更多的能力。",
+  "book.enigmaticaddons.entry.night_scroll.page.2": "",
+
+  "item.enigmaticaddons.quartz_ring": "魔法石英戒指",
+
+  "book.enigmaticaddons.entry.quartz_ring.name": "魔法石英戒指",
+  "book.enigmaticaddons.entry.quartz_ring.page.1": "在地狱之中发现石英这一材料时，你望着那些奔腾的热浪与熔岩，摸着石英坚硬的质地，你对于它在地狱的广泛分布感到诧异。同时对于新材料的入手，你觉得凭着你的手艺似乎可以做出更强大的防御戒指。<br2/>但是单纯地发掘的物理防御能力，对于戒指来说早已达到了极限，所以能否开发一点其他用途？",
+  "book.enigmaticaddons.entry.quartz_ring.page.2": "因此，配方之中加入了青金石这一附魔材料，加强了戒指的魔法性能，使你在面临魔法侵袭时，增加了一点点反抗的能力。聊胜于无吧。",
+
+  "item.enigmaticaddons.earth_promise": "地灵之诺",
+
+  "tooltip.enigmaticaddons.earthPromise1": "§5当受到当前生命值§6 %1$s §5以上伤害",
+  "tooltip.enigmaticaddons.earthPromise2": "§5时，挡下此次攻击，随即进入冷却。",
+  "tooltip.enigmaticaddons.earthPromise3": "§d修正§6第一诅咒§d的方法：",
+  "tooltip.enigmaticaddons.earthPromise4": "§5- 使§6第一诅咒§5的影响减少 %1$s",
+
+  "book.enigmaticaddons.entry.earth_promise.name": "来自大地的诺言",
+  "book.enigmaticaddons.entry.earth_promise.page.1": "每当看着手中的大地之心逐渐扭曲，不知你的内心是否荡漾着兴奋之情？来自大地深处的悲鸣，也不曾成为你弥留耳畔之音。但当寰宇之力与手中的大地之心产生共鸣时，你似乎重新认识到了来自大地的本源力量。<br2/>利用附魔金的魔法可加工性，以精美戒指为基底，同时，扭曲之力也不可或缺。",
+  "book.enigmaticaddons.entry.earth_promise.page.2": "地灵们承诺会给予保护，他们会尝试挡住那些致命的伤害，但黄金材质并不具有那样高的耐受性，因此一定要注意这枚祝福之戒是否处于完备形态。",
+
+  "item.enigmaticaddons.forgotten_ice": "忘却冰晶",
+
+  "tooltip.enigmaticaddons.forgottenIce1": "§d主动技能:",
+  "tooltip.enigmaticaddons.forgottenIce2": "§6- 将周围的生物冻结",
+  "tooltip.enigmaticaddons.forgottenIceCooldown": "§d冷却：§6%1$s§6秒",
+  "tooltip.enigmaticaddons.forgottenIce3": "§d被动技能:",
+  "tooltip.enigmaticaddons.forgottenIce4": "§5- 冻结免疫与冰霜行者",
+  "tooltip.enigmaticaddons.forgottenIce5": "§5- 攻击目标逐渐冻结",
+  "tooltip.enigmaticaddons.forgottenIce6": "§5- 冻结攻击你的敌人",
+  "tooltip.enigmaticaddons.forgottenIce7": "§5- 对冻结的敌人造成更多伤害",
+  "tooltip.enigmaticaddons.forgottenIce8": "§5- 增加 §6%1$s§d 弹射物与音爆抗性",
+  "tooltip.enigmaticaddons.forgottenIce9": "§5- 增加受到的§d火焰伤害§5和§d摔落伤害",
+
+  "book.enigmaticaddons.entry.forgotten_ice.name": "忘却冰晶",
+  "book.enigmaticaddons.entry.forgotten_ice.heading.1": "术石",
+  "book.enigmaticaddons.entry.forgotten_ice.page.1": "提起术石，那些代表着火焰，虚空等等的名字就会占据人们的脑海，但在遥远的雪原之中，依然有一股力量等待你的发掘。<br2/>这枚术石唤起了冰冻的力量，凝滞的冰气减缓了身边那些快速移动的事物，同时冰霜行者和霜冻的能力也被包含在这枚术石之内。",
+  "book.enigmaticaddons.entry.forgotten_ice.page.2": "但是霜冻的力量不止于此，这枚术石让你发现存在于冻结生物身上的种种破绽。但同海洋意志一般，你应该认识到火焰依旧致命。",
+
+  "item.enigmaticaddons.lost_engine": "失落引擎",
+
+  "tooltip.enigmaticaddons.lostEngine1": "§d主动技能:",
+  "tooltip.enigmaticaddons.lostEngine2": "§4- 无",
+  "tooltip.enigmaticaddons.lostEngineCooldown": "§d冷却: §6%1$s§6秒",
+  "tooltip.enigmaticaddons.lostEngine3": "§d被动技能:",
+  "tooltip.enigmaticaddons.lostEngine4": "§5- 提升机动能力和韧性",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- 减半物品冷却时间",
+  "tooltip.enigmaticaddons.lostEngine6": "§5- 免疫§d掉落§5，§d爆炸§5伤害",
+  "tooltip.enigmaticaddons.lostEngine7": "§5- 增加 §6%1$s§d 暴击伤害",
+  "tooltip.enigmaticaddons.lostEngine8": "§5- 傀儡类生物不会主动以你为目标",
+  "tooltip.enigmaticaddons.lostEngine9": "§5- 增加受到的§d魔法伤害§5和§d闪电伤害",
+
+  "book.enigmaticaddons.entry.lost_engine.name": "失落引擎",
+  "book.enigmaticaddons.entry.lost_engine.heading.1": "术石",
+  "book.enigmaticaddons.entry.lost_engine.page.1": "当你发现这枚术石时，它仍居于角落之中无言地驱动着。<br2/>这枚古老术石，有着来自旧时代的引擎能源，能够强化你的行动能力和抗性，使你能在蹲下蓄力之后提高近乎四倍，同时能够空中喷气在减少重力影响。虽然让你的脚步更加沉重，但也极大的提高了跳劈伤害。",
+  "book.enigmaticaddons.entry.lost_engine.page.2": "引擎的律动似乎能够与周围的傀儡产生共鸣，你觉得这很不错，特别是能让潜影贝处于中立。<br2/>如同魔像之心，魔法依旧致命。",
+
+  "item.enigmaticaddons.revival_leaf": "复苏之叶",
+
+  "tooltip.enigmaticaddons.revivalLeaf1": "§d主动技能:",
+  "tooltip.enigmaticaddons.revivalLeaf2": "§6- 消耗经验为周围生物提供生命恢复",
+  "tooltip.enigmaticaddons.revivalLeafCooldown": "§d冷却：§6%1$s§6秒",
+  "tooltip.enigmaticaddons.revivalLeaf3": "§d被动技能:",
+  "tooltip.enigmaticaddons.revivalLeaf4": "§5- 缓慢自然生命恢复",
+  "tooltip.enigmaticaddons.revivalLeaf5": "§5- 攻击附带中毒效果",
+  "tooltip.enigmaticaddons.revivalLeaf6": "§5- 免疫§d凋零§5、§d中毒§5和§d饥饿§5效果",
+  "tooltip.enigmaticaddons.revivalLeaf7": "§5- 周围的作物生长加快",
+  "tooltip.enigmaticaddons.revivalLeaf8": "§5- 药水效果持续时间加长",
+  "tooltip.enigmaticaddons.revivalLeaf9": "§5- 增加受到的§d火焰伤害§5和§d弹射物伤害",
+
+  "book.enigmaticaddons.entry.revival_leaf.name": "复苏之叶",
+  "book.enigmaticaddons.entry.revival_leaf.heading.1": "术石",
+  "book.enigmaticaddons.entry.revival_leaf.page.1": "同样能在古老的丛林神庙找到的，还有这枚汇聚了自然力量的奇特术石。<br2/>这枚术石能够提供自然元素的力量：增强你的生命力，能够缓慢的恢复你的生命，并能够让你免疫一些轻微的不良效果；合理调节身体机能，让药水效果能够持续更长的时间。此外，它也能从自然中取出致命的那一部分，让你的双手沾满毒素。",
+  "book.enigmaticaddons.entry.revival_leaf.page.2": "这枚术石也能与作物之间产生共鸣，激活它们的生长潜力，让周围的作物更加卖力成长。<br2/>当然也要注意，除了火焰之外，锋利的箭矢也能轻易的穿刺你。",
+
+  "item.enigmaticaddons.dragon_bow": "龙息弓",
+
+  "book.enigmaticaddons.entry.dragon_bow.name": "龙息",
+  "book.enigmaticaddons.entry.dragon_bow.page.1": "龙息仅仅只能用于酿造吗？你也许思考过这个问题。回忆起末影龙用致命的龙息来灼烧你的盔甲与皮肤，你也很想让来其他人尝尝这个滋味。还有那个挂在末地船仅能拿来装饰的诡异龙头…<br2/>故在种种原因的驱使下，这把由魔法注入的弓诞生了。",
+  "book.enigmaticaddons.entry.dragon_bow.page.2": "这把弓能够射出龙息箭而不需要任何弹药，但需要稍长一点的蓄力时间。当龙息箭击中时便会化为范围龙息，并尝试去以它的方式挽留或追逐每个经过的人。",
+  "book.enigmaticaddons.entry.dragon_bow.page.3": "不过有一点要注意，这把弓仅仅只是让你能够利用龙息的力量，并不能让你快乐且愚蠢地在龙息中遨游。",
+
+  "item.enigmaticaddons.false_justice": "虚伪审判",
+
+  "tooltip.enigmaticaddons.falseJustice1": "§5放在物品栏中时",
+  "tooltip.enigmaticaddons.falseJustice2": "§5- 你受到的伤害全部转为真实伤害。",
+  "tooltip.enigmaticaddons.falseJustice3": "§5- 你造成的伤害全部转为真实伤害。",
+
+  "book.enigmaticaddons.entry.false_justice.name": "虚伪审判",
+  "book.enigmaticaddons.entry.false_justice.page.1": "启示之证内究竟蕴含着何物才能让它能无穷无尽的展现知识，这我们无从探究。但我们可以利用凋灵的精华，让启示之证中那最为混乱的部分提取出来，来改变战斗的规则。<br2/>以知识为代价，这本书开始散发出混乱气息且无法被打开，这让你感到它是否本不属于这个世界。",
+  "book.enigmaticaddons.entry.false_justice.page.2": "现在，与你有关的一切攻击开始超脱原有的规则。防御？免疫？在真正的混乱面前形同虚设，你要做到的只是闪开外来攻击，给予目标不可抵挡的一击。当然，偷袭无疑也是个好方法。",
+
+  "item.enigmaticaddons.cursed_xp_scroll": "无知诅咒卷轴",
+
+  "tooltip.enigmaticaddons.xpTome2": "§5卷轴交互同永恒智慧卷轴。",
+  "tooltip.enigmaticaddons.xpTome3": "§5根据经验等级§6提升能力，",
+  "tooltip.enigmaticaddons.xpTome4": "§5但从经验球获得的经验会减少，",
+  "tooltip.enigmaticaddons.xpTome5": "§5死亡后丢失所有经验。",
+
+  "book.enigmaticaddons.entry.cursed_xp_scroll.name": "无知诅咒",
+  "book.enigmaticaddons.entry.cursed_xp_scroll.page.1": "当你的时期到达一定的阶段后，经验除了拿来替别人使用，似乎不太有用武之地了，但现在，通过诅咒之力，这枚卷轴的性质就发生了巨大的改变。<br2/>贪婪的无知诅咒将卷轴的狩猎范围变得更广，并将获取到的经验的大部分吞噬，留给你的简直微乎其微。<br2/>当然，诅咒带来的恩惠也不",
+  "book.enigmaticaddons.entry.cursed_xp_scroll.page.2": "容小觑，极大的强化了你的战斗能力。最后也请记住，诅咒始终在等待机会，当你处于最脆弱的状态时，它会带走一切。",
+
+  "item.enigmaticaddons.hell_blade_charm": "地狱刃片护符",
+
+  "tooltip.enigmaticaddons.hellBladeCharm1": "§5- 你的护甲无效化。",
+  "tooltip.enigmaticaddons.hellBladeCharm2": "§5- 你的攻击伤害加倍。",
+  "tooltip.enigmaticaddons.hellBladeCharm3": "§5- 当你的攻击伤害达到目标血量的 §6%1$s§5 时",
+  "tooltip.enigmaticaddons.hellBladeCharm4": "§5- 追加大量伤害并回复自身血量。",
+
+  "book.enigmaticaddons.entry.hell_blade_charm.name": "地狱刃片护符",
+  "book.enigmaticaddons.entry.hell_blade_charm.title": "地狱双刃",
+  "book.enigmaticaddons.entry.hell_blade_charm.page.1": "这枚护符似乎一直在地狱的某处期待这你的到来，等着你用自己的鲜血来浇灌它。<br2/>无论是谁，当注意到这枚护符给予的强大力量时，即使它也诚实地表明了代价，都不免会心动而佩戴上它。一般而言，这些佩戴者都以十分愚蠢的死状收尾。",
+  "book.enigmaticaddons.entry.hell_blade_charm.page.2": "所以，请慎重的佩戴这枚护符，特别是同时承受七咒之人。",
+
+  "item.enigmaticaddons.astral_potion": "星辰之瓶",
+
+  "tooltip.enigmaticaddons.astralPotion1": "§5看，星辰无比醇厚！",
+  "tooltip.enigmaticaddons.astralPotion2": "§4你觉得你不能贪杯…",
+
+  "book.enigmaticaddons.entry.astral_potion.name": "星辰之瓶",
+  "book.enigmaticaddons.entry.astral_potion.heading": "酿造",
+  "book.enigmaticaddons.entry.astral_potion.page.1": "星尘在药水酿造中巨大潜能，相比你一定体会过了。但是在面对一些陌生的药剂，你似乎不能简单的将其星尘催化，更别说那些不能从药水里获得的效果了。<br2/>你将视线转向了蜂蜜，当然，这绝对不是因为好奇星尘在蜂蜜中的口味。",
+  "book.enigmaticaddons.entry.astral_potion.page.2": "从结果上看，这瓶神秘物质能够延长你身上的药水效果持续时间。但如果你想再来一瓶，额，注意后果…",
+
+  "item.enigmaticaddons.primeval_cube": "原初立方",
+
+  "tooltip.enigmaticaddons.primevalCube": "§5无用的石头…",
+
+  "book.enigmaticaddons.entry.primeval_cube.name": "无用的石头…",
+  "book.enigmaticaddons.entry.primeval_cube.page.1": "你发现了这古老的记录，似乎是关于术石重生的内容。<br2/>在星辰光辉的催化下……<br/>六相和一……<br/>伴随两“心”之力……",
+
+  "death.attack.false_justice": "%1$s消失在虚无的审判中。",
+
+  "entity.enigmaticaddons.cobweb_ball": "蛛网球",
+  "entity.enigmaticaddons.dragon_breath_arrow": "龙息箭",
+  "entity.enigmaticaddons.enigmatic_potion_entity": "终极药水",
+  "entity.enigmaticaddons.split_dragon_breath": "分裂龙息",
+  "entity.enigmaticaddons.ultimate_dragon_fireball": "终极末影龙火球",
+
+  "effect.enigmaticaddons.dragon_breath": "龙息",
+  "effect.enigmaticaddons.frozen_heart": "冻结之心",
+
+  "item.enigmaticaddons.common_potion.effect.frozen_heart": "冻结之心药水",
+  "item.enigmaticaddons.common_potion.effect.long_frozen_heart": "冻结之心药水",
+  "item.enigmaticaddons.ultimate_potion.effect.ultimate_frozen_heart": "冻结之心药水",
+  "item.enigmaticaddons.common_potion_splash.effect.frozen_heart": "喷溅型冻结之心药水",
+  "item.enigmaticaddons.common_potion_splash.effect.long_frozen_heart": "喷溅型冻结之心药水",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.ultimate_frozen_heart": "喷溅型冻结之心药水",
+  "item.enigmaticaddons.common_potion_lingering.effect.frozen_heart": "滞留型冻结之心药水",
+  "item.enigmaticaddons.common_potion_lingering.effect.long_frozen_heart": "滞留型冻结之心药水",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.ultimate_frozen_heart": "滞留型冻结之心药水",
+
+  "item.enigmaticaddons.common_potion.effect.mining_fatigue": "挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion.effect.long_mining_fatigue": "挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion.effect.strong_mining_fatigue": "挖掘疲劳药水",
+  "item.enigmaticaddons.ultimate_potion.effect.ultimate_mining_fatigue": "挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion_splash.effect.mining_fatigue": "喷溅型挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion_splash.effect.long_mining_fatigue": "喷溅型挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion_splash.effect.strong_mining_fatigue": "喷溅型挖掘疲劳药水",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.ultimate_mining_fatigue": "喷溅型挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion_lingering.effect.mining_fatigue": "滞留型挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion_lingering.effect.long_mining_fatigue": "滞留型挖掘疲劳药水",
+  "item.enigmaticaddons.common_potion_lingering.effect.strong_mining_fatigue": "滞留型挖掘疲劳药水",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.ultimate_mining_fatigue": "滞留型挖掘疲劳药水",
+
+  "book.enigmaticaddons.entry.frozen_heart_potion.name": "冻结之心药水",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.1": "酿造",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.2": "延长效果",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.3": "喷溅型版本",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.4": "滞留型版本",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.1": "蓝冰，冰块家族中最为纯净的存在。深思之后你决定将其加入酿造之中以作尝试。<br2/>稍作品尝之后，虽说入口口感过于冰冷，但你发现你的体内未有任何冰凉的感觉，反倒让你在大雪纷飞的雪山冰川之中，从那些冰凉的气息中感受到了力量。",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.2": "最终，你将获得免疫冻结的效果，并能够将寒冷的气场施加在别人身上，并且对于那些冻住的目标，有了更大的杀伤力。",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.3": "混合一些红石粉可以延长其效果，",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.4": "或者酿造喷溅型形态……",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.5": "……或滞留型类型，就像其他任何普通药水一样。"
+}
