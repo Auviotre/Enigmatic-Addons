@@ -88,6 +88,7 @@ public class OmniconfigAddonHandler {
         builder.popCategory();
         builder.forceSynchronized(true);
         builder.pushCategory("Legacy Balance Options", "Various options that mostly affect Enigmatic Legacy's items");
+        builder.pushPrefix("");
         MixinOmniconfigHelper.MixConfig(builder);
         builder.popCategory();
         builder.forceSynchronized(true);

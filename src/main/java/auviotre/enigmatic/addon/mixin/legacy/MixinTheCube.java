@@ -25,7 +25,7 @@ public abstract class MixinTheCube implements ISpellstone {
     }
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableList;of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableList;"), remap = false)
-    public ImmutableList<MobEffect> randomBuffs(Object e1, Object e2, Object e3, Object e4, Object e5, Object e6, Object e7, Object e8, Object e9) {
+    public ImmutableList<MobEffect> randomDebuffs(Object e1, Object e2, Object e3, Object e4, Object e5, Object e6, Object e7, Object e8, Object e9) {
         return enigmaticAddons$generator(MixinOmniconfigHelper.cubeRandomDebuffs);
     }
 

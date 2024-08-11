@@ -7,7 +7,6 @@ import com.aizistral.enigmaticlegacy.items.generic.ItemBasePotion;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticSounds;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
@@ -47,8 +46,7 @@ public class AstralPotion extends ItemBasePotion {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralPotion1");
-            Player player = Minecraft.getInstance().player;
-            if (player != null && player.getPersistentData().getInt("CosmicPotion") >= 0)
+            if (ItemNBTHelper.getBoolean(stack, "isDrunk", false))
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralPotion2");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
@@ -58,11 +56,11 @@ public class AstralPotion extends ItemBasePotion {
     public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof Player player && !entityIn.level().isClientSide) {
             if (player.getPersistentData().getInt("CosmicPotion") > 0) {
-                if (!ItemNBTHelper.getBoolean(stack, "isTainted", false)) {
-                    ItemNBTHelper.setBoolean(stack, "isTainted", true);
+                if (!ItemNBTHelper.getBoolean(stack, "isDrunk", false)) {
+                    ItemNBTHelper.setBoolean(stack, "isDrunk", true);
                 }
-            } else if (ItemNBTHelper.getBoolean(stack, "isTainted", false)) {
-                ItemNBTHelper.setBoolean(stack, "isTainted", false);
+            } else if (ItemNBTHelper.getBoolean(stack, "isDrunk", false)) {
+                ItemNBTHelper.setBoolean(stack, "isDrunk", false);
             }
         }
     }
