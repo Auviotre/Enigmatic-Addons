@@ -66,7 +66,7 @@ public class AstralPotion extends ItemBasePotion {
     }
 
     public void onConsumed(Level world, Player player, ItemStack potion) {
-        world.playSound(null, player.blockPosition(), EnigmaticSounds.CHARGED_ON, SoundSource.PLAYERS, (float) (0.800000011920929 + Math.random() * 0.20000000298023224), (float) (0.800000011920929 + Math.random() * 0.20000000298023224));
+        world.playSound(null, player.blockPosition(), EnigmaticSounds.CHARGED_ON, SoundSource.PLAYERS, (float) (0.8 + Math.random() * 0.2), (float) (0.8 + Math.random() * 0.2));
 
         if (player.getPersistentData().getInt("CosmicPotion") <= 0) {
             Collection<MobEffectInstance> activeEffects = player.getActiveEffects();

@@ -5,7 +5,10 @@ import auviotre.enigmatic.addon.contents.entities.DragonBreathArrow;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class DragonBreathArrowRenderer extends ArrowRenderer<DragonBreathArrow> {
     public DragonBreathArrowRenderer(EntityRendererProvider.Context context) {
         super(context);

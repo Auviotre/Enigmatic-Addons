@@ -10,9 +10,9 @@
       "type": "patchouli:image",
       "image": "enigmaticaddons:textures/gui/prime_cube_overlay.png",
       "x": 9,
-      "y": 14,
+      "y": 10,
       "width": 96,
-      "height": 116,
+      "height": 128,
       "u": 0,
       "v": 0
     }

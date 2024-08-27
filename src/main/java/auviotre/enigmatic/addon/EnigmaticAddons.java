@@ -1,13 +1,16 @@
 package auviotre.enigmatic.addon;
 
+import auviotre.enigmatic.addon.client.screens.AntiqueBagScreen;
 import auviotre.enigmatic.addon.contents.brewing.AstralBrewingRecipe;
 import auviotre.enigmatic.addon.handlers.AddonEventHandler;
+import auviotre.enigmatic.addon.handlers.AddonKeybindHandler;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
 import auviotre.enigmatic.addon.packets.PacketCursedXPScrollKey;
 import auviotre.enigmatic.addon.proxy.ClientProxy;
 import auviotre.enigmatic.addon.proxy.CommonProxy;
 import auviotre.enigmatic.addon.registries.*;
+import com.aizistral.enigmaticlegacy.brewing.SpecialBrewingRecipe;
 import com.aizistral.enigmaticlegacy.brewing.ValidationBrewingRecipe;
 import com.aizistral.enigmaticlegacy.helpers.PotionHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
@@ -15,10 +18,12 @@ import com.aizistral.enigmaticlegacy.objects.LoggerWrapper;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticBlocks;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticTabs;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -45,6 +50,7 @@ import org.jetbrains.annotations.NotNull;
 public class EnigmaticAddons {
     public static final String MODID = "enigmaticaddons";
     public static final LoggerWrapper LOGGER = new LoggerWrapper("Enigmatic Addons");
+    public static AddonKeybindHandler keybindHandler;
     public static AddonEventHandler addonEventHandler;
     public static SimpleChannel packetInstance;
     public static final CommonProxy PROXY = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
@@ -53,10 +59,13 @@ public class EnigmaticAddons {
         LOGGER.info("Constructing mod instance...");
         OmniconfigAddonHandler.initialize();
         addonEventHandler = new AddonEventHandler();
+        keybindHandler = new AddonKeybindHandler();
         this.loadClass(EnigmaticAddonItems.class);
+        this.loadClass(EnigmaticAddonMenus.class);
         this.loadClass(EnigmaticAddonEffects.class);
         this.loadClass(EnigmaticAddonRecipes.class);
         this.loadClass(EnigmaticAddonEntities.class);
+        this.loadClass(EnigmaticAddonEnchantments.class);
         this.loadClass(EnigmaticAddonLootModifier.class);
         if (OmniconfigAddonHandler.FutureItemDisplay.getValue())
             this.loadClass(FutureItems.class);
@@ -68,6 +77,7 @@ public class EnigmaticAddons {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(PROXY);
         MinecraftForge.EVENT_BUS.register(addonEventHandler);
+        MinecraftForge.EVENT_BUS.register(keybindHandler);
         MinecraftForge.EVENT_BUS.addListener(this::onServerStart);
         LOGGER.info("Mod instance constructed successfully.");
     }
@@ -97,6 +107,9 @@ public class EnigmaticAddons {
         if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.ASTRAL_POTION)) {
             BrewingRecipeRegistry.addRecipe(new AstralBrewingRecipe(new ResourceLocation(MODID, "astral_potion")));
         }
+        if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.BLESS_POTION)) {
+            BrewingRecipeRegistry.addRecipe(new SpecialBrewingRecipe(Ingredient.of(EnigmaticItems.TWISTED_POTION), Ingredient.of(EnigmaticAddonItems.PURE_HEART), new ItemStack(EnigmaticAddonItems.BLESS_POTION), new ResourceLocation("enigmaticaddons", "bless_potion")));
+        }
         PotionAddonHelper.registerDispenserBehavior();
         BrewingRecipeRegistry.addRecipe(new ValidationBrewingRecipe(PotionAddonHelper.SPECIAL_POTIONS, null));
         LOGGER.info("Load completion phase finished successfully");
@@ -105,6 +118,7 @@ public class EnigmaticAddons {
     private void clientRegistries(FMLClientSetupEvent event) {
         LOGGER.info("Initializing client setup phase...");
         PROXY.initEntityRendering();
+        MenuScreens.register(EnigmaticAddonMenus.ANTIQUE_BAG_MENU, AntiqueBagScreen::new);
         LOGGER.info("Client setup phase finished successfully.");
     }
 
@@ -174,9 +188,12 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.LORE_INSCRIBER, EnigmaticItems.LORE_FRAGMENT);
             putAfter(entries, EnigmaticItems.LORE_FRAGMENT, EnigmaticItems.VOID_STONE);
             putAfter(entries, EnigmaticItems.VOID_STONE, EnigmaticItems.UNHOLY_GRAIL);
-            putAfter(entries, EnigmaticItems.UNHOLY_GRAIL, EnigmaticAddonItems.HELL_BLADE_CHARM);
+            putAfter(entries, EnigmaticItems.UNHOLY_GRAIL, EnigmaticAddonItems.ANTIQUE_BAG);
+            putAfter(entries, EnigmaticAddonItems.ANTIQUE_BAG, EnigmaticAddonItems.HELL_BLADE_CHARM);
             putAfter(entries, EnigmaticAddonItems.HELL_BLADE_CHARM, EnigmaticItems.FORBIDDEN_AXE);
-            putAfter(entries, EnigmaticItems.FORBIDDEN_AXE, EnigmaticItems.ASTRAL_DUST);
+            putAfter(entries, EnigmaticItems.FORBIDDEN_AXE, EnigmaticAddonItems.ICHOR_DROPLET);
+            putAfter(entries, EnigmaticAddonItems.ICHOR_DROPLET, EnigmaticAddonItems.ICHOROOT);
+            putAfter(entries, EnigmaticAddonItems.ICHOROOT, EnigmaticItems.ASTRAL_DUST);
             putAfter(entries, EnigmaticItems.ASTRAL_DUST, EnigmaticBlocks.ASTRAL_BLOCK);
             putAfter(entries, EnigmaticBlocks.ASTRAL_BLOCK, EnigmaticItems.ENDER_ROD);
             putAfter(entries, EnigmaticItems.ENDER_ROD, EnigmaticItems.MENDING_MIXTURE);
@@ -224,8 +241,11 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.ASTRAL_FRUIT, EnigmaticItems.GUARDIAN_HEART);
             putAfter(entries, EnigmaticItems.GUARDIAN_HEART, EnigmaticItems.CURSED_STONE);
             putAfter(entries, EnigmaticItems.CURSED_STONE, EnigmaticItems.INFERNAL_SHIELD);
-            putAfter(entries, EnigmaticItems.INFERNAL_SHIELD, EnigmaticAddonItems.EARTH_PROMISE);
-            putAfter(entries, EnigmaticAddonItems.EARTH_PROMISE, EnigmaticItems.ABYSSAL_HEART);
+            putAfter(entries, EnigmaticItems.INFERNAL_SHIELD, EnigmaticAddonItems.PURE_HEART);
+            putAfter(entries, EnigmaticAddonItems.PURE_HEART, EnigmaticAddonItems.BLESS_POTION);
+            putAfter(entries, EnigmaticAddonItems.BLESS_POTION, EnigmaticAddonItems.EARTH_PROMISE);
+            putAfter(entries, EnigmaticAddonItems.EARTH_PROMISE, EnigmaticAddonItems.BLESS_RING);
+            putAfter(entries, EnigmaticAddonItems.BLESS_RING, EnigmaticItems.ABYSSAL_HEART);
             putAfter(entries, EnigmaticItems.ABYSSAL_HEART, EnigmaticItems.THE_INFINITUM);
             putAfter(entries, EnigmaticItems.THE_INFINITUM, EnigmaticItems.DESOLATION_RING);
             putAfter(entries, EnigmaticItems.DESOLATION_RING, EnigmaticItems.ELDRITCH_AMULET);

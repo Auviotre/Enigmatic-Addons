@@ -21,15 +21,11 @@ public class MixinOmniconfigHelper {
     public static void MixConfig(OmniconfigWrapper builder) {
         cubeRandomBuffs.clear();
         String[] buffList = builder.config.getStringList("TheCubeRandomBuffs", category, defaultRandomBuffs, "List of effects that will appear in The Cube's random buffs. Examples: minecraft:absorption, minecraft:strength. Changing this option required game restart to take effect.");
-        Arrays.stream(buffList).forEach((entry) -> {
-            cubeRandomBuffs.add(new ResourceLocation(entry));
-        });
+        Arrays.stream(buffList).forEach((entry) -> cubeRandomBuffs.add(new ResourceLocation(entry)));
         if (cubeRandomBuffs.isEmpty()) cubeRandomBuffs.add(new ResourceLocation("minecraft:strength"));
         cubeRandomDebuffs.clear();
         String[] debuffList = builder.config.getStringList("TheCubeRandomDebuffs", category, defaultRandomDebuffs, "List of effects that will appear in The Cube's random debuffs. Examples: minecraft:blindness, minecraft:nausea. Changing this option required game restart to take effect.");
-        Arrays.stream(debuffList).forEach((entry) -> {
-            cubeRandomDebuffs.add(new ResourceLocation(entry));
-        });
+        Arrays.stream(debuffList).forEach((entry) -> cubeRandomDebuffs.add(new ResourceLocation(entry)));
         if (cubeRandomDebuffs.isEmpty()) cubeRandomDebuffs.add(new ResourceLocation("minecraft:weakness"));
     }
 }

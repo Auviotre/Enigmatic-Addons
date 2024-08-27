@@ -35,6 +35,7 @@ public class PotionAddonHelper {
     public static final Ingredient SPECIAL_POTIONS = Ingredient.of(
             Items.HONEY_BOTTLE,
             EnigmaticAddonItems.ASTRAL_POTION,
+            EnigmaticAddonItems.BLESS_POTION,
             EnigmaticAddonItems.COMMON_POTION_LINGERING,
             EnigmaticAddonItems.ULTIMATE_POTION_LINGERING
     );
@@ -44,6 +45,7 @@ public class PotionAddonHelper {
     private static final Ingredient GLOWSTONE_DUST = Ingredient.of(Items.GLOWSTONE_DUST);
     private static final Ingredient DRAGON_BREATH = Ingredient.of(Items.DRAGON_BREATH);
     private static final Ingredient ASTRAL_DUST = Ingredient.of(EnigmaticItems.ASTRAL_DUST);
+    private static final Ingredient EARTH_HEART_FRAGMENT = Ingredient.of(EnigmaticAddonItems.EARTH_HEART_FRAGMENT);
     private static final Ingredient FERMENTED_SPIDER_EYE = Ingredient.of(Items.FERMENTED_SPIDER_EYE);
 
     private static final String defaultPotion = "nothingAddon";
@@ -73,6 +75,9 @@ public class PotionAddonHelper {
 
     public static void registerCommonPotions() {
         addCommonPotion(EnigmaticAddonPotions.FROZEN_HEART, EnigmaticAddonPotions.LONG_FROZEN_HEART, EnigmaticAddonPotions.MINING_FATIGUE, EnigmaticAddonPotions.LONG_MINING_FATIGUE, EnigmaticAddonPotions.STRONG_MINING_FATIGUE);
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.AWKWARD)), EARTH_HEART_FRAGMENT), createVanillaPotion(Items.POTION, Potions.LUCK)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.AWKWARD)), EARTH_HEART_FRAGMENT), createVanillaPotion(Items.SPLASH_POTION, Potions.LUCK)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.AWKWARD)), EARTH_HEART_FRAGMENT), createVanillaPotion(Items.LINGERING_POTION, Potions.LUCK)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.MUNDANE)), BLUE_ICE), createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.FROZEN_HEART)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.FROZEN_HEART)), REDSTONE), createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.LONG_FROZEN_HEART)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.MUNDANE)), BLUE_ICE, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.FROZEN_HEART)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_SPLASH, EnigmaticAddonPotions.FROZEN_HEART)));

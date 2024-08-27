@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:ichoroot"
+    }
+  ],
+  "pattern": [
+    "QLQ",
+    "QXQ",
+    "QLQ"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:ghast_tear"
+    },
+    "Q": {
+      "item": "minecraft:beetroot"
+    },
+    "X": {
+      "item": "enigmaticaddons:ichor_droplet"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:ichoroot",
+    "count": 6
+  }
+}

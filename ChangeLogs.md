@@ -1,3 +1,20 @@
+### [Release 1.1.1]
+### Features:
+- 5 new Items (**Ichor Droplet**, **Ichoroot**, **Pure Heart**, **Potion of Mercy**, **Antique Book Bag**);
+- 2 new Enchantments (Related to **Frost**);
+- 1 new Effect (Related to **Pure Resistance**);
+- The Neutral Golem List of the **Lost Engine** now configurable;
+- **Potion of Luck** can now be obtained through brewing **Fragment of the Earth**;
+### Changes:
+- The Armor debuff of **Charm of Hell Blade** will weaken with **Emblem of Bloodstained Valor**;
+- Changed The Ability of the **Revival Leaf** which will affected by the **Level** of the player;
+- Changed The Cursed AI of the **Wither** boss;
+- Now the loot of **Fragment of the Earth** only requires players to wear the **Ring of Seven Curses**;
+### Fixes:
+- Fixed the issue of the Curse Boost configuration file not taking effect;
+- Fixed a fatal server-side error;
+- Fixed the error in the AI of Animals;
+***
 ### [Release 1.1.0] (2024/08/09)
 ### Features:
 - 2 new Spellstones (**Revival Leaf** & **Lost Engine**) available;
@@ -12,12 +29,12 @@
 - Adjusted various loot probabilities;
 - **The Cube** now configurable in Addons' config file;
 - All of mod's items can be disabled in config file;
-- Future Items Display now configurable.
+- Future Items Display now configurable;
 - Many other detail changes...
 ### Fixes:
 - Fixed the incorrect brewing system;
 - Fixed the wrong mining speed of **Promise of the Earth**;
-- Fixed the error in the Ghast' AI.
+- Fixed the error in the AI of Ghast;
 - Fixed **Ode to Living Beings** didn't make Hoglin passive.
 ***
 ### [Release 1.0.2F] (2024/07/24)

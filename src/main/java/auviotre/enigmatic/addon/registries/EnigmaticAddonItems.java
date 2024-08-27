@@ -130,6 +130,42 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
             registryName = "item"
     )
     public static final EarthHeartFragment EARTH_HEART_FRAGMENT = null;
+    @ConfigurableItem("Antique Book Bag")
+    @ObjectHolder(
+            value = "enigmaticaddons:antique_bag",
+            registryName = "item"
+    )
+    public static final AntiqueBag ANTIQUE_BAG = null;
+    @ConfigurableItem("Ichor Droplet")
+    @ObjectHolder(
+            value = "enigmaticaddons:ichor_droplet",
+            registryName = "item"
+    )
+    public static final IchorDroplet ICHOR_DROPLET = null;
+    @ConfigurableItem("Ichoroot")
+    @ObjectHolder(
+            value = "enigmaticaddons:ichoroot",
+            registryName = "item"
+    )
+    public static final Ichoroot ICHOROOT = null;
+    @ConfigurableItem("Pure Heart")
+    @ObjectHolder(
+            value = "enigmaticaddons:pure_heart",
+            registryName = "item"
+    )
+    public static final PureHeart PURE_HEART = null;
+    @ConfigurableItem("Potion of Mercy")
+    @ObjectHolder(
+            value = "enigmaticaddons:bless_potion",
+            registryName = "item"
+    )
+    public static final BlessPotion BLESS_POTION = null;
+    //    @ConfigurableItem("Ring of Bless")
+    @ObjectHolder(
+            value = "enigmaticaddons:bless_ring",
+            registryName = "item"
+    )
+    public static final BlessRing BLESS_RING = null;
 
     private EnigmaticAddonItems() {
         super(ForgeRegistries.ITEMS);
@@ -146,7 +182,13 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("hell_blade_charm", HellBladeCharm::new);
         this.register("astral_potion", AstralPotion::new);
         this.register("primeval_cube", PrimevalCube::new);
+        this.register("antique_bag", AntiqueBag::new);
         this.register("earth_heart_fragment", EarthHeartFragment::new);
+        this.register("ichor_droplet", IchorDroplet::new);
+        this.register("ichoroot", Ichoroot::new);
+        this.register("pure_heart", PureHeart::new);
+        this.register("bless_potion", BlessPotion::new);
+        this.register("bless_ring", BlessRing::new);
         this.register("common_potion", () -> new UltimatePotionAddon.Base(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_splash", () -> new UltimatePotionAddon.Splash(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_lingering", () -> new UltimatePotionAddon.Lingering(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));

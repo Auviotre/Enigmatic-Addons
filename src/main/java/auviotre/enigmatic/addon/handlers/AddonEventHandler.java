@@ -4,8 +4,11 @@ import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.api.events.LivingCurseBoostEvent;
 import auviotre.enigmatic.addon.contents.entities.goal.*;
 import auviotre.enigmatic.addon.contents.items.*;
+import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
+import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonEnchantments;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
@@ -37,7 +40,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
@@ -53,6 +55,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -63,6 +66,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
@@ -169,16 +174,15 @@ public class AddonEventHandler {
     public void onLivingChangeTarget(@NotNull LivingChangeTargetEvent event) {
         LivingEntity entity = event.getEntity();
         LivingEntity target = event.getNewTarget();
-        if (entity instanceof NeutralMob neutral && neutral instanceof Animal && target instanceof Player player && event.getTargetType() == LivingChangeTargetEvent.LivingTargetType.MOB_TARGET) {
-            if (SuperpositionHandler.isTheCursedOne(player) && (neutral.getTarget() == null || !neutral.getTarget().isAlive())) {
-                if (neutral.getLastHurtByMob() != player && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LIVING_ODE)) {
+        if (entity instanceof Targeting targetedEntity && target instanceof Player player && event.getTargetType() == LivingChangeTargetEvent.LivingTargetType.MOB_TARGET) {
+            if (SuperpositionHandler.isTheCursedOne(player) && entity.getLastHurtByMob() != player && (targetedEntity.getTarget() == null || !targetedEntity.getTarget().isAlive())) {
+                if (entity instanceof NeutralMob neutral && neutral instanceof Animal && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LIVING_ODE)) {
                     event.setCanceled(true);
                 }
-            }
-        }
-        if (entity instanceof AbstractGolem golem && target instanceof Player player && event.getTargetType() == LivingChangeTargetEvent.LivingTargetType.MOB_TARGET) {
-            if (SuperpositionHandler.isTheCursedOne(player) && (golem.getTarget() == null || !golem.getTarget().isAlive())) {
-                if (golem.getLastHurtByMob() != player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
+                if (entity instanceof AbstractGolem && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LOST_ENGINE)) {
+                    event.setCanceled(true);
+                }
+                if (LostEngine.golemList.contains(ForgeRegistries.ENTITY_TYPES.getKey(entity.getType())) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LOST_ENGINE)) {
                     event.setCanceled(true);
                 }
             }
@@ -267,6 +271,13 @@ public class AddonEventHandler {
                 event.getEntity().getPersistentData().remove("CosmicPotion");
             }
         }
+
+        int level = EnchantmentHelper.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_PROTECTION, entity);
+        if (level >= 16) {
+            entity.setTicksFrozen(0);
+        } else if (level > 0 && entity.tickCount % (4 - level / 4) == 0) {
+            entity.setTicksFrozen(Math.max(entity.getTicksFrozen() - 1, 0));
+        }
     }
 
     @SubscribeEvent
@@ -293,12 +304,12 @@ public class AddonEventHandler {
         }
 
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
-            player.getCooldowns().tick();
+            if (player.tickCount % 2 == 0) player.getCooldowns().tick();
             if (player.isInWater()) player.addDeltaMovement(new Vec3(0.0D, -0.006D, 0.0D));
 
             boolean spaceDown = Minecraft.getInstance().options.keyJump.isDown();
-            if (spaceDown && player.getDeltaMovement().y > 0.24F && !player.level().getBlockState(player.blockPosition()).canOcclude()) {
-                player.addDeltaMovement(new Vec3(0.0D, 0.025D, 0.0D));
+            if (spaceDown && player.getDeltaMovement().y > 0.225F && !player.level().getBlockState(player.blockPosition()).canOcclude()) {
+                player.addDeltaMovement(new Vec3(0.0D, 0.0256D, 0.0D));
                 float width = player.getBbWidth();
                 for (int i = 0; i < RANDOM.nextInt(3); i++) {
                     player.level().addParticle(ParticleTypes.CLOUD, player.getRandomX(width), player.getY() + RANDOM.nextFloat(0.2F), player.getRandomZ(width), 0, RANDOM.nextFloat(0.5F) * player.getDeltaMovement().y, 0);
@@ -389,6 +400,25 @@ public class AddonEventHandler {
                 ItemStack itemstack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.CURSED_XP_SCROLL);
                 damageBoost += (float) (event.getAmount() * (CursedXPScroll.getLevelModifier(itemstack) / 100.0 * CursedXPScroll.damageBoostLimit.getValue()));
             }
+
+            if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_ACKNOWLEDGMENT).isEmpty() || !SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_TWIST).isEmpty()) {
+                victim.setSecondsOnFire(3);
+            }
+
+            if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_TWIST).isEmpty()) {
+                if (SuperpositionHandler.isTheCursedOne(player)) {
+                    if (OmniconfigHandler.isBossOrPlayer(event.getEntity())) {
+                        damageBoost += event.getAmount() * 0.1F;
+                    }
+                }
+            }
+            if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_INFINITUM).isEmpty()) {
+                if (SuperpositionHandler.isTheWorthyOne(player)) {
+                    if (OmniconfigHandler.isBossOrPlayer(event.getEntity())) {
+                        damageBoost += event.getAmount() * 0.2F;
+                    }
+                }
+            }
         }
 
         if (victim instanceof Player player) {
@@ -452,7 +482,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void onEntityHurt(@NotNull LivingDamageEvent event) {
+    public void onEntityDamage(@NotNull LivingDamageEvent event) {
         LivingEntity victim = event.getEntity();
         Entity attacker = event.getSource().getEntity();
         float amount = event.getAmount();
@@ -473,7 +503,7 @@ public class AddonEventHandler {
                         ((ServerLevel) player.level()).sendParticles(ParticleTypes.END_ROD, player.getX(), player.getY(0.5F), player.getZ(), 36, 0.1D, 0.1D, 0.1D, 0.2D);
                         player.level().playSound(null, player, SoundEvents.ENDER_EYE_DEATH, SoundSource.PLAYERS, 5.0F, 1.5F);
                     }
-                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 4));
+                    player.addEffect(new MobEffectInstance(EnigmaticAddonEffects.PURE_RESISTANCE_EFFECT, 100, 4));
                     event.setCanceled(true);
                 } else {
                     event.setAmount(damage);
@@ -481,12 +511,18 @@ public class AddonEventHandler {
             }
         }
 
+        if (victim.hasEffect(EnigmaticAddonEffects.PURE_RESISTANCE_EFFECT)) {
+            int amplifier = victim.getEffect(EnigmaticAddonEffects.PURE_RESISTANCE_EFFECT).getAmplifier();
+            if (victim.getRandom().nextInt(5) <= amplifier) event.setCanceled(true);
+            else event.setAmount(event.getAmount() * 0.2F * (4 - amplifier));
+        }
+
         if (SuperpositionHandler.hasCurio(victim, EnigmaticAddonItems.QUARTZ_RING) && EnigmaticAddonItems.QUARTZ_RING.resistanccList.stream().anyMatch(event.getSource()::is)) {
             event.setAmount(amount * (1 - QuartzRing.magicResistance.getValue().asModifier(false)));
         }
 
         if (SuperpositionHandler.hasCurio(victim, EnigmaticAddonItems.LOST_ENGINE) && event.getSource().is(DamageTypes.LIGHTNING_BOLT)) {
-            event.setAmount(amount * (victim.getRandom().nextInt(49) + 49) + victim.getMaxHealth());
+            event.setAmount(amount * (victim.getRandom().nextInt(5) + 5) + victim.getMaxHealth());
         }
 
         if (attacker instanceof Player player && !player.level().isClientSide) {
@@ -502,13 +538,18 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onFinalDamaged(@NotNull LivingDamageEvent event) {
+    public void onFinalDamage(@NotNull LivingDamageEvent event) {
         if (event.getSource().getDirectEntity() instanceof Player player) {
             float lifesteal = 0.0F;
 
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.NIGHT_SCROLL) && NightScroll.isDark(player)) {
                 if (SuperpositionHandler.isTheCursedOne(player)) {
                     lifesteal += event.getAmount() * NightScroll.abilityBoost.getValue().asModifier(false);
+                }
+            }
+            if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_INFINITUM).isEmpty()) {
+                if (SuperpositionHandler.isTheWorthyOne(player)) {
+                    lifesteal += event.getAmount() * 0.1F;
                 }
             }
             if (lifesteal > 0) player.heal(lifesteal);
@@ -549,7 +590,7 @@ public class AddonEventHandler {
     public void onLivingJump(LivingEvent.@NotNull LivingJumpEvent event) {
         LivingEntity entity = event.getEntity();
         if (SuperpositionHandler.hasCurio(entity, EnigmaticAddonItems.LOST_ENGINE)) {
-            entity.addDeltaMovement(new Vec3(0.0, 0.12, 0.0));
+            entity.addDeltaMovement(new Vec3(0.0, 0.1214, 0.0));
             if (entity.isCrouching()) {
                 float rot = entity.getYRot() * Mth.PI / 180.0F;
                 float sin = -Mth.sin(rot) * 0.055F;
@@ -564,7 +605,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onCriticalHit(CriticalHitEvent event) {
+    public void onCriticalHit(@NotNull CriticalHitEvent event) {
         Player player = event.getEntity();
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
             event.setDamageModifier(event.getDamageModifier() + LostEngine.critModifier.getValue().asModifier());
@@ -640,17 +681,20 @@ public class AddonEventHandler {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onLivingDrops(@NotNull LivingDropsEvent event) {
         DamageSource source = event.getSource();
-        if (event.isRecentlyHit() && source != null && source.getEntity() instanceof Player player && SuperpositionHandler.isTheWorthyOne(player)) {
+        if (event.isRecentlyHit() && source != null && source.getEntity() instanceof Player player && SuperpositionHandler.isTheCursedOne(player)) {
             LivingEntity killed = event.getEntity();
             BlockPos blockPos = killed.blockPosition();
             int lootingLevel = ForgeHooks.getLootingLevel(killed, player, source);
             if (killed.level().dimension() == EnigmaticLegacy.PROXY.getOverworldKey() && !killed.level().canSeeSky(blockPos)) {
                 if (blockPos.getY() <= 0 && killed instanceof Monster && RANDOM.nextInt(1000) < 30 + lootingLevel * 15) {
-                    ItemEntity itemEntity = new ItemEntity(killed.level(), killed.getX(), killed.getY(), killed.getZ(), new ItemStack(EnigmaticAddonItems.EARTH_HEART_FRAGMENT));
-                    itemEntity.setPickUpDelay(10);
-                    event.getDrops().add(itemEntity);
+                    this.addDrop(event, new ItemStack(EnigmaticAddonItems.EARTH_HEART_FRAGMENT));
                 }
             }
+
+            if (!CursedRing.enableSpecialDrops.getValue())
+                return;
+
+            this.addEntityDropWithChance(event, Ghast.class, new ItemStack(EnigmaticAddonItems.ICHOR_DROPLET), 40);
         }
     }
 
@@ -667,7 +711,7 @@ public class AddonEventHandler {
             event.setTable(modified);
         }
         if (SuperAddonHandler.getJungleDungeons().contains(event.getName())) {
-            LootPool poolSpellstones = SuperpositionHandler.constructLootPool("addon_spellstones", -3F, 1F,
+            LootPool poolSpellstones = SuperpositionHandler.constructLootPool("addon_spellstones", -4F, 1F,
                     SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.REVIVAL_LEAF, 100));
 
             LootTable modified = event.getTable();
@@ -688,6 +732,14 @@ public class AddonEventHandler {
 
             LootTable modified = event.getTable();
             modified.addPool(poolCharms);
+            event.setTable(modified);
+        }
+        if (SuperpositionHandler.getOverworldDungeons().contains(event.getName())) {
+            LootPool antiqueBag = SuperpositionHandler.constructLootPool("antique_bag", -10F, 1F,
+                    SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.ANTIQUE_BAG, 100));
+
+            LootTable modified = event.getTable();
+            modified.addPool(antiqueBag);
             event.setTable(modified);
         }
     }
@@ -736,9 +788,8 @@ public class AddonEventHandler {
             ghast.goalSelector.addGoal(7, new GhastMultishotGoal(ghast));
         }
         if (entity instanceof Animal animal) {
-            if (animal instanceof Cow || animal instanceof Pig || animal instanceof Sheep || animal instanceof Chicken || animal instanceof Rabbit) {
-                Predicate<LivingEntity> cursedPlayer = (player) -> SuperpositionHandler.isTheWorthyOne((Player) player) && !SuperpositionHandler.hasItem((Player) player, EnigmaticAddonItems.LIVING_ODE);
-                animal.goalSelector.addGoal(2, new AvoidEntityGoal<>(animal, Player.class, 6.0F, 1.25, 1.25, cursedPlayer));
+            if (animal instanceof Cow || animal instanceof Pig || animal instanceof Sheep || animal instanceof Chicken) {
+                animal.goalSelector.addGoal(5, new AvoidTheWorthyGoal(animal, 6.0F, 1.25, 1.25));
             }
         }
         if (entity instanceof Vex vex) {
@@ -757,5 +808,42 @@ public class AddonEventHandler {
 
     public static int getGoalPriority(@NotNull Mob mob, Predicate<WrappedGoal> filter) {
         return mob.goalSelector.getAvailableGoals().stream().filter(filter).findFirst().map(WrappedGoal::getPriority).orElse(-1);
+    }
+
+    public void addDrop(@NotNull LivingDropsEvent event, ItemStack drop) {
+        ItemEntity itemEntity = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), drop);
+        itemEntity.setPickUpDelay(10);
+        event.getDrops().add(itemEntity);
+    }
+
+    public void addDropWithChance(LivingDropsEvent event, ItemStack drop, int chance) {
+        if (RANDOM.nextInt(100) < chance) {
+            this.addDrop(event, drop);
+        }
+    }
+
+    public <T extends LivingEntity> void addEntityDropWithChance(@NotNull LivingDropsEvent event, Class<T> entity, ItemStack drop, int chance) {
+        if (entity == event.getEntity().getClass()) {
+            this.addDropWithChance(event, drop, chance);
+        }
+    }
+
+
+    @SubscribeEvent
+    public void attachEntitiesCapabilities(@NotNull AttachCapabilitiesEvent<Entity> event) {
+        if (event.getObject() instanceof Player player) {
+            event.addCapability(AntiqueBagCapability.ID_INVENTORY, AntiqueBagCapability.createProvider(player));
+        }
+    }
+
+
+    @SubscribeEvent
+    public void onPlayerClone(PlayerEvent.@NotNull Clone event) {
+        Player player = event.getEntity();
+        Player original = event.getOriginal();
+        original.revive();
+        LazyOptional<IAntiqueBagHandler> oldHandler = SuperAddonHandler.getCapability(original, AntiqueBagCapability.INVENTORY);
+        LazyOptional<IAntiqueBagHandler> newHandler = SuperAddonHandler.getCapability(player, AntiqueBagCapability.INVENTORY);
+        oldHandler.ifPresent(oldBag -> newHandler.ifPresent(newBag -> newBag.readTag(oldBag.writeTag())));
     }
 }

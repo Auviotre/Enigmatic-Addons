@@ -78,7 +78,7 @@ public class ForgottenIce extends ItemSpellstoneCurio implements ISpellstone {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgottenIce5");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgottenIce6");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgottenIce7");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgottenIce8", ChatFormatting.GOLD, multiResistance.getValue() + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgottenIce8", ChatFormatting.GOLD, multiResistance + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgottenIce9");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");

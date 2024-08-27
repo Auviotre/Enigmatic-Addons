@@ -60,7 +60,7 @@ public abstract class MixinWitherBoss extends Monster {
 
     @Inject(method = "hurt", at = @At("RETURN"))
     public void hurtMix(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (SuperAddonHandler.isCurseBoosted(this) && this.isPowered() && cir.getReturnValue() && this.random.nextInt(6) == 0) {
+        if (SuperAddonHandler.isCurseBoosted(this) && this.isPowered() && cir.getReturnValue() && this.random.nextInt(10) == 0) {
             enigmaticAddons$randomSkeleton(1 + this.random.nextInt(Mth.ceil(amount / 7.5F)));
         }
     }
@@ -68,6 +68,7 @@ public abstract class MixinWitherBoss extends Monster {
     @Unique
     private void enigmaticAddons$randomSkeleton(int count) {
         if (this.level().isClientSide()) return;
+        count = Math.min(count, 3);
         this.level().playSound(null, this.blockPosition(), SoundEvents.WITHER_SKELETON_STEP, SoundSource.NEUTRAL, 5.0F, 0.0F);
         for (int i = 0; i < count; i++) {
             WitherSkeleton skeleton = new WitherSkeleton(EntityType.WITHER_SKELETON, this.level());

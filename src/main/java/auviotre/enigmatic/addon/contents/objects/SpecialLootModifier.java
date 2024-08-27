@@ -1,4 +1,4 @@
-package auviotre.enigmatic.addon.contents;
+package auviotre.enigmatic.addon.contents.objects;
 
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.config.OmniconfigHandler;

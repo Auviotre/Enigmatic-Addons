@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.registries;
 
 import auviotre.enigmatic.addon.contents.effects.FrozenHeart;
+import auviotre.enigmatic.addon.contents.effects.PureResistance;
 import auviotre.enigmatic.addon.contents.effects.RemainDragonBreath;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,9 +20,16 @@ public class EnigmaticAddonEffects extends AbstractRegistry<MobEffect> {
     )
     public static final FrozenHeart FROZEN_HEART_EFFECT = null;
 
+    @ObjectHolder(
+            value = "enigmaticaddons:pure_resistance",
+            registryName = "mob_effect"
+    )
+    public static final PureResistance PURE_RESISTANCE_EFFECT = null;
+
     private EnigmaticAddonEffects() {
         super(ForgeRegistries.MOB_EFFECTS);
         this.register("dragon_breath", RemainDragonBreath::new);
         this.register("frozen_heart", FrozenHeart::new);
+        this.register("pure_resistance", PureResistance::new);
     }
 }

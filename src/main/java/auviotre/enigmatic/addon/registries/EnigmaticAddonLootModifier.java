@@ -1,6 +1,6 @@
 package auviotre.enigmatic.addon.registries;
 
-import auviotre.enigmatic.addon.contents.SpecialLootModifier;
+import auviotre.enigmatic.addon.contents.objects.SpecialLootModifier;
 import com.mojang.serialization.Codec;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.registries.ForgeRegistries;

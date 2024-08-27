@@ -59,8 +59,8 @@ public class QuartzRing extends ItemBaseCurio {
     protected void addAttributes(List<Component> list, ItemStack stack) {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.addLocalizedFormattedString(list, "curios.modifiers.ring", ChatFormatting.GOLD);
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.magic_resistance", ChatFormatting.GOLD, "+" + magicResistance.getValue().asPercentage() + "%");
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.armor", ChatFormatting.GOLD, "+" + defaultArmorBonus.getValue());
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.magic_resistance", ChatFormatting.GOLD, "+" + magicResistance + "%");
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.armor", ChatFormatting.GOLD, "+" + defaultArmorBonus);
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.luck", ChatFormatting.GOLD, "+1.5");
     }
 

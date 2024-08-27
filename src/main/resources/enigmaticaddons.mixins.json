@@ -19,7 +19,6 @@
     "entity.MixinWitch",
     "entity.MixinWitherBoss",
     "entity.MixinZombie",
-    "legacy.MixinEnigmaticKeybindHandler",
     "legacy.MixinSuperpositionHandler",
     "legacy.MixinTheCube",
     "legacy.MixinUltimatePotionBase",

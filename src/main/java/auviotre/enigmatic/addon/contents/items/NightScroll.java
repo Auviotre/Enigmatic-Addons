@@ -57,9 +57,9 @@ public class NightScroll extends ItemBaseCurio implements ICursed {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll2");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll3", ChatFormatting.GOLD, abilityBoost.getValue().asPercentage() + "%");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll4", ChatFormatting.GOLD, abilityBoost.getValue().asPercentage() + "%");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll5", ChatFormatting.GOLD, abilityBoost.getValue().asPercentage() + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll3", ChatFormatting.GOLD, abilityBoost + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll4", ChatFormatting.GOLD, abilityBoost + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll5", ChatFormatting.GOLD, abilityBoost + "%");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }

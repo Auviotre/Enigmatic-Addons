@@ -12,6 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -26,6 +27,8 @@ import net.minecraftforge.common.ForgeMod;
 import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -38,17 +41,23 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
     public static Omniconfig.DoubleParameter speedModifier;
     public static Omniconfig.DoubleParameter gravityModifier;
     public static Omniconfig.DoubleParameter vulnerabilityModifier;
+    public static final List<ResourceLocation> golemList = new ArrayList<>();
 
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("LostEngine");
         spellstoneCooldown = builder.comment("Active ability cooldown for Lost Engine. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 0);
-        critModifier = builder.comment("The crit damage modifier of the Lost Engine.").max(256.0).min(0.0).getPerhaps("CritDamageModifier", 80);
+        critModifier = builder.comment("The crit damage modifier of the Lost Engine.").max(256.0).min(0.0).getPerhaps("CritDamageModifier", 60);
         toughnessModifier = builder.comment("The Armor Toughness modifier of the Lost Engine.").max(256.0).min(0.0).getDouble("ToughnessModifier", 4.0);
         KRModifier = builder.comment("The Knockback resistance modifier of the Lost Engine.").max(256.0).min(0.0).getDouble("KnockbackResistanceModifier", 0.2);
         speedModifier = builder.comment("The speed multiplier of the Lost Engine.").max(1.0).min(0.0).getDouble("SpeedModifier", 0.1);
         gravityModifier = builder.comment("The gravity multiplier of the Lost Engine.").max(1.0).min(0.0).getDouble("GravityModifier", 0.4);
         vulnerabilityModifier = builder.comment("Modifier for Magic Damage vulnerability applied by Lost Engine. Default value of 2.0 means that player will receive twice as much damage from magic.").min(1.0).max(256.0).getDouble("VulnerabilityModifier", 2.5);
+        golemList.clear();
+        String[] list = builder.config.getStringList("LostEngineExtraGolemList", "Balance Options", new String[0], "List of entities that will be affected as Golem by the Lost Engine. Examples: minecraft:iron_golem. Changing this option required game restart to take effect.");
+        Arrays.stream(list).forEach((entry) -> {
+            golemList.add(new ResourceLocation(entry));
+        });
     }
 
     public LostEngine() {
@@ -58,10 +67,11 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
         this.immunityList.add(DamageTypes.PLAYER_EXPLOSION);
         this.immunityList.add(DamageTypes.CACTUS);
         this.immunityList.add(DamageTypes.SWEET_BERRY_BUSH);
-        Supplier<Float> magicVulnerabilitySupplier = () -> (float)vulnerabilityModifier.getValue();
+        Supplier<Float> magicVulnerabilitySupplier = () -> (float) vulnerabilityModifier.getValue();
         this.resistanceList.put(DamageTypes.MAGIC, magicVulnerabilitySupplier);
         this.resistanceList.put(DamageTypes.WITHER, magicVulnerabilitySupplier);
         this.resistanceList.put(DamageTypes.DRAGON_BREATH, magicVulnerabilitySupplier);
+        this.resistanceList.put(DamageTypes.LIGHTNING_BOLT, () -> 2.0F);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -71,13 +81,13 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngineCooldown", ChatFormatting.GOLD, (float)spellstoneCooldown.getValue() / 20.0F);
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngineCooldown", ChatFormatting.GOLD, (float) spellstoneCooldown.getValue() / 20.0F);
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine3");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine4");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine5");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine6");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine7", ChatFormatting.GOLD, critModifier.getValue() + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine7", ChatFormatting.GOLD, critModifier + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine8");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine9");
         } else {

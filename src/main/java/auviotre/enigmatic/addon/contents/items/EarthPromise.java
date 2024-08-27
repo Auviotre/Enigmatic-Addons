@@ -60,11 +60,11 @@ public class EarthPromise extends ItemBaseCurio implements ICursed {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         if (Screen.hasShiftDown()) {
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise1", ChatFormatting.GOLD, abilityTriggerPercent.getValue() + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise1", ChatFormatting.GOLD, abilityTriggerPercent + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise3");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise4", ChatFormatting.GOLD, totalResistance.getValue() + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise4", ChatFormatting.GOLD, totalResistance + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");

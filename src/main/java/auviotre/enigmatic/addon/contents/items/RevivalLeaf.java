@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -53,7 +54,7 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("RevivalLeaf");
-        spellstoneCooldown = builder.comment("Active ability cooldown for Revival Leaf. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 200);
+        spellstoneCooldown = builder.comment("Active ability cooldown for Revival Leaf. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 320);
         naturalRegenerationSpeed = builder.comment("The time required for each 0.5HP treatment from the  natural regeneration of the Revival Leaf. Measured in ticks.").min(5).getInt("NaturalRegenerationTick", 40);
         skillRadius = builder.comment("The effect radius of Revival Leaf' ability.").getDouble("AbilityRadius", 5.0);
         poisonTime = builder.comment("Amount of ticks for which bearer of the leaf will apply Poison effect to entities they attack. 20 ticks equals to 1 second.").getInt("PoisonTime", 160);
@@ -106,20 +107,24 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
 
     public void triggerActiveAbility(Level world, ServerPlayer player, ItemStack stack) {
         if (!SuperpositionHandler.hasSpellstoneCooldown(player)) {
+            int level = ExperienceHelper.getPlayerXPLevel(player);
             int playerXP = ExperienceHelper.getPlayerXP(player);
             if (playerXP > 10) {
-                ExperienceHelper.drainPlayerXP(player, (int)((5 + random.nextFloat() * 5)));
+                ExperienceHelper.drainPlayerXP(player, Math.min(Mth.ceil(5 * player.getRandom().nextFloat()) + level, playerXP));
                 world.playSound(null, player.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 1.0F, (float) (0.8 + Math.random() * 0.2));
                 SuperpositionHandler.setSpellstoneCooldown(player, this.getCooldown(player));
                 List<LivingEntity> genericMobs = player.level().getEntitiesOfClass(LivingEntity.class, SuperpositionHandler.getBoundingBoxAroundEntity(player, skillRadius.getValue()));
                 for (LivingEntity mob : genericMobs) {
-                    mob.addEffect(new MobEffectInstance(MobEffects.REGENERATION, regenerationTime.getValue(), regenerationLevel.getValue(), false, true));
+                    if (level > 25) {
+                        float maxHealth = mob.getMaxHealth();
+                        mob.heal(Math.min(0.2F, (level - 25) * 0.01F) * maxHealth);
+                    }
+                    mob.addEffect(new MobEffectInstance(MobEffects.REGENERATION, regenerationTime.getValue() + Math.min(playerXP * level / 2, regenerationTime.getValue()), regenerationLevel.getValue(), false, true));
                 }
             }
         }
     }
 
-    @Override
     public void curioTick(SlotContext context, ItemStack stack) {
         LivingEntity entity = context.entity();
         if (entity instanceof Player player) {

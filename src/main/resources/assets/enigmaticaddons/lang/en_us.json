@@ -1,4 +1,6 @@
 {
+  "__contributor": "Auviotre",
+
   "tooltip.enigmaticaddons.armor": "%1$s§d Armor",
   "tooltip.enigmaticaddons.armor_toughness": "%1$s§d Armor Toughness",
   "tooltip.enigmaticaddons.damage": "%1$s§d Attack Damage",
@@ -9,6 +11,11 @@
 
   "tooltip.enigmaticaddons.legacy_future1": "§5Possible items that may be implemented in the next",
   "tooltip.enigmaticaddons.legacy_future2": "§5version of §dEnigmatic Legacy (I Guess form Addon)",
+
+  "enchantment.enigmaticaddons.frost_aspect": "Frost Aspect",
+  "enchantment.enigmaticaddons.frost_aspect.desc": "The attack target is gradually freezing.",
+  "enchantment.enigmaticaddons.frost_protection": "Frost Protection",
+  "enchantment.enigmaticaddons.frost_protection.desc": "Reduce the damage and influence of frost.",
 
   "item.enigmaticaddons.earth_heart_fragment": "Fragment of the Earth",
 
@@ -79,7 +86,7 @@
   "tooltip.enigmaticaddons.lostEngineCooldown": "§dСooldown: §6%1$s§6 seconds",
   "tooltip.enigmaticaddons.lostEngine3": "§dPassive abilities:",
   "tooltip.enigmaticaddons.lostEngine4": "§5- Enhance mobility and toughness.",
-  "tooltip.enigmaticaddons.lostEngine5": "§5- Reduce item cooldowns by half.",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- Reduce item cooldowns by §633%§5.",
   "tooltip.enigmaticaddons.lostEngine6": "§5- Immune to §dFall §5& §dExplosion §5damage.",
   "tooltip.enigmaticaddons.lostEngine7": "§5- Add §6%1$s§d Crit damage§5.",
   "tooltip.enigmaticaddons.lostEngine8": "§5- Golems will not target you actively.",
@@ -140,6 +147,7 @@
   "item.enigmaticaddons.hell_blade_charm": "Charm of Hell Blade",
 
   "tooltip.enigmaticaddons.hellBladeCharm1": "§5- Your armor will be ineffective.",
+  "tooltip.enigmaticaddons.hellBladeCharm1_alt": "§5- Armor is §6%1$s§5 less effective.",
   "tooltip.enigmaticaddons.hellBladeCharm2": "§5- All damage you caused will be doubled.",
   "tooltip.enigmaticaddons.hellBladeCharm3": "§5- When your damage reaches §6%1$s§5 of the target's health,",
   "tooltip.enigmaticaddons.hellBladeCharm4": "§5- causing significant additional damage and heal yourself.",
@@ -148,6 +156,13 @@
   "book.enigmaticaddons.entry.hell_blade_charm.title": "Double-edged Hell",
   "book.enigmaticaddons.entry.hell_blade_charm.page.1": "This charm seems to have been waiting for your arrival somewhere in nether, waiting for you to nurture it with your own blood.<br2/>Anyone who notices the powerful power this charm gives, even if it honestly indicates the cost, will inevitably be tempted to wear it. Generally speaking, these wearers end up with a",
   "book.enigmaticaddons.entry.hell_blade_charm.page.2": "very foolish death.<br2/>So, please wear this charm carefully, especially those who bear the seven curses at the same time.",
+
+  "item.enigmaticaddons.antique_bag": "Antique Book Bag",
+  "gui.enigmaticaddons.antique_bag": "§5Magic Book Bag",
+
+  "tooltip.enigmaticaddons.antiqueBag1": "§5A container similar to a Ender Chest.",
+  "tooltip.enigmaticaddons.antiqueBag2": "§5The books stored in will be considered",
+  "tooltip.enigmaticaddons.antiqueBag3": "§5as being in the inventory.",
 
   "item.enigmaticaddons.astral_potion": "Potion of Cosmic",
 
@@ -166,6 +181,32 @@
   "book.enigmaticaddons.entry.primeval_cube.name": "Useless Stone...",
   "book.enigmaticaddons.entry.primeval_cube.page.1": "You have discovered this ancient record, which seems to be about the rebirth of spellstones.<br2/>Under the catalysis of the radiance of the stars...<br/>Six becomes one...<br/>Accompanied by the power of two \"Heart\".",
 
+  "item.enigmaticaddons.ichor_droplet": "Ichor Droplet",
+
+  "item.enigmaticaddons.ichoroot": "Ichoroot",
+
+  "tooltip.enigmaticaddons.ichoroot": "§5Contains a slight purifying power",
+
+  "item.enigmaticaddons.pure_heart": "Pure Heart",
+
+  "item.enigmaticaddons.bless_potion": "Potion of Mercy [WIP]",
+
+  "tooltip.enigmaticaddons.blessPotion1": "§5Teleports you to the location of your last",
+  "tooltip.enigmaticaddons.blessPotion2": "§5demise without ant cost.",
+
+  "item.enigmaticaddons.bless_ring": "[WIP]",
+
+  "tooltip.enigmaticaddons.blessRing1": "§dFor those who have experienced torment,",
+  "tooltip.enigmaticaddons.blessRing2": "§dremaining blessings are still effective:",
+  "tooltip.enigmaticaddons.blessRing3": "§5- §6+%1$s§d Looting Level",
+  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d Fortune Level",
+  "tooltip.enigmaticaddons.blessRing5": "§5- Unique drops from some creatures.",
+  "tooltip.enigmaticaddons.blessRing6": "§5- You can create and use unique relics.",
+  "tooltip.enigmaticaddons.blessRingLore1": "§5This ring shines with a unique",
+  "tooltip.enigmaticaddons.blessRingLore2": "§5luster, remembering those years",
+  "tooltip.enigmaticaddons.blessRingLore3": "§5of torment, and also, it is a ",
+  "tooltip.enigmaticaddons.blessRingLore4": "§5proof of power......",
+
   "death.attack.false_justice": "%1$s disappeared into the void of judgement.",
 
   "entity.enigmaticaddons.cobweb_ball": "Spider Web Ball",
@@ -176,6 +217,7 @@
 
   "effect.enigmaticaddons.dragon_breath": "Dragon Breath",
   "effect.enigmaticaddons.frozen_heart": "Frozen Heart",
+  "effect.enigmaticaddons.pure_resistance": "Pure Resistance",
 
   "item.enigmaticaddons.common_potion.effect.frozen_heart": "Potion of Frozen Heart",
   "item.enigmaticaddons.common_potion.effect.long_frozen_heart": "Potion of Frozen Heart",

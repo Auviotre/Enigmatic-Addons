@@ -1,4 +1,6 @@
 {
+  "__contributor": "Auviotre",
+
   "tooltip.enigmaticaddons.armor": "%1$s§d 护甲值",
   "tooltip.enigmaticaddons.armor_toughness": "%1$s§d 盔甲韧性",
   "tooltip.enigmaticaddons.damage": "%1$s§d 攻击伤害",
@@ -9,6 +11,11 @@
 
   "tooltip.enigmaticaddons.legacy_future1": "§5下个版本§d神秘遗物可能会",
   "tooltip.enigmaticaddons.legacy_future2": "§5实现的物品（猜测，来自扩展）",
+
+  "enchantment.enigmaticaddons.frost_aspect": "霜冻附加",
+  "enchantment.enigmaticaddons.frost_aspect.desc": "攻击目标逐渐冻结",
+  "enchantment.enigmaticaddons.frost_protection": "霜冻保护",
+  "enchantment.enigmaticaddons.frost_protection.desc": "减少霜冻的伤害和影响.",
 
   "item.enigmaticaddons.earth_heart_fragment": "大地之心碎片",
 
@@ -79,7 +86,7 @@
   "tooltip.enigmaticaddons.lostEngineCooldown": "§d冷却: §6%1$s§6秒",
   "tooltip.enigmaticaddons.lostEngine3": "§d被动技能:",
   "tooltip.enigmaticaddons.lostEngine4": "§5- 提升机动能力和韧性",
-  "tooltip.enigmaticaddons.lostEngine5": "§5- 减半物品冷却时间",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- 减少 §633%§5 物品冷却时间",
   "tooltip.enigmaticaddons.lostEngine6": "§5- 免疫§d掉落§5，§d爆炸§5伤害",
   "tooltip.enigmaticaddons.lostEngine7": "§5- 增加 §6%1$s§d 暴击伤害",
   "tooltip.enigmaticaddons.lostEngine8": "§5- 傀儡类生物不会主动以你为目标",
@@ -139,14 +146,22 @@
   "item.enigmaticaddons.hell_blade_charm": "地狱刃片护符",
 
   "tooltip.enigmaticaddons.hellBladeCharm1": "§5- 你的护甲无效化。",
+  "tooltip.enigmaticaddons.hellBladeCharm1_alt": "§5- 盔甲效力降低 §6%1$s。",
   "tooltip.enigmaticaddons.hellBladeCharm2": "§5- 你的攻击伤害加倍。",
   "tooltip.enigmaticaddons.hellBladeCharm3": "§5- 当你的攻击伤害达到目标血量的 §6%1$s§5 时",
   "tooltip.enigmaticaddons.hellBladeCharm4": "§5- 追加大量伤害并回复自身血量。",
 
   "book.enigmaticaddons.entry.hell_blade_charm.name": "地狱刃片护符",
   "book.enigmaticaddons.entry.hell_blade_charm.title": "地狱双刃",
-  "book.enigmaticaddons.entry.hell_blade_charm.page.1": "这枚护符似乎一直在地狱的某处期待这你的到来，等着你用自己的鲜血来浇灌它。<br2/>无论是谁，当注意到这枚护符给予的强大力量时，即使它也诚实地表明了代价，都不免会心动而佩戴上它。一般而言，这些佩戴者都以十分愚蠢的死状收尾。",
+  "book.enigmaticaddons.entry.hell_blade_charm.page.1": "这枚护符似乎一直在下界的某处期待这你的到来，等着你用自己的鲜血来浇灌它。<br2/>无论是谁，当注意到这枚护符给予的强大力量时，即使它也诚实地表明了代价，都不免会心动而佩戴上它。一般而言，这些佩戴者都以十分愚蠢的死状收尾。",
   "book.enigmaticaddons.entry.hell_blade_charm.page.2": "所以，请慎重的佩戴这枚护符，特别是同时承受七咒之人。",
+
+  "item.enigmaticaddons.antique_bag": "古旧书袋",
+  "gui.enigmaticaddons.antique_bag": "§5魔法书袋",
+
+  "tooltip.enigmaticaddons.antiqueBag1": "§5类似于末影箱的容器",
+  "tooltip.enigmaticaddons.antiqueBag2": "§5放入其中的书会视作",
+  "tooltip.enigmaticaddons.antiqueBag3": "§5在物品栏中",
 
   "item.enigmaticaddons.astral_potion": "星辰之瓶",
 
@@ -155,7 +170,7 @@
 
   "book.enigmaticaddons.entry.astral_potion.name": "星辰之瓶",
   "book.enigmaticaddons.entry.astral_potion.heading": "酿造",
-  "book.enigmaticaddons.entry.astral_potion.page.1": "星尘在药水酿造中巨大潜能，相比你一定体会过了。但是在面对一些陌生的药剂，你似乎不能简单的将其星尘催化，更别说那些不能从药水里获得的效果了。<br2/>你将视线转向了蜂蜜，当然，这绝对不是因为好奇星尘在蜂蜜中的口味。",
+  "book.enigmaticaddons.entry.astral_potion.page.1": "星尘在药水酿造中巨大潜能，相必你一定有所体会。但是在面对一些陌生的药剂，你似乎不能简单的将其星尘催化，更别说那些不能从药水里获得的效果了。<br2/>你将视线转向了蜂蜜，当然，这绝对不是因为好奇星尘在蜂蜜中的口味。",
   "book.enigmaticaddons.entry.astral_potion.page.2": "从结果上看，这瓶神秘物质能够延长你身上的药水效果持续时间。但如果你想再来一瓶，额，注意后果…",
 
   "item.enigmaticaddons.primeval_cube": "原初立方",
@@ -164,6 +179,32 @@
 
   "book.enigmaticaddons.entry.primeval_cube.name": "无用的石头…",
   "book.enigmaticaddons.entry.primeval_cube.page.1": "你发现了这古老的记录，似乎是关于术石重生的内容。<br2/>在星辰光辉的催化下……<br/>六相和一……<br/>伴随两“心”之力……",
+
+  "item.enigmaticaddons.ichor_droplet": "灵液滴",
+
+  "item.enigmaticaddons.ichoroot": "灵液根质",
+
+  "tooltip.enigmaticaddons.ichoroot": "§5蕴含些微的净化之力",
+
+  "item.enigmaticaddons.pure_heart": "纯净之心",
+
+  "item.enigmaticaddons.bless_potion": "恩惠药水 [未完成]",
+
+  "tooltip.enigmaticaddons.blessPotion1": "§5传送到最后的死亡的地点",
+  "tooltip.enigmaticaddons.blessPotion2": "§5不需要任何代价",
+
+  "item.enigmaticaddons.bless_ring": "[未完成]",
+
+  "tooltip.enigmaticaddons.blessRing1": "§d对经历过痛苦折磨之人，",
+  "tooltip.enigmaticaddons.blessRing2": "§d遗留下部分祝福依旧起效：",
+  "tooltip.enigmaticaddons.blessRing3": "§5- §6+%1$s§d 抢夺等级",
+  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d 时运等级",
+  "tooltip.enigmaticaddons.blessRing5": "§5- 一些生物开始产出独特掉落物。",
+  "tooltip.enigmaticaddons.blessRing6": "§5- 你可以制作和使用独特遗物",
+  "tooltip.enigmaticaddons.blessRingLore1": "§5这枚戒指闪烁着别样的",
+  "tooltip.enigmaticaddons.blessRingLore2": "§5光泽，铭记着那些饱受",
+  "tooltip.enigmaticaddons.blessRingLore3": "§5折磨的岁月，同时这也",
+  "tooltip.enigmaticaddons.blessRingLore4": "§5是实力的证明……",
 
   "death.attack.false_justice": "%1$s消失在虚无的审判中。",
 
@@ -175,6 +216,7 @@
 
   "effect.enigmaticaddons.dragon_breath": "龙息",
   "effect.enigmaticaddons.frozen_heart": "冻结之心",
+  "effect.enigmaticaddons.pure_resistance": "纯化抗性",
 
   "item.enigmaticaddons.common_potion.effect.frozen_heart": "冻结之心药水",
   "item.enigmaticaddons.common_potion.effect.long_frozen_heart": "冻结之心药水",

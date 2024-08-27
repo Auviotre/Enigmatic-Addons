@@ -47,7 +47,7 @@ public class GhastMultishotGoal extends Goal {
 
                     int difficulty = level.getDifficulty().getId();
                     if (difficulty > 0) {
-                        int num = difficulty + ghast.getRandom().nextInt(difficulty);
+                        int num = difficulty + ghast.getRandom().nextInt(difficulty) - ghast.getRandom().nextInt(difficulty) / 2;
                         for (int i = 0; i < num; i++) {
                             Vec3 delta = new Vec3(randomV(0.5F), randomV(0.5F), randomV(0.5F));
                             Vec3 F = new Vec3(x, y, z).normalize().scale(0.25F);
