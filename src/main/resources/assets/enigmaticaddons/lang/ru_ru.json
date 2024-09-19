@@ -3,6 +3,7 @@
 
   "tooltip.enigmaticaddons.armor": "%1$s§d брони",
   "tooltip.enigmaticaddons.armor_toughness": "%1$s§d твёрдости брони",
+  "tooltip.enigmaticaddons.attack_speed": "%1$s§d скорости атаки",
   "tooltip.enigmaticaddons.damage": "%1$s§d урона",
   "tooltip.enigmaticaddons.knockback_resistance": "%1$s§d сопротивления отбрасыванию",
   "tooltip.enigmaticaddons.magic_resistance": "%1$s§d сопротивления магии",
@@ -92,8 +93,8 @@
   "tooltip.enigmaticaddons.lostEngine2": "§4- Отсутствует.",
   "tooltip.enigmaticaddons.lostEngineCooldown": "§dВремя восстановления: §6%1$s§6 секунд",
   "tooltip.enigmaticaddons.lostEngine3": "§dПассивные способности:",
-  "tooltip.enigmaticaddons.lostEngine4": "§5- Повышает мобильность и выносливость.",
-  "tooltip.enigmaticaddons.lostEngine5": "§5- Сокращает время восстановления предметов вдвое.",
+  "tooltip.enigmaticaddons.lostEngine4": "§5- Повышает мобильность и твёрдость брони.",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- Сокращает время восстановления предметов на §633%§5.",
   "tooltip.enigmaticaddons.lostEngine6": "§5- Дарует неуязвимость к §6падению §5и §6взрывам§5.",
   "tooltip.enigmaticaddons.lostEngine7": "§6+%1$s§d критического урона§5.",
   "tooltip.enigmaticaddons.lostEngine8": "§5- Големы становятся нейтральными по отношению к вам.",
@@ -130,15 +131,17 @@
   "book.enigmaticaddons.entry.dragon_bow.page.2": "родился этот лук, наделённый магией.<br2/>Этот лук может стрелять стрелами дыхания дракона без каких-либо затрат стрел, но для его зарядки требуется немного больше времени. Когда стрела дыхания дракона",
   "book.enigmaticaddons.entry.dragon_bow.page.3": "попадает в цель, она превращается в дыхание дракона дальнего боя и пытается удержать или преследовать каждое существо, проходящее на его пути.<br2/>Однако следует отметить, что этот лук позволяет вам использовать только силу дыхания дракона. Он не может дать вам бродить в дыхании дракона счастливо и глупо.",
 
-  "item.enigmaticaddons.sanguinary_handbook": "Справочник по кровавой охоте [НЗП]",
+  "item.enigmaticaddons.sanguinary_handbook": "Руководство по кровавой охоте",
 
-  "tooltip.enigmaticaddons.sanguinaryHandbook1": "§4§kВы не понимаете что здесь написано1",
-  "tooltip.enigmaticaddons.sanguinaryHandbook2": "§4§kБуквы расплываются в ваших глазах2",
-  "tooltip.enigmaticaddons.sanguinaryHandbook3": "§4§kВы перестаёте осознавать реальность3",
+  "tooltip.enigmaticaddons.sanguinaryHandbook1": "§5Когда находится в вашем инвентаре:",
+  "tooltip.enigmaticaddons.sanguinaryHandbook2": "§5+§6%1$s§d урона питомцев",
+  "tooltip.enigmaticaddons.sanguinaryHandbook3": "§5Если экипировать §6Эмблему окровавленной доблести",
+  "tooltip.enigmaticaddons.sanguinaryHandbook4": "§5или §6Свиток тысячи проклятий, §5Питомцы также",
+  "tooltip.enigmaticaddons.sanguinaryHandbook5": "§5получат соответствующие эффекты зависящие от вас.",
 
-  "book.enigmaticaddons.entry.sanguinary_handbook.name": "§4§kКровавая охота",
-  "book.enigmaticaddons.entry.sanguinary_handbook.page.1": "§4§kСправочник по кровавой охоте",
-  "book.enigmaticaddons.entry.sanguinary_handbook.page.2": "§4§kСправочник по охоте в окружении крови",
+  "book.enigmaticaddons.entry.sanguinary_handbook.name": "Кровавая охота",
+  "book.enigmaticaddons.entry.sanguinary_handbook.page.1": "Через определённое время вы обязательно почувствуете, что сила ваших последователей уже слишком отличается от вашей, и в то же время защита, предоставляемая Руководством по охоте, не стоит упоминания. Итак, вы придумали новое применение для искажённых сердец.<br2/>",
+  "book.enigmaticaddons.entry.sanguinary_handbook.page.2": "Это руководство снабдило ваших последователей новыми способностями, а также получило от вас жестокую силу.<br2/>Пусть они слушают пословицы в руководстве и бескорыстно посвящают им свою жизнь!",
 
   "item.enigmaticaddons.false_justice": "Ложносудие",
 
@@ -174,6 +177,23 @@
   "book.enigmaticaddons.entry.hell_blade_charm.title": "Обоюдоострый ад",
   "book.enigmaticaddons.entry.hell_blade_charm.page.1": "Кажется, этот амулет ждал вашего прибытия где-то в преисподней, ожидая, пока вы взрастите его собственной кровью.<br2/>Любой, кто заметит мощную силу, которую даёт это амулет, даже если он честно укажет стоимость, неизбежно захочет его надеть. В общем говоря, этих владельцев",
   "book.enigmaticaddons.entry.hell_blade_charm.page.2": "ждёт очень глупая смерть.<br2/>Поэтому, прошу, носите этот амулет осторожно, особенно тем, кто одновременно несёт на себе бремя семи проклятий.",
+
+  "item.enigmaticaddons.adventure_charm": "Эмблема искателя приключений",
+
+  "tooltip.enigmaticaddons.adventureCharm" : "§5Не позволяет вам копать блоки.",
+
+  "book.enigmaticaddons.entry.adventure_charm.name": "Эмблема приключенца",
+  "book.enigmaticaddons.entry.adventure_charm.page.1": "Созидание и разрушение — высшая сила Бога, но иногда бывает трудно хорошо усвоить эту силу, и небольшая ошибка может легко привести к ненужному разрушению. И в чистом бою вы предпочтёте преобразовать эту силу в более практичные формы.<br2/>",
+  "book.enigmaticaddons.entry.adventure_charm.page.2": "Этот амулет может временно удовлетворить ваши потребности, преобразуя разрушительную силу в небольшое количество боевого усиления. Конечно, этот амулет не будет занимать ваши драгоценные слоты, и экипировать его или нет — это полностью ваш выбор.",
+
+  "item.enigmaticaddons.void_tome": "Том небытия",
+
+  "tooltip.enigmaticaddons.voidTome" : "§5Используйте, чтобы получить §6+1§d слот волшебного свитка§5.",
+
+  "book.enigmaticaddons.entry.void_tome.name": "Том бездны",
+  "book.enigmaticaddons.entry.void_tome.heading": "Пустота",
+  "book.enigmaticaddons.entry.void_tome.page.1": "Эта необычная книга тихо лежит в углу верхнего мира, ожидая, когда те, кто жаждет знаний, найдут её существование.<br2/>Как только вы откроете эту зловещую книгу, ваш мозг, будет будто связан с бесконечной пустотой, с большим количеством неосязаемых вещей, наводняющих ваш разум,",
+  "book.enigmaticaddons.entry.void_tome.page.2": "рассеивающих все восприятия и дразнящих каждый нерв. Кажется, что они нашёптывают вам о таинственном волшебстве...<br2/>Когда вы приходите в себя, книга исчезает, оставляя только острую головную боль и новое понимание волшебных свитков",
 
   "item.enigmaticaddons.antique_bag": "Антикварная книжная сумка",
   "gui.enigmaticaddons.antique_bag": "§5Волшебная книжная сумка",
@@ -297,5 +317,38 @@
   "book.enigmaticaddons.entry.frozen_heart_potion.page.2": "В конечном итоге вы получите способность невосприимчивости к замораживанию и сможете применять холодную ауру к другим, а также наносить больший урон замороженным существам.",
   "book.enigmaticaddons.entry.frozen_heart_potion.page.3": "Его эффект можно продлить, используя редстоун.",
   "book.enigmaticaddons.entry.frozen_heart_potion.page.4": "Вы также можете приготовить его в виде взрывного...",
-  "book.enigmaticaddons.entry.frozen_heart_potion.page.5": "...или в виде туманного, как и любое другое зелье."
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.5": "...или в виде туманного, как и любое другое зелье.",
+
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_leaping": "Зелье скачка",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_swiftness": "Зелье стремительности",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_slowness": "Зелье медлительности",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_turtle_master": "Зелье мастера черепах",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_poison": "Зелье отравления",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_regeneration": "Зелье регенерации",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_strength": "Зелье силы",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_weakness": "Зелье слабости",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_haste": "Зелье спешки",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_mining_fatigue": "Зелье утомления",
+
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_leaping": "Взрывное зелье скачка",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_swiftness": "Взрывное зелье стремительности",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_slowness": "Взрывное зелье медлительности",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_turtle_master": "Взрывное зелье мастера черепах",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_poison": "Взрывное зелье отравления",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_regeneration": "Взрывное зелье регенерации",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_strength": "Взрывное зелье силы",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_weakness": "Взрывное зелье слабости",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_haste": "Взрывное зелье спешки",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_mining_fatigue": "Взрывное зелье утомления",
+
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_leaping": "Туманное зелье скачка",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_swiftness": "Туманное зелье стремительности",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_slowness": "Туманное зелье медлительности",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_turtle_master": "Туманное зелье мастера черепах",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_poison": "Туманное зелье отравления",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_regeneration": "Туманное зелье регенерации",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_strength": "Туманное зелье силы",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_weakness": "Туманное зелье слабости",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_haste": "Туманное зелье спешки",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "Туманное зелье утомления"
 }
