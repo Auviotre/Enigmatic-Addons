@@ -1,0 +1,348 @@
+{
+  "__contributor": "기여자",
+
+  "tooltip.enigmaticaddons.armor": "%1$s§d 방어력",
+  "tooltip.enigmaticaddons.armor_toughness": "%1$s§d 방어 강도",
+  "tooltip.enigmaticaddons.attack_speed": "%1$s§d 공격 속도",
+  "tooltip.enigmaticaddons.damage": "%1$s§d 공격력",
+  "tooltip.enigmaticaddons.knockback_resistance": "%1$s§d 넉백 저항",
+  "tooltip.enigmaticaddons.magic_resistance": "%1$s§d 마법 저항",
+  "tooltip.enigmaticaddons.speed": "%1$s§d 속도",
+  "tooltip.enigmaticaddons.luck": "%1$s§d 운",
+
+  "tooltip.enigmaticaddons.legacy_future1": "§5다음 버전에 구현될 가능성이 있는 아이템들",
+  "tooltip.enigmaticaddons.legacy_future2": "§5§d수수께끼의 유산 (추가모드로 추정)의 버전",
+
+  "enchantment.enigmaticaddons.frost_aspect": "빙결",
+  "enchantment.enigmaticaddons.frost_aspect.desc": "공격 대상이 서서히 얼어붙습니다.",
+  "enchantment.enigmaticaddons.frost_protection": "서리 보호",
+  "enchantment.enigmaticaddons.frost_protection.desc": "서리로 인한 피해와 영향을 줄입니다.",
+
+  "book.enigmaticaddons.entry.frost_enchantment.name": "빙결",
+  "book.enigmaticaddons.entry.frost_enchantment.heading.1": "마법 부여",
+  "book.enigmaticaddons.entry.frost_enchantment.heading.2": "마법 부여",
+  "book.enigmaticaddons.entry.frost_enchantment.page.1": "일반적인 마법 부여 카테고리 중에서, 당신은 서리와 관련된 여러 마법 부여를 개발했습니다.",
+  "book.enigmaticaddons.entry.frost_enchantment.page.2": "서리의 면 - 무기에 차가운 오라를 추가하여 타격을 받은 대상이 서서히 얼어붙게 만듭니다. 물론, 이 마법 부여는 발화와 결합할 수 없습니다.",
+  "book.enigmaticaddons.entry.frost_enchantment.page.3": "서리 보호 - 서리 피해로부터 보호를 제공하며, 추위 속에서 더 오래 견딜 수 있게 합니다. 다른 보호 마법 부여와 결합할 수 없습니다.",
+
+  "item.enigmaticaddons.earth_heart_fragment": "대지의 파편",
+
+  "item.enigmaticaddons.ode_to_living": "생명에게 바치는 송가",
+
+  "tooltip.enigmaticaddons.livingOde1": "§5인벤토리에 있을 때, 당신의 공격은",
+  "tooltip.enigmaticaddons.livingOde2": "§5동물에게 피해를 입힐 수 없습니다.",
+  "tooltip.enigmaticaddons.livingOde3": "§5주변의 §6대부분의 동물§5이 수동적으로 변합니다.",
+  "tooltip.enigmaticaddons.livingOde4": "§d§6두 번째 저주§d의 변화:",
+  "tooltip.enigmaticaddons.livingOde5": "§5- 중립 동물이 적극적으로 공격하지 않습니다.",
+  "tooltip.enigmaticaddons.livingOde6": "§6동물을 달래기 위해 사용하세요.",
+
+  "book.enigmaticaddons.entry.ode_to_living.name": "생명에게 바치는 송가",
+  "book.enigmaticaddons.entry.ode_to_living.page.1": "이전 안내서는 모든 동물 친구들이 당신을 인식하도록 돕는 데 실패했지만, 이 송가는 일부 동물 친구들의 감정을 진정시키는 데 도움을 줄 수 있습니다. 또한 이전 가이드북의 기능을 계승합니다.",
+  "book.enigmaticaddons.entry.ode_to_living.page.2": "송가의 내용은 당신에게 여전히 너무 난해하여 필요할 때마다 참고할 수밖에 없습니다.",
+
+  "item.enigmaticaddons.night_scroll": "어둠의 계약서",
+
+  "tooltip.enigmaticaddons.nightScroll1": "§6팬텀§5이 근처에서 덜 스폰됩니다.",
+  "tooltip.enigmaticaddons.nightScroll2": "§5어둠 속에서, 다음과 같은 강화 효과를 받습니다:",
+  "tooltip.enigmaticaddons.nightScroll3": "§6+%1$s §d공격력",
+  "tooltip.enigmaticaddons.nightScroll4": "§6+%1$s §d피해 저항",
+  "tooltip.enigmaticaddons.nightScroll5": "§6+%1$s §d생명력 흡수",
+
+  "book.enigmaticaddons.entry.night_scroll.name": "어둠의 계약서",
+  "book.enigmaticaddons.entry.night_scroll.page.1": "불면증은 신들에겐 하찮은 문제일 수 있지만, 어둠 속에서 소리 지르고 날아다니는 저 존재들은 정말 성가십니다. 당신은 그들의 잔해를 이용해 주문서를 만들기로 결심했습니다.<br2/>어둠의 힘은 오직 팬텀에게만 두려움을 주지만, 어둠 속에서 더 많은 능력을 발휘할 수 있게 해줍니다.",
+  "book.enigmaticaddons.entry.night_scroll.page.2": "",
+
+  "item.enigmaticaddons.quartz_ring": "마법의 석영 반지",
+
+  "book.enigmaticaddons.entry.quartz_ring.name": "마법의 석영 반지",
+  "book.enigmaticaddons.entry.quartz_ring.page.1": "네더에서 석영을 발견했을 때, 그 재료가 널리 퍼져 있다는 사실에 놀랐습니다. 동시에 새로운 재료를 통해 당신의 기술로 더 강력한 방어 반지를 만들 수 있게 되었습니다.<br2/>그러나 단순히 물리적 방어력만을 탐구하는 것은 반지의 한계에 도달했으므로, 다른 용도를 개발해볼 필요가 있습니다.",
+  "book.enigmaticaddons.entry.quartz_ring.page.2": "그래서 레시피에 청금석을 추가하면 반지의 마법 성능이 향상되어, 마법 공격에 대한 저항력을 약간 증가시킬 수 있습니다. 비록 미미할 수 있지만, 없는 것보다는 나을 것입니다.",
+
+  "item.enigmaticaddons.earth_promise": "대지의 약속",
+
+  "tooltip.enigmaticaddons.earthPromise1": "§5현재 체력의§6 %1$s §5만큼의 피해를 입을 때, ",
+  "tooltip.enigmaticaddons.earthPromise2": "§5해당 공격을 차단하고 쿨다운을 시작합니다.",
+  "tooltip.enigmaticaddons.earthPromise3": "§d§6첫 번째 저주§d의 변화:",
+  "tooltip.enigmaticaddons.earthPromise4": "§5- §6첫 번째 저주§5의 효과를 %1$s만큼 감소시킵니다.",
+
+  "book.enigmaticaddons.entry.earth_promise.name": "대지의 약속",
+  "book.enigmaticaddons.entry.earth_promise.page.1": "당신은 손에 든 대지의 심장이 점점 비틀어지는 것을 지켜볼 때, 내적으로 흥분을 느끼셨나요? 지구 깊은 곳에서 들리는 슬픈 울음소리는 당신의 귀에 계속 맴돌지 않았습니다. 그러나 우주의 힘이 손에 든 대지의 심장과 공명할 때, 대지의 진정한 힘을 다시금 인식하게 된 것 같습니다.",
+  "book.enigmaticaddons.entry.earth_promise.page.2": "대지는 보호를 약속하고 치명적인 상처를 막으려 하지만, 금 재료는 그렇게 높은 내구성을 가지고 있지 않으므로, 이 축복의 반지가 완전한 상태인지 항상 주의하는 것이 중요합니다.",
+
+  "item.enigmaticaddons.forgotten_ice": "잊혀진 얼음 결정",
+
+  "tooltip.enigmaticaddons.forgottenIce1": "§d액티브 스킬:",
+  "tooltip.enigmaticaddons.forgottenIce2": "§6- 주변의 몹을 얼립니다.",
+  "tooltip.enigmaticaddons.forgottenIceCooldown": "§d쿨다운: §6%1$s§6초",
+  "tooltip.enigmaticaddons.forgottenIce3": "§d패시브 스킬:",
+  "tooltip.enigmaticaddons.forgottenIce4": "§5- 빙결에 면역이 되고, 차가운 걸음 효과를 얻습니다.",
+  "tooltip.enigmaticaddons.forgottenIce5": "§5- 공격 대상을 서서히 얼립니다.",
+  "tooltip.enigmaticaddons.forgottenIce6": "§5- 근접 공격을 받으면 공격자를 얼립니다.",
+  "tooltip.enigmaticaddons.forgottenIce7": "§5- 얼어붙은 대상에게 더 많은 피해를 입힙니다.",
+  "tooltip.enigmaticaddons.forgottenIce8": "§5- 투사체 및 음파 피해에 §6%1$s§d 저항",
+  "tooltip.enigmaticaddons.forgottenIce9": "§5- §6화염 피해§5와 §6낙하 피해§5에 취약해집니다.",
+
+  "book.enigmaticaddons.entry.forgotten_ice.name": "잊혀진 얼음 결정",
+  "book.enigmaticaddons.entry.forgotten_ice.heading.1": "주문석",
+  "book.enigmaticaddons.entry.forgotten_ice.page.1": "주문석에 대해 이야기할 때, 불꽃, 공허 등이 떠오르기 마련입니다. 그러나 먼 눈 덮인 평야에는 여전히 당신이 발굴할 힘이 기다리고 있습니다.<br2/>이 주문석은 빙결의 힘을 깨우며, 차가운 공기가 주변의 빠르게 움직이는 것들을 느리게 만듭니다. 동시에, 이 주문석에는 차가운 걸음과 빙결의 능력이 포함되어 있습니다.",
+  "book.enigmaticaddons.entry.forgotten_ice.page.2": "서리의 힘은 그 이상입니다. 이 주문석은 얼어붙은 생물들 속에 존재하는 다양한 결함을 발견할 수 있게 해줍니다. 하지만 바다의 의지와 마찬가지로, 불꽃은 여전히 치명적이라는 것을 인식해야 합니다.",
+
+  "item.enigmaticaddons.lost_engine": "잃어버린 엔진",
+
+  "tooltip.enigmaticaddons.lostEngine1": "§d액티브 스킬:",
+  "tooltip.enigmaticaddons.lostEngine2": "§4- 없음.",
+  "tooltip.enigmaticaddons.lostEngineCooldown": "§d쿨다운: §6%1$s§6초",
+  "tooltip.enigmaticaddons.lostEngine3": "§d패시브 스킬:",
+  "tooltip.enigmaticaddons.lostEngine4": "§5- 이동성과 내구성을 향상시킵니다.",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- 아이템 쿨다운이 §633%§5 줄어듭니다.",
+  "tooltip.enigmaticaddons.lostEngine6": "§5- §6낙하§5와 §6폭발 §5피해에 면역이 됩니다.",
+  "tooltip.enigmaticaddons.lostEngine7": "§5- §6+%1$s§d 크리티컬 데미지§5",
+  "tooltip.enigmaticaddons.lostEngine8": "§5- 골렘이 당신을 적극적으로 공격하지 않습니다.",
+  "tooltip.enigmaticaddons.lostEngine9": "§5- §6마법 피해§5와 §6번개 피해§5에 취약해집니다.",
+
+  "book.enigmaticaddons.entry.lost_engine.name": "잃어버린 엔진",
+  "book.enigmaticaddons.entry.lost_engine.heading.1": "주문석",
+  "book.enigmaticaddons.entry.lost_engine.page.1": "이 마법석을 발견했을 때, 그것은 여전히 조용히 구석에 놓여 있습니다.<br2/>이 고대의 마법석은 고대 시대의 엔진 에너지를 사용하여 이동성과 저항력을 향상시킬 수 있습니다. 앉아 있는 상태에서 출력을 거의 네 배 증가시키고, 공기를 분사하여 중력의 영향을 줄일 수 있습니다.",
+  "book.enigmaticaddons.entry.lost_engine.page.2": "발걸음이 무거워지긴 하지만, 치명타 피해를 크게 증가시킵니다. 엔진의 리듬은 주변의 골렘들과 공명하는 것처럼 보이며, 특히 셜커를 중립 상태로 유지하는 데 유용하다고 생각합니다. 골렘의 심장처럼, 마법은 여전히 치명적입니다.",
+
+  "item.enigmaticaddons.revival_leaf": "부활의 잎",
+
+  "tooltip.enigmaticaddons.revivalLeaf1": "§d액티브 스킬:",
+  "tooltip.enigmaticaddons.revivalLeaf2": "§6- 주변 몬스터의 재생을 촉진하되, 경험치를 소모합니다.",
+  "tooltip.enigmaticaddons.revivalLeafCooldown": "§d쿨다운: §6%1$s§6초",
+  "tooltip.enigmaticaddons.revivalLeaf3": "§d패시브 스킬:",
+  "tooltip.enigmaticaddons.revivalLeaf4": "§5- 자연 치유가 천천히 이루어집니다.",
+  "tooltip.enigmaticaddons.revivalLeaf5": "§5- 공격 대상이 독에 걸립니다.",
+  "tooltip.enigmaticaddons.revivalLeaf6": "§5- §6허기§5, §6독§5 그리고 §6위더§5 효과에 면역이 됩니다.",
+  "tooltip.enigmaticaddons.revivalLeaf7": "§5- 주변 작물의 성장 속도가 빨라집니다.",
+  "tooltip.enigmaticaddons.revivalLeaf8": "§5- 모든 효과의 지속 시간이 길어집니다.",
+  "tooltip.enigmaticaddons.revivalLeaf9": "§5- §6화염 피해§5와 §6투사체 피해§5에 취약해집니다.",
+
+  "book.enigmaticaddons.entry.revival_leaf.name": "부활의 잎",
+  "book.enigmaticaddons.entry.revival_leaf.heading.1": "주문석",
+  "book.enigmaticaddons.entry.revival_leaf.page.1": "고대 정글 사원에서 발견할 수 있는 또 다른 독특한 마법석은 자연의 힘을 모읍니다.<br2/>이 마법석은 자연의 힘을 제공하여, 당신의 생명력을 향상시키고, 천천히 건강을 회복하며, 일부 미세한 부작용에 면역을 주고 신체 기능을 적절히 조절하여 효과가 더 오래 지속되게 합니다.",
+  "book.enigmaticaddons.entry.revival_leaf.page.2": "또한, 자연의 치명적인 부분을 추출하여 독으로 손을 더럽히게 합니다. 이 마법석은 작물과 공명하여 주변 작물의 성장을 더 활발하게 만듭니다.<br2/>그러나 불꽃 외에도 날카로운 화살이 당신을 쉽게 관통할 수 있다는 점도 유의해야 합니다.",
+
+
+  "item.enigmaticaddons.dragon_bow": "드래곤의 숨결 활",
+
+  "book.enigmaticaddons.entry.dragon_bow.name": "드래곤의 숨결",
+  "book.enigmaticaddons.entry.dragon_bow.page.1": "드래곤의 숨결이 양조 외에 다른 용도로 사용될 수 있을까요? 아마 이 질문을 해본 적이 있을지도 모릅니다. 엔더 드래곤이 치명적인 드래곤 숨결로 당신의 갑옷과 피부를 태우던 모습을 떠올리며, 다른 사람들도 그 경험을 하기를 원하실 것입니다. 장식용으로만 쓰이던 이상한 드래곤 머리가 달린 엔더 함선도 떠오릅니다.<br2/>그래서 다양한 이유로",
+  "book.enigmaticaddons.entry.dragon_bow.page.2": "마법이 주입된 이 활이 탄생하게 되었습니다.<br2/>이 활은 드래곤의 숨결 화살을 발사할 수 있으며, 탄약이 필요 없지만 약간 더 긴 충전 시간이 필요합니다. 드래곤의 숨결 화살이",
+  "book.enigmaticaddons.entry.dragon_bow.page.3": "명중하면 원거리 드래곤의 숨결로 변하여 지나가는 모든 사람을 추적하거나 붙잡으려고 합니다.<br2/>단, 주의할 점은 이 활이 드래곤의 숨결의 힘만을 사용할 수 있도록 해준다는 것입니다. 드래곤의 숨결 속에서 자유롭게 돌아다니거나 무모하게 행동할 수는 없습니다.",
+
+  "item.enigmaticaddons.sanguinary_handbook": "피의 사냥 안내서",
+
+  "tooltip.enigmaticaddons.sanguinaryHandbook1": "§5인벤토리에 있을 때:",
+  "tooltip.enigmaticaddons.sanguinaryHandbook2": "§5§6%1$s§d 펫 공격력",
+  "tooltip.enigmaticaddons.sanguinaryHandbook3": "§6피로 물든 용맹의 문장 §5또는",
+  "tooltip.enigmaticaddons.sanguinaryHandbook4": "§6천 개의 저주 주문서§5가 장착되어 있다면,",
+  "tooltip.enigmaticaddons.sanguinaryHandbook5": "§5펫이 당신의 상태에 따라 해당 효과를 받습니다.",
+
+  "book.enigmaticaddons.entry.sanguinary_handbook.name": "피의 사냥",
+  "book.enigmaticaddons.entry.sanguinary_handbook.page.1": "어느 정도 지나면, 당신은 추종자들의 힘이 이미 당신과 너무 차이가 난다고 느끼게 될 것입니다. 동시에 사냥 안내서가 제공하는 보호도 이제는 별 의미가 없다는 것을 깨닫게 됩니다. 그래서 당신은 비틀린 심장의 새로운 용도를 떠올렸습니다.<br2/>이 안내서는 당신의 추종자들에게 새로운 능력을 부여하고,",
+  "book.enigmaticaddons.entry.sanguinary_handbook.page.2": "그들이 당신으로부터 강력한 힘을 받도록 했습니다.<br2/>그들이 안내서의 격언을 듣고, 기꺼이 자신의 목숨을 바치게 하십시오!",
+
+  "item.enigmaticaddons.false_justice": "기만적 정의",
+
+  "tooltip.enigmaticaddons.falseJustice1": "§5인벤토리에 있을 때",
+  "tooltip.enigmaticaddons.falseJustice2": "§5- 받는 모든 피해가 실질 피해로 전환됩니다.",
+  "tooltip.enigmaticaddons.falseJustice3": "§5- 가하는 모든 피해가 실질 피해로 전환됩니다.",
+
+  "book.enigmaticaddons.entry.false_justice.name": "기만적 정의",
+  "book.enigmaticaddons.entry.false_justice.page.1": "지식의 증서에 포함된 내용을 끝없이 탐구할 방법은 없지만, 우리는 위더의 본질을 이용해 지식의 증서에서 가장 혼란스러운 부분을 추출하여 전투의 규칙을 바꿀 수 있습니다.<br2/>지식의 대가로, 이 책은 혼돈의 기운을 발산하기 시작합니다.",
+  "book.enigmaticaddons.entry.false_justice.page.2": "이제 당신과 관련된 모든 공격은 원래의 규칙을 초월합니다. 방어? 면역? 진정한 혼돈 앞에서는 모두 환상에 불과합니다. 당신이 해야 할 일은 공격을 피하고, 목표에게 저항할 수 없는 타격을 가하는 것입니다.",
+
+  "item.enigmaticaddons.cursed_xp_scroll": "무지의 저주 주문서",
+
+  "tooltip.enigmaticaddons.xpTome2": "§5주문서의 상호 작용은 영원한 지혜와 같습니다.",
+  "tooltip.enigmaticaddons.xpTome3": "§5경험치 레벨에 따라 능력을 향상시킵니다.",
+  "tooltip.enigmaticaddons.xpTome4": "§5그러나 채광으로부터 얻는 경험치는 감소합니다.",
+  "tooltip.enigmaticaddons.xpTome5": "§5사망 시 모든 경험치를 잃습니다.",
+
+  "book.enigmaticaddons.entry.cursed_xp_scroll.name": "무지의 저주",
+  "book.enigmaticaddons.entry.cursed_xp_scroll.page.1": "특정 단계에 도달하면, 경험치는 다른 용도로 사용되기 전까진 그다지 유용하지 않을 수 있습니다. 그러나 이제 저주의 힘을 통해 이 주문서의 본질이 크게 변화했습니다.<br2/>무지의 탐욕스러운 저주는 주문서의 사냥 범위를 확장하고, 얻은 경험치 대부분을 흡수하여 당신에게는 아주 적은 양만 남깁니다.",
+  "book.enigmaticaddons.entry.cursed_xp_scroll.page.2": "물론, 저주가 가져다주는 이점을 과소평가해서는 안 됩니다. 그것은 전투 능력을 크게 향상시킵니다. 그리고 저주는 항상 기회를 엿보고 있음을 기억하십시오. 당신이 가장 취약할 때, 저주는 모든 것을 빼앗아갈 것입니다.",
+
+  "item.enigmaticaddons.hell_blade_charm": "지옥의 검 부적",
+
+  "tooltip.enigmaticaddons.hellBladeCharm1": "§5- 당신의 갑옷은 무효화됩니다.",
+  "tooltip.enigmaticaddons.hellBladeCharm1_alt": "§5- 방어력이 §6%1$s§5 만큼 감소합니다.",
+  "tooltip.enigmaticaddons.hellBladeCharm2": "§5- 가하는 모든 피해가 두 배가 됩니다.",
+  "tooltip.enigmaticaddons.hellBladeCharm2_alt": "§5- 모든 피해량이 §6%1$s§5 만큼 증가합니다.",
+  "tooltip.enigmaticaddons.hellBladeCharm3": "§5- 당신의 피해가 대상의 체력의 §6%1$s§5에 도달할 때,",
+  "tooltip.enigmaticaddons.hellBladeCharm4": "§5- 그 대상을 죽이고 자신을 치유합니다.",
+
+  "book.enigmaticaddons.entry.hell_blade_charm.name": "지옥의 검 부적",
+  "book.enigmaticaddons.entry.hell_blade_charm.title": "양날의 지옥",
+  "book.enigmaticaddons.entry.hell_blade_charm.page.1": "이 부적은 네더 어딘가에서 당신을 기다리고 있었던 것 같습니다. 당신의 피로 부적을 키워주기를 기다리면서 말이죠.<br2/>이 부적이 제공하는 강력한 힘을 눈치챈 사람들은, 그 대가를 솔직하게 알려주더라도 착용을 유혹받을 수밖에 없습니다. 일반적으로 이러한 착용자들은 어리석은 죽음을 맞이하게 됩니다.",
+  "book.enigmaticaddons.entry.hell_blade_charm.page.2": "그러므로 이 부적을 신중하게 착용하십시오. 특히 일곱 개의 저주를 동시에 지닌 사람들에게는 더욱 주의가 필요합니다.",
+
+  "item.enigmaticaddons.adventure_charm": "모험가의 문장",
+
+  "tooltip.enigmaticaddons.adventureCharm" : "§5블록을 파괴하는 것을 막아줍니다.",
+
+  "book.enigmaticaddons.entry.adventure_charm.name": "모험가의 문장",
+  "book.enigmaticaddons.entry.adventure_charm.page.1": "창조와 파괴는 신의 궁극적인 힘이지만, 때로는 그 힘을 제대로 다루기가 어려워 작은 실수만으로도 불필요한 파괴를 초래할 수 있습니다. 순수한 전투 상황에서는 이 힘을 더 실용적인 형태로 변환하는 것이 바람직할 것입니다.<br2/>이 부적은 당신의 필요를 일시적으로 충족시켜,",
+  "book.enigmaticaddons.entry.adventure_charm.page.2": "파괴적인 힘을 소량의 전투 강화로 전환해 줍니다. 물론, 이 부적은 당신의 귀중한 장비 슬롯을 차지하지 않으며, 착용 여부는 오로지 당신의 선택에 달려 있습니다.",
+
+  "item.enigmaticaddons.void_tome": "공허의 서",
+
+  "tooltip.enigmaticaddons.voidTome" : "§5사용 시 §6+1§d 신비로운 주문서 칸§5을 얻습니다.",
+
+  "book.enigmaticaddons.entry.void_tome.name": "공허의 서",
+  "book.enigmaticaddons.entry.void_tome.heading": "공허",
+  "book.enigmaticaddons.entry.void_tome.page.1": "이 비범한 책은 오버월드의 한 구석에서 조용히 누워 있으며, 지식을 갈망하는 자들이 그 존재를 발견하기를 기다리고 있습니다.<br2/>이 불길한 책을 펼치는 순간, 당신의 뇌는 끝없는 공허와 연결된 듯하며, 수많은 무형의 것들이 당신의 정신 속으로 밀려들어 모든 감각을 흩뜨리고,",
+  "book.enigmaticaddons.entry.void_tome.page.2": "모든 신경을 자극합니다. 그것은 마치 신비로운 비술에 대해 속삭이는 것처럼 느껴지죠...<br2/>정신을 차리고 나면, 책은 사라지고 오직 날카로운 두통과 비술의 두루마리에 대한 새로운 이해만이 남아 있습니다.",
+
+  "item.enigmaticaddons.antique_bag": "골동품 책 가방",
+  "gui.enigmaticaddons.antique_bag": "§5마법 책 가방",
+
+  "tooltip.enigmaticaddons.antiqueBag1": "§5엔더 상자와 유사한 저장고입니다.",
+  "tooltip.enigmaticaddons.antiqueBag2": "§5이 가방에 보관된 책들은",
+  "tooltip.enigmaticaddons.antiqueBag3": "§5인벤토리에 있는 것으로 간주됩니다.",
+
+  "book.enigmaticaddons.entry.antique_bag.name": "골동품 책 가방",
+  "book.enigmaticaddons.entry.antique_bag.heading": "마법 책 가방",
+  "book.enigmaticaddons.entry.antique_bag.page.1": "이것은 이름 없는 폐허 속에서 발견할 수 있는 또 다른 신비로운 유물입니다. 평범한 천 가방처럼 보이지만, 희미한 마법의 빛을 발하며 그 안에는 신비한 마법 공간이 있습니다.<br2/>하지만 이 유물은 자신의 성격을 가진 듯 보이며, 책을 넣을 때만 마지못해 받아들입니다.",
+  "book.enigmaticaddons.entry.antique_bag.page.2": "그러나 신기하게도, 책을 저장할 때마다 당신에게 속하지 않은 지식이 즉시 떠오릅니다. 이는 저장 공간을 크게 절약할 수 있으며, 자체적으로 작동하지 않는 일부 아이템이 효과를 발휘할 수 있게 합니다.",
+
+  "item.enigmaticaddons.astral_potion": "우주의 물약",
+
+  "tooltip.enigmaticaddons.astralPotion1": "§5별들을 보라, 맛이 풍부하다!",
+  "tooltip.enigmaticaddons.astralPotion2": "§4너무 많이 마시지 않는 것이 좋겠다...",
+
+  "book.enigmaticaddons.entry.astral_potion.name": "우주의 물약",
+  "book.enigmaticaddons.entry.astral_potion.heading": "물약 제조",
+  "book.enigmaticaddons.entry.astral_potion.page.1": "별가루는 물약 제조에 엄청난 잠재력을 가지고 있습니다. 이전에 경험해본 적이 있을 것입니다. 그러나 일부 낯선 물약에 직면했을 때, 별가루를 촉매로 사용하는 것만으로는 부족할 수 있습니다. 특히 물약으로 얻을 수 없는 효과들에 대해서는 더욱 그렇습니다.<br2/>당신은 시선을 꿀로 돌렸습니다.",
+  "book.enigmaticaddons.entry.astral_potion.page.2": "그 결과, 이 신비한 물질이 물약 효과의 지속 시간을 연장할 수 있음을 알게 되었습니다. 하지만 또 다른 병을 원한다면, 음, 그 결과를 주의하십시오...",
+
+  "item.enigmaticaddons.primeval_cube": "태고의 큐브",
+
+  "tooltip.enigmaticaddons.primevalCube": "§5쓸모없는 돌...",
+
+  "book.enigmaticaddons.entry.primeval_cube.name": "쓸모없는 돌...",
+  "book.enigmaticaddons.entry.primeval_cube.page.1": "이 고대 기록을 발견했습니다. 이는 주문석의 재탄생에 관한 것 같습니다.<br2/>별빛의 촉매 아래에서..<br/>여섯 개가 하나로...<br/>두 개의 \"심장\"의 힘과 함께.",
+
+  "item.enigmaticaddons.ichor_droplet": "이코르 방울",
+
+  "book.enigmaticaddons.entry.ichor_droplet.name": "이코르",
+  "book.enigmaticlegacy.entry.ichor_droplet.heading": "신들의 피",
+  "book.enigmaticaddons.entry.ichor_droplet.page.1": "소위 \"신들의 피\"를 얻을 수 있는 안정적인 방법을 드디어 발견했습니다. 그것은 네더에서 떠다니는 비명을 지르는 가스트를 사냥하는 것입니다.<br2/>저주로 인해 가스트의 피와 눈물에 남아 있던 미세한 \"신성\"이 활성화되어 이코르가 다시 나타나게 되었습니다.",
+  "book.enigmaticaddons.entry.ichor_droplet.page.2": "하지만 이 \"신성\"이 어디에서 오는지 깊게 고민하지 마십시오. 그것은 고대 시대의 비밀이기 때문입니다.<br2/>지금 당신이 생각해야 할 것은 이 예상치 못한 산물을 어떻게 활용하고 발전시킬 것인지입니다.",
+
+  "item.enigmaticaddons.ichoroot": "이코루트",
+
+  "tooltip.enigmaticaddons.ichoroot": "§5약간의 정화 능력을 포함하고 있습니다.",
+
+  "book.enigmaticaddons.entry.ichoroot.name": "이코루트",
+  "book.enigmaticaddons.entry.ichoroot.page.1": "사람들이 당근과 감자에 대해 논쟁할 때, 무시받는 비트가 특히 불쌍하게 보입니다. 이제 이코르의 도움으로 새롭게 변화시켜 보세요!<br2/>소량의 이코르만으로 비트의 영양을 두 배로 증가시키고 소화가 용이하게 만들 수 있으며, 그 안에 신성과 정화의 힘을 나타낼 수 있습니다.",
+  "book.enigmaticaddons.entry.ichoroot.page.2": "이코르는 부정적인 효과를 정화하고 흡수를 제공합니다. 일정량을 소비한 후에는 신성한 보호가 드러나 특정 피해를 저항할 수 있게 됩니다.",
+
+  "item.enigmaticaddons.pure_heart": "순수한 심장",
+
+  "book.enigmaticaddons.entry.pure_heart.name": "순수한 심장",
+  "book.enigmaticaddons.entry.pure_heart.page.1": "다른 재료를 사용하면 비틀린 심장과는 다른 제작을 시도할 수 있습니다. 숨겨진 어두운 오염과 미세한 신성의 조합이, 밝은 외관을 가진 이 기괴한 창조물을 탄생시켰습니다.<br2/>이 창조물은 다른 유형의 아이템과는 달리, 순수한 심장을 바탕으로 공격적인 힘보다는 주로 보호와 지원을 제공합니다.",
+  "book.enigmaticaddons.entry.pure_heart.page.2": "그러나 신성한 창조물임에도 불구하고, 저주의 힘에 의존해야 한다는 점은 아이러니입니다. 따라서 이러한 아이템을 사용할 때는 숨겨진 위험에 주의해야 합니다.",
+
+  "item.enigmaticaddons.bless_amplifier": "예언의 서",
+
+  "tooltip.enigmaticaddons.blessAmplifier1": "§5어떤 마법 부여된 아이템과도 제작대에서 조합할 수 있습니다.",
+  "tooltip.enigmaticaddons.blessAmplifier2": "§5모든 마법 부여의 레벨을 업그레이드합니다.",
+  "tooltip.enigmaticaddons.blessAmplifier3": "§5레벨 한계를 넘을 수 있습니다.",
+
+  "book.enigmaticaddons.entry.bless_amplifier.name": "예언의 서",
+  "book.enigmaticaddons.entry.bless_amplifier.page.1": "이코르의 세례를 받은 후, 이 서에 대한 욕망은 얻는 것에서 주는 것으로 변하게 되었고, 이로 인해 아이템의 마법적 힘이 더욱 강화되었습니다.<br2/>이제 마법 부여된 아이템과 가까이 접촉하면 스스로를 희생하여 아이템의 모든 마법 부여 레벨을 두 배로 증가시킬 수 있습니다.",
+  "book.enigmaticaddons.entry.bless_amplifier.page.2": "마법 부여의 레벨 한계를 넘는 것이 이 서의 진정한 목적입니다.<br2/>그러나 모든 한계를 넘을 수 있는 것은 아니며, 일부 마법 부여는 그 힘을 견디지 못하고 무효화될 수도 있습니다.",
+
+  "item.enigmaticaddons.bless_ring": "[WIP]",
+
+  "tooltip.enigmaticaddons.blessRing1": "§d고통을 겪은 자들을 위해,",
+  "tooltip.enigmaticaddons.blessRing2": "§d남은 축복은 여전히 유효합니다. :",
+  "tooltip.enigmaticaddons.blessRing3": "§5- §6+%1$s§d 약탈 등급",
+  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d 행운 등급",
+  "tooltip.enigmaticaddons.blessRing5": "§5- 일부 생명체에서 희귀한 아이템을 얻을 수 있습니다.",
+  "tooltip.enigmaticaddons.blessRing6": "§5- 특별한 유물들을 제작할 수 있습니다.",
+  "tooltip.enigmaticaddons.blessRingLore1": "§5이 반지는 독특한 광채를 띠며,",
+  "tooltip.enigmaticaddons.blessRingLore2": "§5그 고통의 세월을 기억합니다.",
+  "tooltip.enigmaticaddons.blessRingLore3": "§5또한, 그것은 힘의 증거입니다......",
+  "tooltip.enigmaticaddons.blessRingLore4": "§5",
+
+  "death.attack.false_justice": "%1$s는 심판의 공허 속으로 사라졌습니다.",
+
+  "entity.enigmaticaddons.cobweb_ball": "거미줄 공",
+  "entity.enigmaticaddons.dragon_breath_arrow": "드래곤의 숨결 화살",
+  "entity.enigmaticaddons.split_dragon_breath": "갈라진 드래곤 숨결",
+  "entity.enigmaticaddons.ultimate_dragon_fireball": "궁극의 드래곤 파이어볼",
+
+  "effect.enigmaticaddons.dragon_breath": "드래곤의 숨결",
+  "effect.enigmaticaddons.frozen_heart": "얼어붙은 심장",
+  "effect.enigmaticaddons.pure_resistance": "순수한 저항",
+
+  "item.enigmaticaddons.common_potion.effect.frozen_heart": "얼어붙은 심장의 물약",
+  "item.enigmaticaddons.common_potion.effect.long_frozen_heart": "얼어붙은 심장의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.ultimate_frozen_heart": "얼어붙은 심장의 물약",
+  "item.enigmaticaddons.common_potion_splash.effect.frozen_heart": "투척용 얼어붙은 심장의 물약",
+  "item.enigmaticaddons.common_potion_splash.effect.long_frozen_heart": "투척용 얼어붙은 심장의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.ultimate_frozen_heart": "투척용 얼어붙은 심장의 물약",
+  "item.enigmaticaddons.common_potion_lingering.effect.frozen_heart": "잔류형 얼어붙은 심장의 물약",
+  "item.enigmaticaddons.common_potion_lingering.effect.long_frozen_heart": "잔류형 얼어붙은 심장의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.ultimate_frozen_heart": "잔류형 얼어붙은 심장의 물약",
+
+  "item.enigmaticaddons.common_potion.effect.mining_fatigue": "채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion.effect.long_mining_fatigue": "채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion.effect.strong_mining_fatigue": "채굴 피로의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.ultimate_mining_fatigue": "채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion_splash.effect.mining_fatigue": "투척용 채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion_splash.effect.long_mining_fatigue": "투척용 채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion_splash.effect.strong_mining_fatigue": "투척용 채굴 피로의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.ultimate_mining_fatigue": "투척용 채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion_lingering.effect.mining_fatigue": "잔류형 채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion_lingering.effect.long_mining_fatigue": "잔류형 채굴 피로의 물약",
+  "item.enigmaticaddons.common_potion_lingering.effect.strong_mining_fatigue": "잔류형 채굴 피로의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.ultimate_mining_fatigue": "잔류형 채굴 피로의 물약",
+
+  "book.enigmaticaddons.entry.frozen_heart_potion.name": "얼어붙은 심장의 물약",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.1": "물약 제조",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.2": "지속 시간 연장",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.3": "투척용 버전",
+  "book.enigmaticaddons.entry.frozen_heart_potion.heading.4": "잔류형 버전",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.1": "푸른 얼음은 얼음 블록 계열에서 가장 순수한 존재입니다. 신중히 고려한 끝에, 이를 제조 과정에 추가하기로 결정했습니다.<br2/>시식해본 결과, 너무 차갑긴 하지만 몸에서 차가운 느낌은 없으며, 오히려 눈 덮인 산맥과 빙하의 차가운 공기의 힘을 느낄 수 있습니다.",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.2": "결국, 당신은 얼음에 면역을 가지게 되고, 차가운 오라를 다른 사람에게 적용할 수 있으며, 얼어붙은 대상에게 더 많은 피해를 입힐 수 있게 됩니다.",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.3": "그 효과는 레드스톤 가루를 사용하여 연장할 수 있습니다.",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.4": "또한, 투척용 물약으로도 제조할 수 있으며...",
+  "book.enigmaticaddons.entry.frozen_heart_potion.page.5": "...잔류형 물약으로도 제조할 수 있습니다. 일반적인 물약처럼요.",
+
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_leaping": "점프 강화의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_swiftness": "속도 증가의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_slowness": "속도 감소의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_turtle_master": "거북 도사의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_poison": "독의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_regeneration": "재생의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_strength": "힘의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_weakness": "나약함의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_haste": "성급함의 물약",
+  "item.enigmaticaddons.ultimate_potion.effect.extreme_mining_fatigue": "채굴 피로의 물약",
+
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_leaping": "투척용 점프 강화의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_swiftness": "투척용 속도 증가의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_slowness": "투척용 속도 감소의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_turtle_master": "투척용 거북 도사의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_poison": "투척용 독의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_regeneration": "투척용 재생의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_strength": "투척용 힘의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_weakness": "투척용 나약함의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_haste": "투척용 성급함의 물약",
+  "item.enigmaticaddons.ultimate_potion_splash.effect.extreme_mining_fatigue": "투척용 채굴 피로의 물약",
+
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_leaping": "잔류형 점프 강화의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_swiftness": "잔류형 속도 증가의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_slowness": "잔류형 속도 감소의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_turtle_master": "잔류형 거북 도사의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_poison": "잔류형 독의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_regeneration": "잔류형 재생의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_strength": "잔류형 힘의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_weakness": "잔류형 나약함의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_haste": "잔류형 성급함의 물약",
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "잔류형 채굴 피로의 물약"
+}
