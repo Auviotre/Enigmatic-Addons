@@ -35,7 +35,6 @@ public class PotionAddonHelper {
     public static final Ingredient SPECIAL_POTIONS = Ingredient.of(
             Items.HONEY_BOTTLE,
             EnigmaticAddonItems.ASTRAL_POTION,
-            EnigmaticAddonItems.BLESS_POTION,
             EnigmaticAddonItems.COMMON_POTION_LINGERING,
             EnigmaticAddonItems.ULTIMATE_POTION_LINGERING
     );
@@ -44,6 +43,7 @@ public class PotionAddonHelper {
     private static final Ingredient GUNPOWDER = Ingredient.of(Items.GUNPOWDER);
     private static final Ingredient GLOWSTONE_DUST = Ingredient.of(Items.GLOWSTONE_DUST);
     private static final Ingredient DRAGON_BREATH = Ingredient.of(Items.DRAGON_BREATH);
+    private static final Ingredient ICHOR = Ingredient.of(EnigmaticAddonItems.ICHOR_DROPLET);
     private static final Ingredient ASTRAL_DUST = Ingredient.of(EnigmaticItems.ASTRAL_DUST);
     private static final Ingredient EARTH_HEART_FRAGMENT = Ingredient.of(EnigmaticAddonItems.EARTH_HEART_FRAGMENT);
     private static final Ingredient FERMENTED_SPIDER_EYE = Ingredient.of(Items.FERMENTED_SPIDER_EYE);
@@ -74,7 +74,13 @@ public class PotionAddonHelper {
     }
 
     public static void registerCommonPotions() {
-        addCommonPotion(EnigmaticAddonPotions.FROZEN_HEART, EnigmaticAddonPotions.LONG_FROZEN_HEART, EnigmaticAddonPotions.MINING_FATIGUE, EnigmaticAddonPotions.LONG_MINING_FATIGUE, EnigmaticAddonPotions.STRONG_MINING_FATIGUE);
+        addCommonPotion(
+                EnigmaticAddonPotions.FROZEN_HEART,
+                EnigmaticAddonPotions.LONG_FROZEN_HEART,
+                EnigmaticAddonPotions.MINING_FATIGUE,
+                EnigmaticAddonPotions.LONG_MINING_FATIGUE,
+                EnigmaticAddonPotions.STRONG_MINING_FATIGUE
+        );
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.AWKWARD)), EARTH_HEART_FRAGMENT), createVanillaPotion(Items.POTION, Potions.LUCK)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.AWKWARD)), EARTH_HEART_FRAGMENT), createVanillaPotion(Items.SPLASH_POTION, Potions.LUCK)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.AWKWARD)), EARTH_HEART_FRAGMENT), createVanillaPotion(Items.LINGERING_POTION, Potions.LUCK)));
@@ -96,13 +102,66 @@ public class PotionAddonHelper {
     }
 
     public static void registerUltimatePotions() {
-        addUltimatePotion(EnigmaticAddonPotions.ULTIMATE_FROZEN_HEART, EnigmaticAddonPotions.ULTIMATE_MINING_FATIGUE);
+        addUltimatePotion(
+                EnigmaticAddonPotions.ULTIMATE_FROZEN_HEART,
+                EnigmaticAddonPotions.ULTIMATE_MINING_FATIGUE,
+                EnigmaticAddonPotions.EXTREME_LEAPING,
+                EnigmaticAddonPotions.EXTREME_SWIFTNESS,
+                EnigmaticAddonPotions.EXTREME_SLOWNESS,
+                EnigmaticAddonPotions.EXTREME_TURTLE_MASTER,
+                EnigmaticAddonPotions.EXTREME_POISON,
+                EnigmaticAddonPotions.EXTREME_REGENERATION,
+                EnigmaticAddonPotions.EXTREME_STRENGTH,
+                EnigmaticAddonPotions.EXTREME_WEAKNESS,
+                EnigmaticAddonPotions.EXTREME_HASTE,
+                EnigmaticAddonPotions.EXTREME_MINING_FATIGUE)
+        ;
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.LONG_FROZEN_HEART)), ASTRAL_DUST), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.ULTIMATE_FROZEN_HEART)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_SPLASH, EnigmaticAddonPotions.LONG_FROZEN_HEART)), ASTRAL_DUST, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.ULTIMATE_FROZEN_HEART)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.ULTIMATE_FROZEN_HEART)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_LINGERING, EnigmaticAddonPotions.LONG_FROZEN_HEART)), ASTRAL_DUST, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.ULTIMATE_FROZEN_HEART)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.ULTIMATE_FROZEN_HEART)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticItems.ULTIMATE_POTION, EnigmaticPotions.ULTIMATE_HASTE)), FERMENTED_SPIDER_EYE, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.LONG_MINING_FATIGUE)), ASTRAL_DUST, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.STRONG_MINING_FATIGUE)), ASTRAL_DUST), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.ULTIMATE_MINING_FATIGUE)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticItems.ULTIMATE_POTION_SPLASH, EnigmaticPotions.ULTIMATE_HASTE)), FERMENTED_SPIDER_EYE, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_SPLASH, EnigmaticAddonPotions.LONG_MINING_FATIGUE)), ASTRAL_DUST, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_SPLASH, EnigmaticAddonPotions.STRONG_MINING_FATIGUE)), ASTRAL_DUST, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.ULTIMATE_MINING_FATIGUE)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.ULTIMATE_MINING_FATIGUE)));
         BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticItems.ULTIMATE_POTION_LINGERING, EnigmaticPotions.ULTIMATE_HASTE)), FERMENTED_SPIDER_EYE, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_LINGERING, EnigmaticAddonPotions.LONG_MINING_FATIGUE)), ASTRAL_DUST, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_LINGERING, EnigmaticAddonPotions.STRONG_MINING_FATIGUE)), ASTRAL_DUST, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.ULTIMATE_MINING_FATIGUE)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.ULTIMATE_MINING_FATIGUE)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.STRONG_LEAPING)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_LEAPING)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.STRONG_LEAPING)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_LEAPING)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_LEAPING)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.STRONG_LEAPING)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_LEAPING)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_LEAPING)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.STRONG_SWIFTNESS)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_SWIFTNESS)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.STRONG_SWIFTNESS)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_SWIFTNESS)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_SWIFTNESS)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.STRONG_SWIFTNESS)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_SWIFTNESS)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_SWIFTNESS)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_SWIFTNESS)), FERMENTED_SPIDER_EYE, Ingredient.of(createVanillaPotion(Items.POTION, Potions.STRONG_SLOWNESS)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_SLOWNESS)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_SWIFTNESS)), FERMENTED_SPIDER_EYE, Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.STRONG_SLOWNESS)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_SLOWNESS)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_SLOWNESS)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_SWIFTNESS)), FERMENTED_SPIDER_EYE, Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.STRONG_SLOWNESS)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_SLOWNESS)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_SLOWNESS)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.STRONG_TURTLE_MASTER)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_TURTLE_MASTER)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.STRONG_TURTLE_MASTER)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_TURTLE_MASTER)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_TURTLE_MASTER)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.STRONG_TURTLE_MASTER)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_TURTLE_MASTER)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_TURTLE_MASTER)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.STRONG_POISON)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_POISON)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.STRONG_POISON)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_POISON)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_POISON)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.STRONG_POISON)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_POISON)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_POISON)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.STRONG_REGENERATION)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_REGENERATION)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.STRONG_REGENERATION)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_REGENERATION)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_REGENERATION)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.STRONG_REGENERATION)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_REGENERATION)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_REGENERATION)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.STRONG_STRENGTH)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_STRENGTH)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.STRONG_STRENGTH)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_STRENGTH)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_STRENGTH)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.STRONG_STRENGTH)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_STRENGTH)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_STRENGTH)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.POTION, Potions.WEAKNESS)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_WEAKNESS)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.SPLASH_POTION, Potions.WEAKNESS)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_WEAKNESS)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_WEAKNESS)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createVanillaPotion(Items.LINGERING_POTION, Potions.WEAKNESS)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_WEAKNESS)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_WEAKNESS)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticItems.COMMON_POTION, EnigmaticPotions.STRONG_HASTE)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_HASTE)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticItems.COMMON_POTION_SPLASH, EnigmaticPotions.STRONG_HASTE)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_HASTE)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_HASTE)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticItems.COMMON_POTION_LINGERING, EnigmaticPotions.STRONG_HASTE)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_HASTE)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_HASTE)));
+
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_HASTE)), FERMENTED_SPIDER_EYE, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonPotions.STRONG_MINING_FATIGUE)), ICHOR), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_MINING_FATIGUE)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_HASTE)), FERMENTED_SPIDER_EYE, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_SPLASH, EnigmaticAddonPotions.STRONG_MINING_FATIGUE)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonPotions.EXTREME_MINING_FATIGUE)), GUNPOWDER), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_MINING_FATIGUE)));
+        BrewingRecipeRegistry.addRecipe(new AddonBrewingRecipe(constructIngredientMap(Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_HASTE)), FERMENTED_SPIDER_EYE, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.COMMON_POTION_LINGERING, EnigmaticAddonPotions.STRONG_MINING_FATIGUE)), ICHOR, Ingredient.of(createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonPotions.EXTREME_MINING_FATIGUE)), DRAGON_BREATH), createAdvancedPotion(EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonPotions.EXTREME_MINING_FATIGUE)));
     }
 
     public static void registerDispenserBehavior() {

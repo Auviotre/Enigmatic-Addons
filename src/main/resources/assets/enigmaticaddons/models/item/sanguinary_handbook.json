@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "enigmaticaddons:item/3d/sanguinary_handbook"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "enigmaticaddons:item/gui/sanguinary_handbook"
+    },
+    "fixed": {
+      "parent": "enigmaticaddons:item/3d/sanguinary_handbook"
+    },
+    "ground": {
+      "parent": "enigmaticaddons:item/3d/sanguinary_handbook"
+    }
+  }
+}

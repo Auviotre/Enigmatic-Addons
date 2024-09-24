@@ -1,0 +1,30 @@
+{
+    "name": "book.enigmaticaddons.entry.frost_enchantment.name",
+    "icon": "minecraft:enchanted_book",
+    "category": "enigmaticlegacy:enchantments",
+	"advancement": "enigmaticlegacy:book/enchantments/generic",
+    "secret": false,
+    "priority": false,
+    "read_by_default": false,
+    "sortnum": 60,
+    "pages": [
+        {
+            "type": "text",
+            "text": "book.enigmaticaddons.entry.frost_enchantment.page.1"
+        },
+      {
+        "type": "spotlight",
+        "item": "minecraft:diamond_sword#1{Enchantments:[{lvl:2s,id:'enigmaticaddons:frost_aspect'}]}",
+        "link_recipe": false,
+        "title": "book.enigmaticaddons.entry.frost_enchantment.heading.1",
+        "text": "book.enigmaticaddons.entry.frost_enchantment.page.2"
+      },
+      {
+        "type": "spotlight",
+        "item": "minecraft:diamond_chestplate#1{Enchantments:[{lvl:4s,id:'enigmaticaddons:frost_protection'}]}",
+        "link_recipe": false,
+        "title": "book.enigmaticaddons.entry.frost_enchantment.heading.2",
+        "text": "book.enigmaticaddons.entry.frost_enchantment.page.3"
+      }
+    ]
+}

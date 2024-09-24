@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
@@ -101,11 +102,10 @@ public class EarthPromise extends ItemBaseCurio implements ICursed {
         return tooltips;
     }
 
-
     public boolean canEquip(SlotContext context, ItemStack stack) {
         if (super.canEquip(context, stack)) {
             LivingEntity entity = context.entity();
-            return entity instanceof Player player && SuperpositionHandler.isTheCursedOne(player);
+            return entity instanceof Player player && SuperAddonHandler.isOKOne(player);
         }
         return false;
     }

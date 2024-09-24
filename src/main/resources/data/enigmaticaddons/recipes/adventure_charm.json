@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:adventure_charm"
+    }
+  ],
+  "pattern": [
+    "L L",
+    "QXQ",
+    "QGQ"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:diamond_sword"
+    },
+    "Q": {
+      "item": "minecraft:gold_ingot"
+    },
+    "G": {
+      "item": "minecraft:emerald"
+    },
+    "L": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:adventure_charm"
+  }
+}

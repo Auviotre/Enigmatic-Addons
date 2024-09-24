@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.adventure_charm.name",
+  "icon": "enigmaticaddons:adventure_charm",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/adventure_charm",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 45,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.adventure_charm.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:adventure_charm",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.adventure_charm.page.2"
+    }
+  ]
+}

@@ -56,14 +56,20 @@ public class HellBladeCharm extends ItemBaseCurio {
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> list, TooltipFlag flagIn) {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         LocalPlayer player = Minecraft.getInstance().player;
+        boolean flag = player != null && SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM);
         if (Screen.hasShiftDown()) {
-            double armorModifier = armorDebuff.getValue().asModifier() * (player != null && SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM) ? 0.6 : 1);
+            double armorModifier = armorDebuff.getValue().asModifier() * (flag ? 0.6 : 1);
             if (armorModifier == 1.0) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm1");
             } else {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm1_alt", ChatFormatting.GOLD, String.format("%.0f", armorModifier * 100) + "%");
             }
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm2");
+            if (flag) {
+                float boost = (SuperpositionHandler.getMissingHealthPool(player) * 25) + 100;
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm2_alt", ChatFormatting.GOLD, String.format("%.0f", boost) + "%");
+            } else {
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm2");
+            }
             if (player != null && SuperpositionHandler.isTheCursedOne(player)) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm3", ChatFormatting.GOLD, killCursedThreshold + "%");
             } else {
@@ -78,17 +84,18 @@ public class HellBladeCharm extends ItemBaseCurio {
 
     @OnlyIn(Dist.CLIENT)
     protected void addAttributes(List<Component> list, ItemStack stack, LocalPlayer player) {
-        double armorModifier = armorDebuff.getValue().asModifier() * (player != null && SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM) ? 0.6 : 1);
+        boolean flag = player != null && SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM);
+        float boost = 100.0F + (flag ? (SuperpositionHandler.getMissingHealthPool(player) * 25) : 0.0F);
+        double armorModifier = armorDebuff.getValue().asModifier() * (flag ? 0.6 : 1);
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.addLocalizedFormattedString(list, "curios.modifiers.charm", ChatFormatting.GOLD);
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.damage", ChatFormatting.GOLD, "+100%");
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.damage", ChatFormatting.GOLD, "+" + String.format("%.0f", boost) + "%");
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.armor", ChatFormatting.RED, "-" + String.format("%.0f", armorModifier * 100) + "%");
     }
 
     public Multimap<Attribute, AttributeModifier> createAttributeMap(Player player) {
         Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
         double armorModifier = armorDebuff.getValue().asModifier() * (SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM) ? 0.6 : 1);
-        attributes.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("15C33F3E-6209-AAAA-8D50-49377A400122"), "Hell Bonus", 1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
         attributes.put(Attributes.ARMOR, new AttributeModifier(UUID.fromString("E7EC5AC7-8D8C-9D83-A87C-1830B55951FA"), "Hell Bonus", -armorModifier, AttributeModifier.Operation.MULTIPLY_TOTAL));
         attributes.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID.fromString("03153759-3B92-E47E-EFED-DD4F2ECA6B47"), "Hell Bonus", -armorModifier, AttributeModifier.Operation.MULTIPLY_TOTAL));
         return attributes;

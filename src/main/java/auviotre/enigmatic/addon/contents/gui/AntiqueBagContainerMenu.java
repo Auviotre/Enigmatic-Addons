@@ -19,7 +19,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -127,12 +126,12 @@ public class AntiqueBagContainerMenu extends AbstractContainerMenu {
         }
 
         public boolean mayPlace(@NotNull ItemStack stack) {
-            return AntiqueBag.bookList.contains(ForgeRegistries.ITEMS.getKey(stack.getItem())) && super.mayPlace(stack);
+            return AntiqueBag.isBook(stack) && super.mayPlace(stack);
         }
 
         @Nullable
         public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-            return Pair.of(InventoryMenu.BLOCK_ATLAS, new ResourceLocation(EnigmaticAddons.MODID, "item/empty_book"));
+            return Pair.of(InventoryMenu.BLOCK_ATLAS, new ResourceLocation(EnigmaticAddons.MODID, "slots/empty_book_slot"));
         }
     }
 }

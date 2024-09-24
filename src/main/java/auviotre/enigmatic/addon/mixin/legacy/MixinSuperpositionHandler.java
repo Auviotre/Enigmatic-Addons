@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.mixin.legacy;
 
+import auviotre.enigmatic.addon.contents.items.AntiqueBag;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
@@ -16,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Pseudo
 @Mixin(SuperpositionHandler.class)
 public abstract class MixinSuperpositionHandler {
-
     @Inject(method = "getCurseAmount(Lnet/minecraft/world/item/ItemStack;)I", at = @At("RETURN"), cancellable = true, remap = false)
     private static void getCurseAmountMix(@NotNull ItemStack stack, CallbackInfoReturnable<Integer> cir) {
         if (stack.getItem() == EnigmaticAddonItems.HELL_BLADE_CHARM) {
@@ -26,13 +26,8 @@ public abstract class MixinSuperpositionHandler {
 
     @Inject(method = "hasItem", at = @At("RETURN"), cancellable = true, remap = false)
     private static void hasItemMix(Player player, Item item, @NotNull CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue() && player != null && item != EnigmaticAddonItems.ANTIQUE_BAG) {
+        if (!cir.getReturnValue() && player != null && AntiqueBag.isBook(new ItemStack(item))) {
             cir.setReturnValue(!SuperAddonHandler.findBookInBag(player, item).isEmpty());
         }
     }
-
-//    @Inject(method = "isTheCursedOne", at = @At("RETURN"), cancellable = true, remap = false)
-//    private static void isTheCursedOneMix(Player player, CallbackInfoReturnable<Boolean> cir) {
-//        if (!cir.getReturnValue()) cir.setReturnValue(hasCurio(player, EnigmaticAddonItems.BLESS_RING));
-//    }
 }

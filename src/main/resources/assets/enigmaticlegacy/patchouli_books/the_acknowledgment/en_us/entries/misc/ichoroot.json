@@ -1,0 +1,22 @@
+{
+    "name": "book.enigmaticaddons.entry.ichoroot.name",
+    "icon": "enigmaticaddons:ichoroot",
+    "category": "enigmaticlegacy:misc",
+	"advancement": "enigmaticaddons:book/misc/ichoroot",
+    "secret": false,
+    "priority": false,
+    "read_by_default": false,
+    "sortnum": 110,
+    "pages": [
+        {
+            "type": "text",
+            "text": "book.enigmaticaddons.entry.ichoroot.page.1"
+        },
+		{
+            "type": "crafting",
+			"recipe": "enigmaticaddons:ichoroot",
+			"title": " ",
+            "text": "book.enigmaticaddons.entry.ichoroot.page.2"
+        }
+    ]
+}

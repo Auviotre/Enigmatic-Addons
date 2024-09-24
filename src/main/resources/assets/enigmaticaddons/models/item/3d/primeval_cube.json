@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "enigmaticaddons:item/3d/primeval_cube_distortion",
+		"distortion": "enigmaticaddons:item/3d/primeval_cube_distortion",
 		"particle": "enigmaticaddons:item/3d/primeval_cube_distortion",
-		"layer0": "enigmaticaddons:item/3d/primeval_cube_3d"
+		"layer0": "enigmaticaddons:item/3d/primeval_cube"
 	},
 	"elements": [
 		{
@@ -25,12 +25,12 @@
 			"from": [12.25, 8.25, 12.25],
 			"to": [3.75, -0.25, 3.75],
 			"faces": {
-				"north": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"east": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"south": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"west": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"up": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"down": {"uv": [16, 0, 0, 16], "texture": "#1"}
+				"north": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+				"east": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+				"south": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+				"west": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+				"up": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+				"down": {"uv": [8, 0, 0, 8], "texture": "#distortion"}
 			}
 		}
 	],

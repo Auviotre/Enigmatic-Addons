@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:sanguinary_handbook"
+    }
+  ],
+  "pattern": [
+    "MNM",
+    "IXI",
+    "DHD"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:hunter_guidebook"
+    },
+    "D": {
+      "item": "minecraft:dragon_breath"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "M": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "H": {
+      "item": "enigmaticlegacy:twisted_heart"
+    },
+    "I": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:sanguinary_handbook"
+  }
+}

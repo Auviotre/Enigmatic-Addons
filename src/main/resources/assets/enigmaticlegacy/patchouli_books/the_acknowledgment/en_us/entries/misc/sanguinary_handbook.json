@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.sanguinary_handbook.name",
+  "icon": "enigmaticaddons:sanguinary_handbook",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticaddons:book/misc/sanguinary_handbook",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 140,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.sanguinary_handbook.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:sanguinary_handbook",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.sanguinary_handbook.page.2"
+    }
+  ]
+}

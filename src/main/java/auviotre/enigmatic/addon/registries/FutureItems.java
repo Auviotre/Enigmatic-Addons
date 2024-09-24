@@ -16,40 +16,25 @@ import java.util.List;
 
 public class FutureItems extends AbstractRegistry<Item> {
     private static final FutureItems INSTANCE = new FutureItems();
-    @ObjectHolder(
-            value = "enigmaticlegacy:dark_helmet",
-            registryName = "item"
-    )
+    @ObjectHolder(value = "enigmaticlegacy:dark_helmet", registryName = "item")
     public static final DarkArmor DARK_HELMET = null;
-    @ObjectHolder(
-            value = "enigmaticlegacy:dark_chestplate",
-            registryName = "item"
-    )
+
+    @ObjectHolder(value = "enigmaticlegacy:dark_chestplate", registryName = "item")
     public static final DarkArmor DARK_CHESTPLATE = null;
-    @ObjectHolder(
-            value = "enigmaticlegacy:dark_leggings",
-            registryName = "item"
-    )
+
+    @ObjectHolder(value = "enigmaticlegacy:dark_leggings", registryName = "item")
     public static final DarkArmor DARK_LEGGINGS = null;
-    @ObjectHolder(
-            value = "enigmaticlegacy:dark_boots",
-            registryName = "item"
-    )
+
+    @ObjectHolder(value = "enigmaticlegacy:dark_boots", registryName = "item")
     public static final DarkArmor DARK_BOOTS = null;
-    @ObjectHolder(
-            value = "enigmaticlegacy:living_flame",
-            registryName = "item"
-    )
+
+    @ObjectHolder(value = "enigmaticlegacy:living_flame", registryName = "item")
     public static final LivingFlame LIVING_FLAME = null;
-    @ObjectHolder(
-            value = "enigmaticlegacy:gem_of_binding",
-            registryName = "item"
-    )
+
+    @ObjectHolder(value = "enigmaticlegacy:gem_of_binding", registryName = "item")
     public static final GemOfBinding GEM_OF_BINDING = null;
-    @ObjectHolder(
-            value = "enigmaticlegacy:wormhole_potion",
-            registryName = "item"
-    )
+
+    @ObjectHolder(value = "enigmaticlegacy:wormhole_potion", registryName = "item")
     public static final WormholePotion WORMHOLE_POTION = null;
 
     private FutureItems() {

@@ -1,6 +1,9 @@
 package auviotre.enigmatic.addon.registries;
 
-import auviotre.enigmatic.addon.contents.entities.*;
+import auviotre.enigmatic.addon.contents.entities.CobwebBall;
+import auviotre.enigmatic.addon.contents.entities.DragonBreathArrow;
+import auviotre.enigmatic.addon.contents.entities.SplitDragonBreath;
+import auviotre.enigmatic.addon.contents.entities.UltimateDragonFireball;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -8,30 +11,15 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     private static final EnigmaticAddonEntities INSTANCE = new EnigmaticAddonEntities();
-    @ObjectHolder(
-            value = "enigmaticaddons:dragon_breath_arrow",
-            registryName = "entity_type"
-    )
+    @ObjectHolder(value = "enigmaticaddons:dragon_breath_arrow", registryName = "entity_type")
     public static final EntityType<DragonBreathArrow> DRAGON_BREATH_ARROW = null;
-    @ObjectHolder(
-            value = "enigmaticaddons:enigmatic_potion_entity",
-            registryName = "entity_type"
-    )
-    public static final EntityType<UltimatePotionEntity> ENIGMATIC_POTION = null;
-    @ObjectHolder(
-            value = "enigmaticaddons:cobweb_ball",
-            registryName = "entity_type"
-    )
+    @ObjectHolder(value = "enigmaticaddons:cobweb_ball", registryName = "entity_type")
     public static final EntityType<CobwebBall> COBWEB_BALL = null;
-    @ObjectHolder(
-            value = "enigmaticaddons:ultimate_dragon_fireball",
-            registryName = "entity_type"
-    )
+
+    @ObjectHolder(value = "enigmaticaddons:ultimate_dragon_fireball", registryName = "entity_type")
     public static final EntityType<UltimateDragonFireball> ULTIMATE_DRAGON_FIREBALL = null;
-    @ObjectHolder(
-            value = "enigmaticaddons:split_dragon_breath",
-            registryName = "entity_type"
-    )
+
+    @ObjectHolder(value = "enigmaticaddons:split_dragon_breath", registryName = "entity_type")
     public static final EntityType<SplitDragonBreath> SPLIT_DRAGON_BREATH = null;
 
     private EnigmaticAddonEntities() {
@@ -39,12 +27,7 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
         this.register("dragon_breath_arrow",
                 () -> EntityType.Builder.<DragonBreathArrow>of(DragonBreathArrow::new, MobCategory.MISC).sized(0.25F, 0.25F).setTrackingRange(64)
                         .setCustomClientFactory((spawnEntity, world) -> new DragonBreathArrow(DRAGON_BREATH_ARROW, world))
-                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:dragon_breath_arrow")
-        );
-        this.register("enigmatic_potion_entity",
-                () -> EntityType.Builder.<UltimatePotionEntity>of(UltimatePotionEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).setTrackingRange(64)
-                        .setCustomClientFactory((spawnEntity, world) -> new UltimatePotionEntity(ENIGMATIC_POTION, world)).setUpdateInterval(10)
-                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:enigmatic_potion_entity"));
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:dragon_breath_arrow"));
         this.register("cobweb_ball",
                 () -> EntityType.Builder.<CobwebBall>of(CobwebBall::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(4)
                         .setCustomClientFactory((spawnEntity, world) -> new CobwebBall(DRAGON_BREATH_ARROW, world)).setUpdateInterval(10)

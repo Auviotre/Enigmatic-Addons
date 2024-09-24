@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.bless_amplifier.name",
+  "icon": "enigmaticaddons:bless_amplifier",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticaddons:book/misc/bless_amplifier",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 130,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.bless_amplifier.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:bless_amplifier",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.bless_amplifier.page.2"
+    }
+  ]
+}
