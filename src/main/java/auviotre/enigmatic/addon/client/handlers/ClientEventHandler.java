@@ -1,17 +1,14 @@
 package auviotre.enigmatic.addon.client.handlers;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
-import auviotre.enigmatic.addon.api.events.RenderHandEvent;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.gui.GUIUtils;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderTooltipEvent;
@@ -47,17 +44,6 @@ public class ClientEventHandler {
                 event.setBorderStart(borderStart);
                 event.setBorderEnd(borderEnd);
             }
-        }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public void onHandRendering(RenderHandEvent event) {
-        if (event.getHand() == InteractionHand.OFF_HAND) {
-            InteractionHand usedItemHand = event.getPlayer().getUsedItemHand();
-            ItemStack useItem = event.getPlayer().getUseItem();
-            if (usedItemHand == InteractionHand.MAIN_HAND && (useItem.getUseAnimation() == UseAnim.BOW || useItem.getUseAnimation() == UseAnim.CROSSBOW))
-                event.setCanceled(true);
         }
     }
 }
