@@ -66,8 +66,8 @@ public class DragonBreathArrow extends AbstractArrow {
         effectCloud.setParticle(ParticleTypes.DRAGON_BREATH);
         effectCloud.setRadius(1.5F);
         effectCloud.setDuration(100);
-        effectCloud.setRadiusOnUse(0.05F);
-        effectCloud.setDurationOnUse(8);
+        effectCloud.setRadiusOnUse(0.1F);
+        effectCloud.setDurationOnUse(-1);
         effectCloud.setWaitTime(1);
         effectCloud.addEffect(new MobEffectInstance(EnigmaticAddonEffects.DRAGON_BREATH_EFFECT, 1, Mth.floor(dmg)));
         effectCloud.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 39, 1));

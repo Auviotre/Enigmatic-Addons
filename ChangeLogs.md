@@ -1,19 +1,32 @@
-### [Release 1.1.1]
+### [Release 1.1.2]
 ### Features:
-- 5 new Items (**Ichor Droplet**, **Ichoroot**, **Pure Heart**, **Potion of Mercy**, **Antique Book Bag**);
+- 3 new Items (**Sanguinary Hunting Handbook**, **Tome of Void**, **Emblem of Adventurer**);
+- A set of New Potion brewed with **Ichor**;
+### Changes:
+- Changed the registration part, preparing for new Addon's mod;
+- Changed the version requirements for Forge (May compatible with NeoForge);
+- Changed the damage boost function of Addon's curios (from Addition to Multiplication).
+### Fixes:
+- Fixed the issue of incorrect attribute curse boost;
+***
+### [Release 1.1.1] (2024/09/03)
+### Features:
+- 5 new Items (**Ichor Droplet**, **Ichoroot**, **Pure Heart**, **Tome of Divination**, **Antique Book Bag**, ~~Potion of Mercy~~);
 - 2 new Enchantments (Related to **Frost**);
 - 1 new Effect (Related to **Pure Resistance**);
 - The Neutral Golem List of the **Lost Engine** now configurable;
-- **Potion of Luck** can now be obtained through brewing **Fragment of the Earth**;
+- **Potion of Luck** can now be obtained through brewing **Fragment of the Earth**.
 ### Changes:
 - The Armor debuff of **Charm of Hell Blade** will weaken with **Emblem of Bloodstained Valor**;
-- Changed The Ability of the **Revival Leaf** which will affected by the **Level** of the player;
-- Changed The Cursed AI of the **Wither** boss;
+- Changed the Ability of the **Revival Leaf** which will affected by the **Level** of the player;
+- Changed the Cursed AI of the **Wither** boss;
 - Now the loot of **Fragment of the Earth** only requires players to wear the **Ring of Seven Curses**;
+- Adjusted loot probability of **Lost Engine**;
+- Changed the Effect of **Lost Engine**.
 ### Fixes:
 - Fixed the issue of the Curse Boost configuration file not taking effect;
-- Fixed a fatal server-side error;
-- Fixed the error in the AI of Animals;
+- Fixed two fatal server-side error;
+- Fixed the error in the AI of Animals.
 ***
 ### [Release 1.1.0] (2024/08/09)
 ### Features:

@@ -8,6 +8,7 @@ import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,25 +20,56 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import org.apache.commons.lang3.mutable.MutableBoolean;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SuperAddonHandler {
+    public static final UUID SCROLL_SLOT_UUID = UUID.fromString("6baf05e3-a59c-43d8-9154-613ff87073e2");
+
     public static boolean isCurseBoosted(LivingEntity entity) {
+        if (!OmniconfigAddonHandler.EnableCurseBoost.getValue()) return false;
         return entity.getPersistentData().getBoolean("CurseBoost");
     }
 
     public static void setCurseBoosted(LivingEntity entity, Boolean flag, Player player) {
+        if (!OmniconfigAddonHandler.EnableCurseBoost.getValue()) return;
         LivingCurseBoostEvent event = AddonHookHandler.onLivingCurseBoosted(entity, player);
-        if (!event.isCanceled() && OmniconfigAddonHandler.EnableCurseBoost.getValue())
+        if (!event.isCanceled())
             entity.getPersistentData().putBoolean("CurseBoost", flag);
     }
 
     @Nullable
     public static <T> LazyOptional<T> getCapability(Player player, Capability<T> capability) {
         return player == null ? null : player.getCapability(capability);
+    }
+
+    public static boolean unlockSpecialSlot(String slot, Player player) {
+        if (!slot.equals("scroll")) {
+            throw new IllegalArgumentException("Slot type '" + slot + "' is not supported!");
+        } else {
+            MutableBoolean success = new MutableBoolean(false);
+            UUID id = SCROLL_SLOT_UUID;
+            CuriosApi.getCuriosInventory(player).ifPresent((handler) -> handler.getStacksHandler(slot).ifPresent((stacks) -> {
+                if (!stacks.getModifiers().containsKey(id)) {
+                    stacks.addPermanentModifier(new AttributeModifier(id, "MasterSlot", 1.0, AttributeModifier.Operation.ADDITION));
+                    success.setTrue();
+                }
+            }));
+            return success.getValue();
+        }
+    }
+
+    public static boolean isTheBlessedOne(Player player) {
+        return SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BLESS_RING) && !SuperpositionHandler.isTheCursedOne(player);
+    }
+
+    public static boolean isOKOne(Player player) {
+        return SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BLESS_RING) || SuperpositionHandler.isTheCursedOne(player);
     }
 
     public static ItemStack findBookInBag(Player player, Item book) {

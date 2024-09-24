@@ -1,15 +1,16 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
-import com.aizistral.enigmaticlegacy.triggers.CursedRingEquippedTrigger;
+import com.aizistral.omniconfig.wrappers.Omniconfig;
+import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -27,14 +28,32 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class BlessRing extends ItemBaseCurio {
-    public BlessRing() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));
+    public static Omniconfig.PerhapsParameter damageResistance;
+    public static final List<String> blessList = new ArrayList<>();
+
+    @SubscribeConfig
+    public static void onConfig(OmniconfigWrapper builder) {
+        builder.pushPrefix("BlessRing");
+        damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 60);
     }
 
+    public BlessRing() {
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).fireResistant());
+        blessList.add("enigmaticlegacy:astral_fruit");
+        blessList.add("enigmaticlegacy:twisted_mirror");
+        blessList.add("enigmaticlegacy:infernal_shield");
+        blessList.add("enigmaticlegacy:berserk_charm");
+        blessList.add("enigmaticlegacy:enchanter_pearl");
+        blessList.add("enigmaticlegacy:guardian_heart");
+        blessList.add("enigmaticaddons:night_scroll");
+        blessList.add("enigmaticaddons:sanguinary_handbook");
+        blessList.add("enigmaticaddons:earth_promise");
+    }
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
@@ -42,10 +61,11 @@ public class BlessRing extends ItemBaseCurio {
         if (Screen.hasShiftDown()) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing2");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing3", ChatFormatting.GOLD, (CursedRing.lootingBonus.getValue() + 1) / 2);
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing4", ChatFormatting.GOLD, (CursedRing.fortuneBonus.getValue() + 1) / 2);
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing5");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing3", ChatFormatting.GOLD, damageResistance + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing4", ChatFormatting.GOLD, (CursedRing.lootingBonus.getValue() + 1) / 2);
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing5", ChatFormatting.GOLD, (CursedRing.fortuneBonus.getValue() + 1) / 2);
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing6");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing7");
         } else {
             if (CursedRing.enableLore.getValue()) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRingLore1");
@@ -82,17 +102,6 @@ public class BlessRing extends ItemBaseCurio {
 
     public boolean canEquipFromUse(SlotContext context, ItemStack stack) {
         return false;
-    }
-
-    public void onUnequip(SlotContext context, ItemStack newStack, ItemStack stack) {
-        SuperpositionHandler.setCurrentWorldCursed(false);
-    }
-
-    public void onEquip(SlotContext context, ItemStack prevStack, ItemStack stack) {
-        if (context.entity() instanceof ServerPlayer player) {
-            CursedRingEquippedTrigger.INSTANCE.trigger(player);
-        }
-        SuperpositionHandler.setCurrentWorldCursed(true);
     }
 
     public ICurio.DropRule getDropRule(SlotContext slotContext, DamageSource source, int lootingLevel, boolean recentlyHit, ItemStack stack) {

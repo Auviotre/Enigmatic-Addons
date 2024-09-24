@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.antique_bag.name",
+  "icon": "enigmaticaddons:antique_bag",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/antique_bag",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 20,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.antique_bag.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:antique_bag",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.antique_bag.heading",
+      "text": "book.enigmaticaddons.entry.antique_bag.page.2"
+    }
+  ]
+}

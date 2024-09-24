@@ -1,10 +1,10 @@
 # Enigmatic Addons 
 
-**Current Version:** 1.1.0
+**Current Version:** 1.1.2
 
 **Minecraft Version:** 1.20.1
 
-**Forge Version:** 47.2.0 or later.
+**Forge Version:** 47.1.0 or later.
 
 **Dependencies:** 
 - **Enigmatic Legacy** 2.30.1 or later;

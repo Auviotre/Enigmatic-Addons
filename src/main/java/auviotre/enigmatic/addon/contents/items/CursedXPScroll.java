@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
@@ -159,7 +160,7 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         LivingEntity entity = slotContext.entity();
         double level = getLevelModifier(stack);
-        if (entity instanceof Player player && SuperpositionHandler.isTheCursedOne(player) && level > 0) {
+        if (entity instanceof Player player && SuperAddonHandler.isOKOne(player) && level > 0) {
             Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
             attributes.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("DC1A2466-36E9-A205-F278-1A8257934E09"), "Cursed XP Bonus", level / 100.0 * speedBoostLimit.getValue(), AttributeModifier.Operation.MULTIPLY_TOTAL));
             attributes.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.fromString("1413353D-4D00-953F-B40B-8A17AF92411F"), "Cursed XP Bonus", level / 100.0 * KRBoostLimit.getValue(), AttributeModifier.Operation.MULTIPLY_TOTAL));

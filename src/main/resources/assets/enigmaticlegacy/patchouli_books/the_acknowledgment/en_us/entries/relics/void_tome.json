@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.void_tome.name",
+  "icon": "enigmaticaddons:void_tome",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/void_tome",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 210,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.void_tome.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:void_tome",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.void_tome.heading",
+      "text": "book.enigmaticaddons.entry.void_tome.page.2"
+    }
+  ]
+}

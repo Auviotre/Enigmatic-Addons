@@ -1,7 +1,10 @@
 {
   "replace": false,
   "values": [
+    "enigmaticaddons:bless_amplifier",
     "enigmaticaddons:ode_to_living",
-    "enigmaticaddons:false_justice"
+    "enigmaticaddons:false_justice",
+    "enigmaticaddons:sanguinary_handbook",
+    "enigmaticaddons:void_tome"
   ]
 }

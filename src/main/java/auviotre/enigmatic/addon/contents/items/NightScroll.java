@@ -1,8 +1,8 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
-import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
@@ -70,7 +70,7 @@ public class NightScroll extends ItemBaseCurio implements ICursed {
 
     public void curioTick(SlotContext context, ItemStack stack) {
         if (context.entity() instanceof Player player) {
-            if (!SuperpositionHandler.isTheCursedOne(player) && !(player.isCreative() || player.isSpectator())) {
+            if (!SuperAddonHandler.isOKOne(player) && !(player.isCreative() || player.isSpectator())) {
                 player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 20));
             }
         }
@@ -86,7 +86,7 @@ public class NightScroll extends ItemBaseCurio implements ICursed {
     }
 
     public static boolean isDark(Player player) {
-        if (!SuperpositionHandler.isTheCursedOne(player)) return false;
+        if (!SuperAddonHandler.isOKOne(player)) return false;
         if (player.hasEffect(MobEffects.DARKNESS)) return true;
         LevelLightEngine lightEngine = player.level().getLightEngine();
         BlockPos blockPos = player.blockPosition();

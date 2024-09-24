@@ -2,17 +2,17 @@
   "parent": "minecraft:item/handheld",
   "loader": "forge:separate_transforms",
   "base": {
-    "parent": "enigmaticaddons:item/3d/primeval_cube_3d"
+    "parent": "enigmaticaddons:item/3d/primeval_cube"
   },
   "perspectives": {
     "gui": {
-      "parent": "enigmaticaddons:item/gui/primeval_cube_gui"
+      "parent": "enigmaticaddons:item/gui/primeval_cube"
     },
     "fixed": {
-      "parent": "enigmaticaddons:item/3d/primeval_cube_3d"
+      "parent": "enigmaticaddons:item/3d/primeval_cube"
     },
     "ground": {
-      "parent": "enigmaticaddons:item/3d/primeval_cube_3d"
+      "parent": "enigmaticaddons:item/3d/primeval_cube"
     }
   }
 }

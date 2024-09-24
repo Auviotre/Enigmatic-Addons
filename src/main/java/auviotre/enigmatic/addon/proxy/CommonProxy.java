@@ -4,6 +4,6 @@ public class CommonProxy {
     public CommonProxy() {
     }
 
-    public void initEntityRendering() {
+    public void clientInit() {
     }
 }
