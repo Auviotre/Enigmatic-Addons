@@ -1,17 +1,17 @@
 {
   "__contributor": "기여자",
 
-  "tooltip.enigmaticaddons.armor": "%1$s§d 방어력",
-  "tooltip.enigmaticaddons.armor_toughness": "%1$s§d 방어 강도",
-  "tooltip.enigmaticaddons.attack_speed": "%1$s§d 공격 속도",
-  "tooltip.enigmaticaddons.damage": "%1$s§d 공격력",
-  "tooltip.enigmaticaddons.knockback_resistance": "%1$s§d 넉백 저항",
-  "tooltip.enigmaticaddons.magic_resistance": "%1$s§d 마법 저항",
-  "tooltip.enigmaticaddons.speed": "%1$s§d 속도",
-  "tooltip.enigmaticaddons.luck": "%1$s§d 운",
+  "tooltip.enigmaticaddons.armor": "§6%1$s§d 방어력",
+  "tooltip.enigmaticaddons.armor_toughness": "§6%1$s§d 방어 강도",
+  "tooltip.enigmaticaddons.attack_speed": "§6%1$s§d 공격 속도",
+  "tooltip.enigmaticaddons.damage": "§6%1$s§d 공격력",
+  "tooltip.enigmaticaddons.knockback_resistance": "§6%1$s§d 넉백 저항",
+  "tooltip.enigmaticaddons.magic_resistance": "§6%1$s§d 마법 저항",
+  "tooltip.enigmaticaddons.speed": "§6%1$s§d 속도",
+  "tooltip.enigmaticaddons.luck": "§6%1$s§d 행운",
 
   "tooltip.enigmaticaddons.legacy_future1": "§5다음 버전에 구현될 가능성이 있는 아이템들",
-  "tooltip.enigmaticaddons.legacy_future2": "§5§d수수께끼의 유산 (추가모드로 추정)의 버전",
+  "tooltip.enigmaticaddons.legacy_future2": "§5§d수수께끼의 유산 (애드온 모드로 추정)의 버전",
 
   "enchantment.enigmaticaddons.frost_aspect": "빙결",
   "enchantment.enigmaticaddons.frost_aspect.desc": "공격 대상이 서서히 얼어붙습니다.",
@@ -66,7 +66,7 @@
   "tooltip.enigmaticaddons.earthPromise4": "§5- §6첫 번째 저주§5의 효과를 %1$s만큼 감소시킵니다.",
 
   "book.enigmaticaddons.entry.earth_promise.name": "대지의 약속",
-  "book.enigmaticaddons.entry.earth_promise.page.1": "당신은 손에 든 대지의 심장이 점점 비틀어지는 것을 지켜볼 때, 내적으로 흥분을 느끼셨나요? 지구 깊은 곳에서 들리는 슬픈 울음소리는 당신의 귀에 계속 맴돌지 않았습니다. 그러나 우주의 힘이 손에 든 대지의 심장과 공명할 때, 대지의 진정한 힘을 다시금 인식하게 된 것 같습니다.",
+  "book.enigmaticaddons.entry.earth_promise.page.1": "당신의 손 안에서 지구의 심장이 서서히 부서지는 것을 바라볼 때마다, 내적으로 흥분을 느끼셨나요? 지구 깊은 곳에서 들리는 슬픈 울음소리는 당신의 귀에 계속 맴돌지 않았습니다. 그러나 우주의 힘이 손에 든 대지의 심장과 공명할 때, 대지의 진정한 힘을 다시금 인식하게 된 것 같습니다.",
   "book.enigmaticaddons.entry.earth_promise.page.2": "대지는 보호를 약속하고 치명적인 상처를 막으려 하지만, 금 재료는 그렇게 높은 내구성을 가지고 있지 않으므로, 이 축복의 반지가 완전한 상태인지 항상 주의하는 것이 중요합니다.",
 
   "item.enigmaticaddons.forgotten_ice": "잊혀진 얼음 결정",
@@ -255,18 +255,24 @@
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "이코르의 세례를 받은 후, 이 서에 대한 욕망은 얻는 것에서 주는 것으로 변하게 되었고, 이로 인해 아이템의 마법적 힘이 더욱 강화되었습니다.<br2/>이제 마법 부여된 아이템과 가까이 접촉하면 스스로를 희생하여 아이템의 모든 마법 부여 레벨을 두 배로 증가시킬 수 있습니다.",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "마법 부여의 레벨 한계를 넘는 것이 이 서의 진정한 목적입니다.<br2/>그러나 모든 한계를 넘을 수 있는 것은 아니며, 일부 마법 부여는 그 힘을 견디지 못하고 무효화될 수도 있습니다.",
 
-  "item.enigmaticaddons.bless_ring": "[WIP]",
+  "item.enigmaticaddons.bless_ring": "구원의 반지 [WIP]",
 
   "tooltip.enigmaticaddons.blessRing1": "§d고통을 겪은 자들을 위해,",
-  "tooltip.enigmaticaddons.blessRing2": "§d남은 축복은 여전히 유효합니다. :",
-  "tooltip.enigmaticaddons.blessRing3": "§5- §6+%1$s§d 약탈 등급",
-  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d 행운 등급",
-  "tooltip.enigmaticaddons.blessRing5": "§5- 일부 생명체에서 희귀한 아이템을 얻을 수 있습니다.",
-  "tooltip.enigmaticaddons.blessRing6": "§5- 특별한 유물들을 제작할 수 있습니다.",
+  "tooltip.enigmaticaddons.blessRing2": "§d남은 축복은 여전히 유효합니다.",
+  "tooltip.enigmaticaddons.blessRing3": "§5- 당신은 §6%1$s§5의 피해를 §6어떤§5 근원으로부터 받습니다.",
+  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d 약탈 등급",
+  "tooltip.enigmaticaddons.blessRing5": "§5- §6+%1$s§d 행운 등급",
+  "tooltip.enigmaticaddons.blessRing6": "§5- 일부 생명체에서 희귀한 아이템을 얻을 수 있습니다.",
+  "tooltip.enigmaticaddons.blessRing7": "§5- 특별한 유물들을 제작할 수 있습니다.",
   "tooltip.enigmaticaddons.blessRingLore1": "§5이 반지는 독특한 광채를 띠며,",
   "tooltip.enigmaticaddons.blessRingLore2": "§5그 고통의 세월을 기억합니다.",
-  "tooltip.enigmaticaddons.blessRingLore3": "§5또한, 그것은 힘의 증거입니다......",
-  "tooltip.enigmaticaddons.blessRingLore4": "§5",
+  "tooltip.enigmaticaddons.blessRingLore3": "§5또한, 그것은 힘의 증거이기도",
+  "tooltip.enigmaticaddons.blessRingLore4": "§5합니다......",
+  
+  "tooltip.enigmaticaddons.blessUse1": "이 아이템은 당신의 과거 경험을 이해하며,",
+  "tooltip.enigmaticaddons.blessUse2": "여전히 당신의 자격을 인정합니다.",
+
+  "item.enigmaticaddons.evil_dagger": "[WIP]",
 
   "death.attack.false_justice": "%1$s는 심판의 공허 속으로 사라졌습니다.",
 
@@ -345,5 +351,4 @@
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_weakness": "잔류형 나약함의 물약",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_haste": "잔류형 성급함의 물약",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "잔류형 채굴 피로의 물약"
->>>>>>> 18e40073d1bd57dbdbd13f6cdb89a70d1fbcb2e5
 }
