@@ -3,6 +3,7 @@ package auviotre.enigmatic.addon.contents.items;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
+import com.aizistral.enigmaticlegacy.items.BerserkEmblem;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
@@ -85,7 +86,7 @@ public class HellBladeCharm extends ItemBaseCurio {
     @OnlyIn(Dist.CLIENT)
     protected void addAttributes(List<Component> list, ItemStack stack, LocalPlayer player) {
         boolean flag = player != null && SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM);
-        float boost = 100.0F + (flag ? (SuperpositionHandler.getMissingHealthPool(player) * 25) : 0.0F);
+        float boost = 100.0F + (flag ? (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.attackDamage.getValue() * 20) : 0.0F);
         double armorModifier = armorDebuff.getValue().asModifier() * (flag ? 0.6 : 1);
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.addLocalizedFormattedString(list, "curios.modifiers.charm", ChatFormatting.GOLD);

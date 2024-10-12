@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.thunder_scroll.name",
+  "icon": "enigmaticaddons:thunder_scroll",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/thunder_scroll",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 130,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.thunder_scroll.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:thunder_scroll",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.thunder_scroll.page.2"
+    }
+  ]
+}

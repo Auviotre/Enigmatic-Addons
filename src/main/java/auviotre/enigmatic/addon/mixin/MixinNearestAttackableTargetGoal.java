@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.mixin;
 
+import auviotre.enigmatic.addon.contents.items.LostEngine;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,6 +41,9 @@ public abstract class MixinNearestAttackableTargetGoal<T extends LivingEntity> e
                 return (player) -> !SuperpositionHandler.hasItem((Player) player, EnigmaticAddonItems.LIVING_ODE) && (selector == null || selector.test(player));
             }
             if (this.mob instanceof AbstractGolem) {
+                return (player) -> !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE) && (selector == null || selector.test(player));
+            }
+            if (LostEngine.golemList.contains(ForgeRegistries.ENTITY_TYPES.getKey(this.mob.getType()))) {
                 return (player) -> !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE) && (selector == null || selector.test(player));
             }
         }

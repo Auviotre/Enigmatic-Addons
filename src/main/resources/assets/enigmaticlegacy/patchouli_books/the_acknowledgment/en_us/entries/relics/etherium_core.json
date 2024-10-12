@@ -1,0 +1,26 @@
+{
+  "name": "book.enigmaticaddons.entry.etherium_core.name",
+  "icon": "enigmaticaddons:etherium_core",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/etherium_core",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 90,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.etherium_core.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:etherium_core",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.etherium_core.page.2"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.etherium_core.page.3"
+    }
+  ]
+}

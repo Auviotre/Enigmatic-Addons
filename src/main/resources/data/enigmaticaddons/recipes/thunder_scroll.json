@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:thunder_scroll"
+    }
+  ],
+  "pattern": [
+    "nen",
+    "aXf",
+    "qbq"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:darkest_scroll"
+    },
+    "n": {
+      "item": "enigmaticaddons:ichor_droplet"
+    },
+    "q": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "b": {
+      "item": "enigmaticaddons:pure_heart"
+    },
+    "a": {
+      "item": "minecraft:ink_sac"
+    },
+    "e": {
+      "item": "enigmaticlegacy:ocean_stone"
+    },
+    "f": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:thunder_scroll"
+  }
+}

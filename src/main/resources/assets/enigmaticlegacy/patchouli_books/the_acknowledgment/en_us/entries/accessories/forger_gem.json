@@ -1,0 +1,22 @@
+{
+    "name": "book.enigmaticaddons.entry.forger_gem.name",
+    "icon": "enigmaticaddons:forger_gem",
+    "category": "enigmaticlegacy:accessories",
+    "advancement": "enigmaticaddons:book/accessories/forger_gem",
+    "secret": false,
+    "priority": false,
+    "read_by_default": false,
+    "sortnum": 55,
+    "pages": [
+        {
+            "type": "text",
+            "text": "book.enigmaticaddons.entry.forger_gem.page.1"
+        },
+		{
+            "type": "crafting",
+			"recipe": "enigmaticaddons:forger_gem",
+            "title": " ",
+            "text": "book.enigmaticaddons.entry.forger_gem.page.2"
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticlegacy:is_enabled",
+      "item": "enigmaticlegacy:unwitnessed_amulet"
+    }
+  ],
+  "pattern": [
+    "IPI",
+    "PXP",
+    "IPI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:gold_nugget"
+    },
+    "X": {
+      "item": "enigmaticlegacy:enigmatic_amulet"
+    },
+    "P": {
+      "item": "enigmaticaddons:earth_heart_fragment"
+    }
+  },
+  "result": {
+    "item": "enigmaticlegacy:unwitnessed_amulet"
+  }
+}

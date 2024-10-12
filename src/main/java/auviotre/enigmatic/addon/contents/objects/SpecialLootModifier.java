@@ -42,6 +42,12 @@ public class SpecialLootModifier extends LootModifier {
                 generatedLoot.removeIf((stack) -> stack.is(EnigmaticItems.IRON_RING));
                 generatedLoot.add(new ItemStack(EnigmaticAddonItems.EARTH_HEART_FRAGMENT, level.random.nextInt(2) + 1));
             }
+
+            if (SuperpositionHandler.hasPersistentTag(player, "LootedVoidTome")) {
+                generatedLoot.removeIf((stack) -> stack.is(EnigmaticAddonItems.VOID_TOME));
+            } else if (generatedLoot.stream().anyMatch((stack) -> stack.is(EnigmaticAddonItems.VOID_TOME))) {
+                SuperpositionHandler.setPersistentBoolean(player, "LootedVoidTome", true);
+            }
         }
 
         return generatedLoot;

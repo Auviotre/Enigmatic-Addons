@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:etherium_core"
+    }
+  ],
+  "pattern": [
+    "EHE",
+    "CXL",
+    "EBE"
+  ],
+  "key": {
+    "E": {
+      "item": "enigmaticlegacy:ender_rod"
+    },
+    "H": {
+      "item": "enigmaticlegacy:etherium_helmet"
+    },
+    "C": {
+      "item": "enigmaticlegacy:etherium_chestplate"
+    },
+    "L": {
+      "item": "enigmaticlegacy:etherium_leggings"
+    },
+    "B": {
+      "item": "enigmaticlegacy:etherium_boots"
+    },
+    "X": {
+      "item": "enigmaticlegacy:golem_heart"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:etherium_core"
+  }
+}

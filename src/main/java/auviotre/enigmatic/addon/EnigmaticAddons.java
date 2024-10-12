@@ -7,6 +7,7 @@ import auviotre.enigmatic.addon.handlers.AddonKeybindHandler;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
 import auviotre.enigmatic.addon.packets.PacketCursedXPScrollKey;
+import auviotre.enigmatic.addon.packets.PacketEmptyLeftClick;
 import auviotre.enigmatic.addon.proxy.ClientProxy;
 import auviotre.enigmatic.addon.proxy.CommonProxy;
 import auviotre.enigmatic.addon.registries.*;
@@ -80,6 +81,7 @@ public class EnigmaticAddons {
         LOGGER.info("Registering packets...");
         packetInstance = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(MODID, "main")).networkProtocolVersion(() -> "1").clientAcceptedVersions("1"::equals).serverAcceptedVersions("1"::equals).simpleChannel();
         packetInstance.registerMessage(0, PacketCursedXPScrollKey.class, PacketCursedXPScrollKey::encode, PacketCursedXPScrollKey::decode, PacketCursedXPScrollKey::handle);
+        packetInstance.registerMessage(1, PacketEmptyLeftClick.class, PacketEmptyLeftClick::encode, PacketEmptyLeftClick::decode, PacketEmptyLeftClick::handle);
         LOGGER.info("Common setup phase finished successfully.");
     }
 
@@ -88,6 +90,7 @@ public class EnigmaticAddons {
         EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.FORGOTTEN_ICE);
         EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.REVIVAL_LEAF);
         EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.LOST_ENGINE);
+        EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.ETHERIUM_CORE);
         LOGGER.info("Registering brewing recipes...");
         if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.COMMON_POTION)) {
             PotionAddonHelper.registerCommonPotions();
@@ -158,7 +161,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.VOID_STONE, EnigmaticItems.UNHOLY_GRAIL);
             putAfter(entries, EnigmaticItems.UNHOLY_GRAIL, EnigmaticAddonItems.ANTIQUE_BAG);
             putAfter(entries, EnigmaticAddonItems.ANTIQUE_BAG, EnigmaticAddonItems.VOID_TOME);
-            putAfter(entries, EnigmaticAddonItems.VOID_TOME, EnigmaticAddonItems.HELL_BLADE_CHARM);
+            putAfter(entries, EnigmaticAddonItems.VOID_TOME, EnigmaticAddonItems.FORGER_GEM);
+            putAfter(entries, EnigmaticAddonItems.FORGER_GEM, EnigmaticAddonItems.HELL_BLADE_CHARM);
             putAfter(entries, EnigmaticAddonItems.HELL_BLADE_CHARM, EnigmaticItems.MEGA_SPONGE);
             putAfter(entries, EnigmaticItems.MEGA_SPONGE, EnigmaticItems.FORBIDDEN_AXE);
             putAfter(entries, EnigmaticItems.FORBIDDEN_AXE, EnigmaticAddonItems.ICHOR_DROPLET);
@@ -188,34 +192,37 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.ETHERIUM_SCRAPS, EnigmaticBlocks.ETHERIUM_BLOCK);
             putAfter(entries, EnigmaticItems.ASTRAL_BREAKER, EnigmaticBlocks.END_ANCHOR);
             putAfter(entries, EnigmaticBlocks.END_ANCHOR, EnigmaticItems.ENIGMATIC_ELYTRA);
-            putAfter(entries, EnigmaticItems.ENIGMATIC_ELYTRA, EnigmaticItems.CURSED_RING);
+            putAfter(entries, EnigmaticItems.ENIGMATIC_ELYTRA, EnigmaticAddonItems.ETHERIUM_CORE);
+            putAfter(entries, EnigmaticAddonItems.ETHERIUM_CORE, EnigmaticItems.CURSED_RING);
             putAfter(entries, EnigmaticItems.CURSED_RING, EnigmaticItems.TWISTED_HEART);
             putAfter(entries, EnigmaticItems.TWISTED_HEART, EnigmaticItems.TWISTED_POTION);
             putAfter(entries, EnigmaticItems.TWISTED_POTION, EnigmaticItems.TWISTED_MIRROR);
             putAfter(entries, EnigmaticItems.TWISTED_MIRROR, EnigmaticItems.SOUL_COMPASS);
             putAfter(entries, EnigmaticItems.SOUL_COMPASS, EnigmaticItems.BERSERK_CHARM);
             putAfter(entries, EnigmaticItems.BERSERK_CHARM, EnigmaticItems.INFERNAL_SHIELD);
-            putAfter(entries, EnigmaticItems.INFERNAL_SHIELD, EnigmaticItems.ASTRAL_FRUIT);
+            putAfter(entries, EnigmaticItems.INFERNAL_SHIELD, EnigmaticItems.ENCHANTER_PEARL);
+            putAfter(entries, EnigmaticItems.ENCHANTER_PEARL, EnigmaticItems.ASTRAL_FRUIT);
             putAfter(entries, EnigmaticItems.ASTRAL_FRUIT, EnigmaticItems.GUARDIAN_HEART);
             putAfter(entries, EnigmaticItems.GUARDIAN_HEART, EnigmaticItems.EVIL_ESSENCE);
             putAfter(entries, EnigmaticItems.EVIL_ESSENCE, EnigmaticItems.EVIL_INGOT);
             putAfter(entries, EnigmaticItems.EVIL_INGOT, EnigmaticItems.THE_TWIST);
             putAfter(entries, EnigmaticItems.THE_TWIST, EnigmaticItems.ENDER_SLAYER);
             putAfter(entries, EnigmaticItems.ENDER_SLAYER, EnigmaticItems.CURSE_TRANSPOSER);
-            putAfter(entries, EnigmaticItems.CURSE_TRANSPOSER, EnigmaticItems.ENCHANTER_PEARL);
-            putAfter(entries, EnigmaticItems.ENCHANTER_PEARL, EnigmaticAddonItems.SANGUINARY_HANDBOOK);
+            putAfter(entries, EnigmaticItems.CURSE_TRANSPOSER, EnigmaticAddonItems.SANGUINARY_HANDBOOK);
             putAfter(entries, EnigmaticAddonItems.SANGUINARY_HANDBOOK, EnigmaticAddonItems.FALSE_JUSTICE);
             putAfter(entries, EnigmaticAddonItems.FALSE_JUSTICE, EnigmaticItems.CURSED_STONE);
             putAfter(entries, EnigmaticItems.CURSED_STONE, EnigmaticAddonItems.PURE_HEART);
             putAfter(entries, EnigmaticAddonItems.PURE_HEART, EnigmaticAddonItems.BLESS_AMPLIFIER);
             putAfter(entries, EnigmaticAddonItems.BLESS_AMPLIFIER, EnigmaticAddonItems.EARTH_PROMISE);
-            putAfter(entries, EnigmaticAddonItems.EARTH_PROMISE, EnigmaticAddonItems.BLESS_RING);
+            putAfter(entries, EnigmaticAddonItems.EARTH_PROMISE, EnigmaticAddonItems.BLESS_STONE);
+            putAfter(entries, EnigmaticAddonItems.BLESS_STONE, EnigmaticAddonItems.BLESS_RING);
             putAfter(entries, EnigmaticAddonItems.BLESS_RING, EnigmaticItems.DARKEST_SCROLL);
             putAfter(entries, EnigmaticItems.DARKEST_SCROLL, EnigmaticAddonItems.CURSED_XP_SCROLL);
             putAfter(entries, EnigmaticAddonItems.CURSED_XP_SCROLL, EnigmaticAddonItems.NIGHT_SCROLL);
             putAfter(entries, EnigmaticAddonItems.NIGHT_SCROLL, EnigmaticItems.AVARICE_SCROLL);
             putAfter(entries, EnigmaticItems.AVARICE_SCROLL, EnigmaticItems.CURSED_SCROLL);
-            putAfter(entries, EnigmaticItems.CURSED_SCROLL, EnigmaticItems.ABYSSAL_HEART);
+            putAfter(entries, EnigmaticItems.CURSED_SCROLL, EnigmaticAddonItems.THUNDER_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.THUNDER_SCROLL, EnigmaticItems.ABYSSAL_HEART);
             putAfter(entries, EnigmaticItems.ABYSSAL_HEART, EnigmaticItems.THE_INFINITUM);
             putAfter(entries, EnigmaticItems.THE_INFINITUM, EnigmaticItems.DESOLATION_RING);
             putAfter(entries, EnigmaticItems.DESOLATION_RING, EnigmaticItems.ELDRITCH_AMULET);

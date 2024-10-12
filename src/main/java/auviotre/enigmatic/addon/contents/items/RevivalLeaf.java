@@ -55,7 +55,7 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("RevivalLeaf");
         spellstoneCooldown = builder.comment("Active ability cooldown for Revival Leaf. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 320);
-        naturalRegenerationSpeed = builder.comment("The time required for each 0.5HP treatment from the  natural regeneration of the Revival Leaf. Measured in ticks.").min(5).getInt("NaturalRegenerationTick", 40);
+        naturalRegenerationSpeed = builder.comment("The time required for each 0.5HP treatment from the natural regeneration of the Revival Leaf. Measured in ticks.").min(5).getInt("NaturalRegenerationTick", 40);
         skillRadius = builder.comment("The effect radius of Revival Leaf' ability.").getDouble("AbilityRadius", 5.0);
         poisonTime = builder.comment("Amount of ticks for which bearer of the leaf will apply Poison effect to entities they attack. 20 ticks equals to 1 second.").getInt("PoisonTime", 160);
         poisonLevel = builder.comment("Level of Poison that bearer of the leaf will apply to entities they attack.").max(3.0).getInt("PoisonLevel", 1);
