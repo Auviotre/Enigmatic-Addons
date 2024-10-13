@@ -71,10 +71,10 @@
 
   "item.enigmaticaddons.forgotten_ice": "잊혀진 얼음 결정",
 
-  "tooltip.enigmaticaddons.forgottenIce1": "§d액티브 스킬:",
+  "tooltip.enigmaticaddons.forgottenIce1": "§d액티브 능력:",
   "tooltip.enigmaticaddons.forgottenIce2": "§6- 주변의 몹을 얼립니다.",
-  "tooltip.enigmaticaddons.forgottenIceCooldown": "§d쿨다운: §6%1$s§6초",
-  "tooltip.enigmaticaddons.forgottenIce3": "§d패시브 스킬:",
+  "tooltip.enigmaticaddons.forgottenIceCooldown": "§d재사용 대기시간: §6%1$s§6초",
+  "tooltip.enigmaticaddons.forgottenIce3": "§d패시브 능력:",
   "tooltip.enigmaticaddons.forgottenIce4": "§5- 빙결에 면역이 되고, 차가운 걸음 효과를 얻습니다.",
   "tooltip.enigmaticaddons.forgottenIce5": "§5- 공격 대상을 서서히 얼립니다.",
   "tooltip.enigmaticaddons.forgottenIce6": "§5- 근접 공격을 받으면 공격자를 얼립니다.",
@@ -89,12 +89,12 @@
 
   "item.enigmaticaddons.lost_engine": "잃어버린 엔진",
 
-  "tooltip.enigmaticaddons.lostEngine1": "§d액티브 스킬:",
+  "tooltip.enigmaticaddons.lostEngine1": "§d액티브 능력:",
   "tooltip.enigmaticaddons.lostEngine2": "§4- 없음.",
-  "tooltip.enigmaticaddons.lostEngineCooldown": "§d쿨다운: §6%1$s§6초",
-  "tooltip.enigmaticaddons.lostEngine3": "§d패시브 스킬:",
+  "tooltip.enigmaticaddons.lostEngineCooldown": "§d재사용 대기시간: §6%1$s§6초",
+  "tooltip.enigmaticaddons.lostEngine3": "§d패시브 능력:",
   "tooltip.enigmaticaddons.lostEngine4": "§5- 이동성과 내구성을 향상시킵니다.",
-  "tooltip.enigmaticaddons.lostEngine5": "§5- 아이템 쿨다운이 §633%§5 줄어듭니다.",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- 아이템의 재사용 대기시간이 §633%§5 줄어듭니다.",
   "tooltip.enigmaticaddons.lostEngine6": "§5- §6낙하§5와 §6폭발 §5피해에 면역이 됩니다.",
   "tooltip.enigmaticaddons.lostEngine7": "§5- §6+%1$s§d 크리티컬 데미지§5",
   "tooltip.enigmaticaddons.lostEngine8": "§5- 골렘이 당신을 적극적으로 공격하지 않습니다.",
@@ -107,10 +107,10 @@
 
   "item.enigmaticaddons.revival_leaf": "부활의 잎",
 
-  "tooltip.enigmaticaddons.revivalLeaf1": "§d액티브 스킬:",
+  "tooltip.enigmaticaddons.revivalLeaf1": "§d액티브 능력:",
   "tooltip.enigmaticaddons.revivalLeaf2": "§6- 주변 몬스터의 재생을 촉진하되, 경험치를 소모합니다.",
-  "tooltip.enigmaticaddons.revivalLeafCooldown": "§d쿨다운: §6%1$s§6초",
-  "tooltip.enigmaticaddons.revivalLeaf3": "§d패시브 스킬:",
+  "tooltip.enigmaticaddons.revivalLeafCooldown": "§d쿨타임: §6%1$s§6초",
+  "tooltip.enigmaticaddons.revivalLeaf3": "§d패시브 능력:",
   "tooltip.enigmaticaddons.revivalLeaf4": "§5- 자연 치유가 천천히 이루어집니다.",
   "tooltip.enigmaticaddons.revivalLeaf5": "§5- 공격 대상이 독에 걸립니다.",
   "tooltip.enigmaticaddons.revivalLeaf6": "§5- §6허기§5, §6독§5 그리고 §6위더§5 효과에 면역이 됩니다.",
@@ -123,6 +123,19 @@
   "book.enigmaticaddons.entry.revival_leaf.page.1": "고대 정글 사원에서 발견할 수 있는 또 다른 독특한 마법석은 자연의 힘을 모읍니다.<br2/>이 마법석은 자연의 힘을 제공하여, 당신의 생명력을 향상시키고, 천천히 건강을 회복하며, 일부 미세한 부작용에 면역을 주고 신체 기능을 적절히 조절하여 효과가 더 오래 지속되게 합니다.",
   "book.enigmaticaddons.entry.revival_leaf.page.2": "또한, 자연의 치명적인 부분을 추출하여 독으로 손을 더럽히게 합니다. 이 마법석은 작물과 공명하여 주변 작물의 성장을 더 활발하게 만듭니다.<br2/>그러나 불꽃 외에도 날카로운 화살이 당신을 쉽게 관통할 수 있다는 점도 유의해야 합니다.",
 
+  "item.enigmaticaddons.etherium_core": "에테리움 코어",
+  
+  "tooltip.enigmaticaddons.etheriumCore1": "§d액티브 능력:",
+  "tooltip.enigmaticaddons.etheriumCore2": "§6- 에테리움 실드를 §6%1$s§6초 동안 활성화합니다.",
+  "tooltip.enigmaticaddons.etheriumCoreCooldown": "§d재사용 대기시간: §6%1$s§6초",
+  "tooltip.enigmaticaddons.etheriumCore3": "§5- 방어구를 보이지 않게 합니다.",
+  "tooltip.enigmaticaddons.etheriumCore4": "§5- 받은 피해의 §6%1$s§5를",
+  "tooltip.enigmaticaddons.etheriumCore5": "§5  다음 공격의 힘으로 전환합니다.",
+
+  "book.enigmaticaddons.entry.etherium_core.name": "에테리움 코어",
+  "book.enigmaticaddons.entry.etherium_core.page.1": "하나는 세계 어디에서나 볼 수 있는 골렘의 심장이고, 다른 하나는 매우 귀중한 에테리움 방어구입니다. 이 두 가지를 결합하면 물리적 방어에 특화된 이 주문석을 얻을 수 있습니다.<br2/>골렘의 심장을 에테리움 실드의 무한 에너지원으로 사용한 후, 이 주문석을 통해 언제든지 실드를 활성화할 수 있으며, 체력 상태에 제한받지 않습니다.",
+  "book.enigmaticaddons.entry.etherium_core.page.2": "게다가 골렘의 심장은 실드에 새로운 능력을 부여합니다. 실드는 당신이 받는 피해를 매번 기록하고",
+  "book.enigmaticaddons.entry.etherium_core.page.3": "이를 변환하여 축적한 뒤, 다음 공격에서 모든 힘을 모아 강력하게 보복합니다.<br2/>또한 다른 일반적인 주문석과 달리, 순수 에테르의 힘은 약점이 없는 것 같아 안심하고 사용할 수 있습니다.",
 
   "item.enigmaticaddons.dragon_bow": "드래곤의 숨결 활",
 
@@ -163,6 +176,17 @@
   "book.enigmaticaddons.entry.cursed_xp_scroll.name": "무지의 저주",
   "book.enigmaticaddons.entry.cursed_xp_scroll.page.1": "특정 단계에 도달하면, 경험치는 다른 용도로 사용되기 전까진 그다지 유용하지 않을 수 있습니다. 그러나 이제 저주의 힘을 통해 이 주문서의 본질이 크게 변화했습니다.<br2/>무지의 탐욕스러운 저주는 주문서의 사냥 범위를 확장하고, 얻은 경험치 대부분을 흡수하여 당신에게는 아주 적은 양만 남깁니다.",
   "book.enigmaticaddons.entry.cursed_xp_scroll.page.2": "물론, 저주가 가져다주는 이점을 과소평가해서는 안 됩니다. 그것은 전투 능력을 크게 향상시킵니다. 그리고 저주는 항상 기회를 엿보고 있음을 기억하십시오. 당신이 가장 취약할 때, 저주는 모든 것을 빼앗아갈 것입니다.",
+  
+  "item.enigmaticaddons.thunder_scroll": "천둥의 포옹 주문서",
+
+  "tooltip.enigmaticaddons.thunderScroll1": "§5휩쓸기 공격이 §6100% §5의 피해를 줍니다.",
+  "tooltip.enigmaticaddons.thunderScroll2": "§5갑옷을 입은 §d대상에게 더 많은 피해를 줍니다.",
+  "tooltip.enigmaticaddons.thunderScroll3": "§5다량의 피해를 입은 후, 대상이 §6번개§5에 맞게 됩니다.",
+  "tooltip.enigmaticaddons.thunderScroll4": "",
+
+  "book.enigmaticaddons.entry.thunder_scroll.name": "천둥의 주문서",
+  "book.enigmaticaddons.entry.thunder_scroll.page.1": "비록 바다의 의지가 번개를 부분적으로 제어할 수 있지만, 이것은 궁극적으로 간접적인 제어일 뿐이며 충분히 빠르지 않습니다.<br2/>우리는 신의 힘을 사용하여 주문석을 기반으로 검을 매개체로 하여 번개와 공명하는 주문을 두루마리에 기록합니다. 전투 중 이 두루마리는 여러분이 휩쓸기 공격을 사용하여 번개의 타겟을 확장하도록 유도할 것입니다.",
+  "book.enigmaticaddons.entry.thunder_scroll.page.2": "동시에 번개 공격은 갑옷을 관통하기 쉽게 만들어 주어, 여러분이 방어력이 높거나 단체 적들에 더 잘 대처할 수 있도록 합니다.",
 
   "item.enigmaticaddons.hell_blade_charm": "지옥의 검 부적",
 
@@ -178,9 +202,21 @@
   "book.enigmaticaddons.entry.hell_blade_charm.page.1": "이 부적은 네더 어딘가에서 당신을 기다리고 있었던 것 같습니다. 당신의 피로 부적을 키워주기를 기다리면서 말이죠.<br2/>이 부적이 제공하는 강력한 힘을 눈치챈 사람들은, 그 대가를 솔직하게 알려주더라도 착용을 유혹받을 수밖에 없습니다. 일반적으로 이러한 착용자들은 어리석은 죽음을 맞이하게 됩니다.",
   "book.enigmaticaddons.entry.hell_blade_charm.page.2": "그러므로 이 부적을 신중하게 착용하십시오. 특히 일곱 개의 저주를 동시에 지닌 사람들에게는 더욱 주의가 필요합니다.",
 
+  "item.enigmaticaddons.forger_gem": "대장장이의 보석",
+
+  "tooltip.enigmaticaddons.forgerGem2": "§5단조에 필요한 경험치가 §6절반§5으로 줄어듭니다.",
+  "tooltip.enigmaticaddons.forgerGem3": "§5그리고 모루를 더 내구성 있게 만들어 줍니다.",
+  "tooltip.enigmaticaddons.forgerGem4": "§5사용하지 않은 두 개의 도구로 §6부서지지 않는§5 도구를 단조할 수 있습니다.",
+  "tooltip.enigmaticaddons.forgerGem5": "§5",
+
+  "book.enigmaticaddons.entry.forger_gem.name": "대장장이의 보석",
+  "book.enigmaticaddons.entry.forger_gem.page.1": "아이템을 제작하는 것은 무력을 강화하는 데 필수적인 단계이지만, 완벽에 도달하기 전에는 항상 비싼 비용이나 모루의 파손에 대한 걱정이 따릅니다.<br2/>이 액세서리는 고대 단조 기술을 직접 여러분의 손에 주입하여 모루의 파손 확률을 효과적으로 줄이고,",
+  "book.enigmaticaddons.entry.forger_gem.page.2": "보석의 에너지를 활용하여 비용을 줄이며, 제작의 한계를 돌파합니다.<br2/>또한, 정교한 제작은 동일한 새로운 도구 두 개로 파손되지 않는 작품을 만들 수 있게 해줍니다.",
+
   "item.enigmaticaddons.adventure_charm": "모험가의 문장",
 
-  "tooltip.enigmaticaddons.adventureCharm" : "§5블록을 파괴하는 것을 막아줍니다.",
+  "tooltip.enigmaticaddons.adventureCharm1" : "§5블록을 파괴하는 것을 막아줍니다.",
+  "tooltip.enigmaticaddons.adventureCharm2": "§5§6Shift§5를 눌러 비활성화합니다.",
 
   "book.enigmaticaddons.entry.adventure_charm.name": "모험가의 문장",
   "book.enigmaticaddons.entry.adventure_charm.page.1": "창조와 파괴는 신의 궁극적인 힘이지만, 때로는 그 힘을 제대로 다루기가 어려워 작은 실수만으로도 불필요한 파괴를 초래할 수 있습니다. 순수한 전투 상황에서는 이 힘을 더 실용적인 형태로 변환하는 것이 바람직할 것입니다.<br2/>이 부적은 당신의 필요를 일시적으로 충족시켜,",
@@ -254,16 +290,31 @@
   "book.enigmaticaddons.entry.bless_amplifier.name": "예언의 서",
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "이코르의 세례를 받은 후, 이 서에 대한 욕망은 얻는 것에서 주는 것으로 변하게 되었고, 이로 인해 아이템의 마법적 힘이 더욱 강화되었습니다.<br2/>이제 마법 부여된 아이템과 가까이 접촉하면 스스로를 희생하여 아이템의 모든 마법 부여 레벨을 두 배로 증가시킬 수 있습니다.",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "마법 부여의 레벨 한계를 넘는 것이 이 서의 진정한 목적입니다.<br2/>그러나 모든 한계를 넘을 수 있는 것은 아니며, 일부 마법 부여는 그 힘을 견디지 못하고 무효화될 수도 있습니다.",
+  
+  "item.enigmaticaddons.bless_stone": "성스러운 돌",
 
-  "item.enigmaticaddons.bless_ring": "구원의 반지 [WIP]",
+  "tooltip.enigmaticaddons.blessStone1": "§5이 돌을 사용하여 죽음을 추구하면,",
+  "tooltip.enigmaticaddons.blessStone2": "§5§6일곱 저주의 반지§5가",
+  "tooltip.enigmaticaddons.blessStone3": "§5§6구원의 반지§5로 변형됩니다.",
+
+  "book.enigmaticaddons.entry.bless_stone.name": "재탄생의 선택",
+  "book.enigmaticaddons.entry.bless_stone.heading": "진정한 구원",
+  "book.enigmaticaddons.entry.bless_stone.page.1": "일곱 저주의 반지에서 벗어나기 위해 자신을 희생할지 망설이고 있을 때, 당신 앞에 새로운 선택이 있습니다.<br2/>가장 큰 문제는 영혼의 상실이며, 현재의 재료와 방법으로는 불가능해 보입니다. 비록 연결을 끊을 수는 없지만, 우리는 그 연결을 새로운 방식으로 나타낼 수 있습니다.",
+  "book.enigmaticaddons.entry.bless_stone.page.2": "일곱 저주의 반지에 조금의 순수한 힘을 서서히 주입하고, 축복을 동원하여 저주를 변화시킵니다. 그러나 이러한 모든 작업은 여전히 접촉이 취약 때 이루어져야 하며, 즉 죽음을 마주해야 합니다.",
+  "book.enigmaticaddons.entry.bless_stone.page.3": "최종적인 영혼의 상실 이후, 일곱 저주의 반지는 당신의 시야에서 완전히 사라지고 황금빛의 감촉으로 변합니다.<br2/>이전의 저주는 완전히 사라졌고, 원래의 축복은 부분적으로 보존됩니다.",
+  "book.enigmaticaddons.entry.bless_stone.page.4": "비록 과거에 함께했던 대부분의 유물은 더 이상 사용할 수 없지만, 여전히 고통으로 가득 찬 당신의 과거를 증명하는 몇 가지 유물들이 존재하며, 그들은 끊임없이 죽음에 다가가고 있습니다. 그들은 여전히 당신의 자격을 인식하고, 저주의 속박을 깨기 위해 기꺼이 협력합니다.<br2/>저주에서 벗어난 날들 동안 충분히 삶을 즐기시길 바랍니다.",
+
+  "item.enigmaticaddons.bless_ring": "구원의 반지",
 
   "tooltip.enigmaticaddons.blessRing1": "§d고통을 겪은 자들을 위해,",
   "tooltip.enigmaticaddons.blessRing2": "§d남은 축복은 여전히 유효합니다.",
-  "tooltip.enigmaticaddons.blessRing3": "§5- 당신은 §6%1$s§5의 피해를 §6어떤§5 근원으로부터 받습니다.",
-  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d 약탈 등급",
-  "tooltip.enigmaticaddons.blessRing5": "§5- §6+%1$s§d 행운 등급",
-  "tooltip.enigmaticaddons.blessRing6": "§5- 일부 생명체에서 희귀한 아이템을 얻을 수 있습니다.",
-  "tooltip.enigmaticaddons.blessRing7": "§5- 특별한 유물들을 제작할 수 있습니다.",
+  "tooltip.enigmaticaddons.blessRing3": "§5- 당신은 §6%1$s§5의 피해만 §6모든§5 원천으로부터 받습니다.",
+  "tooltip.enigmaticaddons.blessRing4": "§5- 당신이 주는 피해를 §6%1$s§5만큼 증가시킵니다.",
+  "tooltip.enigmaticaddons.blessRing5": "§5- 지속적인 §d재생§5을 얻습니다.",
+  "tooltip.enigmaticaddons.blessRing6": "§5- §6+%1$s§d 약탈 등급",
+  "tooltip.enigmaticaddons.blessRing7": "§5- §6+%1$s§d 행운 등급",
+  "tooltip.enigmaticaddons.blessRing8": "§5- 일부 생명체에서 희귀한 아이템을 얻을 수 있습니다.",
+  "tooltip.enigmaticaddons.blessRing9": "§5- 특별한 유물들을 제작할 수 있습니다.",
   "tooltip.enigmaticaddons.blessRingLore1": "§5이 반지는 독특한 광채를 띠며,",
   "tooltip.enigmaticaddons.blessRingLore2": "§5그 고통의 세월을 기억합니다.",
   "tooltip.enigmaticaddons.blessRingLore3": "§5또한, 그것은 힘의 증거이기도",
