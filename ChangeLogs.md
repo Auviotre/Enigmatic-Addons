@@ -1,4 +1,4 @@
-### [Release 1.1.3] (2024/10/**)
+### [Release 1.1.3] (2024/10/12)
 ### Features:
 - 5 new Items (**Ring of Redemption**, **Holy Stone**, **Scroll of Thunder Embrace**, **Forger's Gem**, **Etherium Core**);
 - new Addon Mod: **Enigmatic Delicacy** (Beta, Base on Farmer's Delight).
@@ -7,7 +7,9 @@
 - Changed that each player can only obtain **Tome of Void** once.
 ### Fixes:
 - Fixed the issue of the **Lost Engine**'s passive ability not taking effect on Golems;
-- Fixed the issue of cursed curios automatically unequip.
+- Fixed the issue of cursed curios automatically unequip;
+- Fixed the issue of being unable to get **Tainted Earth Heart** with **Ring of Redemption**;
+- Fixed the issue of unreasonable drops with **Ring of Redemption**.
 ***
 ### [Release 1.1.2] (2024/09/24)
 ### Features:

@@ -12,6 +12,7 @@ import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEnchantments;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
+import com.aizistral.enigmaticlegacy.api.items.ITaintable;
 import com.aizistral.enigmaticlegacy.config.OmniconfigHandler;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
@@ -48,7 +49,6 @@ import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.animal.*;
-import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
@@ -288,7 +288,19 @@ public class AddonEventHandler {
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (!player.isAlive() && event.phase != TickEvent.Phase.END) return;
+        if (!player.isAlive()) return;
+        if (event.phase == TickEvent.Phase.END && !player.level().isClientSide) {
+            for (List<ItemStack> list : player.getInventory().compartments) {
+                for (ItemStack stack : list) {
+                    if (stack.getItem() instanceof ITaintable && SuperAddonHandler.isTheBlessedOne(player)) {
+                        if (!ItemNBTHelper.getBoolean(stack, "isTainted", false)) {
+                            ItemNBTHelper.setBoolean(stack, "isTainted", true);
+                        }
+                    }
+                }
+            }
+            return;
+        }
 
         if (!player.level().isClientSide) {
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.NIGHT_SCROLL) && SuperpositionHandler.isTheCursedOne(player)) {
@@ -699,6 +711,9 @@ public class AddonEventHandler {
                     SuperpositionHandler.setPersistentBoolean(player, "DestroyedCursedRing", true);
                 }
             }
+            POSTMORTAL_POSSESSIONS.removeAll(player);
+        } else if (event.getEntity() instanceof Player player) {
+            POSTMORTAL_POSSESSIONS.removeAll(player);
         }
     }
 
@@ -930,7 +945,6 @@ public class AddonEventHandler {
                     this.addDrop(event, this.getRandomSizeStack(Items.PRISMARINE_CRYSTALS, 4, 16));
                     this.addDrop(event, this.getRandomSizeStack(Items.PRISMARINE_SHARD, 7, 28));
                     this.addOneOf(event,
-                            new ItemStack(EnigmaticItems.GUARDIAN_HEART, 1),
                             new ItemStack(Items.HEART_OF_THE_SEA, 1),
                             new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1),
                             new ItemStack(Items.ENDER_EYE, 1),
@@ -981,8 +995,6 @@ public class AddonEventHandler {
                     this.addDropWithChance(event, new ItemStack(Items.BLAZE_POWDER, 1), 50);
                 } else if (killed.getClass() == Chicken.class) {
                     this.addDropWithChance(event, new ItemStack(Items.EGG, 1), 50);
-                } else if (killed instanceof WitherBoss) {
-                    this.addDrop(event, this.getRandomSizeStack(EnigmaticItems.EVIL_ESSENCE, 1, 4));
                 }
             }
         }
