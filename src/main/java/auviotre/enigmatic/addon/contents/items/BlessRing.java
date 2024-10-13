@@ -34,12 +34,18 @@ import java.util.Map;
 
 public class BlessRing extends ItemBaseCurio {
     public static Omniconfig.PerhapsParameter damageResistance;
+    public static Omniconfig.PerhapsParameter damageBoost;
+    public static Omniconfig.IntParameter regenerationSpeed;
     public static final List<String> blessList = new ArrayList<>();
+    public static final String CURSED_SPAWN = "CursedNextSpawn";
+    public static final String BLESS_SPAWN = "BlessNextSpawn";
 
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
-        builder.pushPrefix("BlessRing");
-        damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 60);
+        builder.pushPrefix("RingofRedemption");
+        damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 40);
+        damageBoost = builder.comment("The damage boost of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageBoost", 20);
+        regenerationSpeed = builder.comment("The time required for each regeneration of Ring of Redemption. Measured in ticks.").min(5).getInt("RegenerationTick", 20);
     }
 
     public BlessRing() {
@@ -53,6 +59,7 @@ public class BlessRing extends ItemBaseCurio {
         blessList.add("enigmaticaddons:night_scroll");
         blessList.add("enigmaticaddons:sanguinary_handbook");
         blessList.add("enigmaticaddons:earth_promise");
+        blessList.add("enigmaticaddons:thunder_scroll");
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -61,11 +68,13 @@ public class BlessRing extends ItemBaseCurio {
         if (Screen.hasShiftDown()) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing2");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing3", ChatFormatting.GOLD, damageResistance + "%");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing4", ChatFormatting.GOLD, (CursedRing.lootingBonus.getValue() + 1) / 2);
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing5", ChatFormatting.GOLD, (CursedRing.fortuneBonus.getValue() + 1) / 2);
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing6");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing7");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing3", ChatFormatting.GOLD, (100 - damageResistance.getValue().asPercentage()) + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing4", ChatFormatting.GOLD, damageBoost + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing5");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing6", ChatFormatting.GOLD, (CursedRing.lootingBonus.getValue() + 1) / 2);
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing7", ChatFormatting.GOLD, (CursedRing.fortuneBonus.getValue() + 1) / 2);
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing8");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing9");
         } else {
             if (CursedRing.enableLore.getValue()) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRingLore1");
@@ -96,6 +105,22 @@ public class BlessRing extends ItemBaseCurio {
             if (SuperpositionHandler.canUnequipBoundRelics(player)) {
                 return super.canUnequip(context, stack);
             }
+        }
+        return false;
+    }
+
+    public void curioTick(SlotContext context, ItemStack stack) {
+        LivingEntity entity = context.entity();
+        if (entity.tickCount % regenerationSpeed.getValue() == 0 && entity.getHealth() < entity.getMaxHealth() * 0.9F) {
+            float delta = entity.getMaxHealth() * 0.9F - entity.getHealth();
+            entity.heal(delta / 20.0F);
+        }
+    }
+
+    public boolean canEquip(SlotContext context, ItemStack stack) {
+        if (super.canEquip(context, stack)) {
+            LivingEntity entity = context.entity();
+            return entity instanceof Player player && !SuperpositionHandler.isTheCursedOne(player);
         }
         return false;
     }

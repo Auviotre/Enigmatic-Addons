@@ -5,6 +5,8 @@
   "target": "@env(DEFAULT)",
   "refmap": "enigmaticaddons.refmap.json",
   "mixins": [
+    "MixinAnvilMenu",
+    "MixinEnchantmentHelper",
     "MixinEntity",
     "MixinItemEntity",
     "MixinLivingEntity",
@@ -22,6 +24,7 @@
     "legacy.MixinAstralFruit",
     "legacy.MixinBerserkEmblem",
     "legacy.MixinEnchanterPearl",
+    "legacy.MixinEtheriumArmor",
     "legacy.MixinEventHandler",
     "legacy.MixinGuardianHeart",
     "legacy.MixinInfernalShield",
@@ -33,6 +36,7 @@
     "legacy.MixinUltimatePotionSplash"
   ],
   "client": [
+    "MixinHumanoidArmorLayer"
   ],
   "injectors": {
     "defaultRequire": 1

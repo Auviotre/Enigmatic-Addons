@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:forger_gem"
+    }
+  ],
+  "pattern": [
+    " Q ",
+    "XQX",
+    "LGL"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "Q": {
+      "item": "minecraft:diamond"
+    },
+    "G": {
+      "item": "enigmaticaddons:quartz_ring"
+    },
+    "L": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:forger_gem"
+  }
+}

@@ -6,20 +6,25 @@ import auviotre.enigmatic.addon.contents.entities.goal.*;
 import auviotre.enigmatic.addon.contents.items.*;
 import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
 import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
+import auviotre.enigmatic.addon.packets.PacketEmptyLeftClick;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEnchantments;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
+import com.aizistral.enigmaticlegacy.api.items.ITaintable;
 import com.aizistral.enigmaticlegacy.config.OmniconfigHandler;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.items.*;
 import com.aizistral.enigmaticlegacy.objects.RegisteredMeleeAttack;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.ByteTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.resources.ResourceKey;
@@ -47,12 +52,15 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
+import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemCooldowns;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -60,23 +68,28 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.event.entity.player.CriticalHitEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
+import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.event.DropRulesEvent;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -87,6 +100,7 @@ import static com.aizistral.enigmaticlegacy.EnigmaticLegacy.PROXY;
 public class AddonEventHandler {
     public static final Map<Player, AABB> NIGHT_SCROLL_BOXES = new WeakHashMap<>();
     public static final List<ResourceKey<DamageType>> NEMESIS_LIST = List.of(DamageTypes.MOB_ATTACK, DamageTypes.GENERIC, DamageTypes.PLAYER_ATTACK);
+    public static final Multimap<Player, Item> POSTMORTAL_POSSESSIONS = ArrayListMultimap.create();
     public static final Random RANDOM = new Random();
     public static final UUID UUID_ATTACK = UUID.fromString("73B52DA4-C79F-48AF-87BB-4B9C037FED9F");
     public static final UUID UUID_ARMOR = UUID.fromString("2F35F0A9-794F-448C-921D-EBCC2CA951D3");
@@ -94,7 +108,7 @@ public class AddonEventHandler {
     public static final UUID UUID_ARMOR_TH = UUID.fromString("2F35F0A9-794F-448C-921D-EBCC2CA951D3");
 
     @SubscribeEvent
-    public void onEntityAttacked(@NotNull LivingAttackEvent event) {
+    public void onEntityAttacked(LivingAttackEvent event) {
         if (event.getEntity().level().isClientSide) return;
         if (event.getEntity() instanceof Shulker shulker && SuperAddonHandler.isCurseBoosted(shulker)) {
             if (shulker.isClosed()) {
@@ -142,7 +156,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onLivingChangeTarget(@NotNull LivingChangeTargetEvent event) {
+    public void onLivingChangeTarget(LivingChangeTargetEvent event) {
         LivingEntity entity = event.getEntity();
         LivingEntity target = event.getNewTarget();
         if (entity instanceof Targeting targetedEntity && target instanceof Player player && event.getTargetType() == LivingChangeTargetEvent.LivingTargetType.MOB_TARGET) {
@@ -150,10 +164,10 @@ public class AddonEventHandler {
                 if (entity instanceof NeutralMob neutral && neutral instanceof Animal && SuperpositionHandler.isTheCursedOne(player) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LIVING_ODE)) {
                     event.setCanceled(true);
                 }
-                if (entity instanceof AbstractGolem && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LOST_ENGINE)) {
+                if (entity instanceof AbstractGolem && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
                     event.setCanceled(true);
                 }
-                if (LostEngine.golemList.contains(ForgeRegistries.ENTITY_TYPES.getKey(entity.getType())) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LOST_ENGINE)) {
+                if (LostEngine.golemList.contains(ForgeRegistries.ENTITY_TYPES.getKey(entity.getType())) && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
                     event.setCanceled(true);
                 }
             }
@@ -161,7 +175,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onEntitySpawn(MobSpawnEvent.@NotNull FinalizeSpawn event) {
+    public void onEntitySpawn(MobSpawnEvent.FinalizeSpawn event) {
         if (event.getSpawnType() == MobSpawnType.NATURAL) {
             LivingEntity entity = event.getEntity();
             if (entity instanceof Phantom || entity.getVehicle() instanceof Phantom) {
@@ -178,7 +192,7 @@ public class AddonEventHandler {
 
     /* 47.1 Forge Back-Compat
     @SubscribeEvent
-    public void onPhantomsSpawn(@NotNull PlayerSpawnPhantomsEvent event) {
+    public void onPhantomsSpawn(PlayerSpawnPhantomsEvent event) {
         Player player = event.getEntity();
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.NIGHT_SCROLL)) {
             event.setResult(Event.Result.DENY);
@@ -197,7 +211,7 @@ public class AddonEventHandler {
     */
 
     @SubscribeEvent
-    public void onTick(LivingEvent.@NotNull LivingTickEvent event) {
+    public void onTick(LivingEvent.LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
         if (!entity.isAlive()) return;
 
@@ -218,32 +232,50 @@ public class AddonEventHandler {
                 }
             }
         }
-
+        // CosmicPotion
         CompoundTag data = entity.getPersistentData();
         int cooldown = data.getInt("CosmicPotion");
         if (cooldown > 0) {
             cooldown -= entity.getActiveEffects().isEmpty() ? 3 : 1;
-            if (cooldown > 0) {
-                data.putInt("CosmicPotion", cooldown);
-            } else {
-                data.remove("CosmicPotion");
-            }
-        } else {
-            data.remove("CosmicPotion");
-        }
-
+            if (cooldown > 0) data.putInt("CosmicPotion", cooldown);
+            else data.remove("CosmicPotion");
+        } else data.remove("CosmicPotion");
+        // Ichoroot
         int ichor = data.getInt("Ichor");
         if (ichor > 0) {
             if (ichor > 1920) {
                 entity.addEffect(new MobEffectInstance(EnigmaticAddonEffects.PURE_RESISTANCE_EFFECT, 300));
                 entity.level().playSound(null, entity.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.AMBIENT);
                 data.putInt("Ichor", ichor / 3);
-            } else {
-                data.putInt("Ichor", ichor - 1);
-            }
-        } else {
-            data.remove("Ichor");
-        }
+            } else data.putInt("Ichor", ichor - 1);
+        } else data.remove("Ichor");
+        // Counter of Lightning
+        int electric = data.getInt("Electric");
+        if (electric > 0) {
+            if (electric > 1200) {
+                List<Entity> entities = entity.level().getEntities(entity, entity.getBoundingBox().inflate(2));
+                boolean flag = true;
+                for (Entity target : entities) {
+                    if (target instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.THUNDER_SCROLL)) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(entity.level());
+                    if (lightningbolt != null) {
+                        lightningbolt.moveTo(Vec3.atBottomCenterOf(entity.blockPosition()));
+                        lightningbolt.setSilent(entity.getRandom().nextBoolean());
+                        lightningbolt.setDamage(lightningbolt.getDamage() * electric / 600.0F);
+                        entity.level().addFreshEntity(lightningbolt);
+                    }
+                    data.putInt("Electric", (electric - 1200) / 2 + 100);
+                }
+            } else data.putInt("Electric", electric - 1);
+        } else data.remove("Electric");
+
+        if (data.contains(BlessRing.CURSED_SPAWN)) data.remove(BlessRing.CURSED_SPAWN);
+        if (data.contains(BlessRing.BLESS_SPAWN)) data.remove(BlessRing.BLESS_SPAWN);
 
         int level = EnchantmentHelper.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_PROTECTION, entity);
         if (level >= 16) {
@@ -254,9 +286,21 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onPlayerTick(TickEvent.@NotNull PlayerTickEvent event) {
+    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (!player.isAlive() && event.phase != TickEvent.Phase.END) return;
+        if (!player.isAlive()) return;
+        if (event.phase == TickEvent.Phase.END && !player.level().isClientSide) {
+            for (List<ItemStack> list : player.getInventory().compartments) {
+                for (ItemStack stack : list) {
+                    if (stack.getItem() instanceof ITaintable && SuperAddonHandler.isTheBlessedOne(player)) {
+                        if (!ItemNBTHelper.getBoolean(stack, "isTainted", false)) {
+                            ItemNBTHelper.setBoolean(stack, "isTainted", true);
+                        }
+                    }
+                }
+            }
+            return;
+        }
 
         if (!player.level().isClientSide) {
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.NIGHT_SCROLL) && SuperpositionHandler.isTheCursedOne(player)) {
@@ -294,7 +338,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onFinalTarget(@NotNull LivingChangeTargetEvent event) {
+    public void onFinalTarget(LivingChangeTargetEvent event) {
         LivingEntity entity = event.getEntity();
         if (!entity.isAlive()) return;
 
@@ -305,13 +349,25 @@ public class AddonEventHandler {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void onFirstHurt(LivingHurtEvent event) {
+        if (event.getSource().getEntity() instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE)) {
+            event.setAmount(event.getAmount() + player.getPersistentData().getFloat("EtheriumCounterattack"));
+            player.getPersistentData().remove("EtheriumCounterattack");
+        }
+
+        if (event.getEntity() instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE)) {
+            float counterattack = (float) Math.min(event.getAmount() * EtheriumCore.damageConversion.getValue().asModifier() + player.getPersistentData().getFloat("EtheriumCounterattack"), EtheriumCore.damageConversionMax.getValue());
+            player.getPersistentData().putFloat("EtheriumCounterattack", counterattack);
+        }
+    }
+
     @SubscribeEvent
-    public void onEntityHurt(@NotNull LivingHurtEvent event) {
+    public void onEntityHurt(LivingHurtEvent event) {
         float amount = event.getAmount();
         if (event.getAmount() >= Float.MAX_VALUE) return;
         LivingEntity victim = event.getEntity();
         DamageSource source = event.getSource();
-//        float damageBoost = 0F;
 
         if (event.getSource().getDirectEntity() instanceof Player player && event.getSource().is(EnigmaticAddonDamageTypes.FALSE_JUSTICE)) {
             if (SuperpositionHandler.hasCurio(player, EnigmaticItems.VOID_PEARL)) {
@@ -398,11 +454,23 @@ public class AddonEventHandler {
                 }
             }
 
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.THUNDER_SCROLL)) {
+                if (player.getMainHandItem().canPerformAction(ToolActions.SWORD_SWEEP)) {
+                    int electric = victim.getPersistentData().getInt("Electric");
+                    victim.getPersistentData().putInt("Electric", electric + 60 + player.getRandom().nextInt(80) + (int) (event.getAmount() * 10));
+                }
+                event.setAmount(ThunderScroll.modify(victim, event.getAmount()));
+            }
+
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.HELL_BLADE_CHARM)) {
-                float damageMultiplier = (NEMESIS_LIST.stream().anyMatch(source::is) ? 1.0F : 0.5F);
+                float damageMultiplier = 1.0F;
                 if (SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM))
                     damageMultiplier += (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.attackDamage.getValue() / 5);
-                ModifyDamageBaseOne(event, damageMultiplier);
+                ModifyDamageBaseOne(event, (NEMESIS_LIST.stream().anyMatch(source::is) ? 1.0F : 0.5F) * damageMultiplier);
+            }
+
+            if (SuperAddonHandler.isTheBlessedOne(player)) {
+                ModifyDamageBaseOne(event, BlessRing.damageBoost.getValue().asModifier(false));
             }
         }
 
@@ -412,15 +480,15 @@ public class AddonEventHandler {
             }
 
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.HELL_BLADE_CHARM)) {
-                float damageMultiplier = 0.25F;
+                ModifyDamageBaseOne(event, 0.1F);
                 if (SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM)) {
-                    damageMultiplier += 0.5F * (1.0F - (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.damageResistance.getValue()));
+                    float resistance = SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.damageResistance.getValue();
+                    event.setAmount(event.getAmount() * (1.0F - resistance / 2) / (1.0F - resistance));
                 }
-                ModifyDamageBaseOne(event, damageMultiplier);
             }
 
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BLESS_RING)) {
-                event.setAmount(event.getAmount() * BlessRing.damageResistance.getValue().asModifier());
+                event.setAmount(event.getAmount() * (1 - BlessRing.damageResistance.getValue().asModifier()));
             }
 
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.FORGOTTEN_ICE)) {
@@ -489,8 +557,8 @@ public class AddonEventHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public void onEntityDamage(@NotNull LivingDamageEvent event) {
+    @SubscribeEvent
+    public void onEntityDamage(LivingDamageEvent event) {
         LivingEntity victim = event.getEntity();
         Entity attacker = event.getSource().getEntity();
         if (victim instanceof Player player) {
@@ -545,18 +613,19 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onFinalDamage(@NotNull LivingDamageEvent event) {
+    public void onFinalDamage(LivingDamageEvent event) {
+        float amount = event.getAmount();
         if (event.getSource().getDirectEntity() instanceof Player player) {
             float lifesteal = 0.0F;
 
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.NIGHT_SCROLL) && NightScroll.isDark(player)) {
                 if (SuperpositionHandler.isTheCursedOne(player)) {
-                    lifesteal += event.getAmount() * NightScroll.abilityBoost.getValue().asModifier(false);
+                    lifesteal += amount * NightScroll.abilityBoost.getValue().asModifier(false);
                 }
             }
             if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_INFINITUM).isEmpty()) {
                 if (SuperpositionHandler.isTheWorthyOne(player)) {
-                    lifesteal += event.getAmount() * 0.1F;
+                    lifesteal += amount * 0.1F;
                 }
             }
             if (lifesteal > 0) player.heal(lifesteal);
@@ -564,7 +633,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onFinalDeath(@NotNull LivingDeathEvent event) {
+    public void onFinalDeath(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();
         Entity sourceEntity = event.getSource().getEntity();
 
@@ -593,8 +662,63 @@ public class AddonEventHandler {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
+    public void onConfirmedDeath(LivingDeathEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            if (event.isCanceled()) {
+                POSTMORTAL_POSSESSIONS.removeAll(player);
+                return;
+            }
+
+            if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.BLESS_STONE) && !SuperpositionHandler.hasItem(player, EnigmaticItems.CURSED_STONE) && SuperpositionHandler.hasCurio(player, EnigmaticItems.CURSED_RING)) {
+                POSTMORTAL_POSSESSIONS.put(player, EnigmaticAddonItems.BLESS_STONE);
+                for (List<ItemStack> list : player.getInventory().compartments) {
+                    for (ItemStack itemstack : list) {
+                        if (!itemstack.isEmpty() && itemstack.getItem() == EnigmaticAddonItems.BLESS_STONE) {
+                            itemstack.setCount(0);
+                        }
+                    }
+                }
+                LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(player.level());
+                if (lightningbolt != null) {
+                    lightningbolt.moveTo(Vec3.atBottomCenterOf(player.blockPosition()));
+                    lightningbolt.setCause(player instanceof ServerPlayer ? player : null);
+                    player.level().addFreshEntity(lightningbolt);
+                }
+            }
+        }
+    }
+
     @SubscribeEvent
-    public void onLivingJump(LivingEvent.@NotNull LivingJumpEvent event) {
+    public void onCurioDrops(DropRulesEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            if (POSTMORTAL_POSSESSIONS.containsKey(player) && POSTMORTAL_POSSESSIONS.containsEntry(player, EnigmaticAddonItems.BLESS_STONE)) {
+                boolean confirm = true;
+
+                if (confirm) {
+                    event.addOverride(stack -> stack != null && (stack.is(EnigmaticItems.CURSED_RING) || stack.is(EnigmaticItems.DESOLATION_RING)), ICurio.DropRule.DESTROY);
+                    CuriosApi.getCuriosInventory(player).ifPresent((handler) -> {
+                        IItemHandlerModifiable curios = handler.getEquippedCurios();
+                        for (int i = 0; i < handler.getSlots() - 1; ++i) {
+                            if (curios.getStackInSlot(i) != null && curios.getStackInSlot(i).getItem() == EnigmaticItems.CURSED_RING) {
+                                curios.setStackInSlot(i, EnigmaticAddonItems.BLESS_RING.getDefaultInstance());
+                            }
+                        }
+                    });
+                    SuperpositionHandler.destroyCurio(player, EnigmaticItems.DESOLATION_RING);
+
+                    player.level().playSound(null, player.blockPosition(), SoundEvents.WITHER_DEATH, SoundSource.PLAYERS, 1.0F, 0.5F);
+                    SuperpositionHandler.setPersistentBoolean(player, "DestroyedCursedRing", true);
+                }
+            }
+            POSTMORTAL_POSSESSIONS.removeAll(player);
+        } else if (event.getEntity() instanceof Player player) {
+            POSTMORTAL_POSSESSIONS.removeAll(player);
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingJump(LivingEvent.LivingJumpEvent event) {
         LivingEntity entity = event.getEntity();
         if (SuperpositionHandler.hasCurio(entity, EnigmaticAddonItems.LOST_ENGINE)) {
             entity.addDeltaMovement(new Vec3(0.0, 0.1214, 0.0));
@@ -612,7 +736,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onCriticalHit(@NotNull CriticalHitEvent event) {
+    public void onCriticalHit(CriticalHitEvent event) {
         Player player = event.getEntity();
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
             event.setDamageModifier(event.getDamageModifier() + LostEngine.critModifier.getValue().asModifier());
@@ -620,7 +744,16 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onCursed(@NotNull LivingCurseBoostEvent event) {
+    public void onLeftClick(PlayerInteractEvent.LeftClickEmpty event) {
+        Player player = event.getEntity();
+        boolean flag = player.onGround() && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.THUNDER_SCROLL);
+        if (flag && player.getMainHandItem().canPerformAction(ToolActions.SWORD_SWEEP) && !player.getCooldowns().isOnCooldown(EnigmaticAddonItems.THUNDER_SCROLL)) {
+            EnigmaticAddons.packetInstance.send(PacketDistributor.SERVER.noArg(), new PacketEmptyLeftClick(true));
+        }
+    }
+
+    @SubscribeEvent
+    public void onCursed(LivingCurseBoostEvent event) {
         if (!OmniconfigAddonHandler.EnableCurseBoost.getValue()) return;
         LivingEntity entity = event.getEntity();
         Player worthy = event.getTheWorthyOne();
@@ -667,7 +800,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onXPOrb(@NotNull PlayerXpEvent.PickupXp event) {
+    public void onXPOrb(PlayerXpEvent.PickupXp event) {
         Player player = event.getEntity();
         if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.CURSED_XP_SCROLL)) {
             ExperienceOrb orb = event.getOrb();
@@ -676,7 +809,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void miningStuff(PlayerEvent.@NotNull BreakSpeed event) {
+    public void miningStuff(PlayerEvent.BreakSpeed event) {
         Player player = event.getEntity();
         float miningModifier = 0.0F;
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.EARTH_PROMISE)) {
@@ -685,25 +818,103 @@ public class AddonEventHandler {
 
         event.setNewSpeed(event.getOriginalSpeed() * miningModifier + event.getNewSpeed());
 
-        if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ADVENTURE_CHARM)) {
+        if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ADVENTURE_CHARM) && !player.isCrouching()) {
             event.setCanceled(true);
         }
     }
 
-
     @SubscribeEvent
-    public void onItemCrafted(PlayerEvent.@NotNull ItemCraftedEvent event) {
+    public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
         if (event.getEntity() != null && !event.getEntity().level().isClientSide) {
-            if (event.getInventory().countItem(EnigmaticAddonItems.BLESS_AMPLIFIER) == 1) {
+            if (event.getInventory().countItem(EnigmaticAddonItems.BLESS_AMPLIFIER) == 1 || event.getCrafting().getItem() == EnigmaticAddonItems.BLESS_STONE) {
                 event.getEntity().level().playSound(null, event.getEntity().blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1.0F, (float) (0.9F + (Math.random() * 0.1F)));
             }
         }
     }
 
+    @SubscribeEvent
+    public void onAnvilChange(AnvilUpdateEvent event) {
+        Player player = event.getPlayer();
+        ItemStack left = event.getLeft();
+        ItemStack right = event.getRight();
+        if (!left.isEmpty() && !right.isEmpty()) {
+            if (player != null && EnigmaticAddonItems.FORGER_GEM.isPresent(player)) {
+                boolean check = left.isDamageableItem();
+                if (check && ForgerGem.strictUnbreakableForge.getValue()) {
+                    check = left.isRepairable() && (left.getItem() instanceof TieredItem || left.getItem() instanceof ArmorItem);
+                }
+                if (left.is(right.getItem()) && check && left.getDamageValue() == 0 && right.getDamageValue() == 0) {
+                    Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(left);
+                    Map<Enchantment, Integer> map1 = EnchantmentHelper.getEnchantments(right);
+                    boolean flag2 = false;
+                    boolean flag3 = false;
+                    Iterator<Enchantment> enchantments1 = map1.keySet().iterator();
+
+                    loop:
+                    while (true) {
+                        Enchantment enchantment1;
+                        do {
+                            if (!enchantments1.hasNext()) {
+                                if (flag3 && !flag2) {
+                                    return;
+                                }
+                                break loop;
+                            }
+                            enchantment1 = enchantments1.next();
+                        } while (enchantment1 == null);
+
+                        int level = map.getOrDefault(enchantment1, 0);
+                        int level1 = map1.get(enchantment1);
+                        boolean flag1 = enchantment1.canEnchant(left);
+                        if (player.getAbilities().instabuild) {
+                            flag1 = true;
+                        }
+
+                        for (Enchantment enchantment : map.keySet()) {
+                            if (enchantment != enchantment1 && !enchantment1.isCompatibleWith(enchantment)) {
+                                flag1 = false;
+                            }
+                        }
+
+                        if (!flag1) {
+                            flag3 = true;
+                        } else {
+                            flag2 = true;
+                            map.put(enchantment1, Math.min(level == level1 ? level1 + 1 : Math.max(level1, level), enchantment1.getMaxLevel()));
+                        }
+                    }
+                    ItemStack copy = left.copy();
+                    int cost = 30;
+                    if (map.containsKey(Enchantments.UNBREAKING)) {
+                        cost -= map.get(Enchantments.UNBREAKING);
+                        map.remove(Enchantments.UNBREAKING);
+                    }
+                    if (map.containsKey(Enchantments.MENDING)) {
+                        cost -= map.get(Enchantments.MENDING) * 3;
+                        map.remove(Enchantments.MENDING);
+                    }
+                    EnchantmentHelper.setEnchantments(map, copy);
+                    copy.addTagElement("Unbreakable", ByteTag.valueOf(true));
+                    copy.setRepairCost(20);
+                    event.setOutput(copy);
+                    event.setCost(cost);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onAnvilRepair(AnvilRepairEvent event) {
+        Player player = event.getEntity();
+        if (player != null && !player.level().isClientSide && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.FORGER_GEM)) {
+            event.setBreakChance(event.getBreakChance() / 6);
+        }
+    }
+
     @SubscribeEvent(priority = EventPriority.NORMAL)
-    public void onLivingDrops(@NotNull LivingDropsEvent event) {
+    public void onLivingDrops(LivingDropsEvent event) {
         DamageSource source = event.getSource();
-        if (event.isRecentlyHit() && source != null && source.getEntity() instanceof Player player && SuperpositionHandler.isTheCursedOne(player)) {
+        if (event.isRecentlyHit() && source != null && source.getEntity() instanceof Player player && SuperAddonHandler.isOKOne(player)) {
             LivingEntity killed = event.getEntity();
             BlockPos blockPos = killed.blockPosition();
             int lootingLevel = ForgeHooks.getLootingLevel(killed, player, source);
@@ -717,6 +928,75 @@ public class AddonEventHandler {
                 return;
 
             this.addEntityDropWithChance(event, Ghast.class, new ItemStack(EnigmaticAddonItems.ICHOR_DROPLET), 40);
+
+            if (SuperAddonHandler.isTheBlessedOne(player)) {
+                if (killed.getClass() == Shulker.class) {
+                    this.addDropWithChance(event, new ItemStack(EnigmaticItems.ASTRAL_DUST, 1), 20);
+                } else if (killed.getClass() == Skeleton.class || killed.getClass() == Stray.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.ARROW, 3, 15));
+                } else if (killed.getClass() == Zombie.class || killed.getClass() == Husk.class) {
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.SLIME_BALL, 1, 3), 25);
+                } else if (killed.getClass() == Spider.class || killed.getClass() == CaveSpider.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.STRING, 2, 12));
+                } else if (killed.getClass() == Guardian.class) {
+                    this.addDropWithChance(event, new ItemStack(Items.NAUTILUS_SHELL, 1), 15);
+                    this.addDrop(event, this.getRandomSizeStack(Items.PRISMARINE_CRYSTALS, 2, 5));
+                } else if (killed instanceof ElderGuardian) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.PRISMARINE_CRYSTALS, 4, 16));
+                    this.addDrop(event, this.getRandomSizeStack(Items.PRISMARINE_SHARD, 7, 28));
+                    this.addOneOf(event,
+                            new ItemStack(Items.HEART_OF_THE_SEA, 1),
+                            new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1),
+                            new ItemStack(Items.ENDER_EYE, 1),
+                            EnchantmentHelper.enchantItem(killed.getRandom(), new ItemStack(Items.TRIDENT, 1), 25 + RANDOM.nextInt(15), true));
+                } else if (killed.getClass() == EnderMan.class) {
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.ENDER_EYE, 1, 2), 40);
+                } else if (killed.getClass() == Blaze.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.BLAZE_POWDER, 0, 5));
+                } else if (killed.getClass() == ZombifiedPiglin.class) {
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.GOLD_INGOT, 1, 3), 40);
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.GLOWSTONE_DUST, 1, 7), 30);
+                } else if (killed.getClass() == Witch.class) {
+                    this.addDropWithChance(event, new ItemStack(Items.GHAST_TEAR, 1), 30);
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.PHANTOM_MEMBRANE, 1, 3), 50);
+                } else if (killed.getClass() == Pillager.class || killed.getClass() == Vindicator.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.EMERALD, 0, 4));
+                } else if (killed.getClass() == Villager.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.EMERALD, 2, 6));
+                } else if (killed.getClass() == Creeper.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.GUNPOWDER, 4, 12));
+                } else if (killed.getClass() == PiglinBrute.class) {
+                    this.addDropWithChance(event, new ItemStack(Items.NETHERITE_SCRAP, 1), 20);
+                } else if (killed.getClass() == Evoker.class) {
+                    this.addDrop(event, new ItemStack(Items.TOTEM_OF_UNDYING, 1));
+                    this.addDrop(event, this.getRandomSizeStack(Items.EMERALD, 5, 20));
+                    this.addDropWithChance(event, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 10);
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.ENDER_PEARL, 1, 3), 30);
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.BLAZE_ROD, 2, 4), 30);
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.EXPERIENCE_BOTTLE, 4, 10), 50);
+                } else if (killed.getClass() == WitherSkeleton.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.BLAZE_POWDER, 0, 3));
+                    this.addDropWithChance(event, new ItemStack(Items.GHAST_TEAR, 1), 20);
+                    this.addDropWithChance(event, new ItemStack(Items.NETHERITE_SCRAP, 1), 7);
+                } else if (killed.getClass() == Ghast.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.PHANTOM_MEMBRANE, 1, 4));
+                } else if (killed.getClass() == Drowned.class) {
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.LAPIS_LAZULI, 1, 3), 30);
+                } else if (killed.getClass() == Vex.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.GLOWSTONE_DUST, 0, 2));
+                    this.addDropWithChance(event, new ItemStack(Items.PHANTOM_MEMBRANE, 1), 30);
+                } else if (killed.getClass() == Piglin.class) {
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.GOLD_INGOT, 2, 4), 50);
+                } else if (killed.getClass() == Ravager.class) {
+                    this.addDrop(event, this.getRandomSizeStack(Items.EMERALD, 3, 10));
+                    this.addDrop(event, this.getRandomSizeStack(Items.LEATHER, 2, 7));
+                    this.addDropWithChance(event, this.getRandomSizeStack(Items.DIAMOND, 0, 4), 50);
+                } else if (killed.getClass() == MagmaCube.class) {
+                    this.addDropWithChance(event, new ItemStack(Items.BLAZE_POWDER, 1), 50);
+                } else if (killed.getClass() == Chicken.class) {
+                    this.addDropWithChance(event, new ItemStack(Items.EGG, 1), 50);
+                }
+            }
         }
     }
 
@@ -757,9 +1037,10 @@ public class AddonEventHandler {
             event.setTable(modified);
         }
         if (SuperpositionHandler.getOverworldDungeons().contains(event.getName())) {
-            LootPool antiqueLegacy = SuperpositionHandler.constructLootPool("antique_legacy", -9F, 1F,
-                    SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.ANTIQUE_BAG, 50),
-                    SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.VOID_TOME, 50));
+            LootPool antiqueLegacy = SuperpositionHandler.constructLootPool("antique_legacy", -8F, 1F,
+                    SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.ANTIQUE_BAG, 25),
+                    SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.VOID_TOME, 45),
+                    SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.FORGER_GEM, 30));
 
             LootTable modified = event.getTable();
             modified.addPool(antiqueLegacy);
@@ -788,7 +1069,7 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onEntityJoinWorld(@NotNull EntityJoinLevelEvent event) {
+    public void onEntityJoinWorld(EntityJoinLevelEvent event) {
         if (!OmniconfigAddonHandler.EnableCurseBoost.getValue()) return;
         Entity entity = event.getEntity();
         Predicate<WrappedGoal> meleeOrBow = ((goal) -> goal.getGoal() instanceof MeleeAttackGoal || goal.getGoal() instanceof RangedCrossbowAttackGoal<?>);
@@ -832,13 +1113,13 @@ public class AddonEventHandler {
     }
 
     @SubscribeEvent
-    public void onWandererTradesEvent(@NotNull WandererTradesEvent event) {
+    public void onWandererTradesEvent(WandererTradesEvent event) {
         List<VillagerTrades.ItemListing> rareTrades = event.getRareTrades();
         rareTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(EnigmaticAddonItems.EARTH_HEART_FRAGMENT), new ItemStack(Items.EMERALD, 20), new ItemStack(EnigmaticItems.EARTH_HEART), 1, 5, 0.2F));
         rareTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(EnigmaticAddonItems.EARTH_HEART_FRAGMENT), 2, 5, 0.25F));
     }
 
-    public static int getGoalPriority(@NotNull Mob mob, Predicate<WrappedGoal> filter) {
+    public static int getGoalPriority(Mob mob, Predicate<WrappedGoal> filter) {
         return mob.goalSelector.getAvailableGoals().stream().filter(filter).findFirst().map(WrappedGoal::getPriority).orElse(-1);
     }
 
@@ -847,7 +1128,16 @@ public class AddonEventHandler {
         event.setAmount(event.getAmount() * (1.0F + (float) multiplier));
     }
 
-    public void addDrop(@NotNull LivingDropsEvent event, ItemStack drop) {
+    public ItemStack getRandomSizeStack(Item item, int minAmount, int maxAmount) {
+        return new ItemStack(item, minAmount + RANDOM.nextInt(maxAmount - minAmount + 1));
+    }
+
+    public void addOneOf(LivingDropsEvent event, ItemStack... itemStacks) {
+        int chosenStack = RANDOM.nextInt(itemStacks.length);
+        this.addDrop(event, itemStacks[chosenStack]);
+    }
+
+    public void addDrop(LivingDropsEvent event, ItemStack drop) {
         ItemEntity itemEntity = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), drop);
         itemEntity.setPickUpDelay(10);
         event.getDrops().add(itemEntity);
@@ -859,28 +1149,38 @@ public class AddonEventHandler {
         }
     }
 
-    public <T extends LivingEntity> void addEntityDropWithChance(@NotNull LivingDropsEvent event, Class<T> entity, ItemStack drop, int chance) {
+    public <T extends LivingEntity> void addEntityDropWithChance(LivingDropsEvent event, Class<T> entity, ItemStack drop, int chance) {
         if (entity == event.getEntity().getClass()) {
             this.addDropWithChance(event, drop, chance);
         }
     }
 
-
     @SubscribeEvent
-    public void attachEntitiesCapabilities(@NotNull AttachCapabilitiesEvent<Entity> event) {
+    public void attachEntitiesCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player player) {
             event.addCapability(AntiqueBagCapability.ID_INVENTORY, AntiqueBagCapability.createProvider(player));
         }
     }
 
-
     @SubscribeEvent
-    public void onPlayerClone(PlayerEvent.@NotNull Clone event) {
+    public void onPlayerClone(PlayerEvent.Clone event) {
         Player player = event.getEntity();
         Player original = event.getOriginal();
         original.revive();
+        if (SuperpositionHandler.isTheCursedOne(original)) player.getPersistentData().putBoolean(BlessRing.CURSED_SPAWN, true);
+        if (SuperAddonHandler.isTheBlessedOne(original)) player.getPersistentData().putBoolean(BlessRing.BLESS_SPAWN, true);
         LazyOptional<IAntiqueBagHandler> oldHandler = SuperAddonHandler.getCapability(original, AntiqueBagCapability.INVENTORY);
         LazyOptional<IAntiqueBagHandler> newHandler = SuperAddonHandler.getCapability(player, AntiqueBagCapability.INVENTORY);
         oldHandler.ifPresent(oldBag -> newHandler.ifPresent(newBag -> newBag.readTag(oldBag.writeTag())));
+    }
+
+    @SubscribeEvent
+    public void onLogOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (SuperpositionHandler.isTheCursedOne(event.getEntity())) {
+            event.getEntity().getPersistentData().putBoolean(BlessRing.CURSED_SPAWN, true);
+        }
+        if (SuperAddonHandler.isTheBlessedOne(event.getEntity())) {
+            event.getEntity().getPersistentData().putBoolean(BlessRing.BLESS_SPAWN, true);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.mixin.legacy;
 
 import auviotre.enigmatic.addon.contents.items.AntiqueBag;
+import auviotre.enigmatic.addon.contents.items.BlessRing;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
@@ -28,6 +29,13 @@ public abstract class MixinSuperpositionHandler {
     private static void hasItemMix(Player player, Item item, @NotNull CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue() && player != null && AntiqueBag.isBook(new ItemStack(item))) {
             cir.setReturnValue(!SuperAddonHandler.findBookInBag(player, item).isEmpty());
+        }
+    }
+
+    @Inject(method = "isTheCursedOne", at = @At("RETURN"), cancellable = true, remap = false)
+    private static void isCursed(Player player, CallbackInfoReturnable<Boolean> cir) {
+        if (player.getPersistentData().getBoolean(BlessRing.CURSED_SPAWN)) {
+            cir.setReturnValue(true);
         }
     }
 }

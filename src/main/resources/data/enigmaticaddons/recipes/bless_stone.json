@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:bless_stone"
+    }
+  ],
+  "pattern": [
+    "ILI",
+    "PXP",
+    "IPI"
+  ],
+  "key": {
+    "I": {
+      "item": "enigmaticlegacy:astral_dust"
+    },
+    "L": {
+      "item": "enigmaticlegacy:cosmic_heart"
+    },
+    "X": {
+      "item": "enigmaticlegacy:cursed_stone"
+    },
+    "P": {
+      "item": "enigmaticaddons:pure_heart"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:bless_stone"
+  }
+}

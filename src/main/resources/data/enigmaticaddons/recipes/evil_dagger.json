@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:evil_dagger"
+    }
+  ],
+  "pattern": [
+    " Q ",
+    "QXQ",
+    " G "
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:evil_ingot"
+    },
+    "Q": {
+      "item": "enigmaticlegacy:evil_essence"
+    },
+    "G": {
+      "item": "enigmaticlegacy:ender_rod"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:evil_dagger"
+  }
+}

@@ -123,7 +123,21 @@
   "book.enigmaticaddons.entry.revival_leaf.page.1": "同样能在古老的丛林神庙找到的，还有这枚汇聚了自然力量的奇特术石。<br2/>这枚术石能够提供自然元素的力量：增强你的生命力，能够缓慢的恢复你的生命，并能够让你免疫一些轻微的不良效果；合理调节身体机能，让药水效果能够持续更长的时间。此外，它也能从自然中取出致命的那一部分，让你的双手沾满毒素。",
   "book.enigmaticaddons.entry.revival_leaf.page.2": "这枚术石也能与作物之间产生共鸣，激活它们的生长潜力，让周围的作物更加卖力成长。<br2/>当然也要注意，除了火焰之外，锋利的箭矢也能轻易的穿刺你。",
 
-  "item.enigmaticaddons.dragon_bow": "龙息弓",
+  "item.enigmaticaddons.etherium_core": "以太核心",
+
+  "tooltip.enigmaticaddons.etheriumCore1": "§d主动技能:",
+  "tooltip.enigmaticaddons.etheriumCore2": "§6- 启动以太护盾§6%1$s§6秒",
+  "tooltip.enigmaticaddons.etheriumCoreCooldown": "§d冷却：§6%1$s§6秒",
+  "tooltip.enigmaticaddons.etheriumCore3": "§5- 使装备不可见",
+  "tooltip.enigmaticaddons.etheriumCore4": "§5- 将受到伤害的 §6%1$s§5 转化为下一",
+  "tooltip.enigmaticaddons.etheriumCore5": "§5  次攻击给予增幅",
+
+  "book.enigmaticaddons.entry.etherium_core.name": "以太核心",
+  "book.enigmaticaddons.entry.etherium_core.page.1": "一个是在世界里随处可见的魔像之心，一个是极其珍贵的以太护甲，将两者合一便能得到这一专精于物理防御的术石。<br2/>将魔像之心作为以太护盾的不竭能源之后，你便可以随时通过这枚术石主动触发以太护盾，不太受限于视你的健康状况而定。但不仅于此，魔像之心还赋予了护盾新的能力，记仇的它会记下",
+  "book.enigmaticaddons.entry.etherium_core.page.2": "你每次收到的伤害，折算、累加，并在下一次攻击时，将所有力量灌注这一击之中，好好偿还回去。<br2/>此外，不同于其他的术石，纯净的以太力量似乎并没有什么弱点，请放心使用。",
+  "book.enigmaticaddons.entry.etherium_core.page.3": "",
+
+  "item.enigmaticaddons.dragon_bow" : "龙息弓",
 
   "book.enigmaticaddons.entry.dragon_bow.name": "龙息",
   "book.enigmaticaddons.entry.dragon_bow.page.1": "龙息仅仅只能用于酿造吗？你也许思考过这个问题。回忆起末影龙用致命的龙息来灼烧你的盔甲与皮肤，你也很想让来其他人尝尝这个滋味。还有那个挂在末地船仅能拿来装饰的诡异龙头…<br2/>故在种种原因的驱使下，这把由魔法注入的弓诞生了。",
@@ -163,6 +177,17 @@
   "book.enigmaticaddons.entry.cursed_xp_scroll.page.1": "当你的时期到达一定的阶段后，经验除了拿来替别人使用，似乎不太有用武之地了，但现在，通过诅咒之力，这枚卷轴的性质就发生了巨大的改变。<br2/>贪婪的无知诅咒将卷轴的狩猎范围变得更广，并将获取到的经验的大部分吞噬，留给你的简直微乎其微。<br2/>当然，诅咒带来的恩惠也不",
   "book.enigmaticaddons.entry.cursed_xp_scroll.page.2": "容小觑，极大的强化了你的战斗能力。最后也请记住，诅咒始终在等待机会，当你处于最脆弱的状态时，它会带走一切。",
 
+  "item.enigmaticaddons.thunder_scroll": "万钧之护卷轴",
+
+  "tooltip.enigmaticaddons.thunderScroll1": "§5横扫攻击造成 §6100% §5伤害",
+  "tooltip.enigmaticaddons.thunderScroll2": "§5对有§d护甲§5目标造成更多伤害",
+  "tooltip.enigmaticaddons.thunderScroll3": "§5目标在受击一定次数后",
+  "tooltip.enigmaticaddons.thunderScroll4": "§5会受到§6落雷§5打击",
+
+  "book.enigmaticaddons.entry.thunder_scroll.name": "万钧之护卷轴",
+  "book.enigmaticaddons.entry.thunder_scroll.page.1": "虽说海洋意志术石能够一定程度上控制雷电的产生，但这终究只是间接控制，不够迅速。<br2/>我们利用神圣之力将共鸣闪电的咒语书写与卷轴之上，以术石为基底，以剑为媒介去释放来自天穹的力量。在战斗的过程中，这个卷轴会驱使你施展横扫攻击，来尽可能地去将闪电的目标扩大，同时",
+  "book.enigmaticaddons.entry.thunder_scroll.page.2": "电属性地攻击也能让你的攻击更容易穿透护甲的影响，让你能更好的面对高护甲和群体对象。<br2/>另外也请你放心，来自天空的闪电不会轻易劈到他们的主人。",
+
   "item.enigmaticaddons.hell_blade_charm": "地狱刃片护符",
 
   "tooltip.enigmaticaddons.hellBladeCharm1": "§5- 你的护甲无效化。",
@@ -177,9 +202,21 @@
   "book.enigmaticaddons.entry.hell_blade_charm.page.1": "这枚护符似乎一直在下界的某处期待这你的到来，等着你用自己的鲜血来浇灌它。<br2/>无论是谁，当注意到这枚护符给予的强大力量时，即使它也诚实地表明了代价，都不免会心动而佩戴上它。一般而言，这些佩戴者都以十分愚蠢的死状收尾。",
   "book.enigmaticaddons.entry.hell_blade_charm.page.2": "所以，请慎重的佩戴这枚护符，特别是同时承受七咒之人。",
 
+  "item.enigmaticaddons.forger_gem": "锻造者的宝石",
+
+  "tooltip.enigmaticaddons.forgerGem2" : "§5减半锻造所需经验",
+  "tooltip.enigmaticaddons.forgerGem3" : "§5并使你的铁砧更耐用",
+  "tooltip.enigmaticaddons.forgerGem4" : "§5可以用两把满耐久工具锻造",
+  "tooltip.enigmaticaddons.forgerGem5" : "§5出一把§d不可破坏§5的相应工具",
+
+  "book.enigmaticaddons.entry.forger_gem.name": "锻造者的宝石",
+  "book.enigmaticaddons.entry.forger_gem.page.1": "锻造工具与武器，是增强实力的过程中难以避免的一步，但在登峰造极的那一刻前，总会因为昂贵的造价或是濒临破裂的铁砧而担忧。<br2/>这个饰品则会直接将古老的锻造技巧注入你的双手，能够有效降低铁砧破裂的概率，并能够借助宝石的能量，将造价大幅降低，从而提高了锻造的上限。",
+  "book.enigmaticaddons.entry.forger_gem.page.2": "此外，精湛的手艺也允许你去打造一些不可破坏的造物，虽然这需要两把相同的崭新工具和大量的经验。<br2/>有时你也能在一些箱子里发现这些作物旧时代遗物的宝石。",
+
   "item.enigmaticaddons.adventure_charm": "冒险者之证",
 
-  "tooltip.enigmaticaddons.adventureCharm" : "§5使你无法挖掘方块",
+  "tooltip.enigmaticaddons.adventureCharm1" : "§5使你无法挖掘方块",
+  "tooltip.enigmaticaddons.adventureCharm2" : "§5按住 §6Shift §5时不起效",
 
   "book.enigmaticaddons.entry.adventure_charm.name": "冒险者之证",
   "book.enigmaticaddons.entry.adventure_charm.page.1": "创造与破坏，这是无上的创世神之力，但在有些时候你会很难把握好力道，稍有不慎就容易产生不必要的破坏。而且在纯粹的战斗中，你更希望将这种力量转化为更加实用的形式。",
@@ -254,15 +291,30 @@
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "经过灵液的洗礼，求知之书的愿望从获得转化成了给予，将进一步提升物品中的魔法力量。<br2/>如果你将它与任何附魔物品紧密接触，它就会牺牲掉自己，加倍存在于物品之中的魔力。<br2/>但如果仅仅是如此，那就太愧对于这其中的神化之力。",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "打破魔咒的限制，将物品中的魔力更升一等，才是它的真正用途。<br2/>顺带一提，并不是一切的魔咒都能够被突破，也有些魔咒在突破后无法承受力量而失效。",
 
-  "item.enigmaticaddons.bless_ring": "救赎之戒 [未完成]",
+  "item.enigmaticaddons.bless_stone": "神圣之石",
+
+  "tooltip.enigmaticaddons.blessStone1": "§5带上这个石头去寻求死亡",
+  "tooltip.enigmaticaddons.blessStone2": "§5你所佩戴的§6七咒之戒§5将",
+  "tooltip.enigmaticaddons.blessStone3": "§5会转变为§6救赎之戒",
+
+  "book.enigmaticaddons.entry.bless_stone.name": "重生的选择",
+  "book.enigmaticaddons.entry.bless_stone.heading": "真正的救赎",
+  "book.enigmaticaddons.entry.bless_stone.page.1": "当你正在犹豫是否要牺牲自己的一部分去摆脱七咒之戒时，现在，在你面前有了一个崭新的选择。<br2/>目前在你眼前的最大问题，就是你与诅咒像纠缠的那一部分，以目前的材料和手段，似乎无从下手。但是将思路转换，既然无法打破联系，那就让联系以一种新的方式呈现。",
+  "book.enigmaticaddons.entry.bless_stone.page.2": "将些许的纯化之力慢慢渗入七咒之戒中，调动其中的祝福之力去尝试调谐，甚至改变各项诅咒之力，不过这一切操作的进行，依旧需要在联系最脆弱的时候，即你需要直面死亡。",
+  "book.enigmaticaddons.entry.bless_stone.page.3": "在最后的一次灵魂破碎之后，七咒之戒就会从你的眼前彻底消失，变为了手上的一抹金色。<br2/>以往的诅咒彻底消失了，原先的祝福则得到了部分的保留。虽说昔日陪伴着你的大部分物件都已无法使用，但依旧有一些东西，见证了你充满苦难的过去，那不断接",
+  "book.enigmaticaddons.entry.bless_stone.page.4": "近于死亡的过去。它们依旧认可着你的资格，愿意为你破除诅咒的束缚，依旧陪伴着你。<br2/>愿你在远离诅咒的日子里，尽情的享受生活。",
+
+  "item.enigmaticaddons.bless_ring": "救赎之戒",
 
   "tooltip.enigmaticaddons.blessRing1": "§d对经历过痛苦折磨之人，",
   "tooltip.enigmaticaddons.blessRing2": "§d遗留下部分祝福依旧起效：",
   "tooltip.enigmaticaddons.blessRing3": "§5- 受到的§6任何§5来源的伤害减少为 §6%1$s",
-  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d 抢夺等级",
-  "tooltip.enigmaticaddons.blessRing5": "§5- §6+%1$s§d 时运等级",
-  "tooltip.enigmaticaddons.blessRing6": "§5- 一些生物开始产出独特掉落物",
-  "tooltip.enigmaticaddons.blessRing7": "§5- 你可以制作和使用独特遗物",
+  "tooltip.enigmaticaddons.blessRing4": "§5- 造成的伤害增加 §6%1$s",
+  "tooltip.enigmaticaddons.blessRing5": "§5- 获得持续的§d生命恢复",
+  "tooltip.enigmaticaddons.blessRing6": "§5- §6+%1$s§d 抢夺等级",
+  "tooltip.enigmaticaddons.blessRing7": "§5- §6+%1$s§d 时运等级",
+  "tooltip.enigmaticaddons.blessRing8": "§5- 一些生物开始产出独特掉落物",
+  "tooltip.enigmaticaddons.blessRing9": "§5- 你可以制作和使用独特遗物",
   "tooltip.enigmaticaddons.blessRingLore1": "§5这枚戒指闪烁着别样的",
   "tooltip.enigmaticaddons.blessRingLore2": "§5光泽，铭记着那些饱受",
   "tooltip.enigmaticaddons.blessRingLore3": "§5折磨的岁月，同时这也",

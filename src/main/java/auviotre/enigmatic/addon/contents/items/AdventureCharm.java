@@ -45,7 +45,8 @@ public class AdventureCharm extends ItemBaseCurio {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> list, TooltipFlag flagIn) {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.adventureCharm");
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.adventureCharm1");
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.adventureCharm2");
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {

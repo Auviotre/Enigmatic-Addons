@@ -1,0 +1,36 @@
+{
+  "name": "book.enigmaticaddons.entry.bless_stone.name",
+  "icon": "enigmaticaddons:bless_stone",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticaddons:book/misc/bless_stone",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 200,
+  "extra_recipe_mappings": {
+    "enigmaticaddons:bless_ring": 2
+  },
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.bless_stone.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:bless_stone",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.bless_stone.page.2"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:bless_ring",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.bless_stone.heading",
+      "text": "book.enigmaticaddons.entry.bless_stone.page.3"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.bless_stone.page.4"
+    }
+  ]
+}

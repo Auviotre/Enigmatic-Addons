@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.handlers;
 
 import auviotre.enigmatic.addon.api.events.LivingCurseBoostEvent;
+import auviotre.enigmatic.addon.contents.items.BlessRing;
 import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
 import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
@@ -64,12 +65,16 @@ public class SuperAddonHandler {
         }
     }
 
+    private static boolean hasBlessRing(Player player) {
+        return player.getPersistentData().getBoolean(BlessRing.BLESS_SPAWN) || SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BLESS_RING);
+    }
+
     public static boolean isTheBlessedOne(Player player) {
-        return SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BLESS_RING) && !SuperpositionHandler.isTheCursedOne(player);
+        return hasBlessRing(player) && !SuperpositionHandler.isTheCursedOne(player);
     }
 
     public static boolean isOKOne(Player player) {
-        return SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BLESS_RING) || SuperpositionHandler.isTheCursedOne(player);
+        return hasBlessRing(player) || SuperpositionHandler.isTheCursedOne(player);
     }
 
     public static ItemStack findBookInBag(Player player, Item book) {

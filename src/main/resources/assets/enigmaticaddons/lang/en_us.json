@@ -123,6 +123,19 @@
   "book.enigmaticaddons.entry.revival_leaf.page.1": "Another unique spellstone that gathers the power of nature can also be found in the ancient jungle temple.<br2/>This spellstone can provide the power of natural: enhance your vitality, slowly restore your health, and immunize you against some minor adverse effects and reasonably regulate bodily functions to make effects last longer.",
   "book.enigmaticaddons.entry.revival_leaf.page.2": "In addition, it can also extract the deadly part from nature, leaving your hands stained with toxins. This can also resonate with crops, make surrounding crops grow more vigorously.<br2/>However, it should also be noted that besides flames, sharp arrows can easily pierce you.",
 
+  "item.enigmaticaddons.etherium_core": "Etherium Core",
+
+  "tooltip.enigmaticaddons.etheriumCore1": "§dActive ability:",
+  "tooltip.enigmaticaddons.etheriumCore2": "§6- Activate Etherium Shield for §6%1$s§6 second.",
+  "tooltip.enigmaticaddons.etheriumCoreCooldown": "§dСooldown: §6%1$s§6 seconds",
+  "tooltip.enigmaticaddons.etheriumCore3": "§5- Make your Armor invisible.",
+  "tooltip.enigmaticaddons.etheriumCore4": "§5- Convert §6%1$s§5 of the damage received into",
+  "tooltip.enigmaticaddons.etheriumCore5": "§5  an increase for the next attack.",
+
+  "book.enigmaticaddons.entry.etherium_core.name": "Etherium Core",
+  "book.enigmaticaddons.entry.etherium_core.page.1": "One is the Heart of Golem, which can be seen everywhere in the world, and the other is the extremely precious Etherium Armor. By combining the two, you can obtain this spellstone that specializes in physical defense.<br2/>After using the Heart of the Golem as an inexhaustible energy source for the Etherium Shield, you can actively",
+  "book.enigmaticaddons.entry.etherium_core.page.2": "trigger the shield at any time through this spellstone, without being limited by your health condition. But not only that, the Heart of the Golem has also endowed the Shield with new abilities. It will record the damage you receive",
+  "book.enigmaticaddons.entry.etherium_core.page.3": "each time, convert and accumulate it, and infuse all its power into this blow in the next attack, repaying it well.<br2/>In addition, unlike other ordinary spellstones, pure ether power seems to have no weaknesses and can be used with confidence.",
 
   "item.enigmaticaddons.dragon_bow": "Dragon Breath Bow",
 
@@ -164,6 +177,17 @@
   "book.enigmaticaddons.entry.cursed_xp_scroll.page.1": "When your period reaches a certain stage, experience may not be very useful except for being used for others, but now, through the power of curse, the nature of this scroll has undergone a huge change.<br2/>The greedy curse of ignorance expands the hunting range of the scroll and devours most of the experience gained, leaving you with very little.",
   "book.enigmaticaddons.entry.cursed_xp_scroll.page.2": "Of course, the benefits brought by curse should not be underestimated, greatly enhancing your combat abilities. And please remember that the curse is always waiting for chances. When you are most vulnerable, it will take everything away.",
 
+  "item.enigmaticaddons.thunder_scroll": "Scroll of Thunder Embrace",
+
+  "tooltip.enigmaticaddons.thunderScroll1": "§5Sweep attack deals §6100% §5damage.",
+  "tooltip.enigmaticaddons.thunderScroll2": "§5Deal more damage to §darmored §5targets.",
+  "tooltip.enigmaticaddons.thunderScroll3": "§5After being hit much times,the target",
+  "tooltip.enigmaticaddons.thunderScroll4": "§5will be struck by §6lightning bolt§5.",
+
+  "book.enigmaticaddons.entry.thunder_scroll.name": "Scroll of Thunder",
+  "book.enigmaticaddons.entry.thunder_scroll.page.1": "Although the Will of Ocean can partly control the lightning, this is ultimately only indirect control and not fast enough.<br2/>We use the divine power to write spells that resonate with lightning onto scrolls, using spellstone as the foundation and swords as the medium to release the power. During the battle, this scroll will drive you to use sweeping attacks",
+  "book.enigmaticaddons.entry.thunder_scroll.page.2": "to expand the target of lightning. At the same time, electric attacks can also make it easier for you to penetrate the influence of armor, allowing you to better face high armor or group enemies.",
+
   "item.enigmaticaddons.hell_blade_charm": "Charm of Hell Blade",
 
   "tooltip.enigmaticaddons.hellBladeCharm1": "§5- Your armor will be ineffective.",
@@ -178,9 +202,21 @@
   "book.enigmaticaddons.entry.hell_blade_charm.page.1": "This charm seems to have been waiting for your arrival somewhere in nether, waiting for you to nurture it with your own blood.<br2/>Anyone who notices the powerful power this charm gives, even if it honestly indicates the cost, will inevitably be tempted to wear it. Generally speaking, these wearers end up with a",
   "book.enigmaticaddons.entry.hell_blade_charm.page.2": "very foolish death.<br2/>So, please wear this charm carefully, especially those who bear the seven curses at the same time.",
 
+  "item.enigmaticaddons.forger_gem": "Forger's Gem",
+
+  "tooltip.enigmaticaddons.forgerGem2" : "§5Half the experience required for forging",
+  "tooltip.enigmaticaddons.forgerGem3" : "§5and making your anvil more durable.",
+  "tooltip.enigmaticaddons.forgerGem4" : "§5Two unused tools can forge an§d unbreakable§5 one.",
+  "tooltip.enigmaticaddons.forgerGem5" : "§5",
+
+  "book.enigmaticaddons.entry.forger_gem.name": "Forger's Gem",
+  "book.enigmaticaddons.entry.forger_gem.page.1": "Forging items is an inevitable step to strength enhancement, but before reach the perfection, there will always be concerns due to expensive costs or anvil breakage.<br2/>This accessory will directly inject ancient forging techniques into your hands, effectively reducing the probability of anvil breakage, and utilizing the energy of",
+  "book.enigmaticaddons.entry.forger_gem.page.2": "the gem to reduce the cost, thereby increasing the upper limit of forging.<br2/>In addition, exquisite craft also allows you to create some Unbreakable creations with two identical new tools.",
+
   "item.enigmaticaddons.adventure_charm": "Emblem of Adventurer",
 
-  "tooltip.enigmaticaddons.adventureCharm" : "§5Preventing you from digging blocks.",
+  "tooltip.enigmaticaddons.adventureCharm1" : "§5Preventing you from digging blocks.",
+  "tooltip.enigmaticaddons.adventureCharm2" : "§5Holding §6Shift §5to disable.",
 
   "book.enigmaticaddons.entry.adventure_charm.name": "Emblem of Adventurer",
   "book.enigmaticaddons.entry.adventure_charm.page.1": "Creation and destruction are the supreme power of the God, but sometimes it can be difficult to grasp the force well, and a slight mistake can easily lead to unnecessary destruction. And in pure combat, you would prefer to transform this power into more practical forms.<br2/>Now this charm may temporarily meet your needs, converting",
@@ -255,15 +291,30 @@
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "After the baptism of Ichor, the desire for the book has transformed from acquisition to giving, further enhancing the magical power in the item.<br2/>If you allow it to come in close contact with any enchanted item, it'll sacrifice itself and double the level of enchantments in the item.",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "Breaking the limitations of the enchantments to a higher level is its true purpose.<br2/>By the way, not all limitation can be broken, and there are also some enchantments that cannot withstand the power and become ineffective.",
 
-  "item.enigmaticaddons.bless_ring": "Ring of Redemption [WIP]",
+  "item.enigmaticaddons.bless_stone": "Holy Stone",
+
+  "tooltip.enigmaticaddons.blessStone1": "§5Take this stone to seek death,",
+  "tooltip.enigmaticaddons.blessStone2": "§5hen the §6Ring of the Seven Curses§5will",
+  "tooltip.enigmaticaddons.blessStone3": "§5transform into the §6Ring of Redemption§5.",
+
+  "book.enigmaticaddons.entry.bless_stone.name": "The Choice of Rebirth",
+  "book.enigmaticaddons.entry.bless_stone.heading": "The True Redemption",
+  "book.enigmaticaddons.entry.bless_stone.page.1": "When you are hesitating whether to sacrifice yourself to break free from the Seven Curse Ring, there is a brand new choice in front of you.<br2/>The biggest problem is the Loss of Soul, and with the current materials and methods, it seems impossible. Although we can't break the connection, we could let the connection be presented in a new way.",
+  "book.enigmaticaddons.entry.bless_stone.page.2": "Slowly infiltrate a little pure power into the Ring of Seven Curses, and mobilize the bless to change the curses. However, all these operations still need to be carried out when the contact is vulnerable, that is, you need to face death.",
+  "book.enigmaticaddons.entry.bless_stone.page.3": "After the final soul loss, the Ring of Seven Curses will completely disappear from your sight and turn into a touch of gold on your hand.<br2/>The previous curses has completely disappeared, also the original bless has been partially preserved. Although most of the objects that once",
+  "book.enigmaticaddons.entry.bless_stone.page.4": "accompanied you are no longer usable, there are still some things that bear witness to your past filled with suffering, which is constantly approaching death. They still recognize your qualifications, are willing to break the shackles of the curse for you. <br2/>May you enjoy life to the fullest on days away from the curses.",
+
+  "item.enigmaticaddons.bless_ring": "Ring of Redemption",
 
   "tooltip.enigmaticaddons.blessRing1": "§dFor those who have experienced torment,",
   "tooltip.enigmaticaddons.blessRing2": "§dremaining blessings are still effective:",
   "tooltip.enigmaticaddons.blessRing3": "§5- You receive §6%1$s§5 damage from §6ANY§5 source.",
-  "tooltip.enigmaticaddons.blessRing4": "§5- §6+%1$s§d Looting Level",
-  "tooltip.enigmaticaddons.blessRing5": "§5- §6+%1$s§d Fortune Level",
-  "tooltip.enigmaticaddons.blessRing6": "§5- Unique drops from some creatures.",
-  "tooltip.enigmaticaddons.blessRing7": "§5- You can create and use unique relics.",
+  "tooltip.enigmaticaddons.blessRing4": "§5- Increase the damage you cause by §6%1$s",
+  "tooltip.enigmaticaddons.blessRing5": "§5- Obtain sustained §dRegeneration.",
+  "tooltip.enigmaticaddons.blessRing6": "§5- §6+%1$s§d Looting Level",
+  "tooltip.enigmaticaddons.blessRing7": "§5- §6+%1$s§d Fortune Level",
+  "tooltip.enigmaticaddons.blessRing8": "§5- Unique drops from some creatures.",
+  "tooltip.enigmaticaddons.blessRing9": "§5- You can create and use unique relics.",
   "tooltip.enigmaticaddons.blessRingLore1": "§5This ring shines with a unique",
   "tooltip.enigmaticaddons.blessRingLore2": "§5luster, remembering those years",
   "tooltip.enigmaticaddons.blessRingLore3": "§5of torment, and also, it is a ",

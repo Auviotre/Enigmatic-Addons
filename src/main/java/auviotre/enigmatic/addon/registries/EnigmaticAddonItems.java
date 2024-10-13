@@ -122,10 +122,27 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ObjectHolder(value = "enigmaticaddons:bless_amplifier", registryName = "item")
     public static final BlessAmplifier BLESS_AMPLIFIER = null;
 
-    @ConfigurableItem("Ring of Bless")
+    @ConfigurableItem("Scroll of Thunder Embrace")
+    @ObjectHolder(value = "enigmaticaddons:thunder_scroll", registryName = "item")
+    public static final ThunderScroll THUNDER_SCROLL = null;
+
+    @ConfigurableItem("Holy Stone")
+    @ObjectHolder(value = "enigmaticaddons:bless_stone", registryName = "item")
+    public static final BlessStone BLESS_STONE = null;
+
+    @ConfigurableItem("Ring of Redemption")
     @ObjectHolder(value = "enigmaticaddons:bless_ring", registryName = "item")
     public static final BlessRing BLESS_RING = null;
 
+    @ConfigurableItem("Etherium Core")
+    @ObjectHolder(value = "enigmaticaddons:etherium_core", registryName = "item")
+    public static final EtheriumCore ETHERIUM_CORE = null;
+
+    @ConfigurableItem("Forgers Gem")
+    @ObjectHolder(value = "enigmaticaddons:forger_gem", registryName = "item")
+    public static final ForgerGem FORGER_GEM = null;
+
+    @ConfigurableItem("Evil")
     @ObjectHolder(value = "enigmaticaddons:evil_dagger", registryName = "item")
     public static final EvilDagger EVIL_DAGGER = null;
 
@@ -153,7 +170,11 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("ichoroot", Ichoroot::new);
         this.register("pure_heart", PureHeart::new);
         this.register("bless_amplifier", BlessAmplifier::new);
+        this.register("thunder_scroll", ThunderScroll::new);
+        this.register("bless_stone", BlessStone::new);
         this.register("bless_ring", BlessRing::new);
+        this.register("etherium_core", EtheriumCore::new);
+        this.register("forger_gem", ForgerGem::new);
         this.register("evil_dagger", EvilDagger::new);
         this.register("common_potion", () -> new UltimatePotionAddon.Base(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_splash", () -> new UltimatePotionAddon.Splash(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));

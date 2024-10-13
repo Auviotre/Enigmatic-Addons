@@ -28,7 +28,7 @@ public class EvilDagger extends ItemBase {
     }
 
     public CreativeModeTab getCreativeTab() {
-         return null;
+        return null;
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity user) {
