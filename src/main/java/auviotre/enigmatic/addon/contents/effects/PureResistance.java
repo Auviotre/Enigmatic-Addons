@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class PureResistance extends MobEffect {
     public PureResistance() {
-        super(MobEffectCategory.BENEFICIAL, 16760651);
+        super(MobEffectCategory.BENEFICIAL, 0xffbf4b);
     }
 
     public void applyEffectTick(LivingEntity entity, int amplifier) {

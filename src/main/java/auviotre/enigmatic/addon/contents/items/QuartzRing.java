@@ -69,7 +69,6 @@ public class QuartzRing extends ItemBaseCurio {
         return tooltips;
     }
 
-
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
         attributes.put(Attributes.ARMOR, new AttributeModifier(UUID.fromString("3b312dce-5f84-c7e5-fa4b-8021a74c3d96"), "Armor bonus", defaultArmorBonus.getValue(), AttributeModifier.Operation.ADDITION));

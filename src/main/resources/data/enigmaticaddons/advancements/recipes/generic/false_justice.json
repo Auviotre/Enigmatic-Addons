@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:evil_essence"
-            ]
+            "items": ["enigmaticlegacy:evil_essence"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:false_justice"
-            ]
+            "items": ["enigmaticaddons:false_justice"]
           }
         ]
       }

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:diamond_sword"
-            ]
+            "items": ["minecraft:diamond_sword"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:adventure_charm"
-            ]
+            "items": ["enigmaticaddons:adventure_charm"]
           }
         ]
       }

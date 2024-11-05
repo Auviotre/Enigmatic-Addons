@@ -1,1609 +1,276 @@
 {
-  "credit": "Made with Blockbench",
-  "texture_size": [
-    32,
-    32
-  ],
+  "parent": "enigmaticaddons:item/3d/book",
+  "texture_size": [32, 32],
   "textures": {
     "book": "enigmaticaddons:item/3d/sanguinary_handbook"
   },
   "elements": [
     {
       "name": "paper",
-      "from": [
-        6.5,
-        1,
-        3
-      ],
-      "to": [
-        9.5,
-        15,
-        13
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [6.5, 1, 3],
+      "to": [9.5, 15, 13],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            0,
-            9.5,
-            7,
-            11
-          ],
-          "rotation": 270,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            0,
-            9.5,
-            7,
-            11
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            0,
-            8,
-            5,
-            9.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            0,
-            8,
-            5,
-            9.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [0, 9.5, 7, 11], "rotation": 270, "texture": "#book"},
+        "south": {"uv": [0, 9.5, 7, 11], "rotation": 90, "texture": "#book"},
+        "up": {"uv": [0, 8, 5, 9.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [0, 8, 5, 9.5], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "book_cover_top",
-      "from": [
-        9.5,
-        12,
-        2.5
-      ],
-      "to": [
-        10.5,
-        16,
-        13.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [9.5, 12, 2.5],
+      "to": [10.5, 16, 13.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            5,
-            0,
-            5.5,
-            2
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            5.5,
-            2,
-            0,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            13.5,
-            2,
-            13,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            5.5,
-            0,
-            0,
-            2
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            5.5,
-            0,
-            0,
-            0.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            0,
-            1.5,
-            5.5,
-            2
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [5, 0, 5.5, 2], "texture": "#book"},
+        "east": {"uv": [5.5, 2, 0, 0], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [13.5, 2, 13, 0], "rotation": 180, "texture": "#book"},
+        "west": {"uv": [5.5, 0, 0, 2], "texture": "#book"},
+        "up": {"uv": [5.5, 0, 0, 0.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [0, 1.5, 5.5, 2], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "book_cover_bottom",
-      "from": [
-        9.5,
-        0,
-        2.5
-      ],
-      "to": [
-        10.5,
-        4,
-        13.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [9.5, 0, 2.5],
+      "to": [10.5, 4, 13.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            5,
-            6,
-            5.5,
-            8
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            5.5,
-            8,
-            0,
-            6
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            13.5,
-            8,
-            13,
-            6
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            5.5,
-            6,
-            0,
-            8
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            5.5,
-            6,
-            0,
-            6.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            0,
-            7.5,
-            5.5,
-            8
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [5, 6, 5.5, 8], "texture": "#book"},
+        "east": {"uv": [5.5, 8, 0, 6], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [13.5, 8, 13, 6], "rotation": 180, "texture": "#book"},
+        "west": {"uv": [5.5, 6, 0, 8], "texture": "#book"},
+        "up": {"uv": [5.5, 6, 0, 6.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [0, 7.5, 5.5, 8], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "book_cover_left",
-      "from": [
-        9.5,
-        4,
-        2.5
-      ],
-      "to": [
-        10.5,
-        12,
-        5.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [9.5, 4, 2.5],
+      "to": [10.5, 12, 5.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            5,
-            2,
-            5.5,
-            6
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            5.5,
-            6,
-            4,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            4.5,
-            6,
-            4,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            5.5,
-            2,
-            4,
-            6
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            5.5,
-            2,
-            4,
-            2.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            4,
-            5.5,
-            5.5,
-            6
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [5, 2, 5.5, 6], "texture": "#book"},
+        "east": {"uv": [5.5, 6, 4, 2], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [4.5, 6, 4, 2], "rotation": 180, "texture": "#book"},
+        "west": {"uv": [5.5, 2, 4, 6], "texture": "#book"},
+        "up": {"uv": [5.5, 2, 4, 2.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [4, 5.5, 5.5, 6], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "book_cover_right",
-      "from": [
-        9.5,
-        4,
-        10.5
-      ],
-      "to": [
-        10.5,
-        12,
-        13.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [9.5, 4, 10.5],
+      "to": [10.5, 12, 13.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            1,
-            2,
-            1.5,
-            6
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            1.5,
-            6,
-            0,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            13.5,
-            6,
-            13,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            1.5,
-            2,
-            0,
-            6
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            1.5,
-            2,
-            0,
-            2.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            0,
-            5.5,
-            1.5,
-            6
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [1, 2, 1.5, 6], "texture": "#book"},
+        "east": {"uv": [1.5, 6, 0, 2], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [13.5, 6, 13, 2], "rotation": 180, "texture": "#book"},
+        "west": {"uv": [1.5, 2, 0, 6], "texture": "#book"},
+        "up": {"uv": [1.5, 2, 0, 2.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [0, 5.5, 1.5, 6], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "book_cover_indent",
-      "from": [
-        9.5,
-        4,
-        5.5
-      ],
-      "to": [
-        10,
-        12,
-        10.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [9.5, 4, 5.5],
+      "to": [10, 12, 10.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            3.5,
-            2,
-            4,
-            6
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            4,
-            6,
-            1.5,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            2,
-            6,
-            1.5,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            4,
-            2,
-            1.5,
-            6
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            4,
-            2,
-            1.5,
-            2.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            1.5,
-            5.5,
-            4,
-            6
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [3.5, 2, 4, 6], "texture": "#book"},
+        "east": {"uv": [4, 6, 1.5, 2], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [2, 6, 1.5, 2], "rotation": 180, "texture": "#book"},
+        "west": {"uv": [4, 2, 1.5, 6], "texture": "#book"},
+        "up": {"uv": [4, 2, 1.5, 2.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [1.5, 5.5, 4, 6], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "cursed_rune",
-      "from": [
-        9.75,
-        9.5,
-        6
-      ],
-      "to": [
-        10.25,
-        10.5,
-        10
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [9.75, 9.5, 6],
+      "to": [10.25, 10.5, 10],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            16,
-            0.5,
-            15.5,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            16,
-            0.5,
-            14,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            14.5,
-            0.5,
-            14,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            16,
-            0.5,
-            14,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            14,
-            0,
-            16,
-            0.5
-          ],
-          "rotation": 270,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            14,
-            0,
-            16,
-            0.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [16, 0.5, 15.5, 0], "rotation": 180, "texture": "#book"},
+        "east": {"uv": [16, 0.5, 14, 0], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [14.5, 0.5, 14, 0], "rotation": 180, "texture": "#book"},
+        "west": {"uv": [16, 0.5, 14, 0], "rotation": 180, "texture": "#book"},
+        "up": {"uv": [14, 0, 16, 0.5], "rotation": 270, "texture": "#book"},
+        "down": {"uv": [14, 0, 16, 0.5], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "cursed_rune",
-      "from": [
-        9.75,
-        7,
-        6.5
-      ],
-      "to": [
-        10.25,
-        9,
-        7.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          7.5,
-          7.5
-        ]
-      },
+      "from": [9.75, 7, 6.5],
+      "to": [10.25, 9, 7.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 7.5, 7.5]},
       "faces": {
-        "north": {
-          "uv": [
-            16,
-            2,
-            15.5,
-            1
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            16,
-            2,
-            15.5,
-            1
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            16,
-            2,
-            15.5,
-            1
-          ],
-          "rotation": 270,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            16,
-            2,
-            15.5,
-            1
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            15.5,
-            1,
-            16,
-            1.5
-          ],
-          "rotation": 270,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            15.5,
-            1,
-            16,
-            1.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [16, 2, 15.5, 1], "rotation": 180, "texture": "#book"},
+        "east": {"uv": [16, 2, 15.5, 1], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [16, 2, 15.5, 1], "rotation": 270, "texture": "#book"},
+        "west": {"uv": [16, 2, 15.5, 1], "rotation": 180, "texture": "#book"},
+        "up": {"uv": [15.5, 1, 16, 1.5], "rotation": 270, "texture": "#book"},
+        "down": {"uv": [15.5, 1, 16, 1.5], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "cursed_rune",
-      "from": [
-        9.75,
-        8.5,
-        8
-      ],
-      "to": [
-        10.25,
-        9.5,
-        9
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          9
-        ]
-      },
+      "from": [9.75, 8.5, 8],
+      "to": [10.25, 9.5, 9],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 9]},
       "faces": {
-        "north": {
-          "uv": [
-            15,
-            1,
-            14.5,
-            0.5
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            15,
-            1,
-            14.5,
-            0.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            15,
-            1,
-            14.5,
-            0.5
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            15,
-            1,
-            14.5,
-            0.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            15,
-            1,
-            14.5,
-            0.5
-          ],
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            15,
-            1,
-            14.5,
-            0.5
-          ],
-          "texture": "#book"
-        }
+        "north": {"uv": [15, 1, 14.5, 0.5], "texture": "#book"},
+        "east": {"uv": [15, 1, 14.5, 0.5], "texture": "#book"},
+        "south": {"uv": [15, 1, 14.5, 0.5], "texture": "#book"},
+        "west": {"uv": [15, 1, 14.5, 0.5], "texture": "#book"},
+        "up": {"uv": [15, 1, 14.5, 0.5], "texture": "#book"},
+        "down": {"uv": [15, 1, 14.5, 0.5], "texture": "#book"}
       }
     },
     {
       "name": "cursed_rune",
-      "from": [
-        9.75,
-        6.5,
-        9
-      ],
-      "to": [
-        10.25,
-        7.5,
-        10
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          6,
-          10
-        ]
-      },
+      "from": [9.75, 6.5, 9],
+      "to": [10.25, 7.5, 10],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 6, 10]},
       "faces": {
-        "north": {
-          "uv": [
-            14.5,
-            2,
-            14,
-            1.5
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            14.5,
-            2,
-            14,
-            1.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            14.5,
-            2,
-            14,
-            1.5
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            14.5,
-            2,
-            14,
-            1.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            14.5,
-            2,
-            14,
-            1.5
-          ],
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            14.5,
-            2,
-            14,
-            1.5
-          ],
-          "texture": "#book"
-        }
+        "north": {"uv": [14.5, 2, 14, 1.5], "texture": "#book"},
+        "east": {"uv": [14.5, 2, 14, 1.5], "texture": "#book"},
+        "south": {"uv": [14.5, 2, 14, 1.5], "texture": "#book"},
+        "west": {"uv": [14.5, 2, 14, 1.5], "texture": "#book"},
+        "up": {"uv": [14.5, 2, 14, 1.5], "texture": "#book"},
+        "down": {"uv": [14.5, 2, 14, 1.5], "texture": "#book"}
       }
     },
     {
       "name": "cursed_rune",
-      "from": [
-        9.75,
-        5.5,
-        6
-      ],
-      "to": [
-        10.25,
-        6.5,
-        10
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [9.75, 5.5, 6],
+      "to": [10.25, 6.5, 10],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            16,
-            2.5,
-            15.5,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            16,
-            2.5,
-            14,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            14.5,
-            2.5,
-            14,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            16,
-            2.5,
-            14,
-            2
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            14,
-            2,
-            16,
-            2.5
-          ],
-          "rotation": 270,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            14,
-            2,
-            16,
-            2.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [16, 2.5, 15.5, 2], "rotation": 180, "texture": "#book"},
+        "east": {"uv": [16, 2.5, 14, 2], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [14.5, 2.5, 14, 2], "rotation": 180, "texture": "#book"},
+        "west": {"uv": [16, 2.5, 14, 2], "rotation": 180, "texture": "#book"},
+        "up": {"uv": [14, 2, 16, 2.5], "rotation": 270, "texture": "#book"},
+        "down": {"uv": [14, 2, 16, 2.5], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "book_cover_back",
-      "from": [
-        5.5,
-        0,
-        2.5
-      ],
-      "to": [
-        6.5,
-        16,
-        13.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [5.5, 0, 2.5],
+      "to": [6.5, 16, 13.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            5.5,
-            8,
-            6,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            5.5,
-            8,
-            11,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            11,
-            0,
-            11.5,
-            8
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            5.5,
-            0,
-            11,
-            8
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            5.5,
-            0,
-            11,
-            0.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            11,
-            7.5,
-            5.5,
-            8
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [5.5, 8, 6, 0], "rotation": 180, "texture": "#book"},
+        "east": {"uv": [5.5, 8, 11, 0], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [11, 0, 11.5, 8], "texture": "#book"},
+        "west": {"uv": [5.5, 0, 11, 8], "texture": "#book"},
+        "up": {"uv": [5.5, 0, 11, 0.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [11, 7.5, 5.5, 8], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "book_spine",
-      "from": [
-        6.5,
-        0,
-        12.5
-      ],
-      "to": [
-        9.5,
-        16,
-        13.5
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          8
-        ]
-      },
+      "from": [6.5, 0, 12.5],
+      "to": [9.5, 16, 13.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {
-          "uv": [
-            12.5,
-            0,
-            11,
-            8
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            12,
-            8,
-            12.5,
-            0
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            11.5,
-            0,
-            13,
-            8
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            11,
-            0,
-            11.5,
-            8
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            13,
-            0,
-            11.5,
-            0.5
-          ],
-          "rotation": 180,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            11.5,
-            7.5,
-            13,
-            8
-          ],
-          "texture": "#book"
-        }
+        "north": {"uv": [12.5, 0, 11, 8], "texture": "#book"},
+        "east": {"uv": [12, 8, 12.5, 0], "rotation": 180, "texture": "#book"},
+        "south": {"uv": [11.5, 0, 13, 8], "texture": "#book"},
+        "west": {"uv": [11, 0, 11.5, 8], "texture": "#book"},
+        "up": {"uv": [13, 0, 11.5, 0.5], "rotation": 180, "texture": "#book"},
+        "down": {"uv": [11.5, 7.5, 13, 8], "texture": "#book"}
       }
     },
     {
       "name": "trim_up",
-      "from": [
-        6.45,
-        10.95,
-        12.45
-      ],
-      "to": [
-        9.55,
-        16.05,
-        13.55
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          9.5,
-          14,
-          9.5
-        ]
-      },
+      "from": [6.45, 10.95, 12.45],
+      "to": [9.55, 16.05, 13.55],
+      "rotation": {"angle": 0, "axis": "y", "origin": [9.5, 14, 9.5]},
       "faces": {
-        "north": {
-          "uv": [
-            10,
-            8,
-            11.5,
-            10.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            10,
-            8,
-            11.5,
-            10.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            10,
-            8,
-            11.5,
-            8.5
-          ],
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            10,
-            10,
-            11.5,
-            10.5
-          ],
-          "texture": "#book"
-        }
+        "north": {"uv": [10, 8, 11.5, 10.5], "texture": "#book"},
+        "south": {"uv": [10, 8, 11.5, 10.5], "texture": "#book"},
+        "up": {"uv": [10, 8, 11.5, 8.5], "texture": "#book"},
+        "down": {"uv": [10, 10, 11.5, 10.5], "texture": "#book"}
       }
     },
     {
       "name": "trim_down",
-      "from": [
-        6.45,
-        -0.05,
-        12.45
-      ],
-      "to": [
-        9.55,
-        5.05,
-        13.55
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          9.5,
-          14,
-          9.5
-        ]
-      },
+      "from": [6.45, -0.05, 12.45],
+      "to": [9.55, 5.05, 13.55],
+      "rotation": {"angle": 0, "axis": "y", "origin": [9.5, 14, 9.5]},
       "faces": {
-        "north": {
-          "uv": [
-            10,
-            8,
-            11.5,
-            10.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            10,
-            8,
-            11.5,
-            10.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            10,
-            8,
-            11.5,
-            8.5
-          ],
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            10,
-            10,
-            11.5,
-            10.5
-          ],
-          "texture": "#book"
-        }
+        "north": {"uv": [10, 8, 11.5, 10.5], "texture": "#book"},
+        "south": {"uv": [10, 8, 11.5, 10.5], "texture": "#book"},
+        "up": {"uv": [10, 8, 11.5, 8.5], "texture": "#book"},
+        "down": {"uv": [10, 10, 11.5, 10.5], "texture": "#book"}
       }
     },
     {
       "name": "trim1",
-      "from": [
-        5.95,
-        5.95,
-        2.2
-      ],
-      "to": [
-        10.05,
-        9.05,
-        3.3
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          9,
-          6,
-          3.25
-        ]
-      },
+      "from": [5.95, 5.95, 2.2],
+      "to": [10.05, 9.05, 3.3],
+      "rotation": {"angle": 0, "axis": "y", "origin": [9, 6, 3.25]},
       "faces": {
-        "north": {
-          "uv": [
-            6,
-            13,
-            8,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            7.5,
-            13,
-            8,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            6,
-            13,
-            8,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            6,
-            13,
-            6.5,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            6,
-            13,
-            8,
-            13.5
-          ],
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            6,
-            13,
-            8,
-            13.5
-          ],
-          "texture": "#book"
-        }
+        "north": {"uv": [6, 13, 8, 14.5], "texture": "#book"},
+        "east": {"uv": [7.5, 13, 8, 14.5], "texture": "#book"},
+        "south": {"uv": [6, 13, 8, 14.5], "texture": "#book"},
+        "west": {"uv": [6, 13, 6.5, 14.5], "texture": "#book"},
+        "up": {"uv": [6, 13, 8, 13.5], "texture": "#book"},
+        "down": {"uv": [6, 13, 8, 13.5], "texture": "#book"}
       }
     },
     {
       "name": "trim2",
-      "from": [
-        5.95,
-        5.95,
-        12.7
-      ],
-      "to": [
-        10.05,
-        9.05,
-        13.8
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          9,
-          6,
-          13.75
-        ]
-      },
+      "from": [5.95, 5.95, 12.7],
+      "to": [10.05, 9.05, 13.8],
+      "rotation": {"angle": 0, "axis": "y", "origin": [9, 6, 13.75]},
       "faces": {
-        "north": {
-          "uv": [
-            6,
-            13,
-            8,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            7.5,
-            13,
-            8,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            6,
-            13,
-            8,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            6,
-            13,
-            6.5,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            6,
-            13,
-            8,
-            13.5
-          ],
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            6,
-            13,
-            8,
-            13.5
-          ],
-          "texture": "#book"
-        }
+        "north": {"uv": [6, 13, 8, 14.5], "texture": "#book"},
+        "east": {"uv": [7.5, 13, 8, 14.5], "texture": "#book"},
+        "south": {"uv": [6, 13, 8, 14.5], "texture": "#book"},
+        "west": {"uv": [6, 13, 6.5, 14.5], "texture": "#book"},
+        "up": {"uv": [6, 13, 8, 13.5], "texture": "#book"},
+        "down": {"uv": [6, 13, 8, 13.5], "texture": "#book"}
       }
     },
     {
       "name": "trim3",
-      "from": [
-        9.7,
-        5.95,
-        1.95
-      ],
-      "to": [
-        10.8,
-        9.05,
-        14.05
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          9.75,
-          6,
-          3
-        ]
-      },
+      "from": [9.7, 5.95, 1.95],
+      "to": [10.8, 9.05, 14.05],
+      "rotation": {"angle": 0, "axis": "y", "origin": [9.75, 6, 3]},
       "faces": {
-        "north": {
-          "uv": [
-            5.5,
-            13,
-            6,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            0,
-            13,
-            6,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            0,
-            13,
-            0.5,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            0,
-            13,
-            6,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            0,
-            13,
-            6,
-            13.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            0,
-            14,
-            6,
-            14.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [5.5, 13, 6, 14.5], "texture": "#book"},
+        "east": {"uv": [0, 13, 6, 14.5], "texture": "#book"},
+        "south": {"uv": [0, 13, 0.5, 14.5], "texture": "#book"},
+        "west": {"uv": [0, 13, 6, 14.5], "texture": "#book"},
+        "up": {"uv": [0, 13, 6, 13.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [0, 14, 6, 14.5], "rotation": 90, "texture": "#book"}
       }
     },
     {
       "name": "trim4",
-      "from": [
-        5.2,
-        5.95,
-        1.95
-      ],
-      "to": [
-        6.3,
-        9.05,
-        14.05
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          5.25,
-          6,
-          3
-        ]
-      },
+      "from": [5.2, 5.95, 1.95],
+      "to": [6.3, 9.05, 14.05],
+      "rotation": {"angle": 0, "axis": "y", "origin": [5.25, 6, 3]},
       "faces": {
-        "north": {
-          "uv": [
-            5.5,
-            13,
-            6,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "east": {
-          "uv": [
-            0,
-            13,
-            6,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "south": {
-          "uv": [
-            0,
-            13,
-            0.5,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "west": {
-          "uv": [
-            0,
-            13,
-            6,
-            14.5
-          ],
-          "texture": "#book"
-        },
-        "up": {
-          "uv": [
-            0,
-            13,
-            6,
-            13.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        },
-        "down": {
-          "uv": [
-            0,
-            14,
-            6,
-            14.5
-          ],
-          "rotation": 90,
-          "texture": "#book"
-        }
+        "north": {"uv": [5.5, 13, 6, 14.5], "texture": "#book"},
+        "east": {"uv": [0, 13, 6, 14.5], "texture": "#book"},
+        "south": {"uv": [0, 13, 0.5, 14.5], "texture": "#book"},
+        "west": {"uv": [0, 13, 6, 14.5], "texture": "#book"},
+        "up": {"uv": [0, 13, 6, 13.5], "rotation": 90, "texture": "#book"},
+        "down": {"uv": [0, 14, 6, 14.5], "rotation": 90, "texture": "#book"}
       }
     }
   ],
-  "display": {
-    "thirdperson_righthand": {
-      "rotation": [
-        10,
-        180,
-        0
-      ],
-      "translation": [
-        0,
-        -0.5,
-        0
-      ],
-      "scale": [
-        0.7,
-        0.7,
-        0.7
-      ]
-    },
-    "thirdperson_lefthand": {
-      "rotation": [
-        10,
-        0,
-        0
-      ],
-      "translation": [
-        0,
-        -0.5,
-        0
-      ],
-      "scale": [
-        0.7,
-        0.7,
-        0.7
-      ]
-    },
-    "firstperson_righthand": {
-      "rotation": [
-        -20,
-        -160,
-        0
-      ],
-      "translation": [
-        0,
-        2.75,
-        0
-      ],
-      "scale": [
-        0.6,
-        0.6,
-        0.6
-      ]
-    },
-    "firstperson_lefthand": {
-      "rotation": [
-        -20,
-        20,
-        0
-      ],
-      "translation": [
-        0,
-        2.75,
-        0
-      ],
-      "scale": [
-        0.6,
-        0.6,
-        0.6
-      ]
-    },
-    "ground": {
-      "translation": [
-        0,
-        2.75,
-        0
-      ],
-      "scale": [
-        0.75,
-        0.75,
-        0.75
-      ]
-    },
-    "head": {
-      "rotation": [
-        90,
-        90,
-        0
-      ],
-      "translation": [
-        0,
-        9.25,
-        0
-      ]
-    },
-    "fixed": {
-      "rotation": [
-        0,
-        90,
-        0
-      ],
-      "translation": [
-        0,
-        0,
-        -2.5
-      ]
-    }
-  },
   "groups": [
     0,
     {
       "name": "book_cover_front",
-      "origin": [
-        8,
-        8,
-        8
-      ],
+      "origin": [8, 8, 8],
       "color": 0,
       "children": [
         1,
@@ -1613,51 +280,24 @@
         5,
         {
           "name": "runes",
-          "origin": [
-            8,
-            8,
-            8
-          ],
+          "origin": [8, 8, 8],
           "color": 0,
-          "children": [
-            6,
-            7,
-            8,
-            9,
-            10
-          ]
+          "children": [6, 7, 8, 9, 10]
         }
       ]
     },
     11,
     {
       "name": "book_spine",
-      "origin": [
-        8,
-        8,
-        8
-      ],
+      "origin": [8, 8, 8],
       "color": 0,
-      "children": [
-        12,
-        13,
-        14
-      ]
+      "children": [12, 13, 14]
     },
     {
       "name": "trim",
-      "origin": [
-        8,
-        8,
-        8
-      ],
+      "origin": [8, 8, 8],
       "color": 0,
-      "children": [
-        15,
-        16,
-        17,
-        18
-      ]
+      "children": [15, 16, 17, 18]
     }
   ]
 }

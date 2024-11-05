@@ -1,0 +1,6 @@
+{
+  "parent": "enigmaticaddons:item/gui/spear_using",
+  "textures": {
+    "layer0": "enigmaticaddons:item/astral_spear"
+  }
+}

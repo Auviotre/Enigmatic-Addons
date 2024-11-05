@@ -7,10 +7,10 @@ import com.aizistral.enigmaticlegacy.gui.GUIUtils;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,8 +25,7 @@ public class ClientEventHandler {
     public void onTooltipRendering(RenderTooltipEvent.@NotNull Color event) {
         ItemStack stack = event.getItemStack();
         if (!stack.isEmpty()) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBase && !ForgeRegistries.ITEMS.getKey(item).getNamespace().equals(EnigmaticLegacy.MODID)) {
+            if (stack.getItem() instanceof ItemBase item && !ForgeRegistries.ITEMS.getKey(item).getNamespace().equals(EnigmaticLegacy.MODID)) {
                 int background = GUIUtils.DEFAULT_BACKGROUND_COLOR;
                 int borderStart = GUIUtils.DEFAULT_BORDER_COLOR_START;
                 int borderEnd = GUIUtils.DEFAULT_BORDER_COLOR_END;
@@ -47,4 +46,9 @@ public class ClientEventHandler {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public void onPreRenderHUD(RenderGuiOverlayEvent.Pre event) {
+
+    }
 }

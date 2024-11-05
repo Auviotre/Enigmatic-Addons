@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:cursed_stone"
-            ]
+            "items": ["enigmaticlegacy:cursed_stone"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:bless_stone"
-            ]
+            "items": ["enigmaticaddons:bless_stone"]
           }
         ]
       }

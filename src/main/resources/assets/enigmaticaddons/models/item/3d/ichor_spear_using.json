@@ -1,0 +1,6 @@
+{
+  "parent": "enigmaticaddons:item/3d/spear_using",
+  "textures": {
+    "layer0": "enigmaticaddons:item/3d/ichor_spear"
+  }
+}

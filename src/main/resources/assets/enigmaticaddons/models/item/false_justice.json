@@ -1,6 +1,18 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "enigmaticaddons:item/false_justice"
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "enigmaticaddons:item/3d/false_justice"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "enigmaticaddons:item/gui/false_justice"
+    },
+    "fixed": {
+      "parent": "enigmaticaddons:item/3d/false_justice"
+    },
+    "ground": {
+      "parent": "enigmaticaddons:item/3d/false_justice"
+    }
   }
 }

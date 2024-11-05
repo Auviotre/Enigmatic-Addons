@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "enigmaticaddons:bless_ring"
+    },
+    "title": {
+      "translate": "advancement.enigmaticaddons:blessRing"
+    },
+    "description": {
+      "translate": "advancement.enigmaticaddons:blessRing.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true,
+    "frame": "challenge"
+  },
+  "rewards": {
+    "experience": 250
+  },
+  "parent": "enigmaticaddons:main/pure_heart",
+  "criteria": {
+    "ring": {
+      "trigger": "enigmaticaddons:equip_bless_ring"
+    }
+  }
+}

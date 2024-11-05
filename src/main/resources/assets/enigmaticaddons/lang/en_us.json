@@ -128,9 +128,13 @@
   "tooltip.enigmaticaddons.etheriumCore1": "§dActive ability:",
   "tooltip.enigmaticaddons.etheriumCore2": "§6- Activate Etherium Shield for §6%1$s§6 second.",
   "tooltip.enigmaticaddons.etheriumCoreCooldown": "§dСooldown: §6%1$s§6 seconds",
-  "tooltip.enigmaticaddons.etheriumCore3": "§5- Make your Armor invisible.",
-  "tooltip.enigmaticaddons.etheriumCore4": "§5- Convert §6%1$s§5 of the damage received into",
-  "tooltip.enigmaticaddons.etheriumCore5": "§5  an increase for the next attack.",
+  "tooltip.enigmaticaddons.etheriumCore3": "§5- §6%1$s§5 Armor，§6%2$s§5 Toughness",
+  "tooltip.enigmaticaddons.etheriumCore5": "§5- Make your Armor invisible.",
+  "tooltip.enigmaticaddons.etheriumCore5_alt": "§4- Make your Armor invisible.",
+  "tooltip.enigmaticaddons.etheriumCore6": "§5- Convert §6%1$s§5 of the damage received into",
+  "tooltip.enigmaticaddons.etheriumCore7": "§5  an increase for the next attack.",
+  "tooltip.enigmaticaddons.etheriumCore8": "§5- Immunity to pressure, pricking and explosion damage.",
+  "tooltip.enigmaticaddons.etheriumCore9": "§5Hold down §6Shift §5and right-click to switch armor visibility.",
 
   "book.enigmaticaddons.entry.etherium_core.name": "Etherium Core",
   "book.enigmaticaddons.entry.etherium_core.page.1": "One is the Heart of Golem, which can be seen everywhere in the world, and the other is the extremely precious Etherium Armor. By combining the two, you can obtain this spellstone that specializes in physical defense.<br2/>After using the Heart of the Golem as an inexhaustible energy source for the Etherium Shield, you can actively",
@@ -143,6 +147,8 @@
   "book.enigmaticaddons.entry.dragon_bow.page.1": "Can Dragon Breath only be used for brewing? You may have thought about this issue. Recalling the ender dragon using its deadly dragon breath to burn your armor and skin, you also want others to experience it. And the strange dragon head hanging on the ender ship that can only be used for decoration...<br2/>Therefore, driven by various",
   "book.enigmaticaddons.entry.dragon_bow.page.2": "reasons, this bow infused with magic was born.<br2/>This bow can shoot dragon breath arrows without any ammo, but it requires a slightly longer charging time. When the dragon breath arrow",
   "book.enigmaticaddons.entry.dragon_bow.page.3": "hits, it will turn into a ranged dragon breath and try to retain or chase every person passing by in its way.<br2/>However, one thing to note is that this bow only allows you to utilize the power of the dragon breath. It cannot make you roam in the dragon breath Happily and Foolishly.",
+
+  "item.enigmaticaddons.astral_spear": "Astral Spear [WIP]",
 
   "item.enigmaticaddons.sanguinary_handbook": "Sanguinary Hunting Handbook",
 
@@ -206,8 +212,8 @@
 
   "tooltip.enigmaticaddons.forgerGem2" : "§5Half the experience required for forging",
   "tooltip.enigmaticaddons.forgerGem3" : "§5and making your anvil more durable.",
-  "tooltip.enigmaticaddons.forgerGem4" : "§5Two unused tools can forge an§d unbreakable§5 one.",
-  "tooltip.enigmaticaddons.forgerGem5" : "§5",
+  "tooltip.enigmaticaddons.forgerGem4" : "§5Two unused tools without any enchantment",
+  "tooltip.enigmaticaddons.forgerGem5" : "§5can forge an§d unbreakable§5 one.",
 
   "book.enigmaticaddons.entry.forger_gem.name": "Forger's Gem",
   "book.enigmaticaddons.entry.forger_gem.page.1": "Forging items is an inevitable step to strength enhancement, but before reach the perfection, there will always be concerns due to expensive costs or anvil breakage.<br2/>This accessory will directly inject ancient forging techniques into your hands, effectively reducing the probability of anvil breakage, and utilizing the energy of",
@@ -275,6 +281,26 @@
   "book.enigmaticaddons.entry.ichoroot.page.1": "When people are arguing over carrots and potatoes, the neglected beetroot appears particularly pitiful. Now with the assistance of ichor, let it be refreshed!<br2/>Only a small amount of ichor is needed to double the nutrition of beetroot and make it easy to digest, while also demonstrating divinity and purification power within it.",
   "book.enigmaticaddons.entry.ichoroot.page.2": "Ichor can purify the negative effects and provide absorption. After consuming a certain amount, the protection of divinity will be revealed to resist certain harm for you.",
 
+  "item.enigmaticaddons.ichor_spear": "Ichor Spear",
+
+  "tooltip.enigmaticaddons.ichorSpear": "§5A one-time corruption throwing spear",
+
+  "book.enigmaticaddons.entry.ichor_spear.name": "Ichor Spear",
+  "book.enigmaticaddons.entry.ichor_spear.page.1": "You should know that the noble ichor are always different from ordinary beings, especially when they drip onto armor and make a sizzling sound.<br2/>Carefully apply the ichor droplet onto the stable gold spearhead, along with other catalysts, and simply spear is completed. By piercing it into the enemy's armor, the danger",
+  "book.enigmaticaddons.entry.ichor_spear.page.2": "ichor will corrode their armor and weaken their defense. <br2/>But there is a fatal problem - the spear is disposable. This can only be compensated for by its simple and easily accessible features.",
+
+  "item.enigmaticaddons.the_bless": "The Bless",
+
+  "tooltip.enigmaticaddons.theBless1": "§5In the endless journey of suffering,",
+  "tooltip.enigmaticaddons.theBless2": "§5using this to light up the way forward.",
+  "tooltip.enigmaticaddons.theBless3": "§5Causing more damage to the target §don fire §5and",
+  "tooltip.enigmaticaddons.theBless4": "§5remove the §6beneficial§5 effects on it.",
+  "tooltip.enigmaticaddons.theBless5": "§5The holder will not catch fire.",
+
+  "book.enigmaticaddons.entry.the_bless.name": "The Bless",
+  "book.enigmaticaddons.entry.the_bless.page.1": "This is still a book of knowledge, existing on both sides of The Twist as one.<br2/>By utilizing the evil essence, the purification effect of ichor shifts this book towards a more conservative side, increasing your chances of surviving frequent hits and making you immune to unquenchable flames. This is one of the blessing.",
+  "book.enigmaticaddons.entry.the_bless.page.2": "Of course, this book is not limited to this, incineration power of The Acknowledgment is further strengthened here, removing all the gospel of the incinerator and giving them a more severe blow.",
+
   "item.enigmaticaddons.pure_heart": "Pure Heart",
 
   "book.enigmaticaddons.entry.pure_heart.name": "Pure Heart",
@@ -290,6 +316,8 @@
   "book.enigmaticaddons.entry.bless_amplifier.name": "Tome of Divination",
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "After the baptism of Ichor, the desire for the book has transformed from acquisition to giving, further enhancing the magical power in the item.<br2/>If you allow it to come in close contact with any enchanted item, it'll sacrifice itself and double the level of enchantments in the item.",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "Breaking the limitations of the enchantments to a higher level is its true purpose.<br2/>By the way, not all limitation can be broken, and there are also some enchantments that cannot withstand the power and become ineffective.",
+
+  "block.enigmaticaddons.radiant_beacon": "Radiant Beacon",
 
   "item.enigmaticaddons.bless_stone": "Holy Stone",
 
@@ -325,15 +353,19 @@
 
   "item.enigmaticaddons.evil_dagger": "[WIP]",
 
+  "death.attack.evil_curse": "%1$s",
   "death.attack.false_justice": "%1$s disappeared into the void of judgement.",
 
+  "entity.enigmaticaddons.astral_spear": "Astral Spear",
   "entity.enigmaticaddons.cobweb_ball": "Spider Web Ball",
   "entity.enigmaticaddons.dragon_breath_arrow": "Dragon Breath Arrow",
+  "entity.enigmaticaddons.ichor_spear": "Ichor Spear",
   "entity.enigmaticaddons.split_dragon_breath": "Split Dragon Breath",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "Ultimate Dragon Fireball",
 
   "effect.enigmaticaddons.dragon_breath": "Dragon Breath",
   "effect.enigmaticaddons.frozen_heart": "Frozen Heart",
+  "effect.enigmaticaddons.ichor_corrosion": "Ichor Corrosion",
   "effect.enigmaticaddons.pure_resistance": "Pure Resistance",
 
   "item.enigmaticaddons.common_potion.effect.frozen_heart": "Potion of Frozen Heart",
@@ -401,5 +433,20 @@
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_strength": "Lingering Potion of Strength",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_weakness": "Lingering Potion of Weakness",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_haste": "Lingering Potion of Haste",
-  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "Lingering Potion of Mining Fatigue"
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "Lingering Potion of Mining Fatigue",
+
+  "advancement.enigmaticaddons:pureHeart": "Unholy Purification",
+  "advancement.enigmaticaddons:pureHeart.desc": "Create the Pure Heart",
+
+  "advancement.enigmaticaddons:primevalCube": "Trace to the Source",
+  "advancement.enigmaticaddons:primevalCube.desc": "Create Primeval Cube",
+
+  "advancement.enigmaticaddons:earthPromise": "Never Make Promises Easily",
+  "advancement.enigmaticaddons:earthPromise.desc": "Obtain a promise from the earth",
+
+  "advancement.enigmaticaddons:falseJustice": "Chaos Extraction",
+  "advancement.enigmaticaddons:falseJustice.desc": "Using the Evil Essence to craft this book of chaos",
+
+  "advancement.enigmaticaddons:blessRing": "Fate Reverses",
+  "advancement.enigmaticaddons:blessRing.desc": "Break the Ring of Seven Curses to obtain redemption"
 }

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:pure_heart"
-            ]
+            "items": ["enigmaticaddons:pure_heart"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:bless_amplifier"
-            ]
+            "items": ["enigmaticaddons:bless_amplifier"]
           }
         ]
       }

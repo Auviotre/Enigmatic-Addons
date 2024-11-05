@@ -1,0 +1,24 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "enigmaticaddons:item/3d/astral_spear_using"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "enigmaticaddons:item/gui/astral_spear"
+    },
+    "fixed": {
+      "parent": "enigmaticaddons:item/gui/astral_spear"
+    },
+    "ground": {
+      "parent": "enigmaticaddons:item/gui/astral_spear"
+    },
+    "firstperson_righthand": {
+      "parent": "enigmaticaddons:item/gui/astral_spear_using"
+    },
+    "firstperson_lefthand": {
+      "parent": "enigmaticaddons:item/gui/astral_spear_using"
+    }
+  }
+}

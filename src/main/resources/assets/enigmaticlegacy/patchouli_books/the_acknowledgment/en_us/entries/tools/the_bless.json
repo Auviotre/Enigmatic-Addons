@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.the_bless.name",
+  "icon": "enigmaticaddons:the_bless",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/the_bless",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 75,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.the_bless.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:the_bless",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.the_bless.page.2"
+    }
+  ]
+}

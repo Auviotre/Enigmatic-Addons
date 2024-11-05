@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:ichor_spear"
+    }
+  ],
+  "pattern": [
+    " QG",
+    "DXQ",
+    "XD "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:blaze_rod"
+    },
+    "Q": {
+      "item": "enigmaticaddons:ichor_droplet"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "D": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:ichor_spear",
+    "count": 4
+  }
+}

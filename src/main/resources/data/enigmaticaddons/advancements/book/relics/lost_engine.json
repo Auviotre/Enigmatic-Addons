@@ -7,9 +7,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:lost_engine"
-            ]
+            "items": ["enigmaticaddons:lost_engine"]
           }
         ]
       }

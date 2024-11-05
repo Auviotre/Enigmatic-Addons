@@ -1,6 +1,18 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "enigmaticaddons:item/void_tome"
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "enigmaticaddons:item/3d/void_tome"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "enigmaticaddons:item/gui/void_tome"
+    },
+    "fixed": {
+      "parent": "enigmaticaddons:item/3d/void_tome"
+    },
+    "ground": {
+      "parent": "enigmaticaddons:item/3d/void_tome"
+    }
   }
 }

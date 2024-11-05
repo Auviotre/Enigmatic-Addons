@@ -110,8 +110,8 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:4986594")
     implementation fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-81-FORGE")
 
-//    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-//    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 
     runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}:api")
@@ -121,8 +121,10 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
 //    implementation fg.deobf("curse.maven:appleskin-248787:4770828")
-    implementation fg.deobf("curse.maven:curios-309927:5680164")
-    implementation fg.deobf("curse.maven:farmers-delight-${farmersdelight_id}:${farmersdelight_version}")
+//    implementation fg.deobf("curse.maven:legendary-tooltips-532127:4662781")
+//    implementation fg.deobf("curse.maven:iceberg-520110:5138899")
+//    implementation fg.deobf("curse.maven:prism-lib-638111:4650325")
+//    implementation fg.deobf("curse.maven:farmers-delight-${farmersdelight_id}:${farmersdelight_version}")
     implementation fg.deobf("curse.maven:enigmaticlegacy-${enigmaticlegacy_id}:${enigmaticlegacy_version}")
 }
 

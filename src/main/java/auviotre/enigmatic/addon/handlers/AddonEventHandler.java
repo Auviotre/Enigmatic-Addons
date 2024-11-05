@@ -49,6 +49,7 @@ import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
@@ -58,10 +59,9 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -215,6 +215,10 @@ public class AddonEventHandler {
         LivingEntity entity = event.getEntity();
         if (!entity.isAlive()) return;
 
+        if (entity instanceof Player player && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.THE_BLESS)) {
+            player.clearFire();
+        }
+
         if (entity instanceof Phantom phantom) {
             if (NIGHT_SCROLL_BOXES.values().stream().anyMatch(phantom.getBoundingBox()::intersects)) {
                 if (!phantom.hasEffect(MobEffects.WITHER)) {
@@ -322,7 +326,6 @@ public class AddonEventHandler {
 
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
             if (player.tickCount % 2 == 0) player.getCooldowns().tick();
-            if (player.isInWater()) player.addDeltaMovement(new Vec3(0.0D, -0.0064D, 0.0D));
 
             if (event.side == LogicalSide.CLIENT) {
                 boolean spaceDown = Minecraft.getInstance().options.keyJump.isDown();
@@ -351,9 +354,22 @@ public class AddonEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onFirstHurt(LivingHurtEvent event) {
-        if (event.getSource().getEntity() instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE)) {
-            event.setAmount(event.getAmount() + player.getPersistentData().getFloat("EtheriumCounterattack"));
-            player.getPersistentData().remove("EtheriumCounterattack");
+        if (event.getSource().getEntity() instanceof Player player) {
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE)) {
+                event.setAmount(event.getAmount() + player.getPersistentData().getFloat("EtheriumCounterattack"));
+                player.getPersistentData().remove("EtheriumCounterattack");
+            }
+
+            if (player.getMainHandItem().is(EnigmaticAddonItems.THE_BLESS)) {
+                if (!SuperAddonHandler.isOKOne(player)) {
+                    event.setCanceled(true);
+                    return;
+                }
+                LivingEntity entity = event.getEntity();
+                ModifyDamageBaseOne(event, Math.min(1.0F, entity.getRemainingFireTicks() * 0.0015F));
+                if (event.getEntity() instanceof Monster || event.getEntity() instanceof EnderDragon)
+                    event.setAmount(event.getAmount() / CursedRing.monsterDamageDebuff.getValue().asModifierInverted());
+            }
         }
 
         if (event.getEntity() instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE)) {
@@ -434,7 +450,7 @@ public class AddonEventHandler {
                 ModifyDamageBaseOne(event, (CursedXPScroll.getLevelModifier(itemstack) / 100.0 * CursedXPScroll.damageBoostLimit.getValue()));
             }
 
-            if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_ACKNOWLEDGMENT).isEmpty() || !SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_TWIST).isEmpty()) {
+            if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_ACKNOWLEDGMENT).isEmpty()) {
                 victim.setSecondsOnFire(3);
             }
 
@@ -557,7 +573,7 @@ public class AddonEventHandler {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onEntityDamage(LivingDamageEvent event) {
         LivingEntity victim = event.getEntity();
         Entity attacker = event.getSource().getEntity();
@@ -566,6 +582,10 @@ public class AddonEventHandler {
                 int airSupply = player.getAirSupply();
                 int air = airSupply * 0.4 < 30 ? airSupply - 30 : Mth.floor(airSupply * 0.6);
                 player.setAirSupply(Math.max(air, 0));
+            }
+
+            if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.THE_BLESS)) {
+                player.invulnerableTime = TheBless.invulnerableTime.getValue();
             }
 
             ItemCooldowns cooldowns = player.getCooldowns();
@@ -610,10 +630,7 @@ public class AddonEventHandler {
                 }
             }
         }
-    }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onFinalDamage(LivingDamageEvent event) {
         float amount = event.getAmount();
         if (event.getSource().getDirectEntity() instanceof Player player) {
             float lifesteal = 0.0F;
@@ -630,6 +647,11 @@ public class AddonEventHandler {
             }
             if (lifesteal > 0) player.heal(lifesteal);
         }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
+    public void onDealDamage(LivingDamageEvent event) {
+        LivingEntity entity = event.getEntity();
     }
 
     @SubscribeEvent
@@ -838,66 +860,17 @@ public class AddonEventHandler {
         ItemStack left = event.getLeft();
         ItemStack right = event.getRight();
         if (!left.isEmpty() && !right.isEmpty()) {
-            if (player != null && EnigmaticAddonItems.FORGER_GEM.isPresent(player)) {
+            if (player != null && EnigmaticAddonItems.FORGER_GEM.isPresent(player) && SuperAddonHandler.isOKOne(player)) {
                 boolean check = left.isDamageableItem();
                 if (check && ForgerGem.strictUnbreakableForge.getValue()) {
                     check = left.isRepairable() && (left.getItem() instanceof TieredItem || left.getItem() instanceof ArmorItem);
                 }
-                if (left.is(right.getItem()) && check && left.getDamageValue() == 0 && right.getDamageValue() == 0) {
-                    Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(left);
-                    Map<Enchantment, Integer> map1 = EnchantmentHelper.getEnchantments(right);
-                    boolean flag2 = false;
-                    boolean flag3 = false;
-                    Iterator<Enchantment> enchantments1 = map1.keySet().iterator();
-
-                    loop:
-                    while (true) {
-                        Enchantment enchantment1;
-                        do {
-                            if (!enchantments1.hasNext()) {
-                                if (flag3 && !flag2) {
-                                    return;
-                                }
-                                break loop;
-                            }
-                            enchantment1 = enchantments1.next();
-                        } while (enchantment1 == null);
-
-                        int level = map.getOrDefault(enchantment1, 0);
-                        int level1 = map1.get(enchantment1);
-                        boolean flag1 = enchantment1.canEnchant(left);
-                        if (player.getAbilities().instabuild) {
-                            flag1 = true;
-                        }
-
-                        for (Enchantment enchantment : map.keySet()) {
-                            if (enchantment != enchantment1 && !enchantment1.isCompatibleWith(enchantment)) {
-                                flag1 = false;
-                            }
-                        }
-
-                        if (!flag1) {
-                            flag3 = true;
-                        } else {
-                            flag2 = true;
-                            map.put(enchantment1, Math.min(level == level1 ? level1 + 1 : Math.max(level1, level), enchantment1.getMaxLevel()));
-                        }
-                    }
+                if (left.is(right.getItem()) && check && left.getDamageValue() == 0 && right.getDamageValue() == 0 && !left.isEnchanted() && !right.isEnchanted()) {
                     ItemStack copy = left.copy();
-                    int cost = 30;
-                    if (map.containsKey(Enchantments.UNBREAKING)) {
-                        cost -= map.get(Enchantments.UNBREAKING);
-                        map.remove(Enchantments.UNBREAKING);
-                    }
-                    if (map.containsKey(Enchantments.MENDING)) {
-                        cost -= map.get(Enchantments.MENDING) * 3;
-                        map.remove(Enchantments.MENDING);
-                    }
-                    EnchantmentHelper.setEnchantments(map, copy);
                     copy.addTagElement("Unbreakable", ByteTag.valueOf(true));
-                    copy.setRepairCost(20);
+                    copy.setRepairCost(12);
                     event.setOutput(copy);
-                    event.setCost(cost);
+                    event.setCost(30);
                 }
             }
         }
@@ -924,7 +897,7 @@ public class AddonEventHandler {
                 }
             }
 
-            if (!CursedRing.enableSpecialDrops.getValue())
+            if (!CursedRing.enableSpecialDrops.getValue() || !player.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT))
                 return;
 
             this.addEntityDropWithChance(event, Ghast.class, new ItemStack(EnigmaticAddonItems.ICHOR_DROPLET), 40);
@@ -1021,7 +994,7 @@ public class AddonEventHandler {
             event.setTable(modified);
         }
         if (SuperAddonHandler.getEngineDungeons().contains(event.getName())) {
-            LootPool poolSpellstones = SuperpositionHandler.constructLootPool("addon_spellstones", -15F, 1F,
+            LootPool poolSpellstones = SuperpositionHandler.constructLootPool("addon_spellstones", -14F, 1F,
                     SuperAddonHandler.createOptionalLootEntry(EnigmaticAddonItems.LOST_ENGINE, 100));
 
             LootTable modified = event.getTable();
@@ -1167,8 +1140,10 @@ public class AddonEventHandler {
         Player player = event.getEntity();
         Player original = event.getOriginal();
         original.revive();
-        if (SuperpositionHandler.isTheCursedOne(original)) player.getPersistentData().putBoolean(BlessRing.CURSED_SPAWN, true);
-        if (SuperAddonHandler.isTheBlessedOne(original)) player.getPersistentData().putBoolean(BlessRing.BLESS_SPAWN, true);
+        if (SuperpositionHandler.isTheCursedOne(original))
+            player.getPersistentData().putBoolean(BlessRing.CURSED_SPAWN, true);
+        if (SuperAddonHandler.isTheBlessedOne(original))
+            player.getPersistentData().putBoolean(BlessRing.BLESS_SPAWN, true);
         LazyOptional<IAntiqueBagHandler> oldHandler = SuperAddonHandler.getCapability(original, AntiqueBagCapability.INVENTORY);
         LazyOptional<IAntiqueBagHandler> newHandler = SuperAddonHandler.getCapability(player, AntiqueBagCapability.INVENTORY);
         oldHandler.ifPresent(oldBag -> newHandler.ifPresent(newBag -> newBag.readTag(oldBag.writeTag())));

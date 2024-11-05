@@ -1,0 +1,66 @@
+{
+	"parent": "block/block",
+	"render_type": "cutout",
+	"textures": {
+		"glass": "minecraft:block/glass",
+		"quartz": "minecraft:block/quartz_block_top",
+		"shadow": "enigmaticaddons:block/radiant_shadow",
+		"beacon": "enigmaticaddons:block/radiant_beacon",
+		"particle": "minecraft:block/glass"
+	},
+	"elements": [
+		{
+			"name": "Glass shell",
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#glass"}
+			}
+		},
+		{
+			"name": "Base",
+			"from": [1, 0.1, 1],
+			"to": [15, 2, 15],
+			"faces": {
+				"north": {"uv": [1, 14.1, 15, 16], "texture": "quartz"},
+				"east": {"uv": [1, 14.1, 15, 16], "texture": "quartz"},
+				"south": {"uv": [1, 14.1, 15, 16], "texture": "quartz"},
+				"west": {"uv": [1, 14.1, 15, 16], "texture": "quartz"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "quartz"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "quartz"}
+			}
+		},
+		{
+			"name": "Inner beacon",
+			"from": [3, 3, 3],
+			"to": [13, 13, 13],
+			"faces": {
+				"north": {"uv": [3, 3, 13, 13], "texture": "#beacon"},
+				"east": {"uv": [3, 3, 13, 13], "texture": "#beacon"},
+				"south": {"uv": [3, 3, 13, 13], "texture": "#beacon"},
+				"west": {"uv": [3, 3, 13, 13], "texture": "#beacon"},
+				"up": {"uv": [3, 3, 13, 13], "texture": "#beacon"},
+				"down": {"uv": [3, 3, 13, 13], "texture": "#beacon"}
+			}
+		},
+		{
+			"name": "Inner Shell",
+			"from": [13.75, 13.75, 13.75],
+			"to": [2.25, 2.25, 2.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 14, 14]},
+			"faces": {
+				"north": {"uv": [2, 2, 14, 14], "texture": "#shadow"},
+				"east": {"uv": [2, 2, 14, 14], "texture": "#shadow"},
+				"south": {"uv": [2, 2, 14, 14], "texture": "#shadow"},
+				"west": {"uv": [2, 2, 14, 14], "texture": "#shadow"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#shadow"},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#shadow"}
+			}
+		}
+	]
+}

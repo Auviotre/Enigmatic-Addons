@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon.mixin;
 
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -29,13 +30,16 @@ public class MixinHumanoidArmorLayer {
     @Inject(method = "getArmorResource", at = @At("RETURN"), cancellable = true, remap = false)
     private void getArmorTextureMix(Entity entity, ItemStack stack, EquipmentSlot slot, String type, CallbackInfoReturnable<ResourceLocation> cir) {
         if (entity instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE)) {
-            String armor = "enigmaticlegacy:textures/models/armor/unseen_armor.png";
-            ResourceLocation resourcelocation = ARMOR_LOCATION_CACHE.get(armor);
-            if (resourcelocation == null) {
-                resourcelocation = new ResourceLocation(armor);
-                ARMOR_LOCATION_CACHE.put(armor, resourcelocation);
+            ItemStack curioStack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.ETHERIUM_CORE);
+            if (ItemNBTHelper.getBoolean(curioStack, "ArmorInvisibility", false)) {
+                String armor = "enigmaticlegacy:textures/models/armor/unseen_armor.png";
+                ResourceLocation resourcelocation = ARMOR_LOCATION_CACHE.get(armor);
+                if (resourcelocation == null) {
+                    resourcelocation = new ResourceLocation(armor);
+                    ARMOR_LOCATION_CACHE.put(armor, resourcelocation);
+                }
+                cir.setReturnValue(resourcelocation);
             }
-            cir.setReturnValue(resourcelocation);
         }
     }
 }

@@ -1,7 +1,9 @@
 package auviotre.enigmatic.addon.mixin;
 
+import auviotre.enigmatic.addon.contents.items.ForgerGem;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import com.aizistral.enigmaticlegacy.helpers.ExperienceHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.*;
 import org.jetbrains.annotations.Nullable;
@@ -27,7 +29,13 @@ public abstract class MixinAnvilMenu extends ItemCombinerMenu {
 
     @Inject(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/AnvilMenu;broadcastChanges()V"))
     public void createResultMix(CallbackInfo ci) {
-        if (this.player != null && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.FORGER_GEM))
-            this.cost.set((this.getCost() + 1) / 2);
+        if (this.player != null && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.FORGER_GEM)) {
+            if (ForgerGem.levelNotValue.getValue()) {
+                this.cost.set((this.getCost() + 1) / 2);
+            } else {
+                int xp = ExperienceHelper.getExperienceForLevel(this.getCost() + 1);
+                this.cost.set(ExperienceHelper.getLevelForExperience(xp / 2));
+            }
+        }
     }
 }

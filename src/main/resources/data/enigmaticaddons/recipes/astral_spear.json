@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:astral_spear"
+    }
+  ],
+  "pattern": [
+    " Q ",
+    "QXQ",
+    "DGD"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:etherium_sword"
+    },
+    "Q": {
+      "item": "enigmaticlegacy:astral_dust"
+    },
+    "G": {
+      "item": "enigmaticlegacy:ender_rod"
+    },
+    "D": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:astral_spear"
+  },
+  error
+}

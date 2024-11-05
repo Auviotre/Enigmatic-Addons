@@ -7,9 +7,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:forger_gem"
-            ]
+            "items": ["enigmaticaddons:forger_gem"]
           }
         ]
       }

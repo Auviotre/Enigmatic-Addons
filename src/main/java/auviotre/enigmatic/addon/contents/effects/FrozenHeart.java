@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class FrozenHeart extends MobEffect {
     public FrozenHeart() {
-        super(MobEffectCategory.BENEFICIAL, 11272177);
+        super(MobEffectCategory.BENEFICIAL, 0xabfff1);
     }
 
     public void applyEffectTick(LivingEntity entity, int amplifier) {

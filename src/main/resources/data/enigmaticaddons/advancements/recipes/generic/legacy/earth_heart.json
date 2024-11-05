@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:earth_heart_fragment"
-            ]
+            "items": ["enigmaticaddons:earth_heart_fragment"]
           }
         ]
       }

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:animal_guidebook"
-            ]
+            "items": ["enigmaticlegacy:animal_guidebook"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:ode_to_living"
-            ]
+            "items": ["enigmaticaddons:ode_to_living"]
           }
         ]
       }

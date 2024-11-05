@@ -29,13 +29,16 @@ import java.util.UUID;
 
 public class ForgerGem extends ItemBaseCurio {
     public static Omniconfig.BooleanParameter strictUnbreakableForge;
+    public static Omniconfig.BooleanParameter levelNotValue;
 
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("ForgerGem");
-        strictUnbreakableForge = builder.comment("Whether to enable stricter detection for unbreakable forging when equipped the Forger's Gem. True for enable.").getBoolean("strictUnbreakableForge", true);
+        strictUnbreakableForge = builder.comment("Whether to enable stricter detection for unbreakable forging when equipped the Forger's Gem. True for enable.").getBoolean("StrictUnbreakableForge", true);
+        levelNotValue = builder.comment("Whether the halving experience by level or value. True for level.").getBoolean("EXPLevelNotValue", false);
         builder.popPrefix();
     }
+
     public ForgerGem() {
         super(getDefaultProperties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
     }
@@ -60,8 +63,8 @@ public class ForgerGem extends ItemBaseCurio {
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
-        if (slotContext.entity() instanceof Player player && SuperAddonHandler.isOKOne(player)) {
-            CuriosApi.addSlotModifier(attributes, "charm", UUID.fromString("f9ca6f44-99c3-450b-af89-c3623f2b6051"), 1.0, AttributeModifier.Operation.ADDITION);
+        if (slotContext.entity() instanceof Player) {
+            CuriosApi.addSlotModifier(attributes, "charm", UUID.fromString("4f9d6bf4-49b5-47ed-8796-b0c75e53aa91"), 1.0, AttributeModifier.Operation.ADDITION);
         }
         return attributes;
     }

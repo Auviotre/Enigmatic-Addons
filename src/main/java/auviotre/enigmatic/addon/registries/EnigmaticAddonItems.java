@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.registries.RegisterEvent;
 
 public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     private static final EnigmaticAddonItems INSTANCE = new EnigmaticAddonItems();
@@ -25,6 +26,10 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Dragon Breath Bow")
     @ObjectHolder(value = "enigmaticaddons:dragon_bow", registryName = "item")
     public static final DragonBow DRAGON_BOW = null;
+
+    @ConfigurableItem("Astral Spear")
+    @ObjectHolder(value = "enigmaticaddons:astral_spear", registryName = "item")
+    public static final AstralSpear ASTRAL_SPEAR = null;
 
     @ConfigurableItem("Promise of the Earth")
     @ObjectHolder(value = "enigmaticaddons:earth_promise", registryName = "item")
@@ -114,9 +119,17 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ObjectHolder(value = "enigmaticaddons:ichoroot", registryName = "item")
     public static final Ichoroot ICHOROOT = null;
 
+    @ConfigurableItem("Ichor Spear")
+    @ObjectHolder(value = "enigmaticaddons:ichor_spear", registryName = "item")
+    public static final IchorSpear ICHOR_SPEAR = null;
+
     @ConfigurableItem("Pure Heart")
     @ObjectHolder(value = "enigmaticaddons:pure_heart", registryName = "item")
     public static final PureHeart PURE_HEART = null;
+
+    @ConfigurableItem("The Bless")
+    @ObjectHolder(value = "enigmaticaddons:the_bless", registryName = "item")
+    public static final TheBless THE_BLESS = null;
 
     @ConfigurableItem("Tome of Divination")
     @ObjectHolder(value = "enigmaticaddons:bless_amplifier", registryName = "item")
@@ -152,6 +165,7 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("night_scroll", NightScroll::new);
         this.register("quartz_ring", QuartzRing::new);
         this.register("dragon_bow", DragonBow::new);
+        this.register("astral_spear", AstralSpear::new);
         this.register("earth_promise", EarthPromise::new);
         this.register("forgotten_ice", ForgottenIce::new);
         this.register("lost_engine", LostEngine::new);
@@ -168,7 +182,9 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("earth_heart_fragment", EarthHeartFragment::new);
         this.register("ichor_droplet", IchorDroplet::new);
         this.register("ichoroot", Ichoroot::new);
+        this.register("ichor_spear", IchorSpear::new);
         this.register("pure_heart", PureHeart::new);
+        this.register("the_bless", TheBless::new);
         this.register("bless_amplifier", BlessAmplifier::new);
         this.register("thunder_scroll", ThunderScroll::new);
         this.register("bless_stone", BlessStone::new);
@@ -182,5 +198,9 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("ultimate_potion", () -> new UltimatePotionAddon.Base(Rarity.RARE, IAdvancedPotionItem.PotionType.ULTIMATE));
         this.register("ultimate_potion_splash", () -> new UltimatePotionAddon.Splash(Rarity.RARE, IAdvancedPotionItem.PotionType.ULTIMATE));
         this.register("ultimate_potion_lingering", () -> new UltimatePotionAddon.Lingering(Rarity.RARE, IAdvancedPotionItem.PotionType.ULTIMATE));
+    }
+
+    protected void onRegister(RegisterEvent event) {
+        EnigmaticAddonBlocks.getBlockItemMap().forEach((block, item) -> event.register(ForgeRegistries.Keys.ITEMS, block, () -> item.apply(ForgeRegistries.BLOCKS.getValue(block))));
     }
 }

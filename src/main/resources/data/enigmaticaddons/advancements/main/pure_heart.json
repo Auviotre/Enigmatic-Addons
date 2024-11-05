@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "enigmaticaddons:pure_heart"
+    },
+    "title": {
+      "translate": "advancement.enigmaticaddons:pureHeart"
+    },
+    "description": {
+      "translate": "advancement.enigmaticaddons:pureHeart.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+	"frame": "goal"
+  },
+  "parent": "enigmaticlegacy:main/cursed_ring",
+  "criteria": {
+    "core": {
+      "trigger": "enigmaticlegacy:cursed_inventory_changed",
+      "conditions": {
+        "items": [
+          {
+             "items": ["enigmaticaddons:pure_heart"]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:xp_scroll"
-            ]
+            "items": ["enigmaticlegacy:xp_scroll"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:cursed_xp_scroll"
-            ]
+            "items": ["enigmaticaddons:cursed_xp_scroll"]
           }
         ]
       }

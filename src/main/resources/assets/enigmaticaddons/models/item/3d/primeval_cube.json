@@ -1,270 +1,74 @@
 {
-  "credit": "Made with Blockbench",
-  "texture_size": [
-    32,
-    32
-  ],
+  "texture_size": [32, 32],
   "textures": {
-    "distortion": "enigmaticaddons:item/3d/primeval_cube_distortion",
     "particle": "enigmaticaddons:item/3d/primeval_cube_distortion",
+    "distortion": "enigmaticaddons:item/3d/primeval_cube_distortion",
     "layer0": "enigmaticaddons:item/3d/primeval_cube"
   },
   "elements": [
     {
       "name": "THE_CUBE",
-      "from": [
-        4.15,
-        0.15,
-        4.15
-      ],
-      "to": [
-        11.85,
-        7.85,
-        11.85
-      ],
+      "from": [4.15, 0.15, 4.15],
+      "to": [11.85, 7.85, 11.85],
       "faces": {
-        "north": {
-          "uv": [
-            4,
-            4,
-            8,
-            8
-          ],
-          "texture": "#layer0"
-        },
-        "east": {
-          "uv": [
-            0,
-            4,
-            4,
-            8
-          ],
-          "texture": "#layer0"
-        },
-        "south": {
-          "uv": [
-            12,
-            4,
-            16,
-            8
-          ],
-          "texture": "#layer0"
-        },
-        "west": {
-          "uv": [
-            8,
-            4,
-            12,
-            8
-          ],
-          "texture": "#layer0"
-        },
-        "up": {
-          "uv": [
-            8,
-            4,
-            4,
-            0
-          ],
-          "texture": "#layer0"
-        },
-        "down": {
-          "uv": [
-            12,
-            0,
-            8,
-            4
-          ],
-          "texture": "#layer0"
-        }
+        "north": {"uv": [4, 4, 8, 8], "texture": "#layer0"},
+        "east": {"uv": [0, 4, 4, 8], "texture": "#layer0"},
+        "south": {"uv": [12, 4, 16, 8], "texture": "#layer0"},
+        "west": {"uv": [8, 4, 12, 8], "texture": "#layer0"},
+        "up": {"uv": [8, 4, 4, 0], "texture": "#layer0"},
+        "down": {"uv": [12, 0, 8, 4], "texture": "#layer0"}
       }
     },
     {
       "name": "Spatial_Distortion",
-      "from": [
-        12.25,
-        8.25,
-        12.25
-      ],
-      "to": [
-        3.75,
-        -0.25,
-        3.75
-      ],
+      "from": [12.25, 8.25, 12.25],
+      "to": [3.75, -0.25, 3.75],
       "faces": {
-        "north": {
-          "uv": [
-            8,
-            0,
-            0,
-            8
-          ],
-          "texture": "#distortion"
-        },
-        "east": {
-          "uv": [
-            8,
-            0,
-            0,
-            8
-          ],
-          "texture": "#distortion"
-        },
-        "south": {
-          "uv": [
-            8,
-            0,
-            0,
-            8
-          ],
-          "texture": "#distortion"
-        },
-        "west": {
-          "uv": [
-            8,
-            0,
-            0,
-            8
-          ],
-          "texture": "#distortion"
-        },
-        "up": {
-          "uv": [
-            8,
-            0,
-            0,
-            8
-          ],
-          "texture": "#distortion"
-        },
-        "down": {
-          "uv": [
-            8,
-            0,
-            0,
-            8
-          ],
-          "texture": "#distortion"
-        }
+        "north": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+        "east": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+        "south": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+        "west": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+        "up": {"uv": [8, 0, 0, 8], "texture": "#distortion"},
+        "down": {"uv": [8, 0, 0, 8], "texture": "#distortion"}
       }
     }
   ],
   "display": {
     "thirdperson_righthand": {
-      "rotation": [
-        45,
-        35,
-        0
-      ],
-      "translation": [
-        0,
-        2,
-        0.25
-      ],
-      "scale": [
-        0.45,
-        0.45,
-        0.45
-      ]
+      "rotation": [45, 35, 0],
+      "translation": [0, 2, 0.25],
+      "scale": [0.45, 0.45, 0.45]
     },
     "thirdperson_lefthand": {
-      "rotation": [
-        45,
-        35,
-        0
-      ],
-      "translation": [
-        0,
-        2,
-        0.25
-      ],
-      "scale": [
-        0.45,
-        0.45,
-        0.45
-      ]
+      "rotation": [45, 35, 0],
+      "translation": [0, 2, 0.25],
+      "scale": [0.45, 0.45, 0.45]
     },
     "firstperson_righthand": {
-      "rotation": [
-        0,
-        -45,
-        0
-      ],
-      "translation": [
-        2,
-        2.75,
-        0
-      ],
-      "scale": [
-        0.45,
-        0.45,
-        0.45
-      ]
+      "rotation": [0, -45, 0],
+      "translation": [2, 2.75, 0],
+      "scale": [0.45, 0.45, 0.45]
     },
     "firstperson_lefthand": {
-      "rotation": [
-        0,
-        45,
-        0
-      ],
-      "translation": [
-        2,
-        2.75,
-        0
-      ],
-      "scale": [
-        0.45,
-        0.45,
-        0.45
-      ]
+      "rotation": [0, 45, 0],
+      "translation": [2, 2.75, 0],
+      "scale": [0.45, 0.45, 0.45]
     },
     "ground": {
-      "translation": [
-        0,
-        3,
-        0
-      ],
-      "scale": [
-        0.75,
-        0.75,
-        0.75
-      ]
+      "translation": [0, 3, 0],
+      "scale": [0.75, 0.75, 0.75]
     },
     "gui": {
-      "rotation": [
-        35,
-        135,
-        0
-      ],
-      "translation": [
-        0,
-        3.5,
-        0
-      ],
-      "scale": [
-        1.05,
-        1.05,
-        1.05
-      ]
+      "rotation": [35, 135, 0],
+      "translation": [0, 3.5, 0],
+      "scale": [1.05, 1.05, 1.05]
     },
     "head": {
-      "translation": [
-        0,
-        15,
-        0
-      ]
+      "translation": [0, 15, 0]
     },
     "fixed": {
-      "translation": [
-        0,
-        5.25,
-        0
-      ],
-      "scale": [
-        1.4,
-        1.4,
-        1.4
-      ]
+      "translation": [0, 5.25, 0],
+      "scale": [1.4, 1.4, 1.4]
     }
   }
 }

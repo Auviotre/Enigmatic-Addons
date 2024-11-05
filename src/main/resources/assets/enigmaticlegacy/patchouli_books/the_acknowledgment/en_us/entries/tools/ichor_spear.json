@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.ichor_spear.name",
+  "icon": "enigmaticaddons:ichor_spear",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/ichor_spear",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.ichor_spear.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:ichor_spear",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.ichor_spear.page.2"
+    }
+  ]
+}

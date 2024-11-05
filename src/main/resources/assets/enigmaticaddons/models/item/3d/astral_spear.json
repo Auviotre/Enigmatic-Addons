@@ -1,0 +1,6 @@
+{
+  "parent": "enigmaticaddons:item/3d/spear",
+  "textures": {
+    "layer0": "enigmaticaddons:item/3d/astral_spear"
+  }
+}

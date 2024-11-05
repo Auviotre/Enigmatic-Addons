@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:quartz"
-            ]
+            "items": ["minecraft:quartz"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:forger_gem"
-            ]
+            "items": ["enigmaticaddons:forger_gem"]
           }
         ]
       }

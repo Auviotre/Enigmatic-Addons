@@ -1,9 +1,7 @@
 package auviotre.enigmatic.addon.proxy;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
-import auviotre.enigmatic.addon.client.renderers.DragonBreathArrowRenderer;
-import auviotre.enigmatic.addon.client.renderers.EmptyRenderer;
-import auviotre.enigmatic.addon.client.renderers.UltimateDragonFireballRenderer;
+import auviotre.enigmatic.addon.client.renderers.*;
 import auviotre.enigmatic.addon.client.screens.AntiqueBagScreen;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
@@ -27,6 +25,8 @@ public class ClientProxy extends CommonProxy {
     public void initItemProperties() {
         try {
             ItemProperties.register(EnigmaticAddonItems.EARTH_PROMISE, new ResourceLocation("broken"), (stack, world, living, j) -> living instanceof Player player && player.getCooldowns().isOnCooldown(stack.getItem()) ? 1.0F : 0.0F);
+            ItemProperties.register(EnigmaticAddonItems.ASTRAL_SPEAR, new ResourceLocation("using"), (stack, world, living, j) -> living != null && living.getUseItem() == stack ? 1.0F : 0.0F);
+            ItemProperties.register(EnigmaticAddonItems.ICHOR_SPEAR, new ResourceLocation("using"), (stack, world, living, j) -> living != null && living.getUseItem() == stack ? 1.0F : 0.0F);
             ItemProperties.register(EnigmaticAddonItems.DRAGON_BOW, new ResourceLocation("pulling"), (stack, world, living, j) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
             ItemProperties.register(EnigmaticAddonItems.DRAGON_BOW, new ResourceLocation("pull"), (stack, level, living, i) -> living == null ? 0.0F : living.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - living.getUseItemRemainingTicks()) / 20.0F);
         } catch (Exception exception) {
@@ -39,5 +39,7 @@ public class ClientProxy extends CommonProxy {
         EntityRenderers.register(EnigmaticAddonEntities.COBWEB_BALL, EmptyRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.SPLIT_DRAGON_BREATH, EmptyRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.ULTIMATE_DRAGON_FIREBALL, UltimateDragonFireballRenderer::new);
+        EntityRenderers.register(EnigmaticAddonEntities.ICHOR_SPEAR, ThrownIchorSpearRenderer::new);
+        EntityRenderers.register(EnigmaticAddonEntities.ASTRAL_SPEAR, ThrownAstralSpearRenderer::new);
     }
 }

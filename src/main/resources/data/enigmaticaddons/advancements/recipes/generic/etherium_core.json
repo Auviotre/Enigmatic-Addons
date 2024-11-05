@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:etherium_ingot"
-            ]
+            "items": ["enigmaticlegacy:etherium_ingot"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:etherium_core"
-            ]
+            "items": ["enigmaticaddons:etherium_core"]
           }
         ]
       }

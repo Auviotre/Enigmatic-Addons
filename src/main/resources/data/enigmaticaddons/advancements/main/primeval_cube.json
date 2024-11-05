@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "enigmaticaddons:primeval_cube"
+    },
+    "title": {
+      "translate": "advancement.enigmaticaddons:primevalCube"
+    },
+    "description": {
+      "translate": "advancement.enigmaticaddons:primevalCube.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true,
+    "frame": "goal"
+  },
+  "parent": "enigmaticlegacy:main/discover_spellstone",
+  "criteria": {
+    "spellstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+             "items": ["enigmaticaddons:primeval_cube"]
+          }
+        ]
+      }
+    }
+  }
+}

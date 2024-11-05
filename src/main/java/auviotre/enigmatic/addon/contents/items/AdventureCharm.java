@@ -8,7 +8,6 @@ import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -51,8 +50,7 @@ public class AdventureCharm extends ItemBaseCurio {
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
-        LivingEntity entity = slotContext.entity();
-        if (entity instanceof Player) {
+        if (slotContext.entity() instanceof Player) {
             CuriosApi.addSlotModifier(attributes, "charm", UUID.fromString("4f9d6bf4-49b5-47ed-8796-b0c75e53aa91"), 1.0, AttributeModifier.Operation.ADDITION);
         }
         attributes.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("6ec66ba8-46e7-487a-8bd1-82eeac5dd4ab"), "Attack Damage Bonus", attackDamageModifier.getValue(), AttributeModifier.Operation.ADDITION));

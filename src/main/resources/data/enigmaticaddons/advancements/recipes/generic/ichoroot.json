@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:ichor_droplet"
-            ]
+            "items": ["enigmaticaddons:ichor_droplet"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:ichoroot"
-            ]
+            "items": ["enigmaticaddons:ichoroot"]
           }
         ]
       }

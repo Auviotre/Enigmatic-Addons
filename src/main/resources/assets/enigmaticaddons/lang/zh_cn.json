@@ -8,7 +8,7 @@
   "tooltip.enigmaticaddons.knockback_resistance": "§6%1$s§d 击退抗性",
   "tooltip.enigmaticaddons.magic_resistance": "§6%1$s§d 魔法抗性",
   "tooltip.enigmaticaddons.speed": "§6%1$s§d 速度",
-  "tooltip.enigmaticaddons.luck": "§61$s§d 幸运值",
+  "tooltip.enigmaticaddons.luck": "§6%1$s§d 幸运值",
 
   "tooltip.enigmaticaddons.legacy_future1": "§5下个版本§d神秘遗物可能会",
   "tooltip.enigmaticaddons.legacy_future2": "§5实现的物品（猜测，来自扩展）",
@@ -128,14 +128,20 @@
   "tooltip.enigmaticaddons.etheriumCore1": "§d主动技能:",
   "tooltip.enigmaticaddons.etheriumCore2": "§6- 启动以太护盾§6%1$s§6秒",
   "tooltip.enigmaticaddons.etheriumCoreCooldown": "§d冷却：§6%1$s§6秒",
-  "tooltip.enigmaticaddons.etheriumCore3": "§5- 使装备不可见",
-  "tooltip.enigmaticaddons.etheriumCore4": "§5- 将受到伤害的 §6%1$s§5 转化为下一",
-  "tooltip.enigmaticaddons.etheriumCore5": "§5  次攻击给予增幅",
+  "tooltip.enigmaticaddons.etheriumCore3": "§5- §6%1$s§5 护甲值，§6%2$s§5 盔甲韧性",
+  "tooltip.enigmaticaddons.etheriumCore5": "§5- 使装备不可见",
+  "tooltip.enigmaticaddons.etheriumCore5_alt": "§4- 使装备不可见",
+  "tooltip.enigmaticaddons.etheriumCore6": "§5- 将受到伤害的 §6%1$s§5 转化为下一",
+  "tooltip.enigmaticaddons.etheriumCore7": "§5  次攻击给予增幅",
+  "tooltip.enigmaticaddons.etheriumCore8": "§5- 免疫挤压、荆棘和爆炸伤害",
+  "tooltip.enigmaticaddons.etheriumCore9": "§5按住 §6Shift §5时右键可切换装备可见性。",
 
   "book.enigmaticaddons.entry.etherium_core.name": "以太核心",
   "book.enigmaticaddons.entry.etherium_core.page.1": "一个是在世界里随处可见的魔像之心，一个是极其珍贵的以太护甲，将两者合一便能得到这一专精于物理防御的术石。<br2/>将魔像之心作为以太护盾的不竭能源之后，你便可以随时通过这枚术石主动触发以太护盾，不太受限于视你的健康状况而定。但不仅于此，魔像之心还赋予了护盾新的能力，记仇的它会记下",
   "book.enigmaticaddons.entry.etherium_core.page.2": "你每次收到的伤害，折算、累加，并在下一次攻击时，将所有力量灌注这一击之中，好好偿还回去。<br2/>此外，不同于其他的术石，纯净的以太力量似乎并没有什么弱点，请放心使用。",
   "book.enigmaticaddons.entry.etherium_core.page.3": "",
+
+  "item.enigmaticaddons.astral_spear": "星光穿刺者 [WIP]",
 
   "item.enigmaticaddons.dragon_bow" : "龙息弓",
 
@@ -154,7 +160,7 @@
 
   "book.enigmaticaddons.entry.sanguinary_handbook.name": "血腥狩猎",
   "book.enigmaticaddons.entry.sanguinary_handbook.page.1": "在一定的时期之后，你一定会有所感觉，身边的那些追随者们的实力已经与你相差过大，同时野猎指南提供的保护也不值一提了。于是，你又想到了有关扭曲之心的一个新用途<br2/>这本手册让你的追随者们掌握了新的能力，并且也获得来自你身上的部分暴力增幅。",
-  "book.enigmaticaddons.entry.sanguinary_handbook.page.2": "让他们聆听手册中的箴言，无私的奉献生命吧！",
+  "book.enigmaticaddons.entry.sanguinary_handbook.page.2": "让他们聆听手册中的箴言，无私地奉献生命吧！",
 
   "item.enigmaticaddons.false_justice": "虚伪审判",
 
@@ -206,7 +212,7 @@
 
   "tooltip.enigmaticaddons.forgerGem2" : "§5减半锻造所需经验",
   "tooltip.enigmaticaddons.forgerGem3" : "§5并使你的铁砧更耐用",
-  "tooltip.enigmaticaddons.forgerGem4" : "§5可以用两把满耐久工具锻造",
+  "tooltip.enigmaticaddons.forgerGem4" : "§5可以用两把满耐久无附魔工具锻造",
   "tooltip.enigmaticaddons.forgerGem5" : "§5出一把§d不可破坏§5的相应工具",
 
   "book.enigmaticaddons.entry.forger_gem.name": "锻造者的宝石",
@@ -275,11 +281,32 @@
   "book.enigmaticaddons.entry.ichoroot.page.1": "当人们在为了胡萝卜和马铃薯争吵之时，在一旁被冷落的甜菜根就显得格外可怜。现在有了灵液的辅佐，让甜菜根焕然一新吧！<br2/>只需要微量的灵液，就能让甜菜根的营养翻倍且易于消化，并且能在其中展现出神性和净化之力。",
   "book.enigmaticaddons.entry.ichoroot.page.2": "灵液能够净化你身上的负面效果和短暂的生命吸收。在摄入一定的量后，神性的庇护才会展现，为你抵御一定的伤害。",
 
+  "item.enigmaticaddons.ichor_spear": "灵液标枪",
+
+  "tooltip.enigmaticaddons.ichorSpear": "§5一次性的腐化投矛",
+
+  "book.enigmaticaddons.entry.ichor_spear.name": "灵液标枪",
+  "book.enigmaticaddons.entry.ichor_spear.page.1": "你应该明白，高贵的灵液始终是不同于一般的存在，特别是当它滴落在盔甲上滋滋作响时。<br2/>小心地将灵液涂抹在性质稳定的金质矛头上，外加其他作为催化剂的物件，简单的投矛就制作完成了。将它刺入敌人的盔甲之中，刺激的灵液便会将他们的护甲腐蚀，弱化他们的防御。",
+  "book.enigmaticaddons.entry.ichor_spear.page.2": "但是有一个比较致命的问题————标枪是一次性的。这也只能通过它简单易得的特性来弥补这一缺点了。",
+
   "item.enigmaticaddons.pure_heart": "纯净之心",
 
   "book.enigmaticaddons.entry.pure_heart.name": "纯净之心",
   "book.enigmaticaddons.entry.pure_heart.page.1": "有了不同的材料，你或许能够尝试一下不同于扭曲之心的制作途径。隐藏的暗黑污染和微弱的神性所结合，诞生了这表面鲜亮的诡异造物。<br2/>不同于另一类物品，纯净之心及其造物通常会给予保护和帮助，而非侵略性的力量。所以，比较是毫无意义的，你更应该将注意力放在如何去利用它们。",
   "book.enigmaticaddons.entry.pure_heart.page.2": "但虽说是充满神性的造物，却需要依附在诅咒的力量之上，实在是过于讽刺。所以在利用这些物品时，也请你同样去注意隐藏在背后的隐患。",
+
+  "item.enigmaticaddons.the_bless": "恩惠之典",
+
+  "tooltip.enigmaticaddons.theBless1": "§5在无边的苦痛旅途之中",
+  "tooltip.enigmaticaddons.theBless2": "§5借此无垢的篇章来点亮前路",
+  "tooltip.enigmaticaddons.theBless3": "§5对§d着火§5的目标造成更多伤害",
+  "tooltip.enigmaticaddons.theBless4": "§5并移除目标的§d增益§5效果",
+  "tooltip.enigmaticaddons.theBless5": "§5持有者不会着火",
+
+  "book.enigmaticaddons.entry.the_bless.name": "恩惠之典",
+  "book.enigmaticaddons.entry.the_bless.page.1": "这是依旧是一本知识之书，作为倒转之启一体两面的存在。<br2/>同样是利用邪恶精髓，灵液的纯化效应则将这本书变化的更倾向于保守一面，增加你在频繁受击中存活的可能性，并让你免疫不止火焰的侵害。这便是恩惠之一。",
+  "book.enigmaticaddons.entry.the_bless.page.2": "当然这本书不止于此，启示之证的焚化之力也在此处得到了进一步的强化，去除焚烧者一切的福音，给予焚烧者更为猛烈的痛击。",
+
 
   "item.enigmaticaddons.bless_amplifier": "神化之书",
 
@@ -290,6 +317,8 @@
   "book.enigmaticaddons.entry.bless_amplifier.name": "神化之书",
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "经过灵液的洗礼，求知之书的愿望从获得转化成了给予，将进一步提升物品中的魔法力量。<br2/>如果你将它与任何附魔物品紧密接触，它就会牺牲掉自己，加倍存在于物品之中的魔力。<br2/>但如果仅仅是如此，那就太愧对于这其中的神化之力。",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "打破魔咒的限制，将物品中的魔力更升一等，才是它的真正用途。<br2/>顺带一提，并不是一切的魔咒都能够被突破，也有些魔咒在突破后无法承受力量而失效。",
+
+  "block.enigmaticaddons.radiant_beacon": "光辉信标",
 
   "item.enigmaticaddons.bless_stone": "神圣之石",
 
@@ -313,7 +342,7 @@
   "tooltip.enigmaticaddons.blessRing5": "§5- 获得持续的§d生命恢复",
   "tooltip.enigmaticaddons.blessRing6": "§5- §6+%1$s§d 抢夺等级",
   "tooltip.enigmaticaddons.blessRing7": "§5- §6+%1$s§d 时运等级",
-  "tooltip.enigmaticaddons.blessRing8": "§5- 一些生物开始产出独特掉落物",
+  "tooltip.enigmaticaddons.blessRing8": "§5- 一些生物会产出独特掉落物",
   "tooltip.enigmaticaddons.blessRing9": "§5- 你可以制作和使用独特遗物",
   "tooltip.enigmaticaddons.blessRingLore1": "§5这枚戒指闪烁着别样的",
   "tooltip.enigmaticaddons.blessRingLore2": "§5光泽，铭记着那些饱受",
@@ -325,15 +354,19 @@
 
   "item.enigmaticaddons.evil_dagger": "[未完成]",
 
+  "death.attack.evil_curse": "%1$s",
   "death.attack.false_justice": "%1$s消失在虚无的审判中。",
 
+  "entity.enigmaticaddons.astral_spear": "星光穿刺者",
   "entity.enigmaticaddons.cobweb_ball": "蛛网球",
   "entity.enigmaticaddons.dragon_breath_arrow": "龙息箭",
+  "entity.enigmaticaddons.ichor_spear": "灵液标枪",
   "entity.enigmaticaddons.split_dragon_breath": "分裂龙息",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "终极末影龙火球",
 
   "effect.enigmaticaddons.dragon_breath": "龙息",
   "effect.enigmaticaddons.frozen_heart": "冻结之心",
+  "effect.enigmaticaddons.ichor_corrosion": "灵液腐蚀",
   "effect.enigmaticaddons.pure_resistance": "纯化抗性",
 
   "item.enigmaticaddons.common_potion.effect.frozen_heart": "冻结之心药水",
@@ -401,5 +434,20 @@
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_strength": "滞留型力量药水",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_weakness": "滞留型虚弱药水",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_haste": "滞留型急迫药水",
-  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "滞留型挖掘疲劳药水"
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "滞留型挖掘疲劳药水",
+
+  "advancement.enigmaticaddons:pureHeart": "不洁净化",
+  "advancement.enigmaticaddons:pureHeart.desc": "创造纯净之心",
+
+  "advancement.enigmaticaddons:primevalCube": "追本溯源",
+  "advancement.enigmaticaddons:primevalCube.desc": "创造原初立方",
+
+  "advancement.enigmaticaddons:earthPromise": "从不轻易许诺",
+  "advancement.enigmaticaddons:earthPromise.desc": "获得来自大地的承诺",
+
+  "advancement.enigmaticaddons:falseJustice": "混沌提取",
+  "advancement.enigmaticaddons:falseJustice.desc": "利用邪恶精髓制造这本混沌之书",
+
+  "advancement.enigmaticaddons:blessRing": "命运扭转",
+  "advancement.enigmaticaddons:blessRing.desc": "碎裂七咒之戒，获得救赎"
 }

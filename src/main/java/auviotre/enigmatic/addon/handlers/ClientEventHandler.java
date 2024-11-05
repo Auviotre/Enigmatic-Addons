@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.handlers;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
+import auviotre.enigmatic.addon.client.particles.IchorParticle;
 import auviotre.enigmatic.addon.client.particles.StarDustParticle;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,5 +22,6 @@ public class ClientEventHandler {
         event.registerSpriteSet(EnigmaticAddonParticles.BLUE_STAR_DUST, StarDustParticle.BlueProvider::new);
         event.registerSpriteSet(EnigmaticAddonParticles.RED_STAR_DUST, StarDustParticle.RedProvider::new);
         event.registerSpriteSet(EnigmaticAddonParticles.PURPLE_STAR_DUST, StarDustParticle.PurpleProvider::new);
+        event.registerSpriteSet(EnigmaticAddonParticles.ICHOR, IchorParticle.Provider::new);
     }
 }

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:darkest_scroll"
-            ]
+            "items": ["enigmaticlegacy:darkest_scroll"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:night_scroll"
-            ]
+            "items": ["enigmaticaddons:night_scroll"]
           }
         ]
       }

@@ -1,14 +1,33 @@
+***
+## 1.1 ~ 1.2 Update: God's Blood
+***
+### [Release 1.1.4] (2024/11/**)
+### Features:
+- 2 new Item (**Ichor Spear**, **The Bless**);
+- 1 new effect (**Ichor Corrosion**);
+- 5 new Advancements.
+### Changes:
+- Now the visibility of armor can be toggled with**Etherium Core**;
+- Now Addon's spellstones can be obtained by **Primeval Cube**;
+- Changed the armor effect of the **Etherium Core**;
+- Changed the effect of the **Forger's Gem**;
+- Changed the effect of **The Twist** put in the **Antique Book Bag**;
+- Implemented more 3D models;
+### Fixes:
+- Fixed the issue of text display errors in some cursed items with **Ring of Redemption**;
+***
 ### [Release 1.1.3] (2024/10/12)
 ### Features:
 - 5 new Items (**Ring of Redemption**, **Holy Stone**, **Scroll of Thunder Embrace**, **Forger's Gem**, **Etherium Core**);
 - new Addon Mod: **Enigmatic Delicacy** (Beta, Base on Farmer's Delight).
 ### Changes:
 - Changed the usage conditions of some cursed items;
-- Changed that each player can only obtain **Tome of Void** once.
+- Changed that each player can only obtain **Tome of Void** once;
+- Added the recipe of **Unwitnessed Amulet**.
 ### Fixes:
 - Fixed the issue of the **Lost Engine**'s passive ability not taking effect on Golems;
 - Fixed the issue of cursed curios automatically unequip;
-- Fixed the issue of being unable to get **Tainted Earth Heart** with **Ring of Redemption**;
+- Fixed the issue of being unable to get **Tainted Heart of the Earth** with **Ring of Redemption**;
 - Fixed the issue of unreasonable drops with **Ring of Redemption**.
 ***
 ### [Release 1.1.2] (2024/09/24)
@@ -41,6 +60,8 @@
 - Fixed two fatal server-side error;
 - Fixed the error in the AI of Animals.
 ***
+## 1.0 ~ 1.1 Update: Supplement & Expansion
+***
 ### [Release 1.1.0] (2024/08/09)
 ### Features:
 - 2 new Spellstones (**Revival Leaf** & **Lost Engine**) available;
@@ -69,7 +90,7 @@
 - Updated some cursed AI.
 ### Changes:
 - Remade the **Charm of Hell Blade**;
-- Added a lot of Configurable contents.
+- Added a lot of Configurable contents;
 - Many other detail changes...
 ### Fixes:
 - Fixed some small bugs.
@@ -103,6 +124,8 @@
 ***
 ### [Release 1.0.0] (2024/06/06)
 ### Features:
-- 2 new Items (**Magic Quartz Ring**,  **Pact of Dark Night**);
+- 2 new Items (**Magic Quartz Ring**,  **Pact of Dark Night**).
 ### Changes:
+- None.
 ### Fixes:
+- None.

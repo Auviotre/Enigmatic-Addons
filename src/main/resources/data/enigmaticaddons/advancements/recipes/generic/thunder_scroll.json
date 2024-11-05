@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:ocean_stone"
-            ]
+            "items": ["enigmaticlegacy:ocean_stone"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:thunder_scroll"
-            ]
+            "items": ["enigmaticaddons:thunder_scroll"]
           }
         ]
       }

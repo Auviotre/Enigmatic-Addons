@@ -1,9 +1,6 @@
 package auviotre.enigmatic.addon.registries;
 
-import auviotre.enigmatic.addon.contents.entities.CobwebBall;
-import auviotre.enigmatic.addon.contents.entities.DragonBreathArrow;
-import auviotre.enigmatic.addon.contents.entities.SplitDragonBreath;
-import auviotre.enigmatic.addon.contents.entities.UltimateDragonFireball;
+import auviotre.enigmatic.addon.contents.entities.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -15,18 +12,20 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     public static final EntityType<DragonBreathArrow> DRAGON_BREATH_ARROW = null;
     @ObjectHolder(value = "enigmaticaddons:cobweb_ball", registryName = "entity_type")
     public static final EntityType<CobwebBall> COBWEB_BALL = null;
-
     @ObjectHolder(value = "enigmaticaddons:ultimate_dragon_fireball", registryName = "entity_type")
     public static final EntityType<UltimateDragonFireball> ULTIMATE_DRAGON_FIREBALL = null;
-
     @ObjectHolder(value = "enigmaticaddons:split_dragon_breath", registryName = "entity_type")
     public static final EntityType<SplitDragonBreath> SPLIT_DRAGON_BREATH = null;
+    @ObjectHolder(value = "enigmaticaddons:ichor_spear", registryName = "entity_type")
+    public static final EntityType<ThrownIchorSpear> ICHOR_SPEAR = null;
+    @ObjectHolder(value = "enigmaticaddons:astral_spear", registryName = "entity_type")
+    public static final EntityType<ThrownAstralSpear> ASTRAL_SPEAR = null;
 
     private EnigmaticAddonEntities() {
         super(ForgeRegistries.ENTITY_TYPES);
         this.register("dragon_breath_arrow",
-                () -> EntityType.Builder.<DragonBreathArrow>of(DragonBreathArrow::new, MobCategory.MISC).sized(0.25F, 0.25F).setTrackingRange(64)
-                        .setCustomClientFactory((spawnEntity, world) -> new DragonBreathArrow(DRAGON_BREATH_ARROW, world))
+                () -> EntityType.Builder.<DragonBreathArrow>of(DragonBreathArrow::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4)
+                        .setCustomClientFactory((spawnEntity, world) -> new DragonBreathArrow(DRAGON_BREATH_ARROW, world)).setUpdateInterval(20)
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:dragon_breath_arrow"));
         this.register("cobweb_ball",
                 () -> EntityType.Builder.<CobwebBall>of(CobwebBall::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(4)
@@ -38,8 +37,16 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:ultimate_dragon_fireball"));
         this.register("split_dragon_breath",
                 () -> EntityType.Builder.<SplitDragonBreath>of(SplitDragonBreath::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(4)
-                        .setCustomClientFactory((spawnEntity, world) -> new SplitDragonBreath(SPLIT_DRAGON_BREATH, world)).setUpdateInterval(10)
+                        .setCustomClientFactory((spawnEntity, world) -> new SplitDragonBreath(SPLIT_DRAGON_BREATH, world)).setUpdateInterval(10).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:split_dragon_breath"));
+        this.register("ichor_spear",
+                () -> EntityType.Builder.<ThrownIchorSpear>of(ThrownIchorSpear::new, MobCategory.MISC).sized(0.35F, 0.35F).clientTrackingRange(4)
+                        .setCustomClientFactory((spawnEntity, world) -> new ThrownIchorSpear(ICHOR_SPEAR, world)).setUpdateInterval(20)
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:ichor_spear"));
+        this.register("astral_spear",
+                () -> EntityType.Builder.<ThrownAstralSpear>of(ThrownAstralSpear::new, MobCategory.MISC).sized(0.45F, 0.45F).clientTrackingRange(4)
+                        .setCustomClientFactory((spawnEntity, world) -> new ThrownAstralSpear(ASTRAL_SPEAR, world)).setUpdateInterval(20).fireImmune()
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:astral_spear"));
 
     }
 }

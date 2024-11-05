@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [-80, 260, -40],
+      "translation": [0, -1, 2.75],
+      "scale": [1.7, 1.7, 0.85]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [-80, -280, 40],
+      "translation": [0, -1, 2.75],
+      "scale": [1.7, 1.7, 0.85]
+    }
+  }
+}

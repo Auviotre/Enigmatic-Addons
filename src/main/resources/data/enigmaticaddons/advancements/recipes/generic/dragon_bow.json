@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:dragon_head"
-            ]
+            "items": ["minecraft:dragon_head"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:dragon_bow"
-            ]
+            "items": ["enigmaticaddons:dragon_bow"]
           }
         ]
       }

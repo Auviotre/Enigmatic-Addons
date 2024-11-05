@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RemainDragonBreath extends InstantenousMobEffect {
     public RemainDragonBreath() {
-        super(MobEffectCategory.BENEFICIAL, 14639615);
+        super(MobEffectCategory.BENEFICIAL, 0xdf61ff);
     }
 
     public void applyEffectTick(LivingEntity entity, int amplifier) {

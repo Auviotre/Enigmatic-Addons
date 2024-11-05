@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:twisted_heart"
-            ]
+            "items": ["enigmaticlegacy:twisted_heart"]
           }
         ]
       }
@@ -23,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticaddons:sanguinary_handbook"
-            ]
+            "items": ["enigmaticaddons:sanguinary_handbook"]
           }
         ]
       }

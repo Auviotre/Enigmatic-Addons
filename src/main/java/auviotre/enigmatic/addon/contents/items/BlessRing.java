@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.triggers.BlessRingEquippedTrigger;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
@@ -11,6 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -56,10 +58,16 @@ public class BlessRing extends ItemBaseCurio {
         blessList.add("enigmaticlegacy:berserk_charm");
         blessList.add("enigmaticlegacy:enchanter_pearl");
         blessList.add("enigmaticlegacy:guardian_heart");
+        blessList.add("enigmaticlegacy:twisted_heart");
+        blessList.add("enigmaticlegacy:curse_transposer");
+        blessList.add("enigmaticlegacy:bless_amplifier");
         blessList.add("enigmaticaddons:night_scroll");
         blessList.add("enigmaticaddons:sanguinary_handbook");
         blessList.add("enigmaticaddons:earth_promise");
         blessList.add("enigmaticaddons:thunder_scroll");
+        blessList.add("enigmaticaddons:pure_heart");
+        blessList.add("enigmaticaddons:bless_amplifier");
+        blessList.add("enigmaticaddons:the_bless");
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -107,6 +115,12 @@ public class BlessRing extends ItemBaseCurio {
             }
         }
         return false;
+    }
+
+    public void onEquip(SlotContext context, ItemStack prevStack, ItemStack stack) {
+        if (context.entity() instanceof ServerPlayer player) {
+            BlessRingEquippedTrigger.INSTANCE.trigger(player);
+        }
     }
 
     public void curioTick(SlotContext context, ItemStack stack) {

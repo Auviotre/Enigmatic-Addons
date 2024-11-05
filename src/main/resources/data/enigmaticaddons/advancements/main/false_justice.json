@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "enigmaticaddons:false_justice"
+    },
+    "title": {
+      "translate": "advancement.enigmaticaddons:falseJustice"
+    },
+    "description": {
+      "translate": "advancement.enigmaticaddons:falseJustice.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+	"frame": "challenge"
+  },
+  "rewards": {
+    "experience": 120
+  },
+  "parent": "enigmaticlegacy:main/twisted_heart",
+  "criteria": {
+    "twist": {
+      "trigger": "enigmaticlegacy:cursed_inventory_changed",
+      "conditions": {
+        "items": [
+          {
+             "items": ["enigmaticaddons:false_justice"]
+          }
+        ]
+      }
+    }
+  }
+}

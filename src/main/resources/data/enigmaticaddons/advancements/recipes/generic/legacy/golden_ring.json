@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "enigmaticlegacy:golden_ring"
-            ]
+            "items": ["enigmaticlegacy:golden_ring"]
           }
         ]
       }

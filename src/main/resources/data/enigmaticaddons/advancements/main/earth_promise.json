@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "enigmaticaddons:earth_promise"
+    },
+    "title": {
+      "translate": "advancement.enigmaticaddons:earthPromise"
+    },
+    "description": {
+      "translate": "advancement.enigmaticaddons:earthPromise.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "enigmaticaddons:main/pure_heart",
+  "criteria": {
+    "spellstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+             "items": ["enigmaticaddons:earth_promise"]
+          }
+        ]
+      }
+    }
+  }
+}
