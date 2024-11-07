@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon;
 
 import auviotre.enigmatic.addon.client.handlers.ClientEventHandler;
 import auviotre.enigmatic.addon.contents.brewing.AstralBrewingRecipe;
+import auviotre.enigmatic.addon.contents.objects.FilePackResources;
 import auviotre.enigmatic.addon.handlers.AddonEventHandler;
 import auviotre.enigmatic.addon.handlers.AddonKeybindHandler;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
@@ -19,23 +20,31 @@ import com.aizistral.enigmaticlegacy.registries.EnigmaticBlocks;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticTabs;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.util.MutableHashedLinkedMap;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forgespi.language.IModFileInfo;
+import net.minecraftforge.forgespi.locating.IModFile;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.jetbrains.annotations.NotNull;
@@ -262,5 +271,23 @@ public class EnigmaticAddons {
 
     private void putAfter(MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> entries, ItemLike after, ItemLike item) {
         entries.putAfter(new ItemStack(after), new ItemStack(item), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+
+
+    @SubscribeEvent
+    public void addPackFinders(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            IModFileInfo modFileInfo = ModList.get().getModFileById(MODID);
+            if (modFileInfo == null) return;
+            String builtin = "no_3d_models";
+            IModFile modFile = modFileInfo.getFile();
+            event.addRepositorySource((consumer) -> {
+                Pack pack = Pack.readMetaAndCreate(MODID + ":" + builtin,
+                        Component.literal("No 3D Models"), false,
+                        (id) -> new FilePackResources(id, modFile, "resourcepacks/" + builtin),
+                        PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
+                if (pack != null) consumer.accept(pack);
+            });
+        }
     }
 }

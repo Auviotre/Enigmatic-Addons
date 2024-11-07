@@ -1,20 +1,21 @@
 ***
 ## 1.1 ~ 1.2 Update: God's Blood
 ***
-### [Release 1.1.4] (2024/11/**)
+### [Release 1.1.4] (2024/11/08)
 ### Features:
 - 2 new Item (**Ichor Spear**, **The Bless**);
 - 1 new effect (**Ichor Corrosion**);
-- 5 new Advancements.
+- 5 new Advancements;
+- Now a built-in resource pack of original 2D models available.
 ### Changes:
 - Now the visibility of armor can be toggled with**Etherium Core**;
 - Now Addon's spellstones can be obtained by **Primeval Cube**;
 - Changed the armor effect of the **Etherium Core**;
 - Changed the effect of the **Forger's Gem**;
 - Changed the effect of **The Twist** put in the **Antique Book Bag**;
-- Implemented more 3D models;
+- Implemented more 3D models.
 ### Fixes:
-- Fixed the issue of text display errors in some cursed items with **Ring of Redemption**;
+- Fixed the issue of text display errors in some cursed items with **Ring of Redemption**.
 ***
 ### [Release 1.1.3] (2024/10/12)
 ### Features:

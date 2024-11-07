@@ -26,7 +26,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Collection;
 import java.util.List;
 
 public class TheBless extends TheAcknowledgment implements ICursed {
@@ -58,6 +57,7 @@ public class TheBless extends TheAcknowledgment implements ICursed {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless3");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless4");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless5");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless6");
             }
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless1");
@@ -79,9 +79,9 @@ public class TheBless extends TheAcknowledgment implements ICursed {
             target.addEffect(new MobEffectInstance(EnigmaticAddonEffects.ICHOR_CORROSION_EFFECT, 100), attacker);
             target.playSound(SoundEvents.TRIDENT_HIT, 0.5F, 0.1F);
         }
-        Collection<MobEffectInstance> activeEffects = target.getActiveEffects();
-        for (MobEffectInstance activeEffect : activeEffects) {
-            if (activeEffect.getEffect().isBeneficial()) target.removeEffect(activeEffect.getEffect());
+        List<MobEffectInstance> effects = target.getActiveEffects().stream().toList();
+        for (MobEffectInstance effect : effects) {
+            if (effect.getEffect().isBeneficial()) target.removeEffect(effect.getEffect());
         }
         return super.hurtEnemy(stack, target, attacker);
     }

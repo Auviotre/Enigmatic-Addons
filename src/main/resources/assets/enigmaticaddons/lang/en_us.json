@@ -295,7 +295,8 @@
   "tooltip.enigmaticaddons.theBless2": "§5using this to light up the way forward.",
   "tooltip.enigmaticaddons.theBless3": "§5Causing more damage to the target §don fire §5and",
   "tooltip.enigmaticaddons.theBless4": "§5remove the §6beneficial§5 effects on it.",
-  "tooltip.enigmaticaddons.theBless5": "§5The holder will not catch fire.",
+  "tooltip.enigmaticaddons.theBless5": "§5The holder will not catch fire and",
+  "tooltip.enigmaticaddons.theBless6": "§5has longer invulnerable time",
 
   "book.enigmaticaddons.entry.the_bless.name": "The Bless",
   "book.enigmaticaddons.entry.the_bless.page.1": "This is still a book of knowledge, existing on both sides of The Twist as one.<br2/>By utilizing the evil essence, the purification effect of ichor shifts this book towards a more conservative side, increasing your chances of surviving frequent hits and making you immune to unquenchable flames. This is one of the blessing.",

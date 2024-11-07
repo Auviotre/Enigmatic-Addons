@@ -302,9 +302,10 @@
   "tooltip.enigmaticaddons.theBless3": "§5对§d着火§5的目标造成更多伤害",
   "tooltip.enigmaticaddons.theBless4": "§5并移除目标的§d增益§5效果",
   "tooltip.enigmaticaddons.theBless5": "§5持有者不会着火",
+  "tooltip.enigmaticaddons.theBless6": "§5并延长受击无敌时间",
 
   "book.enigmaticaddons.entry.the_bless.name": "恩惠之典",
-  "book.enigmaticaddons.entry.the_bless.page.1": "这是依旧是一本知识之书，作为倒转之启一体两面的存在。<br2/>同样是利用邪恶精髓，灵液的纯化效应则将这本书变化的更倾向于保守一面，增加你在频繁受击中存活的可能性，并让你免疫不止火焰的侵害。这便是恩惠之一。",
+  "book.enigmaticaddons.entry.the_bless.page.1": "这是依旧是一本知识之书，作为倒转之启一体两面的存在。<br2/>同样是利用邪恶精髓，灵液的纯化效应则将这本书变化的更倾向于保守一面，增加你在频繁受击中存活的可能性，并让你免疫永燃火焰的侵害。这便是恩惠之一。",
   "book.enigmaticaddons.entry.the_bless.page.2": "当然这本书不止于此，启示之证的焚化之力也在此处得到了进一步的强化，去除焚烧者一切的福音，给予焚烧者更为猛烈的痛击。",
 
 
