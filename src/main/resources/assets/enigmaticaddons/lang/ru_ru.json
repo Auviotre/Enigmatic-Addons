@@ -23,7 +23,7 @@
   "book.enigmaticaddons.entry.frost_enchantment.heading.2": "Чары",
   "book.enigmaticaddons.entry.frost_enchantment.page.1": "Среди общих категорий чар вы разработали несколько чар, связанных с холодом.",
   "book.enigmaticaddons.entry.frost_enchantment.page.2": "Заговор холода - добавляет холодную ауру к вашему оружию, заставляя поражённые цели медленно замерзать. Конечно, его нельзя сочетать с заговором огня.",
-  "book.enigmaticaddons.entry.frost_enchantment.page.3": "Холодостойкость - обеспечивает защиту от повреждений от заморозки и позволяет дольше выдерживать холод. Не сочетается с защитными чарами.",
+  "book.enigmaticaddons.entry.frost_enchantment.page.3": "Холодостойкость - обеспечивает защиту от заморозки и позволяет дольше выдерживать холод. Не сочетается с защитными чарами.",
 
   "item.enigmaticaddons.earth_heart_fragment": "Часть Земли",
 
@@ -128,9 +128,13 @@
   "tooltip.enigmaticaddons.etheriumCore1": "§dАктивная способность:",
   "tooltip.enigmaticaddons.etheriumCore2": "§6- Активирует эфирный щит на §6%1$s§6 секунд.",
   "tooltip.enigmaticaddons.etheriumCoreCooldown": "§dВремя восстановления: §6%1$s§6 секунд",
-  "tooltip.enigmaticaddons.etheriumCore3": "§5- Ваша броня невидима при ношении.",
-  "tooltip.enigmaticaddons.etheriumCore4": "§5- Преобразует §6%1$s§5 полученного урона",
-  "tooltip.enigmaticaddons.etheriumCore5": "§5  в усиление следующей атаки.",
+  "tooltip.enigmaticaddons.etheriumCore3": "§5- §6%1$s§5 брони，§6%2$s§5 твёрдости брони",
+  "tooltip.enigmaticaddons.etheriumCore5": "§5- Ваша броня невидима при ношении.",
+  "tooltip.enigmaticaddons.etheriumCore5_alt": "§4- Делает вашу броню невидимой при ношении.",
+  "tooltip.enigmaticaddons.etheriumCore6": "§5- Преобразует §6%1$s§5 полученного урона",
+  "tooltip.enigmaticaddons.etheriumCore7": "§5  в усиление следующей атаки.",
+  "tooltip.enigmaticaddons.etheriumCore8": "§5- Дарует неуязвимость к §6давлению§5, §6проколам§5 и §6взрывам§5.",
+  "tooltip.enigmaticaddons.etheriumCore9": "§5Удерживайте §6Shift §5и ПКМ для переключения видимости брони.",
 
   "book.enigmaticaddons.entry.etherium_core.name": "Эфирное ядро",
   "book.enigmaticaddons.entry.etherium_core.page.1": "Одно - сердце голема, которое можно увидеть повсюду в мире, а другое — чрезвычайно ценная эфирная броня. Объединив их, вы можете получить этот камень стихий, который специализируется на физической защите.<br2/>Используя сердце голема как неисчерпаемый источник энергии для эфирного щита, вы можете постоянно активировать",
@@ -143,6 +147,8 @@
   "book.enigmaticaddons.entry.dragon_bow.page.1": "Можно ли использовать дыхание дракона только для зельеварения? Возможно, вы задумывались об этом вопросе. Вспоминая дракона края, использующего своё смертоносное драконье дыхание, чтобы сжечь вашу броню и кожу, вы также хотите, чтобы другие испытали это. И странная голова дракона, висящая на корабле края, которую можно использовать только для украшения...<br2/>Таким образом, по разным причинам",
   "book.enigmaticaddons.entry.dragon_bow.page.2": "родился этот лук, наделённый магией.<br2/>Этот лук может стрелять стрелами дыхания дракона без каких-либо затрат стрел, но для его зарядки требуется немного больше времени. Когда стрела дыхания дракона",
   "book.enigmaticaddons.entry.dragon_bow.page.3": "попадает в цель, она превращается в дыхание дракона дальнего боя и пытается удержать или преследовать каждое существо, проходящее на его пути.<br2/>Однако следует отметить, что этот лук позволяет вам использовать только силу дыхания дракона. Он не может дать вам бродить в дыхании дракона счастливо и глупо.",
+
+  "item.enigmaticaddons.astral_spear": "Астральное копьё [НЗП]",
 
   "item.enigmaticaddons.sanguinary_handbook": "Руководство по кровавой охоте",
 
@@ -206,8 +212,8 @@
 
   "tooltip.enigmaticaddons.forgerGem2" : "§5Ковка требует вдвое меньше опыта,",
   "tooltip.enigmaticaddons.forgerGem3" : "§5и ваша наковальня более прочная.",
-  "tooltip.enigmaticaddons.forgerGem4" : "§5Из двух неиспользованных инструментов можно выковать §dнеразрушаемый§5.",
-  "tooltip.enigmaticaddons.forgerGem5" : "§5",
+  "tooltip.enigmaticaddons.forgerGem4" : "§5Из двух новых инструментов без чар",
+  "tooltip.enigmaticaddons.forgerGem5" : "§5можно выковать один §dнеразрушаемый§5.",
 
   "book.enigmaticaddons.entry.forger_gem.name": "Самоцвет кузнеца",
   "book.enigmaticaddons.entry.forger_gem.page.1": "Ковка предметов — неизбежный шаг к повышению прочности, но прежде чем достичь совершенства, всегда будут проблемы из-за высоких затрат или поломки наковальни.<br2/>Этот аксессуар напрямую внедрит в ваши руки древние методы ковки, эффективно снижая вероятность поломки",
@@ -275,6 +281,26 @@
   "book.enigmaticaddons.entry.ichoroot.page.1": "Когда люди спорят о моркови и картофеле, заброшенная свекла выглядит особенно жалкой. Теперь с помощью ихора пусть она освежится!<br2/>Требуется лишь небольшое количество ихора, чтобы удвоить питательность свеклы и сделать её легкоусвояемой, а также продемонстрировать её божественность и очистительную силу.",
   "book.enigmaticaddons.entry.ichoroot.page.2": "Ихор может очистить негативные эффекты и обеспечить поглощение. После употребления определённого количества, защита божественности раскроется, чтобы противостоять определённому вреду для вас.",
 
+  "item.enigmaticaddons.ichor_spear": "Ихорное копьё",
+
+  "tooltip.enigmaticaddons.ichorSpear": "§5Одноразовое осквернённое метательное копьё",
+
+  "book.enigmaticaddons.entry.ichor_spear.name": "Копьё ихора",
+  "book.enigmaticaddons.entry.ichor_spear.page.1": "Вы должны знать, что благородный ихор всегда отличается от обычных существований, особенно когда он нанесён на доспехи и издаёт шипящий звук.<br2/>Осторожно нанесите каплю ихора на стабильный золотой наконечник копья вместе с другими катализаторами, и всё, копьё готово.",
+  "book.enigmaticaddons.entry.ichor_spear.page.2": "Пронзив его в доспехи противника, опасный ихор разъест их доспехи и ослабит их защиту.<br2/>Но есть роковая проблема - копьё одноразовое. Хотя, это может быть компенсировано только его простыми и легкодоступными функциями.",
+
+  "item.enigmaticaddons.the_bless": "Благословение",
+
+  "tooltip.enigmaticaddons.theBless1": "§5В бесконечном путешествии страданий,",
+  "tooltip.enigmaticaddons.theBless2": "§5используйте её дабы осветить свой путь.",
+  "tooltip.enigmaticaddons.theBless3": "§5Наносит больше урона по §dгорящим §5и",
+  "tooltip.enigmaticaddons.theBless4": "§5снимает §6полезные§5 эффекты с них.",
+  "tooltip.enigmaticaddons.theBless5": "§5Держащий никогда не воспламенится.",
+
+  "book.enigmaticaddons.entry.the_bless.name": "Благословитель",
+  "book.enigmaticaddons.entry.the_bless.page.1": "Всё ещё книга знаний, существующая по обе стороны Разлома как единое целое.<br2/>Используя злую сущность, очищающий эффект ихора смещает книгу в более светлую сторону, увеличивая ваши шансы выжить при частых ударах и делая вас невосприимчивым к неугасающему пламени.",
+  "book.enigmaticaddons.entry.the_bless.page.2": "Конечно одним благословением эта книга не ограничивается, также испепеляющая сила Откровения ещё больше усиливается, стирая всё евангелие испепелителя и нанося им более жестокий удар.",
+
   "item.enigmaticaddons.pure_heart": "Чистое сердце",
 
   "book.enigmaticaddons.entry.pure_heart.name": "Чистое сердце",
@@ -290,6 +316,8 @@
   "book.enigmaticaddons.entry.bless_amplifier.name": "Том предсказания",
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "После крещения Ихором желание получить книгу трансформировалось из приобретения в дарение, что ещё больше усилило магическую силу предмета.<br2/>Если вы позволите ей войти в тесный контакт с любым зачарованным предметом, она пожертвует собой и удвоит уровень чар в предмете.",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "Его истинное предназначение — снять ограничения чар и поднять их на более высокий уровень.<br2/>Кстати, не все ограничения можно снять, и есть также некоторые чары, которые не выдерживают силы и становятся неэффективными.",
+
+  "block.enigmaticaddons.radiant_beacon": "Сияющий маяк",
 
   "item.enigmaticaddons.bless_stone": "Святой камень",
 
@@ -330,16 +358,20 @@
 
   "item.enigmaticaddons.evil_dagger": "§4§kЗловещий кинжал",
 
+  "death.attack.evil_curse": "%1$s был §4§kпоглощён зловещим проклятьем",
   "death.attack.false_justice": "%1$s растворился в пустоте ложного суждения.",
 
+  "entity.enigmaticaddons.astral_spear": "Астральное копьё",
   "entity.enigmaticaddons.cobweb_ball": "Шар паутины",
   "entity.enigmaticaddons.dragon_breath_arrow": "Стрела драконьего дыхания",
+  "entity.enigmaticaddons.ichor_spear": "Ихорное копьё",
   "entity.enigmaticaddons.enigmatic_potion_entity": "Совершенное зелье",
   "entity.enigmaticaddons.split_dragon_breath": "Разделённое дыхание дракона",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "Совершенный огненный шар дракона",
 
   "effect.enigmaticaddons.dragon_breath": "Дыхание дракона",
   "effect.enigmaticaddons.frozen_heart": "Ледяное сердце",
+  "effect.enigmaticaddons.ichor_corrosion": "Ихорная коррозия",
   "effect.enigmaticaddons.pure_resistance": "Чистое сопротивление",
 
   "item.enigmaticaddons.common_potion.effect.frozen_heart": "Зелье ледянного сердца",
@@ -407,5 +439,20 @@
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_strength": "Туманное зелье силы",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_weakness": "Туманное зелье слабости",
   "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_haste": "Туманное зелье спешки",
-  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "Туманное зелье утомления"
+  "item.enigmaticaddons.ultimate_potion_lingering.effect.extreme_mining_fatigue": "Туманное зелье утомления",
+
+  "advancement.enigmaticaddons:pureHeart": "Нечестивое очищение",
+  "advancement.enigmaticaddons:pureHeart.desc": "Создайте чистое сердце",
+
+  "advancement.enigmaticaddons:primevalCube": "След к истокам",
+  "advancement.enigmaticaddons:primevalCube.desc": "Создайте первозданный куб",
+
+  "advancement.enigmaticaddons:earthPromise": "Не обещайте слишком много",
+  "advancement.enigmaticaddons:earthPromise.desc": "Получите обещание от Земли",
+
+  "advancement.enigmaticaddons:falseJustice": "Извлечение хаоса",
+  "advancement.enigmaticaddons:falseJustice.desc": "Используйте зловещую эссенцию для создания книги хаоса",
+
+  "advancement.enigmaticaddons:blessRing": "Изменение судьбы",
+  "advancement.enigmaticaddons:blessRing.desc": "Разрушьте кольцо семи проклятий, и получите искупление"
 }
