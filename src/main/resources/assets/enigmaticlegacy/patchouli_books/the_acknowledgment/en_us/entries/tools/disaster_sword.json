@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.disaster_sword.name",
+  "icon": "enigmaticaddons:disaster_sword",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/disaster_sword",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.disaster_sword.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:disaster_sword",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.disaster_sword.page.2"
+    }
+  ]
+}

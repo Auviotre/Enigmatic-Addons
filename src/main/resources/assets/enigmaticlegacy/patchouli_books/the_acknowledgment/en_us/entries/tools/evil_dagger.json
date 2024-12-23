@@ -1,0 +1,26 @@
+{
+  "name": "book.enigmaticaddons.entry.evil_dagger.name",
+  "icon": "enigmaticaddons:evil_dagger",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/evil_dagger",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 80,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.evil_dagger.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:evil_dagger",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.evil_dagger.page.2"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.evil_dagger.page.3"
+    }
+  ]
+}

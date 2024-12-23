@@ -26,12 +26,14 @@ import java.util.List;
 import java.util.UUID;
 
 public class AdventureCharm extends ItemBaseCurio {
+    public static Omniconfig.BooleanParameter shiftEnable;
     public static Omniconfig.DoubleParameter attackDamageModifier;
     public static Omniconfig.PerhapsParameter attackSpeedMultiplier;
 
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("EmblemofAdventurer");
+        shiftEnable = builder.comment("Whether to enable Shift effect.").getBoolean("ShiftEnable", true);
         attackDamageModifier = builder.comment("The attack damage boost of Emblem of Adventurer").max(32768).getDouble("AttackDamageModifier", 2);
         attackSpeedMultiplier = builder.comment("The attack speed multiplier of Emblem of Adventurer. Measures in percentage.").max(100.0).getPerhaps("AttackSpeedMultiplier", 10);
         builder.popPrefix();
@@ -45,7 +47,8 @@ public class AdventureCharm extends ItemBaseCurio {
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> list, TooltipFlag flagIn) {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.adventureCharm1");
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.adventureCharm2");
+        if (shiftEnable.getValue())
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.adventureCharm2");
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {

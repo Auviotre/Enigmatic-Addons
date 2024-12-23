@@ -47,6 +47,7 @@ public class HellBladeCharm extends ItemBaseCurio {
         killThreshold = builder.comment("The kill threshold of Hell Blade Charm to active the skill.").max(100).getPerhaps("KillThreshold", 75);
         killCursedThreshold = builder.comment("The kill threshold of Hell Blade Charm to active the skill with Ring of Seven Curses.").max(100).getPerhaps("KillCursedThreshold", 50);
         healMultiplier = builder.comment("The Multiplier of healing when active the skill of Hell Blade Charm.").max(100).getDouble("HealMultiplier", 0.8);
+        builder.popPrefix();
     }
 
     public HellBladeCharm() {

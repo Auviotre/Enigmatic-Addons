@@ -41,8 +41,8 @@ public class NightScroll extends ItemBaseCurio implements ICursed {
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("PactofDarkNight");
-        abilityBoost = builder.comment("Default amount of armor points provided by Magic Quartz Ring.").max(100).getPerhaps("AbilityBoost", 10);
-        darkCondition = builder.comment("Resistance to magic damage provided by Magic Quartz Ring. Defined as percentage.").max(14).getInt("DarkCondition", 5);
+        abilityBoost = builder.comment("Default amount of armor points provided by Pact of Dark Night.").max(100).getPerhaps("AbilityBoost", 10);
+        darkCondition = builder.comment("Resistance to magic damage provided by Pact of Dark Night. Defined as percentage.").max(14).getInt("DarkCondition", 5);
         builder.popPrefix();
     }
 

@@ -46,7 +46,10 @@ public class CobwebBall extends Projectile {
             double deltaX = 0.02D * Math.sin(theta) * Math.cos(phi);
             double deltaY = 0.02D * Math.sin(phi);
             double deltaZ = 0.02D * Math.cos(theta) * Math.cos(phi);
-            this.level().addParticle(this.getParticle(), this.getX(), this.getY(), this.getZ(), deltaX, deltaY, deltaZ);
+            double x = this.getX() + this.getDeltaMovement().x * i / 3;
+            double y = this.getY() + this.getDeltaMovement().y * i / 3;
+            double z = this.getZ() + this.getDeltaMovement().z * i / 3;
+            this.level().addParticle(this.getParticle(), x, y, z, deltaX, deltaY, deltaZ);
         }
         Vec3 vec3 = this.getDeltaMovement();
         HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);

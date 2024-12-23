@@ -1,4 +1,4 @@
-package auviotre.enigmatic.addon.packets;
+package auviotre.enigmatic.addon.packets.server;
 
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
@@ -26,14 +26,14 @@ public class PacketCursedXPScrollKey {
         return new PacketCursedXPScrollKey(buf.readBoolean());
     }
 
-    public static void handle(PacketCursedXPScrollKey msg, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer playerServ = ctx.get().getSender();
+    public static void handle(PacketCursedXPScrollKey msg, Supplier<NetworkEvent.Context> context) {
+        context.get().enqueueWork(() -> {
+            ServerPlayer playerServ = context.get().getSender();
             if (SuperpositionHandler.hasCurio(playerServ, EnigmaticAddonItems.CURSED_XP_SCROLL)) {
                 ItemStack scroll = SuperpositionHandler.getCurioStack(playerServ, EnigmaticAddonItems.CURSED_XP_SCROLL);
                 EnigmaticAddonItems.CURSED_XP_SCROLL.trigger(playerServ.level(), scroll, playerServ, InteractionHand.MAIN_HAND, false);
             }
         });
-        ctx.get().setPacketHandled(true);
+        context.get().setPacketHandled(true);
     }
 }

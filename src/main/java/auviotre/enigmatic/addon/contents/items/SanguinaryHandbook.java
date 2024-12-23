@@ -34,6 +34,7 @@ public class SanguinaryHandbook extends ItemBase implements ICursed {
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("SanguinaryHuntingHandbook");
         DamageMultiplier = builder.comment("The damage boost on pet of Sanguinary Hunting Handbook.").min(0.0).getDouble("DamageMultiplier", 0.25);
+        builder.popPrefix();
     }
 
     public SanguinaryHandbook() {

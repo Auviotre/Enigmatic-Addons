@@ -1,4 +1,4 @@
-package auviotre.enigmatic.addon.packets;
+package auviotre.enigmatic.addon.packets.server;
 
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import net.minecraft.network.FriendlyByteBuf;
@@ -32,9 +32,9 @@ public class PacketEmptyLeftClick {
         return new PacketEmptyLeftClick(buf.readBoolean());
     }
 
-    public static void handle(PacketEmptyLeftClick msg, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer servPlayer = ctx.get().getSender();
+    public static void handle(PacketEmptyLeftClick msg, Supplier<NetworkEvent.Context> context) {
+        context.get().enqueueWork(() -> {
+            ServerPlayer servPlayer = context.get().getSender();
             float base = (float) (0.5F * servPlayer.getAttributeValue(Attributes.ATTACK_DAMAGE));
             float damage = EnchantmentHelper.getSweepingDamageRatio(servPlayer) * base;
             double delX = -Mth.sin(servPlayer.getYRot() * 0.017453292F);
@@ -69,6 +69,6 @@ public class PacketEmptyLeftClick {
             servPlayer.causeFoodExhaustion(0.1F);
             servPlayer.getCooldowns().addCooldown(EnigmaticAddonItems.THUNDER_SCROLL, (int) (16 / servPlayer.getAttributeValue(Attributes.ATTACK_SPEED)));
         });
-        ctx.get().setPacketHandled(true);
+        context.get().setPacketHandled(true);
     }
 }

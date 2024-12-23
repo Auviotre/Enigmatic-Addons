@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:totem_of_malice"
+    }
+  ],
+  "pattern": [
+    " Q ",
+    "WGW",
+    " Q "
+  ],
+  "key": {
+    "W": {
+      "item": "enigmaticlegacy:evil_essence"
+    },
+    "Q": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "G": {
+      "item": "minecraft:totem_of_undying"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:totem_of_malice"
+  }
+}

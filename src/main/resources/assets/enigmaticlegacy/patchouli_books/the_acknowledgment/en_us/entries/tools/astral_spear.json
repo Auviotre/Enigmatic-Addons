@@ -1,0 +1,30 @@
+{
+  "name": "book.enigmaticaddons.entry.astral_spear.name",
+  "icon": "enigmaticaddons:astral_spear",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/astral_spear",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 60,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.astral_spear.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:astral_spear",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.astral_spear.page.2"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.astral_spear.page.3"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.astral_spear.page.4"
+    }
+  ]
+}

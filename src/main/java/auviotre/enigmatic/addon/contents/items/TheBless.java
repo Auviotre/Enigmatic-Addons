@@ -4,7 +4,6 @@ import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
-import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.TheAcknowledgment;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
@@ -50,15 +49,15 @@ public class TheBless extends TheAcknowledgment implements ICursed {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> list, TooltipFlag flag) {
         if (Screen.hasShiftDown()) {
-            if (Minecraft.getInstance().player != null && SuperpositionHandler.isTheCursedOne(Minecraft.getInstance().player)) {
+            if (Minecraft.getInstance().player != null && SuperAddonHandler.isOKOne(Minecraft.getInstance().player)) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.theTwist4");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.theTwist5");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless3");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless4");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless5");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless6");
             }
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless3");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless4");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless5");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless6");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.theBless2");
@@ -68,9 +67,7 @@ public class TheBless extends TheAcknowledgment implements ICursed {
 
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.indicateCursedOnesOnly(list);
-        if (stack.isEnchanted()) {
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-        }
+        if (stack.isEnchanted()) ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {

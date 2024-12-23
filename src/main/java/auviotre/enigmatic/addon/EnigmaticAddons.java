@@ -7,9 +7,12 @@ import auviotre.enigmatic.addon.handlers.AddonEventHandler;
 import auviotre.enigmatic.addon.handlers.AddonKeybindHandler;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
-import auviotre.enigmatic.addon.packets.PacketCursedXPScrollKey;
-import auviotre.enigmatic.addon.packets.PacketEmptyLeftClick;
-import auviotre.enigmatic.addon.packets.PacketStarParticles;
+import auviotre.enigmatic.addon.packets.clients.PacketDisasterParry;
+import auviotre.enigmatic.addon.packets.clients.PacketEvilCage;
+import auviotre.enigmatic.addon.packets.clients.PacketMaliceTotem;
+import auviotre.enigmatic.addon.packets.clients.PacketStarParticles;
+import auviotre.enigmatic.addon.packets.server.PacketCursedXPScrollKey;
+import auviotre.enigmatic.addon.packets.server.PacketEmptyLeftClick;
 import auviotre.enigmatic.addon.proxy.ClientProxy;
 import auviotre.enigmatic.addon.proxy.CommonProxy;
 import auviotre.enigmatic.addon.registries.*;
@@ -97,6 +100,9 @@ public class EnigmaticAddons {
         packetInstance.registerMessage(0, PacketCursedXPScrollKey.class, PacketCursedXPScrollKey::encode, PacketCursedXPScrollKey::decode, PacketCursedXPScrollKey::handle);
         packetInstance.registerMessage(1, PacketEmptyLeftClick.class, PacketEmptyLeftClick::encode, PacketEmptyLeftClick::decode, PacketEmptyLeftClick::handle);
         packetInstance.registerMessage(2, PacketStarParticles.class, PacketStarParticles::encode, PacketStarParticles::decode, PacketStarParticles::handle);
+        packetInstance.registerMessage(3, PacketEvilCage.class, PacketEvilCage::encode, PacketEvilCage::decode, PacketEvilCage::handle);
+        packetInstance.registerMessage(4, PacketDisasterParry.class, PacketDisasterParry::encode, PacketDisasterParry::decode, PacketDisasterParry::handle);
+        packetInstance.registerMessage(5, PacketMaliceTotem.class, PacketMaliceTotem::encode, PacketMaliceTotem::decode, PacketMaliceTotem::handle);
         LOGGER.info("Common setup phase finished successfully.");
     }
 
@@ -182,7 +188,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticAddonItems.FORGER_GEM, EnigmaticAddonItems.HELL_BLADE_CHARM);
             putAfter(entries, EnigmaticAddonItems.HELL_BLADE_CHARM, EnigmaticItems.MEGA_SPONGE);
             putAfter(entries, EnigmaticItems.MEGA_SPONGE, EnigmaticItems.FORBIDDEN_AXE);
-            putAfter(entries, EnigmaticItems.FORBIDDEN_AXE, EnigmaticAddonItems.ICHOR_DROPLET);
+            putAfter(entries, EnigmaticItems.FORBIDDEN_AXE, EnigmaticAddonItems.DISASTER_SWORD);
+            putAfter(entries, EnigmaticAddonItems.DISASTER_SWORD, EnigmaticAddonItems.ICHOR_DROPLET);
             putAfter(entries, EnigmaticAddonItems.ICHOR_DROPLET, EnigmaticAddonItems.ICHOROOT);
             putAfter(entries, EnigmaticAddonItems.ICHOROOT, EnigmaticAddonItems.ICHOR_SPEAR);
             putAfter(entries, EnigmaticAddonItems.ICHOR_SPEAR, EnigmaticItems.ASTRAL_DUST);
@@ -224,9 +231,11 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.ASTRAL_FRUIT, EnigmaticItems.GUARDIAN_HEART);
             putAfter(entries, EnigmaticItems.GUARDIAN_HEART, EnigmaticItems.EVIL_ESSENCE);
             putAfter(entries, EnigmaticItems.EVIL_ESSENCE, EnigmaticItems.EVIL_INGOT);
-            putAfter(entries, EnigmaticItems.EVIL_INGOT, EnigmaticItems.THE_TWIST);
+            putAfter(entries, EnigmaticItems.EVIL_INGOT, EnigmaticAddonItems.EVIL_DAGGER);
+            putAfter(entries, EnigmaticAddonItems.EVIL_DAGGER, EnigmaticItems.THE_TWIST);
             putAfter(entries, EnigmaticItems.THE_TWIST, EnigmaticItems.ENDER_SLAYER);
-            putAfter(entries, EnigmaticItems.ENDER_SLAYER, EnigmaticItems.CURSE_TRANSPOSER);
+            putAfter(entries, EnigmaticItems.ENDER_SLAYER, EnigmaticAddonItems.TOTEM_OF_MALICE);
+            putAfter(entries, EnigmaticAddonItems.TOTEM_OF_MALICE, EnigmaticItems.CURSE_TRANSPOSER);
             putAfter(entries, EnigmaticItems.CURSE_TRANSPOSER, EnigmaticAddonItems.SANGUINARY_HANDBOOK);
             putAfter(entries, EnigmaticAddonItems.SANGUINARY_HANDBOOK, EnigmaticAddonItems.FALSE_JUSTICE);
             putAfter(entries, EnigmaticAddonItems.FALSE_JUSTICE, EnigmaticItems.CURSED_STONE);
@@ -235,7 +244,6 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticAddonItems.THE_BLESS, EnigmaticAddonItems.BLESS_AMPLIFIER);
             putAfter(entries, EnigmaticAddonItems.BLESS_AMPLIFIER, EnigmaticAddonItems.EARTH_PROMISE);
             putAfter(entries, EnigmaticAddonItems.EARTH_PROMISE, EnigmaticAddonItems.BLESS_STONE);
-//            putAfter(entries, EnigmaticAddonBlocks.RADIANT_BEACON, EnigmaticAddonItems.BLESS_STONE);
             putAfter(entries, EnigmaticAddonItems.BLESS_STONE, EnigmaticAddonItems.BLESS_RING);
             putAfter(entries, EnigmaticAddonItems.BLESS_RING, EnigmaticItems.DARKEST_SCROLL);
             putAfter(entries, EnigmaticItems.DARKEST_SCROLL, EnigmaticAddonItems.CURSED_XP_SCROLL);

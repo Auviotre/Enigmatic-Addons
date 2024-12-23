@@ -20,6 +20,10 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     public static final EntityType<ThrownIchorSpear> ICHOR_SPEAR = null;
     @ObjectHolder(value = "enigmaticaddons:astral_spear", registryName = "entity_type")
     public static final EntityType<ThrownAstralSpear> ASTRAL_SPEAR = null;
+    @ObjectHolder(value = "enigmaticaddons:evil_dagger", registryName = "entity_type")
+    public static final EntityType<ThrownEvilDagger> EVIL_DAGGER = null;
+    @ObjectHolder(value = "enigmaticaddons:disaster_chaos", registryName = "entity_type")
+    public static final EntityType<DisasterChaos> DISASTER_CHAOS = null;
 
     private EnigmaticAddonEntities() {
         super(ForgeRegistries.ENTITY_TYPES);
@@ -44,9 +48,17 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                         .setCustomClientFactory((spawnEntity, world) -> new ThrownIchorSpear(ICHOR_SPEAR, world)).setUpdateInterval(20)
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:ichor_spear"));
         this.register("astral_spear",
-                () -> EntityType.Builder.<ThrownAstralSpear>of(ThrownAstralSpear::new, MobCategory.MISC).sized(0.45F, 0.45F).clientTrackingRange(4)
+                () -> EntityType.Builder.<ThrownAstralSpear>of(ThrownAstralSpear::new, MobCategory.MISC).sized(0.45F, 0.45F).clientTrackingRange(16)
                         .setCustomClientFactory((spawnEntity, world) -> new ThrownAstralSpear(ASTRAL_SPEAR, world)).setUpdateInterval(20).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:astral_spear"));
+        this.register("evil_dagger",
+                () -> EntityType.Builder.<ThrownEvilDagger>of(ThrownEvilDagger::new, MobCategory.MISC).sized(0.3F, 0.3F).clientTrackingRange(8)
+                        .setCustomClientFactory((spawnEntity, world) -> new ThrownEvilDagger(EVIL_DAGGER, world)).setUpdateInterval(20).fireImmune()
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:evil_dagger"));
+        this.register("disaster_chaos",
+                () -> EntityType.Builder.<DisasterChaos>of(DisasterChaos::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(4)
+                        .setCustomClientFactory((spawnEntity, world) -> new DisasterChaos(DISASTER_CHAOS, world)).setUpdateInterval(10).fireImmune()
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:disaster_chaos"));
 
     }
 }

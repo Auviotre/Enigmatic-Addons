@@ -55,7 +55,7 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
         spellstoneCooldown = builder.comment("Active ability cooldown for Etherium Core. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 1800);
         armorBonus = builder.comment("Default amount of armor points provided by Etherium Core.").max(256.0).getDouble("Armor", 12.0);
         armorMultiplier = builder.comment("The multiplier of armor points of Etherium Core.").max(100).getPerhaps("ArmorMultiplier", 30);
-        armorToughnessBonus = builder.comment("The amount of armor toughness provided by Etherium Core when it's bearer has no armor equipped.").max(256.0).getDouble("armorToughness", 10.0);
+        armorToughnessBonus = builder.comment("The amount of armor toughness provided by Etherium Core when it's bearer has no armor equipped.").max(256.0).getDouble("ArmorToughness", 10.0);
         armorToughnessMultiplier = builder.comment("The multiplier of armor toughness of Etherium Core.").max(100).getPerhaps("ArmorToughnessMultiplier", 50);
         knockbackResistance = builder.comment("Resistance to knockback provided by Etherium Core. Defined as percentage.").max(100.0).getPerhaps("KnockbackResistance", 50);
         damageConversion = builder.comment("The damage amplification conversion ratio of Etherium Core. Defined as percentage.").max(100.0).getPerhaps("DamageConversion", 40);

@@ -6,9 +6,11 @@ import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
 import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -27,6 +29,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class SuperAddonHandler {
@@ -39,6 +42,7 @@ public class SuperAddonHandler {
 
     public static void setCurseBoosted(LivingEntity entity, Boolean flag, Player player) {
         if (!OmniconfigAddonHandler.EnableCurseBoost.getValue()) return;
+        if (entity instanceof Mob mob && mob.isNoAi()) return;
         LivingCurseBoostEvent event = AddonHookHandler.onLivingCurseBoosted(entity, player);
         if (!event.isCanceled())
             entity.getPersistentData().putBoolean("CurseBoost", flag);
@@ -65,6 +69,18 @@ public class SuperAddonHandler {
         }
     }
 
+
+    public static ItemStack getItem(Player player, Item item) {
+        for (NonNullList<ItemStack> stacks : player.getInventory().compartments) {
+            for (ItemStack itemstack : stacks) {
+                if (!itemstack.isEmpty() && itemstack.is(item)) {
+                    return itemstack;
+                }
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
     private static boolean hasBlessRing(Player player) {
         return player.getPersistentData().getBoolean(BlessRing.BLESS_SPAWN) || SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BLESS_RING);
     }
@@ -78,7 +94,8 @@ public class SuperAddonHandler {
     }
 
     public static ItemStack findBookInBag(Player player, Item book) {
-        if (!SuperpositionHandler.hasItem(player, EnigmaticAddonItems.ANTIQUE_BAG)) return ItemStack.EMPTY;
+        if (!SuperpositionHandler.hasItem(player, EnigmaticAddonItems.ANTIQUE_BAG) && !player.getEnderChestInventory().hasAnyOf(Set.of(EnigmaticAddonItems.ANTIQUE_BAG)))
+            return ItemStack.EMPTY;
         LazyOptional<IAntiqueBagHandler> capability = getCapability(player, AntiqueBagCapability.INVENTORY);
         if (capability != null && capability.isPresent()) {
             IAntiqueBagHandler bagHandler = capability.orElseThrow(() -> new IllegalArgumentException("Lazy optional must not be empty"));

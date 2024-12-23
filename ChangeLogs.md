@@ -1,9 +1,28 @@
 ***
+## 1.2 ~ 1.3 Update
+### [Release 1.2.0]
+### Features:
+- 4 new Items (**Astral Spear**, **The Curse Carver**, **Disaster Broadsword**, **Totem of Malice**);
+- Updated the **Dragon Breath Bow**;
+- 1 new Enchantment (**Frost Shattering**);
+### Changes:
+- Replace the textures and particle effect of **Astral Breaker** with new ones;
+- Now **Antique Book Bag** will take effect in the Ender Chest;
+- Added a new usage of the **Holy Stone** in Hardcore Mode;
+- Added more Configurable contents;
+- Added some text content in the Acknowledgement.
+- Optimized the curse AI for animals;
+- Updated the JEI compat.
+### Fixes:
+- Fixed the issue that entity without AI can gain curse boost;
+- Fixed some errors in translation files;
+- Fixed the issue of **Forger's Gem** and **Emblem of Adventurer** sharing the same additional curio slot.
+***
 ## 1.1 ~ 1.2 Update: God's Blood
 ***
 ### [Release 1.1.4] (2024/11/08)
 ### Features:
-- 2 new Item (**Ichor Spear**, **The Bless**);
+- 2 new Items (**Ichor Spear**, **The Bless**);
 - 1 new effect (**Ichor Corrosion**);
 - 5 new Advancements;
 - Now a built-in resource pack of original 2D models available.
@@ -15,7 +34,8 @@
 - Changed the effect of **The Twist** put in the **Antique Book Bag**;
 - Implemented more 3D models.
 ### Fixes:
-- Fixed the issue of text display errors in some cursed items with **Ring of Redemption**.
+- Fixed the issue of text display errors in some cursed items with **Ring of Redemption**;
+- Fixed the issue of text display error of **The Bless**.
 ***
 ### [Release 1.1.3] (2024/10/12)
 ### Features:

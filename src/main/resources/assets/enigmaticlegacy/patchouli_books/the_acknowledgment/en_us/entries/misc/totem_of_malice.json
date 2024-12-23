@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.totem_of_malice.name",
+  "icon": "enigmaticaddons:totem_of_malice",
+  "category": "enigmaticlegacy:misc",
+  "advancement": "enigmaticaddons:book/misc/totem_of_malice",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 155,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.totem_of_malice.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:totem_of_malice",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.totem_of_malice.page.2"
+    }
+  ]
+}

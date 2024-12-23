@@ -25,6 +25,13 @@
       "link_recipe": false,
       "title": "book.enigmaticaddons.entry.frost_enchantment.heading.2",
       "text": "book.enigmaticaddons.entry.frost_enchantment.page.3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond_axe#1{Enchantments:[{lvl:2s,id:'enigmaticaddons:frost_shattering'}]}",
+      "link_recipe": false,
+      "title": "book.enigmaticaddons.entry.frost_enchantment.heading.3",
+      "text": "book.enigmaticaddons.entry.frost_enchantment.page.4"
     }
   ]
 }

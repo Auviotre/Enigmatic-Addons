@@ -61,6 +61,7 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
         poisonLevel = builder.comment("Level of Poison that bearer of the leaf will apply to entities they attack.").max(3.0).getInt("PoisonLevel", 1);
         regenerationTime = builder.comment("Amount of ticks for which bearer of the leaf will apply Regeneration effect to entities nearby when ability activated.").getInt("RegenerationTime", 180);
         regenerationLevel = builder.comment("Level of Regeneration that bearer of the leaf will apply to entities nearby when ability activated.").max(3.0).getInt("RegenerationLevel", 1);
+        builder.popPrefix();
     }
 
     public RevivalLeaf() {

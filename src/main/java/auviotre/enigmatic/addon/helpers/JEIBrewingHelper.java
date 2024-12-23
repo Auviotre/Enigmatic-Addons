@@ -1,12 +1,15 @@
 package auviotre.enigmatic.addon.helpers;
 
+import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.contents.brewing.AddonBrewingRecipe;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
+import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
 import com.aizistral.enigmaticlegacy.api.items.IAdvancedPotionItem;
 import com.aizistral.enigmaticlegacy.brewing.AbstractBrewingRecipe;
 import com.aizistral.enigmaticlegacy.brewing.ComplexBrewingRecipe;
 import com.aizistral.enigmaticlegacy.brewing.SpecialBrewingRecipe;
+import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.helpers.PotionHelper;
 import com.aizistral.enigmaticlegacy.objects.AdvancedPotion;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticBlocks;
@@ -24,6 +27,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,7 +39,7 @@ public class JEIBrewingHelper {
         Objects.requireNonNull(AbstractBrewingRecipe.class);
         Set<IJeiBrewingRecipe> recipes = new HashSet<>();
         if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.ASTRAL_POTION)) {
-            AstralRecipe astralRecipe = new AstralRecipe();
+            AstralRecipe astralRecipe = new AstralRecipe(null);
             recipes.add(astralRecipe);
         }
         for (IBrewingRecipe iBrewingRecipe : brewingRecipes) {
@@ -49,7 +53,8 @@ public class JEIBrewingHelper {
                             ItemStack[] ingredient = processingMappings.get(potion).getItems();
                             List<ItemStack> inputs = Arrays.stream(potion.getItems()).filter((stack) -> !stack.isEmpty()).toList();
                             if (!output.isEmpty() && !inputs.isEmpty()) {
-                                IJeiBrewingRecipe recipe = new EnigmaticRecipe(List.of(ingredient), inputs, output, vanillaRecipeFactory);
+                                ResourceLocation location = new ResourceLocation(EnigmaticLegacy.MODID, ItemNBTHelper.getString(output, "EnigmaticPotion", "unknown"));
+                                IJeiBrewingRecipe recipe = new EnigmaticRecipe(List.of(ingredient), inputs, output, location, vanillaRecipeFactory);
                                 recipes.add(recipe);
                             }
                         }
@@ -63,7 +68,8 @@ public class JEIBrewingHelper {
                             ItemStack[] ingredient = processingMappings.get(potion).getItems();
                             List<ItemStack> inputs = Arrays.stream(potion.getItems()).filter((stack) -> !stack.isEmpty()).toList();
                             if (!output.isEmpty() && !inputs.isEmpty()) {
-                                IJeiBrewingRecipe recipe = new EnigmaticRecipe(List.of(ingredient), inputs, output, vanillaRecipeFactory);
+                                ResourceLocation location = new ResourceLocation(EnigmaticAddons.MODID, ItemNBTHelper.getString(output, "EnigmaticPotion", "unknown"));
+                                IJeiBrewingRecipe recipe = new EnigmaticRecipe(List.of(ingredient), inputs, output, location, vanillaRecipeFactory);
                                 recipes.add(recipe);
                             }
                         }
@@ -75,7 +81,7 @@ public class JEIBrewingHelper {
                         ItemStack output = special.getOutput();
                         List<ItemStack> inputs = Arrays.stream(inputIngredient.getItems()).filter((stack) -> !stack.isEmpty()).toList();
                         if (!output.isEmpty() && !inputs.isEmpty()) {
-                            IJeiBrewingRecipe recipe = vanillaRecipeFactory.createBrewingRecipe(List.of(ingredients), inputs, output);
+                            IJeiBrewingRecipe recipe = vanillaRecipeFactory.createBrewingRecipe(List.of(ingredients), inputs, output, ForgeRegistries.ITEMS.getKey(output.getItem()));
                             recipes.add(recipe);
                         }
                     }
@@ -115,14 +121,20 @@ public class JEIBrewingHelper {
         private final List<ItemStack> potionInputs;
         private final ItemStack potionOutput;
         private final int hashCode;
+        private final ResourceLocation uid;
         private final IJeiBrewingRecipe vanillaRecipe;
 
-        public EnigmaticRecipe(List<ItemStack> ingredients, List<ItemStack> potionInputs, ItemStack potionOutput, IVanillaRecipeFactory factory) {
+        public EnigmaticRecipe(List<ItemStack> ingredients, List<ItemStack> potionInputs, ItemStack potionOutput, ResourceLocation uid, IVanillaRecipeFactory factory) {
             this.ingredients = List.copyOf(ingredients);
             this.potionInputs = List.copyOf(potionInputs);
             this.potionOutput = potionOutput;
-            this.vanillaRecipe = factory.createBrewingRecipe(ingredients, potionInputs, potionOutput);
-            this.hashCode = Objects.hash(ingredients.stream().map(ItemStack::getItem).toList(), potionInputs.stream().map(ItemStack::getItem).toList(), potionOutput.getItem());
+            this.uid = uid;
+            this.vanillaRecipe = factory.createBrewingRecipe(ingredients, potionInputs, potionOutput, uid);
+            if (uid != null) {
+                this.hashCode = uid.hashCode();
+            } else {
+                this.hashCode = Objects.hash(ingredients.stream().map(ItemStack::getItem).toList(), potionInputs.stream().map(ItemStack::getItem).toList(), potionOutput.getItem());
+            }
         }
 
         public List<ItemStack> getPotionInputs() {
@@ -139,10 +151,6 @@ public class JEIBrewingHelper {
 
         public int getBrewingSteps() {
             return vanillaRecipe.getBrewingSteps();
-        }
-
-        public @Nullable ResourceLocation getUid() {
-            return null;
         }
 
         public boolean equals(Object obj) {
@@ -192,6 +200,10 @@ public class JEIBrewingHelper {
             }
         }
 
+        public @Nullable ResourceLocation getUid() {
+            return this.uid;
+        }
+
         public int hashCode() {
             return this.hashCode;
         }
@@ -205,9 +217,15 @@ public class JEIBrewingHelper {
 
     public static class AstralRecipe implements IJeiBrewingRecipe {
         private final int hashCode;
+        private final ResourceLocation uid;
 
-        public AstralRecipe() {
-            this.hashCode = Objects.hash(List.of(EnigmaticBlocks.ASTRAL_BLOCK), List.of(Items.HONEY_BOTTLE), EnigmaticAddonItems.ASTRAL_POTION);
+        public AstralRecipe(ResourceLocation uid) {
+            this.uid = uid;
+            if (uid != null) {
+                this.hashCode = uid.hashCode();
+            } else {
+                this.hashCode = Objects.hash(List.of(EnigmaticBlocks.ASTRAL_BLOCK), List.of(Items.HONEY_BOTTLE), EnigmaticAddonItems.ASTRAL_POTION);
+            }
         }
 
         public List<ItemStack> getPotionInputs() {
@@ -227,7 +245,7 @@ public class JEIBrewingHelper {
         }
 
         public @Nullable ResourceLocation getUid() {
-            return null;
+            return this.uid;
         }
 
         public int getBrewingSteps() {

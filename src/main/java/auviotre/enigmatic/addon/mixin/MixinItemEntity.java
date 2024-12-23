@@ -1,7 +1,9 @@
 package auviotre.enigmatic.addon.mixin;
 
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
 import com.aizistral.enigmaticlegacy.entities.PermanentItemEntity;
+import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticBlocks;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraft.core.BlockPos;
@@ -9,12 +11,15 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,6 +27,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
@@ -42,11 +48,27 @@ public abstract class MixinItemEntity extends Entity implements TraceableEntity 
         super(type, world);
     }
 
+    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
+    public void hurtMix(DamageSource source, float value, CallbackInfoReturnable<Boolean> cir) {
+        if (this.isInvulnerableTo(source)) {
+            cir.setReturnValue(false);
+        } else {
+            ItemStack stack = this.getItem();
+            if (!stack.isEmpty() && stack.is(EnigmaticAddonItems.BLESS_STONE) && source.is(DamageTypeTags.IS_LIGHTNING)) {
+                if (this.level().getLevelData().isHardcore() && !ItemNBTHelper.getBoolean(stack, "Hardcore", false)) {
+                    stack.enchant(Enchantments.UNBREAKING, 10);
+                    ItemNBTHelper.setBoolean(stack, "Hardcore", true);
+                }
+                cir.setReturnValue(false);
+            }
+        }
+    }
+
     @Inject(method = "tick", at = @At("HEAD"))
     public void tickMix(CallbackInfo ci) {
+        Level world = this.level();
         if (this.getItem().is(EnigmaticAddonItems.PRIMEVAL_CUBE)) {
             BlockPos blockPos = this.blockPosition();
-            Level world = this.level();
             if (world.getBlockState(blockPos).isAir() && world.getBlockState(blockPos.above()).isAir()) {
                 if (this.onGround() && world.getBlockState(blockPos.below()).is(EnigmaticBlocks.ASTRAL_BLOCK)) {
                     this.enigmaticAddons$primeCubeOn = true;
@@ -89,6 +111,10 @@ public abstract class MixinItemEntity extends Entity implements TraceableEntity 
                     this.discard();
                 }
             }
+        } else if (this.getItem().is(EnigmaticAddonItems.BLESS_STONE) && !world.isClientSide() && ItemNBTHelper.getBoolean(this.getItem(), "Hardcore", false)) {
+            ServerLevel server = (ServerLevel) world;
+            if (this.random.nextInt(3) == 0)
+                server.sendParticles(EnigmaticAddonParticles.ICHOR, this.getX(), this.getY(0.5), this.getZ(), 1, 0.2, 0.2, 0.2, 0.02D);
         }
     }
 }

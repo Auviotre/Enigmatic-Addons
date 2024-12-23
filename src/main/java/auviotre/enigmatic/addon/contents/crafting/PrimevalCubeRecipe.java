@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.crafting;
 
+import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraft.core.RegistryAccess;
@@ -35,7 +36,7 @@ public class PrimevalCubeRecipe extends CustomRecipe {
                 if (slotStack.is(Items.HEART_OF_THE_SEA)) heartCount += 128;
             }
         }
-        if (spellstoneCount == 6 && goldCount == 1 && heartCount == 129)
+        if (spellstoneCount == 6 && goldCount == 1 && heartCount == 129 && OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.PRIMEVAL_CUBE))
             return new ItemStack(EnigmaticAddonItems.PRIMEVAL_CUBE);
         return ItemStack.EMPTY;
     }
@@ -55,7 +56,7 @@ public class PrimevalCubeRecipe extends CustomRecipe {
                 if (slotStack.is(Items.HEART_OF_THE_SEA)) heartCount += 128;
             }
         }
-        return spellstoneCount == 6 && goldCount == 1 && heartCount == 129;
+        return spellstoneCount == 6 && goldCount == 1 && heartCount == 129 && OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.PRIMEVAL_CUBE);
     }
 
     public boolean canCraftInDimensions(int width, int height) {

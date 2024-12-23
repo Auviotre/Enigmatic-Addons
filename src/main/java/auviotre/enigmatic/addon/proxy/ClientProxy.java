@@ -24,6 +24,7 @@ public class ClientProxy extends CommonProxy {
 
     public void initItemProperties() {
         try {
+            ItemProperties.register(EnigmaticAddonItems.DISASTER_SWORD, new ResourceLocation("blocking"), (stack, world, living, j) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
             ItemProperties.register(EnigmaticAddonItems.EARTH_PROMISE, new ResourceLocation("broken"), (stack, world, living, j) -> living instanceof Player player && player.getCooldowns().isOnCooldown(stack.getItem()) ? 1.0F : 0.0F);
             ItemProperties.register(EnigmaticAddonItems.ASTRAL_SPEAR, new ResourceLocation("using"), (stack, world, living, j) -> living != null && living.getUseItem() == stack ? 1.0F : 0.0F);
             ItemProperties.register(EnigmaticAddonItems.ICHOR_SPEAR, new ResourceLocation("using"), (stack, world, living, j) -> living != null && living.getUseItem() == stack ? 1.0F : 0.0F);
@@ -41,5 +42,7 @@ public class ClientProxy extends CommonProxy {
         EntityRenderers.register(EnigmaticAddonEntities.ULTIMATE_DRAGON_FIREBALL, UltimateDragonFireballRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.ICHOR_SPEAR, ThrownIchorSpearRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.ASTRAL_SPEAR, ThrownAstralSpearRenderer::new);
+        EntityRenderers.register(EnigmaticAddonEntities.EVIL_DAGGER, ThrownEvilDaggerRenderer::new);
+        EntityRenderers.register(EnigmaticAddonEntities.DISASTER_CHAOS, EmptyRenderer::new);
     }
 }

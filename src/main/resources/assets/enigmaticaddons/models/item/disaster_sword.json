@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "enigmaticaddons:item/disaster_sword"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "enigmaticaddons:item/disaster_sword_blocking"
+    }
+  ]
+}

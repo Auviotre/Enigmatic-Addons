@@ -55,9 +55,8 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
         vulnerabilityModifier = builder.comment("Modifier for Magic Damage vulnerability applied by Lost Engine. Default value of 2.0 means that player will receive twice as much damage from magic.").min(1.0).max(256.0).getDouble("VulnerabilityModifier", 2.5);
         golemList.clear();
         String[] list = builder.config.getStringList("LostEngineExtraGolemList", "Balance Options", new String[0], "List of entities that will be affected as Golem by the Lost Engine. Examples: minecraft:iron_golem. Changing this option required game restart to take effect.");
-        Arrays.stream(list).forEach((entry) -> {
-            golemList.add(new ResourceLocation(entry));
-        });
+        Arrays.stream(list).forEach((entry) -> golemList.add(new ResourceLocation(entry)));
+        builder.popPrefix();
     }
 
     public LostEngine() {

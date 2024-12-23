@@ -2,29 +2,43 @@ package auviotre.enigmatic.addon.contents.items;
 
 import auviotre.enigmatic.addon.contents.entities.ThrownAstralSpear;
 import com.aizistral.enigmaticlegacy.api.materials.EnigmaticMaterials;
+import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticEnchantments;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticSounds;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class AstralSpear extends ItemBase implements Vanishable {
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
@@ -40,8 +54,16 @@ public class AstralSpear extends ItemBase implements Vanishable {
         this.defaultModifiers = builder.build();
     }
 
-    public CreativeModeTab getCreativeTab() {
-        return null;
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
+        if (Screen.hasShiftDown()) {
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralSpear1");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralSpear2");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralSpear3");
+        } else {
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
+        }
+        if (stack.isEnchanted()) ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
     }
 
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int tickCount) {
@@ -70,16 +92,16 @@ public class AstralSpear extends ItemBase implements Vanishable {
                 if (!level.isClientSide) {
                     ThrownAstralSpear spear = new ThrownAstralSpear(player, level, stack);
                     float strength = Mth.clamp((float) (duration - 8) / 12F, 0.0F, 1.0F);
+                    if (player.getAbilities().instabuild) spear.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                     if (duration >= 75) {
                         spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4.5F, 1.1F);
                         spear.setPowered(true);
-                        level.addFreshEntity(spear);
                         level.playSound(null, spear, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.25F, 2.0F);
                     } else {
                         spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F + strength, 1.0F);
-                        level.addFreshEntity(spear);
                         level.playSound(null, spear, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, 1.5F);
                     }
+                    level.addFreshEntity(spear);
 
                     if (!player.getAbilities().instabuild) player.getInventory().removeItem(stack);
                 }
@@ -140,5 +162,13 @@ public class AstralSpear extends ItemBase implements Vanishable {
 
     public int getEnchantmentValue() {
         return 16;
+    }
+
+    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
+        return super.canPerformAction(stack, toolAction) || ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction);
+    }
+
+    public @NotNull AABB getSweepHitBox(@NotNull ItemStack stack, @NotNull Player player, @NotNull Entity target) {
+        return target.getBoundingBox().inflate(2, 0.3, 2);
     }
 }

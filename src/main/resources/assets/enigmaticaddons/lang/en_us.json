@@ -17,13 +17,17 @@
   "enchantment.enigmaticaddons.frost_aspect.desc": "The attack target is gradually freezing.",
   "enchantment.enigmaticaddons.frost_protection": "Frost Protection",
   "enchantment.enigmaticaddons.frost_protection.desc": "Reduce the damage and influence of frost.",
+  "enchantment.enigmaticaddons.frost_shattering": "Frost Shattering",
+  "enchantment.enigmaticaddons.frost_shattering.desc": "Increase critical damage of axe to fully frozen target.",
 
   "book.enigmaticaddons.entry.frost_enchantment.name": "Frost",
   "book.enigmaticaddons.entry.frost_enchantment.heading.1": "The Enchantment",
   "book.enigmaticaddons.entry.frost_enchantment.heading.2": "The Enchantment",
+  "book.enigmaticaddons.entry.frost_enchantment.heading.3": "The Enchantment",
   "book.enigmaticaddons.entry.frost_enchantment.page.1": "Among the common enchantment categories, you have developed several enchantments related to frost.",
   "book.enigmaticaddons.entry.frost_enchantment.page.2": "Frost Aspect - adds a cold aura to your weapon, causing the hit targets to slowly freeze. Of course, it cannot be combined with Fire Aspect.",
   "book.enigmaticaddons.entry.frost_enchantment.page.3": "Frost Protection - Provides protection against frost damage and allows you to endure longer in the cold. It cannot be combined with protective enchantments.",
+  "book.enigmaticaddons.entry.frost_enchantment.page.4": "Frost Shattering - Enhanced the frost breaking ability of the axe, increased critical damage to fully frozen targets, and continued the freezing effect. It cannot be combined with Fire Aspect.",
 
   "item.enigmaticaddons.earth_heart_fragment": "Fragment of the Earth",
 
@@ -143,12 +147,26 @@
 
   "item.enigmaticaddons.dragon_bow": "Dragon Breath Bow",
 
+  "tooltip.enigmaticaddons.dragonBow": "§5You can combine this with potions.",
+
   "book.enigmaticaddons.entry.dragon_bow.name": "The Dragon Breath",
   "book.enigmaticaddons.entry.dragon_bow.page.1": "Can Dragon Breath only be used for brewing? You may have thought about this issue. Recalling the ender dragon using its deadly dragon breath to burn your armor and skin, you also want others to experience it. And the strange dragon head hanging on the ender ship that can only be used for decoration...<br2/>Therefore, driven by various",
   "book.enigmaticaddons.entry.dragon_bow.page.2": "reasons, this bow infused with magic was born.<br2/>This bow can shoot dragon breath arrows without any ammo, but it requires a slightly longer charging time. When the dragon breath arrow",
   "book.enigmaticaddons.entry.dragon_bow.page.3": "hits, it will turn into a ranged dragon breath and try to retain or chase every person passing by in its way.<br2/>However, one thing to note is that this bow only allows you to utilize the power of the dragon breath. It cannot make you roam in the dragon breath Happily and Foolishly.",
+  "book.enigmaticaddons.entry.dragon_bow.page.4": "You may feel that this bow is too mediocre, so we will further develop its potential.<br2/>Given the role of Dragon Breath in brewing, you have decided to try using the potion. The potion poured onto the surface of the bow gradually absorbed and merged into the transformed arrows, but its capacity was limited.<br2/>And if there are any effects that you don't like, you can remove them with water.",
 
-  "item.enigmaticaddons.astral_spear": "Astral Spear [WIP]",
+  "item.enigmaticaddons.astral_spear": "Astral Spear",
+
+  "tooltip.enigmaticaddons.astralSpear1": "§5A spear with tracking capability,",
+  "tooltip.enigmaticaddons.astralSpear2": "§5 which can quickly shoot out and",
+  "tooltip.enigmaticaddons.astralSpear3": "§5produce an explosion after charging.",
+
+  "book.enigmaticaddons.entry.astral_spear.name": "Astral Spear",
+  "book.enigmaticaddons.entry.astral_spear.page.1": "Looking at all the etherium tools, it seems that none of them can reach the enemies hovering above your head, so it's time to think about how powerful astral dust really is.<br2/>Using the Etherium Sword as the base, extending the handle, sharpening the spearhead, and finally injecting the magic of astral dust, a special spear is born.",
+  "book.enigmaticaddons.entry.astral_spear.page.2": "The power of astral dust converged at the spearhead, allowing the spear to interact with energy in space. Thus, it can perceive and track every target. And it also can store energy, quickly pierce through and pour out energy, producing",
+  "book.enigmaticaddons.entry.astral_spear.page.3": "a astral explosion.<br2/>Astral dust has also alienated its enchanting ability, why not try some enchantments that do not belong to swords?",
+  "book.enigmaticaddons.entry.astral_spear.page.4": "<br/><&n><&8>Notes of enchantments:<clear/><&8><br/>Sharpness<br/> - Increase the damage of throwing spear.<br2/>Piercing<br/> - Increase piercing times and slightly improve tracking capability<br2/>Loyalty<br/> - Recall the spear automatically, faster than trident.",
+
 
   "item.enigmaticaddons.sanguinary_handbook": "Sanguinary Hunting Handbook",
 
@@ -243,6 +261,7 @@
   "tooltip.enigmaticaddons.antiqueBag1": "§5A container similar to a Ender Chest.",
   "tooltip.enigmaticaddons.antiqueBag2": "§5The books stored in will be considered",
   "tooltip.enigmaticaddons.antiqueBag3": "§5as being in the inventory.",
+  "tooltip.enigmaticaddons.antiqueBag4": "§5The item still works in the Ender Chest.",
 
   "book.enigmaticaddons.entry.antique_bag.name": "Antique Book Bag",
   "book.enigmaticaddons.entry.antique_bag.heading": "Magic Book Bag",
@@ -271,7 +290,7 @@
   "book.enigmaticaddons.entry.ichor_droplet.name": "Ichor",
   "book.enigmaticlegacy.entry.ichor_droplet.heading": "Blood of Gods",
   "book.enigmaticaddons.entry.ichor_droplet.page.1": "For this so-called \"blood of gods\", you have finally discovered a stable source to obtain, which is to hunt for screaming ghasts floating in the Nether.<br2/>The power of the curse triggered the tiny residual \"divinity\" in the blood and tears of the ghast, allowing the Ichor to reappear in front of everyone.",
-  "book.enigmaticaddons.entry.ichor_droplet.page.2": "However, do not ponder where these 'divinity' actually comes from, as it has long been a secret of ancient times. For you now, all you need to think about is how to utilize and develop this unexpected product.",
+  "book.enigmaticaddons.entry.ichor_droplet.page.2": "However, do not ponder where these 'divinity' actually comes from, as it has long been a secret of ancient times. For you now, all you need to think about is how to utilize and develop this unexpected product. For example, brewing some extreme potions.",
 
   "item.enigmaticaddons.ichoroot": "Ichoroot",
 
@@ -299,7 +318,7 @@
   "tooltip.enigmaticaddons.theBless6": "§5has longer invulnerable time",
 
   "book.enigmaticaddons.entry.the_bless.name": "The Bless",
-  "book.enigmaticaddons.entry.the_bless.page.1": "This is still a book of knowledge, existing on both sides of The Twist as one.<br2/>By utilizing the evil essence, the purification effect of ichor shifts this book towards a more conservative side, increasing your chances of surviving frequent hits and making you immune to unquenchable flames. This is one of the blessing.",
+  "book.enigmaticaddons.entry.the_bless.page.1": "This is still a book of knowledge, existing on both sides of The Twist as one.<br2/>By utilizing the nefarious essence, the purification effect of ichor shifts this book towards a more conservative side, increasing your chances of surviving frequent hits and making you immune to unquenchable flames. This is one of the blessing.",
   "book.enigmaticaddons.entry.the_bless.page.2": "Of course, this book is not limited to this, incineration power of The Acknowledgment is further strengthened here, removing all the gospel of the incinerator and giving them a more severe blow.",
 
   "item.enigmaticaddons.pure_heart": "Pure Heart",
@@ -318,20 +337,23 @@
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "After the baptism of Ichor, the desire for the book has transformed from acquisition to giving, further enhancing the magical power in the item.<br2/>If you allow it to come in close contact with any enchanted item, it'll sacrifice itself and double the level of enchantments in the item.",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "Breaking the limitations of the enchantments to a higher level is its true purpose.<br2/>By the way, not all limitation can be broken, and there are also some enchantments that cannot withstand the power and become ineffective.",
 
-  "block.enigmaticaddons.radiant_beacon": "Radiant Beacon",
-
   "item.enigmaticaddons.bless_stone": "Holy Stone",
 
   "tooltip.enigmaticaddons.blessStone1": "§5Take this stone to seek death,",
-  "tooltip.enigmaticaddons.blessStone2": "§5hen the §6Ring of the Seven Curses§5will",
+  "tooltip.enigmaticaddons.blessStone2": "§5hen the §6Ring of the Seven Curses §5will",
   "tooltip.enigmaticaddons.blessStone3": "§5transform into the §6Ring of Redemption§5.",
+  "tooltip.enigmaticaddons.blessStone_info_1": "§4A ritual exclusive to the hardcore is...",
+  "tooltip.enigmaticaddons.blessStone_info_2": "§4§kXX_XX_XX_XX",
+  "tooltip.enigmaticaddons.blessStone1_hardcore": "§5The tenacious will allows the curses to compromise",
+  "tooltip.enigmaticaddons.blessStone2_hardcore": "§5Let's begin the transaction of souls",
+  "tooltip.enigmaticaddons.blessStone_hardcore_info": "§dThe Hardcore can also be overcome.",
 
   "book.enigmaticaddons.entry.bless_stone.name": "The Choice of Rebirth",
   "book.enigmaticaddons.entry.bless_stone.heading": "The True Redemption",
   "book.enigmaticaddons.entry.bless_stone.page.1": "When you are hesitating whether to sacrifice yourself to break free from the Seven Curse Ring, there is a brand new choice in front of you.<br2/>The biggest problem is the Loss of Soul, and with the current materials and methods, it seems impossible. Although we can't break the connection, we could let the connection be presented in a new way.",
   "book.enigmaticaddons.entry.bless_stone.page.2": "Slowly infiltrate a little pure power into the Ring of Seven Curses, and mobilize the bless to change the curses. However, all these operations still need to be carried out when the contact is vulnerable, that is, you need to face death.",
   "book.enigmaticaddons.entry.bless_stone.page.3": "After the final soul loss, the Ring of Seven Curses will completely disappear from your sight and turn into a touch of gold on your hand.<br2/>The previous curses has completely disappeared, also the original bless has been partially preserved. Although most of the objects that once",
-  "book.enigmaticaddons.entry.bless_stone.page.4": "accompanied you are no longer usable, there are still some things that bear witness to your past filled with suffering, which is constantly approaching death. They still recognize your qualifications, are willing to break the shackles of the curse for you. <br2/>May you enjoy life to the fullest on days away from the curses.",
+  "book.enigmaticaddons.entry.bless_stone.page.4": "accompanied you are no longer usable, there are still some things that bear witness to your past filled with suffering, which is constantly approaching death. They still recognize your qualifications, are willing to break the shackles of the curse for you. <br2/>May you enjoy life to the fullest on days away from the curses. But you cannot truly understand this ring, please do not make the choice easily.",
 
   "item.enigmaticaddons.bless_ring": "Ring of Redemption",
 
@@ -352,14 +374,47 @@
   "tooltip.enigmaticaddons.blessUse1": "This item understands your past experiences,",
   "tooltip.enigmaticaddons.blessUse2": "and it still recognizes your qualifications.",
 
-  "item.enigmaticaddons.evil_dagger": "[WIP]",
+  "item.enigmaticaddons.evil_dagger": "The Curse Carver",
 
-  "death.attack.evil_curse": "%1$s",
+  "tooltip.enigmaticaddons.evilDagger1": "§5Right-click to throw daggers",
+  "tooltip.enigmaticaddons.evilDagger2": "§5Apply fatal curse to the target",
+
+  "book.enigmaticaddons.entry.evil_dagger.name": "The Curse Carver",
+  "book.enigmaticaddons.entry.evil_dagger.page.1": "A mysterious weapon crafted from Nefarious Ingot, with endless evil thoughts gathered at the tip of the blade, greedily waiting for the soul to feast.<br2/>As its name suggests, The Curse Carver is able to imprint a unique curse on your soul. Once this indelible curse begins to take effect, the cage of evil thoughts will bind your",
+  "book.enigmaticaddons.entry.evil_dagger.page.2": "actions and hurt your soul bite by bite until they are satisfied. For targets with outstanding vitality, their greedy nature leads them to demand more. When satisfied, they begin to tear apart your soul, pouring out from within",
+  "book.enigmaticaddons.entry.evil_dagger.page.3": "as if trying to completely destroy this useless container.<br2/>In addition, they will no longer look at containers that have already been enjoyed, so this curse has a fatal weakness, which is disposable.",
+
+  "item.enigmaticaddons.totem_of_malice": "Totem of Malice",
+
+  "tooltip.enigmaticaddons.totemofMalice1": "§5When in the inventory or curio slot:",
+  "tooltip.enigmaticaddons.totemofMalice2": "§5Increase damage to §dIllagers§5 by §6%1$s",
+  "tooltip.enigmaticaddons.totemofMalice3": "§5Reduce damage from §dIllagers§5 by §6%1$s",
+  "tooltip.enigmaticaddons.totemofMalice4": "§5Can avoid death once.",
+  "tooltip.enigmaticaddons.totemofMalice5": "§5Causing damage to the surroundings when triggered.",
+
+  "book.enigmaticaddons.entry.totem_of_malice.name": "Totem of Malice",
+  "book.enigmaticaddons.entry.totem_of_malice.page.1": "We have no idea about how the illagers created totems of undying, but behind each totem there must be sacrifices of living beings.<br2/>But now, using the nefarious essence to release the malice of these sealed souls, mobilizing their anger towards illagers, to fulfill their final desire for revenge.",
+  "book.enigmaticaddons.entry.totem_of_malice.page.2": "As their wish for revenge has been fulfilled, they will not forget their duty. They are still willing to protect you in the most dangerous moments and release themselves to attack the enemies around.",
+
+  "item.enigmaticaddons.disaster_sword": "Disaster Broadsword",
+
+  "tooltip.enigmaticaddons.disasterSword1_alt": "§5Let them feel the disaster...",
+  "tooltip.enigmaticaddons.disasterSword1": "§5Each level of §dBad Omen§5 effect increases damage by §6%1$s",
+  "tooltip.enigmaticaddons.disasterSword2": "§5Right-click can provide powerful but brief blocking",
+  "tooltip.enigmaticaddons.disasterSword3": "§5Successful blocking can strengthen the next attack",
+
+  "book.enigmaticaddons.entry.disaster_sword.name": "Disaster Broadsword",
+  "book.enigmaticaddons.entry.disaster_sword.page.1": "With a sturdy blade and a soul poised to take off, this sword showcases the skills of defense and counterattack.<br2/>Holding this broadsword, you can use its wide blade to block almost all attacks. Given its heaviness, any attack becomes indistinguishable, but you can only lift the sword for a moment.",
+  "book.enigmaticaddons.entry.disaster_sword.page.2": "Whenever successfully blocked, the energy absorbed will linger on the sword, waiting for the perfect release in the next attack.<br2/>The rhythm of disaster gradually emerged in this crisp sound.",
+
+  "death.attack.evil_curse": "%1$s is torn apart by curse.",
   "death.attack.false_justice": "%1$s disappeared into the void of judgement.",
 
   "entity.enigmaticaddons.astral_spear": "Astral Spear",
   "entity.enigmaticaddons.cobweb_ball": "Spider Web Ball",
+  "entity.enigmaticaddons.disaster_chaos": "Disaster Fireball",
   "entity.enigmaticaddons.dragon_breath_arrow": "Dragon Breath Arrow",
+  "entity.enigmaticaddons.evil_dagger": "Nefarious Dagger",
   "entity.enigmaticaddons.ichor_spear": "Ichor Spear",
   "entity.enigmaticaddons.split_dragon_breath": "Split Dragon Breath",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "Ultimate Dragon Fireball",

@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon.registries;
 
 import auviotre.enigmatic.addon.contents.enchantments.FrostAspectEnchantment;
 import auviotre.enigmatic.addon.contents.enchantments.FrostProtectionEnchantment;
+import auviotre.enigmatic.addon.contents.enchantments.FrostShatteringEnchantment;
 import com.aizistral.enigmaticlegacy.api.generic.ConfigurableItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -18,10 +19,15 @@ public class EnigmaticAddonEnchantments extends AbstractRegistry<Enchantment> {
     @ObjectHolder(value = "enigmaticaddons:frost_aspect", registryName = "enchantment")
     public static final FrostAspectEnchantment FROST_ASPECT = null;
 
+    @ConfigurableItem("Frost Shattering Enchantment")
+    @ObjectHolder(value = "enigmaticaddons:frost_shattering", registryName = "enchantment")
+    public static final FrostShatteringEnchantment FROST_SHATTERING = null;
+
     private EnigmaticAddonEnchantments() {
         super(ForgeRegistries.ENCHANTMENTS);
         EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
         this.register("frost_aspect", () -> new FrostAspectEnchantment(Enchantment.Rarity.RARE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
         this.register("frost_protection", () -> new FrostProtectionEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS));
+        this.register("frost_shattering", () -> new FrostShatteringEnchantment(Enchantment.Rarity.RARE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
     }
 }

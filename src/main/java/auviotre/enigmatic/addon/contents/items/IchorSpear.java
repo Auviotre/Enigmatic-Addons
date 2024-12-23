@@ -79,6 +79,7 @@ public class IchorSpear extends ItemBase implements Vanishable {
                 if (!level.isClientSide) {
                     stack.hurtAndBreak(1, player, (consumer) -> consumer.broadcastBreakEvent(entity.getUsedItemHand()));
                     ThrownIchorSpear spear = new ThrownIchorSpear(player, level);
+                    if (player.getAbilities().instabuild) spear.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                     float strength = Math.min(3.5F, duration * 0.1F + 0.6F);
                     float pitch = Math.min(0.65F + duration * 0.02F, 1.1F);
                     spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, strength, 1.0F);

@@ -21,7 +21,7 @@ public class BlessRingEquippedTrigger extends SimpleCriterionTrigger<BlessRingEq
     }
 
     @Nonnull
-    public BlessRingEquippedTrigger.Instance createInstance(@Nonnull JsonObject json, @Nonnull ContextAwarePredicate player, DeserializationContext conditions) {
+    public Instance createInstance(@Nonnull JsonObject json, @Nonnull ContextAwarePredicate player, DeserializationContext conditions) {
         return new BlessRingEquippedTrigger.Instance(player);
     }
 
@@ -29,7 +29,7 @@ public class BlessRingEquippedTrigger extends SimpleCriterionTrigger<BlessRingEq
         this.trigger(player, Instance::test);
     }
 
-    static class Instance extends AbstractCriterionTriggerInstance {
+    public static class Instance extends AbstractCriterionTriggerInstance {
         Instance(ContextAwarePredicate player) {
             super(BlessRingEquippedTrigger.ID, player);
         }

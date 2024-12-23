@@ -46,6 +46,7 @@ public class AntiqueBag extends ItemBase {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.antiqueBag1");
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.antiqueBag2");
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.antiqueBag3");
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.antiqueBag4");
     }
 
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {

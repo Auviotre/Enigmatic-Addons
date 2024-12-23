@@ -2,48 +2,55 @@ package auviotre.enigmatic.addon.contents.entities;
 
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
+import com.google.common.collect.Sets;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Set;
 
 public class DragonBreathArrow extends AbstractArrow {
+    private final Set<MobEffectInstance> effects;
+
     public DragonBreathArrow(EntityType<? extends DragonBreathArrow> type, Level world) {
         super(type, world);
         this.setBaseDamage(this.getBaseDamage() * 2);
+        this.effects = Sets.newHashSet();
     }
 
     public DragonBreathArrow(LivingEntity entity, Level world) {
         super(EnigmaticAddonEntities.DRAGON_BREATH_ARROW, entity, world);
+        this.setBaseDamage(this.getBaseDamage() * 2);
+        this.effects = Sets.newHashSet();
     }
 
     public void tick() {
         super.tick();
         if (this.level().isClientSide) {
-            Vec3 vec3 = this.getDeltaMovement();
-            double dx = vec3.x;
-            double dy = vec3.y;
-            double dz = vec3.z;
-            double length = vec3.length() * 1.25D;
+            Vec3 movement = this.getDeltaMovement();
+            double dx = movement.x;
+            double dy = movement.y;
+            double dz = movement.z;
+            double length = movement.length() * 1.25D;
             for (int i = 0; i < length; ++i) {
                 this.level().addParticle(ParticleTypes.DRAGON_BREATH, this.getRandomX(0.0F) + dx * (double) i / length, this.getRandomY() + dy * (double) i / length, this.getRandomZ(0.0F) + dz * (double) i / length, -dx * 0.1, -dy * 0.1, -dz * 0.1);
             }
-            if (!this.isNoGravity() && !this.isNoPhysics()) {
-                Vec3 vec34 = this.getDeltaMovement();
-                this.setDeltaMovement(vec34.x, vec34.y + 0.02, vec34.z);
-            }
+            if (!this.isNoGravity() && !this.isNoPhysics())
+                this.setDeltaMovement(movement.x, movement.y + 0.02, movement.z);
         } else if (this.inGround) this.summonAreaEffect();
     }
 
@@ -53,6 +60,11 @@ public class DragonBreathArrow extends AbstractArrow {
             this.setPos(this.getPosition(0.0F).add(this.getDeltaMovement().scale(0.5F)));
             this.summonAreaEffect();
         }
+    }
+
+    protected void onHitEntity(EntityHitResult hitResult) {
+        super.onHitEntity(hitResult);
+        hitResult.getEntity().invulnerableTime = 0;
     }
 
     private void summonAreaEffect() {
@@ -70,7 +82,10 @@ public class DragonBreathArrow extends AbstractArrow {
         effectCloud.setDurationOnUse(-1);
         effectCloud.setWaitTime(1);
         effectCloud.addEffect(new MobEffectInstance(EnigmaticAddonEffects.DRAGON_BREATH_EFFECT, 1, Mth.floor(dmg)));
-        effectCloud.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 39, 1));
+        if (!this.effects.isEmpty()) for (MobEffectInstance effect : this.effects) {
+            effect.duration /= 5;
+            effectCloud.addEffect(effect);
+        }
         if (!entities.isEmpty()) {
             for (LivingEntity entity : entities) {
                 if (this.distanceToSqr(entity) < 12.0 && entity != this.getOwner()) {
@@ -85,5 +100,23 @@ public class DragonBreathArrow extends AbstractArrow {
 
     protected ItemStack getPickupItem() {
         return ItemStack.EMPTY;
+    }
+
+    public void addEffect(MobEffectInstance instance) {
+        this.effects.add(instance);
+    }
+
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        if (!this.effects.isEmpty()) {
+            ListTag tags = new ListTag();
+            for (MobEffectInstance effect : this.effects) tags.add(effect.save(new CompoundTag()));
+            tag.put("CustomPotionEffects", tags);
+        }
+    }
+
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.effects.addAll(PotionUtils.getCustomEffects(tag));
     }
 }

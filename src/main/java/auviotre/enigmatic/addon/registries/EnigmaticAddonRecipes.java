@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.registries;
 
+import auviotre.enigmatic.addon.contents.crafting.DragonBowBrewingRecipe;
 import auviotre.enigmatic.addon.contents.crafting.EnabledCondition;
 import auviotre.enigmatic.addon.contents.crafting.EnchantmentAmplifierRecipe;
 import auviotre.enigmatic.addon.contents.crafting.PrimevalCubeRecipe;
@@ -17,10 +18,14 @@ public class EnigmaticAddonRecipes extends AbstractRegistry<RecipeSerializer<?>>
     @ObjectHolder(value = "enigmaticaddons:enchantment_amplifying", registryName = "recipe_serializer")
     public static final RecipeSerializer<EnchantmentAmplifierRecipe> ENCHANTMENT_AMPLIFIER_RECIPE = null;
 
+    @ObjectHolder(value = "enigmaticaddons:dragon_bow_brewing", registryName = "recipe_serializer")
+    public static final RecipeSerializer<DragonBowBrewingRecipe> DRAGON_BOW_BREWING_RECIPE = null;
+
     private EnigmaticAddonRecipes() {
         super(ForgeRegistries.RECIPE_SERIALIZERS);
         this.register("primeval_cube", () -> PrimevalCubeRecipe.SERIALIZER);
         this.register("enchantment_amplifying", () -> EnchantmentAmplifierRecipe.SERIALIZER);
+        this.register("dragon_bow_brewing", () -> DragonBowBrewingRecipe.SERIALIZER);
     }
 
     protected void onRegister(RegisterEvent event) {

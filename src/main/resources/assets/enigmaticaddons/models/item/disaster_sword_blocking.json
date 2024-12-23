@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "enigmaticaddons:item/disaster_sword"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 40, -45, 55 ],
+      "translation": [ -0.5, 3.0, 4.5 ],
+      "scale": [ 0.85, 0.85, 0.85 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 40, 135, -55 ],
+      "translation": [ -0.5, 3.0, 4.5 ],
+      "scale": [ 0.85, 0.85, 0.85 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 15, -20, 90 ],
+      "translation": [ -5.87, 3.4, 1.13 ],
+      "scale": [ 0.68, 0.68, 0.68 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 15, 160, -90 ],
+      "translation": [ -5.87, 3.4, 1.13 ],
+      "scale": [ 0.68, 0.68, 0.68 ]
+    }
+  }
+}

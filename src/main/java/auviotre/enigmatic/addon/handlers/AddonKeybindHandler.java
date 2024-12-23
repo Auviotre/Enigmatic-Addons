@@ -1,7 +1,7 @@
 package auviotre.enigmatic.addon.handlers;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
-import auviotre.enigmatic.addon.packets.PacketCursedXPScrollKey;
+import auviotre.enigmatic.addon.packets.server.PacketCursedXPScrollKey;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
 import com.aizistral.enigmaticlegacy.packets.server.PacketXPScrollKey;
 import net.minecraft.client.Minecraft;

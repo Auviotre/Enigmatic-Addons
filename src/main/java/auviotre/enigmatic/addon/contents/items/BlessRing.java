@@ -46,8 +46,9 @@ public class BlessRing extends ItemBaseCurio {
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("RingofRedemption");
         damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 40);
-        damageBoost = builder.comment("The damage boost of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageBoost", 20);
+        damageBoost = builder.comment("The damage boost of the Ring of Redemption. Measured in percentage.").min(0).max(500).getPerhaps("DamageBoost", 20);
         regenerationSpeed = builder.comment("The time required for each regeneration of Ring of Redemption. Measured in ticks.").min(5).getInt("RegenerationTick", 20);
+        builder.popPrefix();
     }
 
     public BlessRing() {
@@ -60,7 +61,6 @@ public class BlessRing extends ItemBaseCurio {
         blessList.add("enigmaticlegacy:guardian_heart");
         blessList.add("enigmaticlegacy:twisted_heart");
         blessList.add("enigmaticlegacy:curse_transposer");
-        blessList.add("enigmaticlegacy:bless_amplifier");
         blessList.add("enigmaticaddons:night_scroll");
         blessList.add("enigmaticaddons:sanguinary_handbook");
         blessList.add("enigmaticaddons:earth_promise");

@@ -8,6 +8,7 @@ import java.nio.file.Path;
 public class FilePackResources extends PathPackResources {
     protected final IModFile modFile;
     protected final String sourcePath;
+
     public FilePackResources(String name, IModFile modFile, String sourcePath) {
         super(name, true, modFile.findResource(sourcePath));
         this.modFile = modFile;

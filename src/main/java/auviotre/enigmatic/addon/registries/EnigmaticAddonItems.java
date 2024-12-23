@@ -155,9 +155,17 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ObjectHolder(value = "enigmaticaddons:forger_gem", registryName = "item")
     public static final ForgerGem FORGER_GEM = null;
 
-    @ConfigurableItem("Evil")
+    @ConfigurableItem("The Curse Carver")
     @ObjectHolder(value = "enigmaticaddons:evil_dagger", registryName = "item")
     public static final EvilDagger EVIL_DAGGER = null;
+
+    @ConfigurableItem("Totem of Malice")
+    @ObjectHolder(value = "enigmaticaddons:totem_of_malice", registryName = "item")
+    public static final TotemOfMalice TOTEM_OF_MALICE = null;
+
+    @ConfigurableItem("Disaster Broadsword")
+    @ObjectHolder(value = "enigmaticaddons:disaster_sword", registryName = "item")
+    public static final DisasterSword DISASTER_SWORD = null;
 
     private EnigmaticAddonItems() {
         super(ForgeRegistries.ITEMS);
@@ -192,6 +200,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("etherium_core", EtheriumCore::new);
         this.register("forger_gem", ForgerGem::new);
         this.register("evil_dagger", EvilDagger::new);
+        this.register("totem_of_malice", TotemOfMalice::new);
+        this.register("disaster_sword", DisasterSword::new);
         this.register("common_potion", () -> new UltimatePotionAddon.Base(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_splash", () -> new UltimatePotionAddon.Splash(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_lingering", () -> new UltimatePotionAddon.Lingering(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));

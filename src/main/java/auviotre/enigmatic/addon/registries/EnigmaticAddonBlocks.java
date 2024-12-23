@@ -17,8 +17,8 @@ public class EnigmaticAddonBlocks extends AbstractRegistry<Block> {
     private static final EnigmaticAddonBlocks INSTANCE = new EnigmaticAddonBlocks();
 
     /*
-     *  @ObjectHolder(value = "enigmaticaddons:radiant_beacon", registryName = "block")
-     *  public static final RadiantBeacon RADIANT_BEACON = null;
+     *  @ObjectHolder(value = "enigmaticaddons:_", registryName = "block")
+     *  public static final _ _ = null;
      */
     protected EnigmaticAddonBlocks() {
         super(ForgeRegistries.BLOCKS);

@@ -44,6 +44,7 @@ public class ForgottenIce extends ItemSpellstoneCurio implements ISpellstone {
         spellstoneDamage = builder.comment("The damage of ability of Forgotten Ice Crystal.").getDouble("Damage", 2.0);
         frostBoost = builder.comment("The damage boost on target which has been fully frozen. Defined as percentage.").max(256.0).getPerhaps("FrostBoost", 25);
         multiResistance = builder.comment("Resistance to projectile and sonic attacks provided by Forgotten Ice Crysta. Defined as percentage.").max(100.0).getPerhaps("Resistance", 30);
+        builder.popPrefix();
     }
 
     public ForgottenIce() {
