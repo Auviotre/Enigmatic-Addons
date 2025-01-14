@@ -1,11 +1,14 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.triggers.BlessRingEquippedTrigger;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.ChatFormatting;
@@ -13,7 +16,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,6 +30,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
@@ -35,21 +42,12 @@ import java.util.List;
 import java.util.Map;
 
 public class BlessRing extends ItemBaseCurio {
-    public static Omniconfig.PerhapsParameter damageResistance;
-    public static Omniconfig.PerhapsParameter damageBoost;
-    public static Omniconfig.IntParameter regenerationSpeed;
     public static final List<String> blessList = new ArrayList<>();
     public static final String CURSED_SPAWN = "CursedNextSpawn";
     public static final String BLESS_SPAWN = "BlessNextSpawn";
-
-    @SubscribeConfig
-    public static void onConfig(OmniconfigWrapper builder) {
-        builder.pushPrefix("RingofRedemption");
-        damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 40);
-        damageBoost = builder.comment("The damage boost of the Ring of Redemption. Measured in percentage.").min(0).max(500).getPerhaps("DamageBoost", 20);
-        regenerationSpeed = builder.comment("The time required for each regeneration of Ring of Redemption. Measured in ticks.").min(5).getInt("RegenerationTick", 20);
-        builder.popPrefix();
-    }
+    public static Omniconfig.PerhapsParameter damageResistance;
+    public static Omniconfig.PerhapsParameter damageBoost;
+    public static Omniconfig.IntParameter regenerationSpeed;
 
     public BlessRing() {
         super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).fireResistant());
@@ -68,6 +66,16 @@ public class BlessRing extends ItemBaseCurio {
         blessList.add("enigmaticaddons:pure_heart");
         blessList.add("enigmaticaddons:bless_amplifier");
         blessList.add("enigmaticaddons:the_bless");
+        blessList.add("enigmaticaddons:scorched_charm");
+    }
+
+    @SubscribeConfig
+    public static void onConfig(OmniconfigWrapper builder) {
+        builder.pushPrefix("RingofRedemption");
+        damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 40);
+        damageBoost = builder.comment("The damage boost of the Ring of Redemption. Measured in percentage.").min(0).max(500).getPerhaps("DamageBoost", 20);
+        regenerationSpeed = builder.comment("The time required for each regeneration of Ring of Redemption. Measured in ticks.").min(5).getInt("RegenerationTick", 20);
+        builder.popPrefix();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -125,6 +133,29 @@ public class BlessRing extends ItemBaseCurio {
 
     public void curioTick(SlotContext context, ItemStack stack) {
         LivingEntity entity = context.entity();
+        if (entity instanceof Player player && SuperAddonHandler.isPunishedOne(player)) {
+            SuperpositionHandler.setPersistentInteger(player, "Punishment", 1 +
+                    SuperpositionHandler.getPersistentInteger(player, "Punishment", 0));
+            if (SuperpositionHandler.getPersistentInteger(player, "Punishment", 0) % 20 == 0) {
+                player.playSound(SoundEvents.TOTEM_USE, 0.6F, 0.0F);
+                Level level = player.level();
+                if (!level.isClientSide()) {
+                    LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(player.level());
+                    lightningBolt.moveTo(Vec3.atBottomCenterOf(player.blockPosition()));
+                    lightningBolt.setCause(player instanceof ServerPlayer serverPlayer ? serverPlayer : null);
+                    player.level().addFreshEntity(lightningBolt);
+                }
+            }
+            if (SuperpositionHandler.getPersistentInteger(player, "Punishment", 0) > 100) {
+                SuperpositionHandler.removePersistentTag(player, "Punishment");
+                SuperpositionHandler.destroyCurio(player, EnigmaticAddonItems.BLESS_RING);
+                SuperpositionHandler.destroyCurio(player, EnigmaticItems.CURSED_RING);
+                player.hurt(player.damageSources().fellOutOfWorld(), player.getMaxHealth() * 1000F);
+                player.experienceProgress = 0;
+                player.experienceLevel = 0;
+                player.kill();
+            }
+        }
         if (entity.tickCount % regenerationSpeed.getValue() == 0 && entity.getHealth() < entity.getMaxHealth() * 0.9F) {
             float delta = entity.getMaxHealth() * 0.9F - entity.getHealth();
             entity.heal(delta / 20.0F);
@@ -133,8 +164,7 @@ public class BlessRing extends ItemBaseCurio {
 
     public boolean canEquip(SlotContext context, ItemStack stack) {
         if (super.canEquip(context, stack)) {
-            LivingEntity entity = context.entity();
-            return entity instanceof Player player && !SuperpositionHandler.isTheCursedOne(player);
+            return context.entity() instanceof Player player && !SuperpositionHandler.isTheCursedOne(player);
         }
         return false;
     }

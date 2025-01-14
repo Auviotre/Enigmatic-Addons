@@ -10,8 +10,8 @@ import net.minecraft.world.phys.Vec3;
 
 public class LeapAttackGoal extends MeleeAttackGoal {
     private final PathfinderMob leaper;
-    private int ticksUntilNextJump;
     private final double jumpModifier;
+    private int ticksUntilNextJump;
 
     public LeapAttackGoal(PathfinderMob mob, double jumpModifier) {
         super(mob, 1.0, false);

@@ -1,5 +1,13 @@
 ***
 ## 1.2 ~ 1.3 Update
+### [Release 1.2.1]
+### Features:
+- 3 new Items (**The Arrogance of Chaos**, **Insignia of Annihilator**, **Charm of Scorched Sun**);
+- Updated the **Frost Aspect**;
+### Changes:
+- Now some fire-resistant related content will prevent flame rendering in first person.
+### Fixes:
+- Fixed the error of the Luck attribute of **Magic Quartz Ring**;
 ### [Release 1.2.0]
 ### Features:
 - 4 new Items (**Astral Spear**, **The Curse Carver**, **Disaster Broadsword**, **Totem of Malice**);

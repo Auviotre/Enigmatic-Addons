@@ -31,9 +31,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class IchorSpear extends ItemBase implements Vanishable {
-    public static Omniconfig.IntParameter baseDamage;
-    public static Omniconfig.IntParameter duration;
-    public static Omniconfig.IntParameter amplifier;
     public static final AbstractProjectileDispenseBehavior DISPENSE_BEHAVIOR = new AbstractProjectileDispenseBehavior() {
         protected Projectile getProjectile(Level level, Position position, ItemStack stack) {
             ThrownIchorSpear spear = new ThrownIchorSpear(level, position.x(), position.y(), position.z());
@@ -49,6 +46,13 @@ public class IchorSpear extends ItemBase implements Vanishable {
             source.getLevel().playSound(null, source.getPos(), SoundEvents.TRIDENT_THROW, SoundSource.BLOCKS, 0.8F, 0.6F);
         }
     };
+    public static Omniconfig.IntParameter baseDamage;
+    public static Omniconfig.IntParameter duration;
+    public static Omniconfig.IntParameter amplifier;
+
+    public IchorSpear() {
+        super(ItemBase.getDefaultProperties().rarity(Rarity.RARE));
+    }
 
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
@@ -57,10 +61,6 @@ public class IchorSpear extends ItemBase implements Vanishable {
         duration = builder.comment("The duration of the ichor corrosion effect. Measures in ticks.").getInt("EffectDuration", 600);
         amplifier = builder.comment("The amplifier of the ichor corrosion effect.").min(1).getInt("EffectAmplifier", 1);
         builder.popPrefix();
-    }
-
-    public IchorSpear() {
-        super(ItemBase.getDefaultProperties().rarity(Rarity.RARE));
     }
 
     @OnlyIn(Dist.CLIENT)

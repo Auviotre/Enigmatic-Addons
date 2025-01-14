@@ -24,13 +24,13 @@ public class EnigmaticAddonBlocks extends AbstractRegistry<Block> {
         super(ForgeRegistries.BLOCKS);
     }
 
+    protected static Map<ResourceLocation, BlockItemSupplier> getBlockItemMap() {
+        return Collections.unmodifiableMap(BLOCK_ITEM_MAP);
+    }
+
     protected void register(String name, Supplier<Block> block, BlockItemSupplier item) {
         super.register(name, block);
         BLOCK_ITEM_MAP.put(new ResourceLocation(EnigmaticAddons.MODID, name), item);
-    }
-
-    protected static Map<ResourceLocation, BlockItemSupplier> getBlockItemMap() {
-        return Collections.unmodifiableMap(BLOCK_ITEM_MAP);
     }
 
     @FunctionalInterface

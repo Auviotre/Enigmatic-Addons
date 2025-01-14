@@ -34,6 +34,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
+    public static final List<ResourceLocation> golemList = new ArrayList<>();
     public static Omniconfig.IntParameter spellstoneCooldown;
     public static Omniconfig.PerhapsParameter critModifier;
     public static Omniconfig.DoubleParameter toughnessModifier;
@@ -41,7 +42,20 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
     public static Omniconfig.DoubleParameter speedModifier;
     public static Omniconfig.DoubleParameter gravityModifier;
     public static Omniconfig.DoubleParameter vulnerabilityModifier;
-    public static final List<ResourceLocation> golemList = new ArrayList<>();
+
+    public LostEngine() {
+        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.RARE));
+        this.immunityList.add(DamageTypes.FALL);
+        this.immunityList.add(DamageTypes.EXPLOSION);
+        this.immunityList.add(DamageTypes.PLAYER_EXPLOSION);
+        this.immunityList.add(DamageTypes.CACTUS);
+        this.immunityList.add(DamageTypes.SWEET_BERRY_BUSH);
+        Supplier<Float> magicVulnerabilitySupplier = () -> (float) vulnerabilityModifier.getValue();
+        this.resistanceList.put(DamageTypes.MAGIC, magicVulnerabilitySupplier);
+        this.resistanceList.put(DamageTypes.WITHER, magicVulnerabilitySupplier);
+        this.resistanceList.put(DamageTypes.DRAGON_BREATH, magicVulnerabilitySupplier);
+        this.resistanceList.put(DamageTypes.LIGHTNING_BOLT, () -> 2.0F);
+    }
 
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
@@ -57,20 +71,6 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
         String[] list = builder.config.getStringList("LostEngineExtraGolemList", "Balance Options", new String[0], "List of entities that will be affected as Golem by the Lost Engine. Examples: minecraft:iron_golem. Changing this option required game restart to take effect.");
         Arrays.stream(list).forEach((entry) -> golemList.add(new ResourceLocation(entry)));
         builder.popPrefix();
-    }
-
-    public LostEngine() {
-        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.RARE));
-        this.immunityList.add(DamageTypes.FALL);
-        this.immunityList.add(DamageTypes.EXPLOSION);
-        this.immunityList.add(DamageTypes.PLAYER_EXPLOSION);
-        this.immunityList.add(DamageTypes.CACTUS);
-        this.immunityList.add(DamageTypes.SWEET_BERRY_BUSH);
-        Supplier<Float> magicVulnerabilitySupplier = () -> (float) vulnerabilityModifier.getValue();
-        this.resistanceList.put(DamageTypes.MAGIC, magicVulnerabilitySupplier);
-        this.resistanceList.put(DamageTypes.WITHER, magicVulnerabilitySupplier);
-        this.resistanceList.put(DamageTypes.DRAGON_BREATH, magicVulnerabilitySupplier);
-        this.resistanceList.put(DamageTypes.LIGHTNING_BOLT, () -> 2.0F);
     }
 
     @OnlyIn(Dist.CLIENT)

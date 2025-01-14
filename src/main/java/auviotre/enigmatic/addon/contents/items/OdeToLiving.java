@@ -41,16 +41,16 @@ public class OdeToLiving extends ItemBase implements Vanishable {
     public static Omniconfig.IntParameter cooldown;
     public static Omniconfig.PerhapsParameter synergyDamageReduction;
 
+    public OdeToLiving() {
+        super(getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
+    }
+
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("OdetoLivingBeings");
         cooldown = builder.comment("Active ability cooldown for Ode to Living Beings. Measured in ticks. 20 ticks equal to 1 second.").max(32768).getInt("Cooldown", 1200);
         synergyDamageReduction = builder.comment("The percentage subtracted from damage redirected by Guide to Feral Hunt, if this is also possessed.").max(100.0).getPerhaps("SynergyDamageReduction", 75);
         builder.popPrefix();
-    }
-
-    public OdeToLiving() {
-        super(getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
     }
 
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {

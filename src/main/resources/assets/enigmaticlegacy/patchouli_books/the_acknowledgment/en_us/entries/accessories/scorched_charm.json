@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.scorched_charm.name",
+  "icon": "enigmaticaddons:scorched_charm",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/scorched_charm",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 110,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.scorched_charm.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:scorched_charm",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.scorched_charm.page.2"
+    }
+  ]
+}

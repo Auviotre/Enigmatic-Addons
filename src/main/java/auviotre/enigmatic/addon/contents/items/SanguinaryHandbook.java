@@ -30,6 +30,10 @@ import java.util.UUID;
 public class SanguinaryHandbook extends ItemBase implements ICursed {
     public static Omniconfig.DoubleParameter DamageMultiplier;
 
+    public SanguinaryHandbook() {
+        super(getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
+    }
+
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("SanguinaryHuntingHandbook");
@@ -37,8 +41,11 @@ public class SanguinaryHandbook extends ItemBase implements ICursed {
         builder.popPrefix();
     }
 
-    public SanguinaryHandbook() {
-        super(getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
+    public static Multimap<Attribute, AttributeModifier> createAttributeMap(Player player) {
+        Multimap<Attribute, AttributeModifier> attributesDefault = HashMultimap.create();
+        float missingHealthPool = SuperpositionHandler.getMissingHealthPool(player);
+        attributesDefault.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("f4ece564-d299-40d2-a96a-dc68b493137c"), "enigmaticlegacy:speed_modifier", (double) missingHealthPool * BerserkEmblem.movementSpeed.getValue() * 1.25, AttributeModifier.Operation.MULTIPLY_BASE));
+        return attributesDefault;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -55,12 +62,5 @@ public class SanguinaryHandbook extends ItemBase implements ICursed {
         }
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.indicateCursedOnesOnly(list);
-    }
-
-    public static Multimap<Attribute, AttributeModifier> createAttributeMap(Player player) {
-        Multimap<Attribute, AttributeModifier> attributesDefault = HashMultimap.create();
-        float missingHealthPool = SuperpositionHandler.getMissingHealthPool(player);
-        attributesDefault.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("f4ece564-d299-40d2-a96a-dc68b493137c"), "enigmaticlegacy:speed_modifier", (double) missingHealthPool * BerserkEmblem.movementSpeed.getValue() * 1.25, AttributeModifier.Operation.MULTIPLY_BASE));
-        return attributesDefault;
     }
 }

@@ -34,20 +34,20 @@ public class QuartzRing extends ItemBaseCurio {
     public static Omniconfig.PerhapsParameter magicResistance;
     public List<ResourceKey<DamageType>> resistanccList = new ArrayList<>();
 
-    @SubscribeConfig
-    public static void onConfig(@NotNull OmniconfigWrapper builder) {
-        builder.pushPrefix("MagicQuartzRing");
-        defaultArmorBonus = builder.comment("Default amount of armor provided by Magic Quartz Ring.").max(256.0).getDouble("DefaultArmor", 2);
-        magicResistance = builder.comment("Resistance to magic damage provided by Magic Quartz Ring. Defined as percentage.").max(100).getPerhaps("MagicResistance", 30);
-        builder.popPrefix();
-    }
-
     public QuartzRing() {
         super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.UNCOMMON));
         resistanccList.add(DamageTypes.MAGIC);
         resistanccList.add(DamageTypes.WITHER);
         resistanccList.add(DamageTypes.DRAGON_BREATH);
         resistanccList.add(DamageTypes.INDIRECT_MAGIC);
+    }
+
+    @SubscribeConfig
+    public static void onConfig(@NotNull OmniconfigWrapper builder) {
+        builder.pushPrefix("MagicQuartzRing");
+        defaultArmorBonus = builder.comment("Default amount of armor provided by Magic Quartz Ring.").max(256.0).getDouble("DefaultArmor", 2);
+        magicResistance = builder.comment("Resistance to magic damage provided by Magic Quartz Ring. Defined as percentage.").max(100).getPerhaps("MagicResistance", 30);
+        builder.popPrefix();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -72,7 +72,7 @@ public class QuartzRing extends ItemBaseCurio {
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
         attributes.put(Attributes.ARMOR, new AttributeModifier(UUID.fromString("3b312dce-5f84-c7e5-fa4b-8021a74c3d96"), "Armor bonus", defaultArmorBonus.getValue(), AttributeModifier.Operation.ADDITION));
-        attributes.put(Attributes.LUCK, new AttributeModifier(UUID.fromString("6c913e9a-0d6f-4b3b-81b9-4c82f7778b52"), "Luck Bonus", 1.5, AttributeModifier.Operation.ADDITION));
+        attributes.put(Attributes.LUCK, new AttributeModifier(UUID.fromString("233c2c66-ef0c-4036-8101-6540abc9bf47"), "Luck Bonus", 1.5, AttributeModifier.Operation.ADDITION));
         return attributes;
     }
 }

@@ -7,6 +7,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EnigmaticEventHandler.class)
 public class MixinEventHandler {
 
+    @OnlyIn(Dist.CLIENT)
     @Inject(method = "onTooltip", at = @At("HEAD"), remap = false, cancellable = true)
     public void onTooltipMix(ItemTooltipEvent event, CallbackInfo ci) {
         if (event.getEntity() != null && SuperAddonHandler.isTheBlessedOne(event.getEntity())) {

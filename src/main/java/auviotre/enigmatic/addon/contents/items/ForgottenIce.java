@@ -37,16 +37,6 @@ public class ForgottenIce extends ItemSpellstoneCurio implements ISpellstone {
     public static Omniconfig.PerhapsParameter multiResistance;
     public static Omniconfig.DoubleParameter spellstoneDamage;
 
-    @SubscribeConfig
-    public static void onConfig(OmniconfigWrapper builder) {
-        builder.pushPrefix("ForgottenIceCrystal");
-        spellstoneCooldown = builder.comment("Active ability cooldown for Forgotten Ice Crystal. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 300);
-        spellstoneDamage = builder.comment("The damage of ability of Forgotten Ice Crystal.").getDouble("Damage", 2.0);
-        frostBoost = builder.comment("The damage boost on target which has been fully frozen. Defined as percentage.").max(256.0).getPerhaps("FrostBoost", 25);
-        multiResistance = builder.comment("Resistance to projectile and sonic attacks provided by Forgotten Ice Crysta. Defined as percentage.").max(100.0).getPerhaps("Resistance", 30);
-        builder.popPrefix();
-    }
-
     public ForgottenIce() {
         super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.RARE));
         this.immunityList.add(DamageTypes.FREEZE);
@@ -59,6 +49,16 @@ public class ForgottenIce extends ItemSpellstoneCurio implements ISpellstone {
         this.resistanceList.put(DamageTypes.HOT_FLOOR, () -> 2.0F);
         this.resistanceList.put(DamageTypes.FIREBALL, () -> 2.0F);
         this.resistanceList.put(DamageTypes.FALL, () -> 1.25F);
+    }
+
+    @SubscribeConfig
+    public static void onConfig(OmniconfigWrapper builder) {
+        builder.pushPrefix("ForgottenIceCrystal");
+        spellstoneCooldown = builder.comment("Active ability cooldown for Forgotten Ice Crystal. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 300);
+        spellstoneDamage = builder.comment("The damage of ability of Forgotten Ice Crystal.").getDouble("Damage", 2.0);
+        frostBoost = builder.comment("The damage boost on target which has been fully frozen. Defined as percentage.").max(256.0).getPerhaps("FrostBoost", 25);
+        multiResistance = builder.comment("Resistance to projectile and sonic attacks provided by Forgotten Ice Crysta. Defined as percentage.").max(100.0).getPerhaps("Resistance", 30);
+        builder.popPrefix();
     }
 
     public int getCooldown(Player player) {

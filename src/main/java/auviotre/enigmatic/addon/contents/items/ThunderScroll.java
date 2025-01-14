@@ -23,7 +23,18 @@ import java.util.List;
 public class ThunderScroll extends ItemBaseCurio implements ICursed {
 
     public ThunderScroll() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.RARE));
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));
+    }
+
+    public static float modify(LivingEntity target, float damage) {
+        if (target.getAttributes().hasAttribute(Attributes.ARMOR)) {
+            double value = target.getAttribute(Attributes.ARMOR).getValue();
+            if (value > 0) {
+                double factor = 1.0 - Math.min(0.04 * value, 0.8);
+                damage = (float) (damage / Math.sqrt(factor));
+            }
+        }
+        return damage;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -48,16 +59,5 @@ public class ThunderScroll extends ItemBaseCurio implements ICursed {
             return entity instanceof Player player && SuperAddonHandler.isOKOne(player);
         }
         return false;
-    }
-
-    public static float modify(LivingEntity target, float damage) {
-        if (target.getAttributes().hasAttribute(Attributes.ARMOR)) {
-            double value = target.getAttribute(Attributes.ARMOR).getValue();
-            if (value > 0) {
-                double factor = 1.0 - Math.min(0.04 * value, 0.8);
-                damage = (float) (damage / Math.sqrt(factor));
-            }
-        }
-        return damage;
     }
 }

@@ -7,9 +7,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class EnigmaticAddonMenus extends AbstractRegistry<MenuType<?>> {
-    private static final EnigmaticAddonMenus INSTANCE = new EnigmaticAddonMenus();
     @ObjectHolder(value = "enigmaticaddons:antique_bag_menu", registryName = "menu")
     public static final MenuType<AntiqueBagContainerMenu> ANTIQUE_BAG_MENU = null;
+    private static final EnigmaticAddonMenus INSTANCE = new EnigmaticAddonMenus();
 
     private EnigmaticAddonMenus() {
         super(ForgeRegistries.MENU_TYPES);

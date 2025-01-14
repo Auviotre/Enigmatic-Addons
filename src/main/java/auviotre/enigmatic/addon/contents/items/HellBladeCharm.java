@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
@@ -35,23 +36,25 @@ import java.util.UUID;
 public class HellBladeCharm extends ItemBaseCurio {
     public static Omniconfig.IntParameter equipCooldown;
     public static Omniconfig.DoubleParameter healMultiplier;
+    public static Omniconfig.PerhapsParameter damageMultiplier;
     public static Omniconfig.PerhapsParameter armorDebuff;
     public static Omniconfig.PerhapsParameter killThreshold;
     public static Omniconfig.PerhapsParameter killCursedThreshold;
+
+    public HellBladeCharm() {
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).fireResistant().craftRemainder(EnigmaticAddonItems.HELL_BLADE_CHARM));
+    }
 
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("CharmofHellBlade");
         equipCooldown = builder.comment("The Cooldown to unequip this Charm. Defined as tick.").max(32768).getInt("EquipCooldown", 1200);
+        damageMultiplier = builder.comment("The damage boost for who bear the charm. Measured as percentage.").max(200).min(10).getPerhaps("DamageModifier", 100);
         armorDebuff = builder.comment("How much less effective armor will be for those who bear the charm. Measured as percentage.").max(100.0).min(50.0).getPerhaps("ArmorDebuff", 100);
         killThreshold = builder.comment("The kill threshold of Hell Blade Charm to active the skill.").max(100).getPerhaps("KillThreshold", 75);
         killCursedThreshold = builder.comment("The kill threshold of Hell Blade Charm to active the skill with Ring of Seven Curses.").max(100).getPerhaps("KillCursedThreshold", 50);
         healMultiplier = builder.comment("The Multiplier of healing when active the skill of Hell Blade Charm.").max(100).getDouble("HealMultiplier", 0.8);
         builder.popPrefix();
-    }
-
-    public HellBladeCharm() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).fireResistant());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -67,7 +70,7 @@ public class HellBladeCharm extends ItemBaseCurio {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm1_alt", ChatFormatting.GOLD, String.format("%.0f", armorModifier * 100) + "%");
             }
             if (flag) {
-                float boost = (SuperpositionHandler.getMissingHealthPool(player) * 25) + 100;
+                float boost = (SuperpositionHandler.getMissingHealthPool(player) * 25) + damageMultiplier.getValue().asPercentage();
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm2_alt", ChatFormatting.GOLD, String.format("%.0f", boost) + "%");
             } else {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.hellBladeCharm2");
@@ -87,7 +90,7 @@ public class HellBladeCharm extends ItemBaseCurio {
     @OnlyIn(Dist.CLIENT)
     protected void addAttributes(List<Component> list, ItemStack stack, LocalPlayer player) {
         boolean flag = player != null && SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM);
-        float boost = 100.0F + (flag ? (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.attackDamage.getValue() * 20) : 0.0F);
+        float boost = damageMultiplier.getValue().asPercentage() + (flag ? (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.attackDamage.getValue() * 20) : 0.0F);
         double armorModifier = armorDebuff.getValue().asModifier() * (flag ? 0.6 : 1);
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.addLocalizedFormattedString(list, "curios.modifiers.charm", ChatFormatting.GOLD);
@@ -102,7 +105,6 @@ public class HellBladeCharm extends ItemBaseCurio {
         attributes.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID.fromString("03153759-3B92-E47E-EFED-DD4F2ECA6B47"), "Hell Bonus", -armorModifier, AttributeModifier.Operation.MULTIPLY_TOTAL));
         return attributes;
     }
-
 
     public void onEquip(SlotContext context, ItemStack prevStack, ItemStack stack) {
         super.onEquip(context, prevStack, stack);

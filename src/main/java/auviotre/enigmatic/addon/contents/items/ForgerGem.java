@@ -31,13 +31,17 @@ import java.util.List;
 import java.util.UUID;
 
 public class ForgerGem extends ItemBaseCurio {
-    public static Omniconfig.BooleanParameter strictUnbreakableForge;
-    public static Omniconfig.BooleanParameter levelNotValue;
     public static final List<ResourceLocation> blackList = new ArrayList<>();
     private static final String[] defaultBlackList = new String[]{
             "enigmaticaddons:totem_of_malice",
             "twilightforest:glass_sword"
     };
+    public static Omniconfig.BooleanParameter strictUnbreakableForge;
+    public static Omniconfig.BooleanParameter levelNotValue;
+
+    public ForgerGem() {
+        super(getDefaultProperties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
+    }
 
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
@@ -50,10 +54,6 @@ public class ForgerGem extends ItemBaseCurio {
             blackList.add(new ResourceLocation(entry));
         });
         builder.popPrefix();
-    }
-
-    public ForgerGem() {
-        super(getDefaultProperties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
     }
 
     @OnlyIn(Dist.CLIENT)

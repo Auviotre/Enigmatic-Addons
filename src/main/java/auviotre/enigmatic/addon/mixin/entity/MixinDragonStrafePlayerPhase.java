@@ -18,13 +18,7 @@ public abstract class MixinDragonStrafePlayerPhase extends AbstractDragonPhaseIn
         super(enderDragon);
     }
 
-    @ModifyArg(
-            method = "doServerTick",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"
-            )
-    )
+    @ModifyArg(method = "doServerTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"))
     public Entity Fireball(Entity entity) {
         if (entity instanceof DragonFireball dragonFireball && SuperAddonHandler.isCurseBoosted(this.dragon) && this.dragon.getRandom().nextInt(2) == 0) {
             Vec3 position = dragonFireball.position();

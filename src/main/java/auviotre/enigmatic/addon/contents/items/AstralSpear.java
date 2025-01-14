@@ -1,11 +1,14 @@
 package auviotre.enigmatic.addon.contents.items;
 
 import auviotre.enigmatic.addon.contents.entities.ThrownAstralSpear;
+import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.materials.EnigmaticMaterials;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticEnchantments;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticSounds;
+import com.aizistral.omniconfig.wrappers.Omniconfig;
+import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.client.gui.screens.Screen;
@@ -41,6 +44,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class AstralSpear extends ItemBase implements Vanishable {
+    public static Omniconfig.DoubleParameter poweredModifier;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     private boolean soundPlayed1 = false;
     private boolean soundPlayed2 = false;
@@ -52,6 +56,12 @@ public class AstralSpear extends ItemBase implements Vanishable {
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 13.0, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -3.1F, AttributeModifier.Operation.ADDITION));
         this.defaultModifiers = builder.build();
+    }
+
+    @SubscribeConfig
+    public static void onConfig(@NotNull OmniconfigWrapper builder) {
+        builder.pushPrefix("AstralSpear");
+        poweredModifier = builder.comment("The damage modifier when spear is powered.").max(100).min(0).getDouble("PoweredModifier", 2.5);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -69,15 +79,15 @@ public class AstralSpear extends ItemBase implements Vanishable {
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int tickCount) {
         if (!level.isClientSide) {
             int duration = this.getUseDuration(stack) - tickCount;
-            if (duration >= 75 && !this.soundPlayed3) {
+            if (duration >= 60 && !this.soundPlayed3) {
                 this.soundPlayed3 = true;
-                level.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), EnigmaticSounds.CHARGED_ON, SoundSource.PLAYERS, 2.5F, 1.7F);
+                level.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), EnigmaticSounds.CHARGED_ON, SoundSource.PLAYERS, 2.5F, 1.5F);
             }
-            if (duration >= 65 && !this.soundPlayed2) {
+            if (duration >= 50 && !this.soundPlayed2) {
                 this.soundPlayed2 = true;
-                level.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), EnigmaticSounds.CHARGED_ON, SoundSource.PLAYERS, 2.5F, 1.3F);
+                level.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), EnigmaticSounds.CHARGED_ON, SoundSource.PLAYERS, 2.5F, 1.25F);
             }
-            if (duration >= 50 && !this.soundPlayed1) {
+            if (duration >= 38 && !this.soundPlayed1) {
                 this.soundPlayed1 = true;
                 level.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), EnigmaticSounds.CHARGED_ON, SoundSource.PLAYERS, 2.5F, 1.0F);
             }
@@ -93,7 +103,7 @@ public class AstralSpear extends ItemBase implements Vanishable {
                     ThrownAstralSpear spear = new ThrownAstralSpear(player, level, stack);
                     float strength = Mth.clamp((float) (duration - 8) / 12F, 0.0F, 1.0F);
                     if (player.getAbilities().instabuild) spear.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-                    if (duration >= 75) {
+                    if (duration >= 60) {
                         spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4.5F, 1.1F);
                         spear.setPowered(true);
                         level.playSound(null, spear, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.25F, 2.0F);

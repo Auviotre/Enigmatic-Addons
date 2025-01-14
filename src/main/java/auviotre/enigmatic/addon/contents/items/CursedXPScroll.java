@@ -51,6 +51,10 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
     public static Omniconfig.DoubleParameter KRBoostLimit;
     public static Omniconfig.IntParameter XPLevelUpperLimit;
 
+    public CursedXPScroll() {
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.RARE));
+    }
+
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("ScrollofIgnoranceCurse");
@@ -61,8 +65,12 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
         builder.popPrefix();
     }
 
-    public CursedXPScroll() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.RARE));
+    public static int getLevel(ItemStack stack) {
+        return ExperienceHelper.getLevelForExperience(ItemNBTHelper.getInt(stack, "XPStored", 0));
+    }
+
+    public static double getLevelModifier(ItemStack stack) {
+        return Mth.clamp((double) getLevel(stack) / CursedXPScroll.XPLevelUpperLimit.getValue(), 0.0D, 1.0D);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -167,14 +175,6 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
             return attributes;
         }
         return super.getAttributeModifiers(slotContext, uuid, stack);
-    }
-
-    public static int getLevel(ItemStack stack) {
-        return ExperienceHelper.getLevelForExperience(ItemNBTHelper.getInt(stack, "XPStored", 0));
-    }
-
-    public static double getLevelModifier(ItemStack stack) {
-        return Mth.clamp((double) getLevel(stack) / CursedXPScroll.XPLevelUpperLimit.getValue(), 0.0D, 1.0D);
     }
 
     public boolean canEquip(SlotContext context, ItemStack stack) {

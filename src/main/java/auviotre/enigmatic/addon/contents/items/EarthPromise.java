@@ -41,6 +41,10 @@ public class EarthPromise extends ItemBaseCurio implements ICursed {
     public static Omniconfig.PerhapsParameter totalResistance;
     public static Omniconfig.PerhapsParameter abilityTriggerPercent;
 
+    public EarthPromise() {
+        super(getDefaultProperties().rarity(Rarity.EPIC));
+    }
+
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("PromiseoftheEarth");
@@ -51,10 +55,6 @@ public class EarthPromise extends ItemBaseCurio implements ICursed {
         totalResistance = builder.comment("Correction coefficient for the First Curse. Defined as percentage.").max(100).getPerhaps("TotalResistance", 25);
         abilityTriggerPercent = builder.comment("The percentage which trigger the Passive ability, damage / current health. Defined as percentage.").max(100).getPerhaps("AbilityTriggerPercent", 80);
         builder.popPrefix();
-    }
-
-    public EarthPromise() {
-        super(getDefaultProperties().rarity(Rarity.EPIC));
     }
 
     @OnlyIn(Dist.CLIENT)

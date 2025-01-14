@@ -35,10 +35,6 @@ import java.util.List;
 public abstract class MixinItemEntity extends Entity implements TraceableEntity {
     @Shadow
     private int pickupDelay;
-
-    @Shadow
-    public abstract ItemStack getItem();
-
     @Unique
     private boolean enigmaticAddons$primeCubeOn = false;
     @Unique
@@ -47,6 +43,9 @@ public abstract class MixinItemEntity extends Entity implements TraceableEntity 
     public MixinItemEntity(EntityType<?> type, Level world) {
         super(type, world);
     }
+
+    @Shadow
+    public abstract ItemStack getItem();
 
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     public void hurtMix(DamageSource source, float value, CallbackInfoReturnable<Boolean> cir) {

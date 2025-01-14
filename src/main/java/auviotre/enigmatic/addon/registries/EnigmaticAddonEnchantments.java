@@ -10,18 +10,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class EnigmaticAddonEnchantments extends AbstractRegistry<Enchantment> {
-    private static final EnigmaticAddonEnchantments INSTANCE = new EnigmaticAddonEnchantments();
     @ConfigurableItem("Frost Protection Enchantment")
     @ObjectHolder(value = "enigmaticaddons:frost_protection", registryName = "enchantment")
     public static final FrostProtectionEnchantment FROST_PROTECTION = null;
-
     @ConfigurableItem("Frost Aspect Enchantment")
     @ObjectHolder(value = "enigmaticaddons:frost_aspect", registryName = "enchantment")
     public static final FrostAspectEnchantment FROST_ASPECT = null;
-
     @ConfigurableItem("Frost Shattering Enchantment")
     @ObjectHolder(value = "enigmaticaddons:frost_shattering", registryName = "enchantment")
     public static final FrostShatteringEnchantment FROST_SHATTERING = null;
+    private static final EnigmaticAddonEnchantments INSTANCE = new EnigmaticAddonEnchantments();
 
     private EnigmaticAddonEnchantments() {
         super(ForgeRegistries.ENCHANTMENTS);

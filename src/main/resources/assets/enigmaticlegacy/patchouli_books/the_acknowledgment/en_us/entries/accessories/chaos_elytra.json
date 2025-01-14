@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.chaos_elytra.name",
+  "icon": "enigmaticaddons:chaos_elytra",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/chaos_elytra",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 195,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.chaos_elytra.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:chaos_elytra",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.chaos_elytra.page.2"
+    }
+  ]
+}

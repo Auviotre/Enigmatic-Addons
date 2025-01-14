@@ -23,7 +23,7 @@
       "text": "book.enigmaticaddons.entry.dragon_bow.page.3"
     },
     {
-      "type": "text",
+      "type": "enigmaticlegacy:dragon_bow_brewing",
       "text": "book.enigmaticaddons.entry.dragon_bow.page.4"
     }
   ]

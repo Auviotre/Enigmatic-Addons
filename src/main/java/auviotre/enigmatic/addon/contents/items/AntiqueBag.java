@@ -27,6 +27,10 @@ import java.util.List;
 public class AntiqueBag extends ItemBase {
     public static final List<ResourceLocation> extraBookList = new ArrayList<>();
 
+    public AntiqueBag() {
+        super(ItemBase.getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
+    }
+
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         extraBookList.clear();
@@ -36,10 +40,9 @@ public class AntiqueBag extends ItemBase {
         });
     }
 
-    public AntiqueBag() {
-        super(ItemBase.getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
+    public static boolean isBook(ItemStack stack) {
+        return extraBookList.contains(ForgeRegistries.ITEMS.getKey(stack.getItem())) || stack.is(ItemTags.BOOKSHELF_BOOKS);
     }
-
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
@@ -53,9 +56,5 @@ public class AntiqueBag extends ItemBase {
         player.startUsingItem(hand);
         if (!world.isClientSide) player.openMenu(new AntiqueBagContainerMenu.Provider());
         return InteractionResultHolder.success(player.getItemInHand(hand));
-    }
-
-    public static boolean isBook(ItemStack stack) {
-        return extraBookList.contains(ForgeRegistries.ITEMS.getKey(stack.getItem())) || stack.is(ItemTags.BOOKSHELF_BOOKS);
     }
 }

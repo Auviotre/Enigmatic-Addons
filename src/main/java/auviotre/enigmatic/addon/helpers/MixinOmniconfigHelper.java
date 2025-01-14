@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MixinOmniconfigHelper {
-    private static final String category = "Legacy Balance Options";
     public static final List<ResourceLocation> cubeRandomBuffs = new ArrayList<>();
+    public static final List<ResourceLocation> cubeRandomDebuffs = new ArrayList<>();
+    private static final String category = "Legacy Balance Options";
     private static final String[] defaultRandomBuffs = new String[]{
             "minecraft:absorption", "minecraft:haste", "minecraft:jump_boost", "minecraft:regeneration", "minecraft:resistance", "minecraft:speed", "minecraft:strength", "minecraft:slow_falling"
     };
-    public static final List<ResourceLocation> cubeRandomDebuffs = new ArrayList<>();
     private static final String[] defaultRandomDebuffs = new String[]{
             "minecraft:blindness", "minecraft:nausea", "minecraft:mining_fatigue", "minecraft:hunger", "minecraft:levitation", "minecraft:slowness", "minecraft:weakness", "minecraft:poison", "minecraft:wither"
     };

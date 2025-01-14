@@ -164,8 +164,8 @@
   "book.enigmaticaddons.entry.dragon_bow.name": "龙息",
   "book.enigmaticaddons.entry.dragon_bow.page.1": "龙息仅仅只能用于酿造吗？你也许思考过这个问题。回忆起末影龙用致命的龙息来灼烧你的盔甲与皮肤，你也很想让来其他人尝尝这个滋味。还有那个挂在末地船仅能拿来装饰的诡异龙头…<br2/>故在种种原因的驱使下，这把由魔法注入的弓诞生了。",
   "book.enigmaticaddons.entry.dragon_bow.page.2": "这把弓能够射出龙息箭而不需要任何弹药，但需要稍长一点的蓄力时间。当龙息箭击中时便会化为范围龙息，并尝试去以它的方式挽留或追逐每个经过的人。",
-  "book.enigmaticaddons.entry.dragon_bow.page.3": "不过有一点要注意，这把弓仅仅只是让你能够利用龙息的力量，并不能让你快乐且愚蠢地在龙息中遨游。",
-  "book.enigmaticaddons.entry.dragon_bow.page.4": "你或许会觉得这把弓过于平庸，所以我们进一步地开发它的潜能。<br2/>鉴于龙息在酿造中的作用，你决定尝试让药水在这把弓上发挥作用。倒在弓表面上的药水都渐渐被吸收，融入了幻化的箭矢之中，不过容量终究是有限的。<br2/>而且如果有你不中意的效果，用水就可以清除了。",
+  "book.enigmaticaddons.entry.dragon_bow.page.3": "不过有一点要注意，这把弓仅仅只是让你能够利用龙息的力量，并不能让你快乐且愚蠢地在龙息中遨游。<br2/>你或许会觉得这把弓过于平庸，所以我们进一步地开发它的潜能。<br2/>鉴于龙息在酿造中的作用，你决定尝试让药水在这把弓上发挥作用。倒在弓表面上的药水都渐渐被吸收，融入了幻化的箭矢之中，不过容量终究是有限的。",
+  "book.enigmaticaddons.entry.dragon_bow.page.4": "而且如果有你不中意的效果，用水就可以清除了。",
 
   "item.enigmaticaddons.sanguinary_handbook": "血腥狩猎手册",
 
@@ -237,9 +237,11 @@
   "book.enigmaticaddons.entry.forger_gem.page.2": "此外，精湛的手艺也允许你去打造一些不可破坏的造物，虽然这需要两把相同的崭新工具和大量的经验。<br2/>有时你也能在一些箱子里发现这些作物旧时代遗物的宝石。",
 
   "item.enigmaticaddons.adventure_charm": "冒险者之证",
+  "item.enigmaticaddons.despair_insignia": "绝望者证章",
 
   "tooltip.enigmaticaddons.adventureCharm1" : "§5使你无法挖掘方块",
   "tooltip.enigmaticaddons.adventureCharm2" : "§5按住 §6Shift §5时不起效",
+  "tooltip.enigmaticaddons.despairInsignia" : "§d可能与平时有点不同",
 
   "book.enigmaticaddons.entry.adventure_charm.name": "冒险者之证",
   "book.enigmaticaddons.entry.adventure_charm.page.1": "创造与破坏，这是无上的创世神之力，但在有些时候你会很难把握好力道，稍有不慎就容易产生不必要的破坏。而且在纯粹的战斗中，你更希望将这种力量转化为更加实用的形式。",
@@ -306,6 +308,17 @@
   "book.enigmaticaddons.entry.ichor_spear.name": "灵液标枪",
   "book.enigmaticaddons.entry.ichor_spear.page.1": "你应该明白，高贵的灵液始终是不同于一般的存在，特别是当它滴落在盔甲上滋滋作响时。<br2/>小心地将灵液涂抹在性质稳定的金质矛头上，外加其他作为催化剂的物件，简单的投矛就制作完成了。将它刺入敌人的盔甲之中，刺激的灵液便会将他们的护甲腐蚀，弱化他们的防御。",
   "book.enigmaticaddons.entry.ichor_spear.page.2": "但是有一个比较致命的问题————标枪是一次性的。这也只能通过它简单易得的特性来弥补这一缺点了。",
+
+  "item.enigmaticaddons.scorched_charm": "阳灼护符",
+
+  "tooltip.enigmaticaddons.scorchedCharm1": "§5使佩戴者免疫大部分火焰伤害",
+  "tooltip.enigmaticaddons.scorchedCharm2": "§5并能够行走在岩浆上",
+  "tooltip.enigmaticaddons.scorchedCharm3": "§5接触岩浆时获得自然恢复效果",
+  "tooltip.enigmaticaddons.scorchedCharm4": "§5攻击着火目标时触发生命汲取",
+
+  "book.enigmaticaddons.entry.scorched_charm.name": "阳灼护符",
+  "book.enigmaticaddons.entry.scorched_charm.page.1": "",
+  "book.enigmaticaddons.entry.scorched_charm.page.2": "",
 
   "item.enigmaticaddons.pure_heart": "纯净之心",
 
@@ -405,6 +418,16 @@
   "book.enigmaticaddons.entry.disaster_sword.name": "灾难恶剑",
   "book.enigmaticaddons.entry.disaster_sword.page.1": "坚固的刃体加上其中蓄势待发的灵魂，这把剑向你展示了防守反击的技巧。<br2/>手持这把阔剑，你可以用它宽厚的刃体去格挡近乎所有的攻击，鉴于它厚重的特性，任何攻击都变得没有差别，但是你也只能举起一瞬间。",
   "book.enigmaticaddons.entry.disaster_sword.page.2": "每当成功格挡，承受的能量便会萦绕在剑身，等待下一次攻击时的完美释放。<br2/>在这清脆的碰撞声中，灾难的韵律逐渐浮现。",
+
+  "item.enigmaticaddons.chaos_elytra": "混沌之傲",
+
+  "tooltip.enigmaticaddons.chaosElytra1": "§5减少 §6%1$s §5来自背后的伤害。",
+  "tooltip.enigmaticaddons.chaosElytra2": "§5加速垂直冲向地面时会产生范围伤害。",
+  "tooltip.enigmaticaddons.chaosElytra3": "",
+
+  "book.enigmaticaddons.entry.chaos_elytra.name": "混沌之傲",
+  "book.enigmaticaddons.entry.chaos_elytra.page.1": "",
+  "book.enigmaticaddons.entry.chaos_elytra.page.2": "",
 
   "death.attack.evil_curse": "%1$s被诅咒撕裂",
   "death.attack.false_justice": "%1$s消失在虚无的审判中。",

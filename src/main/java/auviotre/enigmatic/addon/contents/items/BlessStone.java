@@ -47,7 +47,8 @@ public class BlessStone extends ItemBase implements ICursed {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessStone1");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessStone2");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessStone3");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessStone_info");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessStone_info_1");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessStone_info_2");
             }
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedStone6");

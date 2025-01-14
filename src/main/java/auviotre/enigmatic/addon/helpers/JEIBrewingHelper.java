@@ -137,6 +137,25 @@ public class JEIBrewingHelper {
             }
         }
 
+        private static boolean arePotionsNotEqual(ItemStack potion1, ItemStack potion2) {
+            Item item1 = potion1.getItem();
+            Item item2 = potion2.getItem();
+            if (item1 != item2) {
+                return true;
+            } else {
+                Potion type1 = PotionUtils.getPotion(potion1);
+                Potion type2 = PotionUtils.getPotion(potion2);
+                if (item1 instanceof IAdvancedPotionItem advancedPotion1) {
+                    IAdvancedPotionItem advancedPotion2 = (IAdvancedPotionItem) item2;
+                    if (advancedPotion1.getPotionType() != advancedPotion2.getPotionType()) return true;
+                    if (PotionHelper.getAdvancedPotion(potion1) != PotionHelper.getAdvancedPotion(potion2))
+                        return true;
+                    return PotionAddonHelper.getAdvancedPotion(potion1) != PotionAddonHelper.getAdvancedPotion(potion2);
+                }
+                return !Objects.equals(type2, type1);
+            }
+        }
+
         public List<ItemStack> getPotionInputs() {
             return this.potionInputs;
         }
@@ -178,25 +197,6 @@ public class JEIBrewingHelper {
                 }
             } else {
                 return false;
-            }
-        }
-
-        private static boolean arePotionsNotEqual(ItemStack potion1, ItemStack potion2) {
-            Item item1 = potion1.getItem();
-            Item item2 = potion2.getItem();
-            if (item1 != item2) {
-                return true;
-            } else {
-                Potion type1 = PotionUtils.getPotion(potion1);
-                Potion type2 = PotionUtils.getPotion(potion2);
-                if (item1 instanceof IAdvancedPotionItem advancedPotion1) {
-                    IAdvancedPotionItem advancedPotion2 = (IAdvancedPotionItem) item2;
-                    if (advancedPotion1.getPotionType() != advancedPotion2.getPotionType()) return true;
-                    if (PotionHelper.getAdvancedPotion(potion1) != PotionHelper.getAdvancedPotion(potion2))
-                        return true;
-                    return PotionAddonHelper.getAdvancedPotion(potion1) != PotionAddonHelper.getAdvancedPotion(potion2);
-                }
-                return !Objects.equals(type2, type1);
             }
         }
 

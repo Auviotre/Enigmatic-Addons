@@ -152,8 +152,8 @@
   "book.enigmaticaddons.entry.dragon_bow.name": "The Dragon Breath",
   "book.enigmaticaddons.entry.dragon_bow.page.1": "Can Dragon Breath only be used for brewing? You may have thought about this issue. Recalling the ender dragon using its deadly dragon breath to burn your armor and skin, you also want others to experience it. And the strange dragon head hanging on the ender ship that can only be used for decoration...<br2/>Therefore, driven by various",
   "book.enigmaticaddons.entry.dragon_bow.page.2": "reasons, this bow infused with magic was born.<br2/>This bow can shoot dragon breath arrows without any ammo, but it requires a slightly longer charging time. When the dragon breath arrow",
-  "book.enigmaticaddons.entry.dragon_bow.page.3": "hits, it will turn into a ranged dragon breath and try to retain or chase every person passing by in its way.<br2/>However, one thing to note is that this bow only allows you to utilize the power of the dragon breath. It cannot make you roam in the dragon breath Happily and Foolishly.",
-  "book.enigmaticaddons.entry.dragon_bow.page.4": "You may feel that this bow is too mediocre, so we will further develop its potential.<br2/>Given the role of Dragon Breath in brewing, you have decided to try using the potion. The potion poured onto the surface of the bow gradually absorbed and merged into the transformed arrows, but its capacity was limited.<br2/>And if there are any effects that you don't like, you can remove them with water.",
+  "book.enigmaticaddons.entry.dragon_bow.page.3": "hits, it will turn into a ranged dragon breath and try to retain or chase every person passing by in its way.<br2/>However, one thing to note is that this bow only allows you to utilize the power of the dragon breath. It cannot make you roam in the dragon breath Happily and Foolishly. <br2/>You may feel that this bow is too mediocre, so we will further develop its potential.",
+  "book.enigmaticaddons.entry.dragon_bow.page.4": "Given the role of Dragon Breath in brewing, when the potion poured onto the surface of the bow, they are gradually absorbed and merged into the transformed arrows, but its capacity was limited.",
 
   "item.enigmaticaddons.astral_spear": "Astral Spear",
 
@@ -166,7 +166,6 @@
   "book.enigmaticaddons.entry.astral_spear.page.2": "The power of astral dust converged at the spearhead, allowing the spear to interact with energy in space. Thus, it can perceive and track every target. And it also can store energy, quickly pierce through and pour out energy, producing",
   "book.enigmaticaddons.entry.astral_spear.page.3": "a astral explosion.<br2/>Astral dust has also alienated its enchanting ability, why not try some enchantments that do not belong to swords?",
   "book.enigmaticaddons.entry.astral_spear.page.4": "<br/><&n><&8>Notes of enchantments:<clear/><&8><br/>Sharpness<br/> - Increase the damage of throwing spear.<br2/>Piercing<br/> - Increase piercing times and slightly improve tracking capability<br2/>Loyalty<br/> - Recall the spear automatically, faster than trident.",
-
 
   "item.enigmaticaddons.sanguinary_handbook": "Sanguinary Hunting Handbook",
 
@@ -238,9 +237,11 @@
   "book.enigmaticaddons.entry.forger_gem.page.2": "the gem to reduce the cost, thereby increasing the upper limit of forging.<br2/>In addition, exquisite craft also allows you to create some Unbreakable creations with two identical new tools.",
 
   "item.enigmaticaddons.adventure_charm": "Emblem of Adventurer",
+  "item.enigmaticaddons.despair_insignia": "Insignia of Despair",
 
   "tooltip.enigmaticaddons.adventureCharm1" : "§5Preventing you from digging blocks.",
   "tooltip.enigmaticaddons.adventureCharm2" : "§5Holding §6Shift §5to disable.",
+  "tooltip.enigmaticaddons.despairInsignia" : "§dMaybe a bit different from usual.",
 
   "book.enigmaticaddons.entry.adventure_charm.name": "Emblem of Adventurer",
   "book.enigmaticaddons.entry.adventure_charm.page.1": "Creation and destruction are the supreme power of the God, but sometimes it can be difficult to grasp the force well, and a slight mistake can easily lead to unnecessary destruction. And in pure combat, you would prefer to transform this power into more practical forms.<br2/>Now this charm may temporarily meet your needs, converting",
@@ -307,6 +308,17 @@
   "book.enigmaticaddons.entry.ichor_spear.name": "Ichor Spear",
   "book.enigmaticaddons.entry.ichor_spear.page.1": "You should know that the noble ichor are always different from ordinary beings, especially when they drip onto armor and make a sizzling sound.<br2/>Carefully apply the ichor droplet onto the stable gold spearhead, along with other catalysts, and simply spear is completed. By piercing it into the enemy's armor, the danger",
   "book.enigmaticaddons.entry.ichor_spear.page.2": "ichor will corrode their armor and weaken their defense. <br2/>But there is a fatal problem - the spear is disposable. This can only be compensated for by its simple and easily accessible features.",
+
+  "item.enigmaticaddons.scorched_charm": "Charm of Scorched Sun",
+
+  "tooltip.enigmaticaddons.scorchedCharm1": "§5Immunize the wearer against most of the fire damage",
+  "tooltip.enigmaticaddons.scorchedCharm2": "§5And be able to walk on the lava.",
+  "tooltip.enigmaticaddons.scorchedCharm3": "§5Obtain natural regeneration when in contact with lava.",
+  "tooltip.enigmaticaddons.scorchedCharm4": "§5Trigger lifesteal when attacking a target on fire.",
+
+  "book.enigmaticaddons.entry.scorched_charm.name": "Charm of Scorched Sun",
+  "book.enigmaticaddons.entry.scorched_charm.page.1": "",
+  "book.enigmaticaddons.entry.scorched_charm.page.2": "",
 
   "item.enigmaticaddons.the_bless": "The Bless",
 
@@ -406,6 +418,16 @@
   "book.enigmaticaddons.entry.disaster_sword.name": "Disaster Broadsword",
   "book.enigmaticaddons.entry.disaster_sword.page.1": "With a sturdy blade and a soul poised to take off, this sword showcases the skills of defense and counterattack.<br2/>Holding this broadsword, you can use its wide blade to block almost all attacks. Given its heaviness, any attack becomes indistinguishable, but you can only lift the sword for a moment.",
   "book.enigmaticaddons.entry.disaster_sword.page.2": "Whenever successfully blocked, the energy absorbed will linger on the sword, waiting for the perfect release in the next attack.<br2/>The rhythm of disaster gradually emerged in this crisp sound.",
+
+  "item.enigmaticaddons.chaos_elytra": "The Arrogance of Chaos",
+
+  "tooltip.enigmaticaddons.chaosElytra1": "§5Reduce §6%1$s §5of damage from behind.",
+  "tooltip.enigmaticaddons.chaosElytra2": "§5When accelerating vertically towards",
+  "tooltip.enigmaticaddons.chaosElytra3": "§5the ground, it will cause range damage.",
+
+  "book.enigmaticaddons.entry.chaos_elytra.name": "The Arrogance of Chaos",
+  "book.enigmaticaddons.entry.chaos_elytra.page.1": "",
+  "book.enigmaticaddons.entry.chaos_elytra.page.2": "",
 
   "death.attack.evil_curse": "%1$s is torn apart by curse.",
   "death.attack.false_justice": "%1$s disappeared into the void of judgement.",

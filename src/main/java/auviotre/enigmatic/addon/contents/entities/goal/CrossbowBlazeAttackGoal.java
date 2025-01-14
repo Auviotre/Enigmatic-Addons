@@ -23,9 +23,9 @@ import java.util.EnumSet;
 public class CrossbowBlazeAttackGoal<T extends Monster & RangedAttackMob & CrossbowAttackMob> extends Goal {
     public static final UniformInt PATHFINDING_DELAY_RANGE = TimeUtil.rangeOfSeconds(1, 2);
     private final T mob;
-    private CrossbowBlazeAttackGoal.CrossbowState crossbowState;
     private final double speedModifier;
     private final float attackRadiusSqr;
+    private CrossbowBlazeAttackGoal.CrossbowState crossbowState;
     private int seeTime;
     private int attackDelay;
     private int updatePathDelay;

@@ -44,11 +44,19 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class EvilDagger extends ItemBase implements Vanishable, ICursed {
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     public static Omniconfig.IntParameter cooldown;
     public static Omniconfig.IntParameter curseHurtInterval;
     public static Omniconfig.DoubleParameter curseHurtAmount;
     public static Omniconfig.PerhapsParameter curseDamageRatio;
+    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+
+    public EvilDagger() {
+        super(ItemBase.getDefaultProperties().fireResistant().rarity(Rarity.EPIC).durability(640));
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 5.0, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -1.6F, AttributeModifier.Operation.ADDITION));
+        this.defaultModifiers = builder.build();
+    }
 
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
@@ -60,12 +68,30 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
         builder.popPrefix();
     }
 
-    public EvilDagger() {
-        super(ItemBase.getDefaultProperties().fireResistant().rarity(Rarity.EPIC).durability(640));
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 5.0, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -1.6F, AttributeModifier.Operation.ADDITION));
-        this.defaultModifiers = builder.build();
+    public static void EvilCursing(LivingEntity entity) {
+        if (entity.getPersistentData().getBoolean("EvilCrashed")) {
+            entity.getPersistentData().remove("EvilCurseThreshold");
+            return;
+        }
+        int percent = (int) (entity.getHealth() * 100 / entity.getMaxHealth());
+        int threshold = Math.max(entity.getPersistentData().getInt("EvilCurseThreshold"), 1);
+        Vec3 location = entity.position();
+        float width = entity.getBbWidth() / 2;
+        if (percent > threshold) {
+            if (entity.tickCount % EvilDagger.curseHurtInterval.getValue() == 0) {
+                EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(location.x, location.y, location.z, 64.0, entity.level().dimension())),
+                        new PacketEvilCage(location.x, location.y, location.z, width, entity.getBbHeight(), 0));
+                entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, null), (float) EvilDagger.curseHurtAmount.getValue());
+                entity.setDeltaMovement(Vec3.ZERO);
+                entity.hasImpulse = true;
+            }
+        } else if (percent <= threshold) {
+            entity.getPersistentData().putBoolean("EvilCrashed", true);
+            entity.setDeltaMovement(new Vec3(0.0, -1.0, 0.0));
+            float damage = entity.getMaxHealth() * EvilDagger.curseDamageRatio.getValue().asModifier() / 5.0F;
+            ((ServerLevel) entity.level()).sendParticles(ParticleTypes.EXPLOSION, location.x, location.y, location.z, 5, width, entity.getBbHeight(), width, 0.0);
+            entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, null), (float) Math.max(damage, EvilDagger.curseHurtAmount.getValue() * 2));
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -141,31 +167,5 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
 
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return (super.canApplyAtEnchantingTable(Items.IRON_SWORD.getDefaultInstance(), enchantment) || enchantment == Enchantments.MULTISHOT) && enchantment != Enchantments.SWEEPING_EDGE;
-    }
-
-    public static void EvilCursing(LivingEntity entity) {
-        if (entity.getPersistentData().getBoolean("EvilCrashed")) {
-            entity.getPersistentData().remove("EvilCurseThreshold");
-            return;
-        }
-        int percent = (int) (entity.getHealth() * 100 / entity.getMaxHealth());
-        int threshold = Math.max(entity.getPersistentData().getInt("EvilCurseThreshold"), 1);
-        Vec3 location = entity.position();
-        float width = entity.getBbWidth() / 2;
-        if (percent > threshold) {
-            if (entity.tickCount % EvilDagger.curseHurtInterval.getValue() == 0) {
-                EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(location.x, location.y, location.z, 64.0, entity.level().dimension())),
-                        new PacketEvilCage(location.x, location.y, location.z, width, entity.getBbHeight(), 0));
-                entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, null), (float) EvilDagger.curseHurtAmount.getValue());
-                entity.setDeltaMovement(Vec3.ZERO);
-                entity.hasImpulse = true;
-            }
-        } else if (percent <= threshold) {
-            entity.getPersistentData().putBoolean("EvilCrashed", true);
-            entity.setDeltaMovement(new Vec3(0.0, -1.0, 0.0));
-            float damage = entity.getMaxHealth() * EvilDagger.curseDamageRatio.getValue().asModifier() / 5.0F;
-            ((ServerLevel) entity.level()).sendParticles(ParticleTypes.EXPLOSION, location.x, location.y, location.z, 5, width, entity.getBbHeight(), width, 0.0);
-            entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, null), (float) Math.max(damage, EvilDagger.curseHurtAmount.getValue() * 2));
-        }
     }
 }

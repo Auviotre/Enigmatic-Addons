@@ -32,6 +32,11 @@ public class TheBless extends TheAcknowledgment implements ICursed {
     public static Omniconfig.DoubleParameter attackSpeed;
     public static Omniconfig.IntParameter invulnerableTime;
 
+    public TheBless() {
+        super(getDefaultProperties().rarity(Rarity.EPIC).stacksTo(1).fireResistant(), "the_bless", attackDamage.getValue(), attackSpeed.getValue());
+        this.setAllowAllEnchantments(true);
+    }
+
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("TheBless");
@@ -39,11 +44,6 @@ public class TheBless extends TheAcknowledgment implements ICursed {
         attackSpeed = builder.comment("Attack speed of The Bless.").minMax(32768.0).getDouble("AttackSpeed", -1.6);
         invulnerableTime = builder.comment("The invulnerable time after hit while The Bless in inventory.").min(40).max(200).getInt("InvulnerableTime", 40);
         builder.popPrefix();
-    }
-
-    public TheBless() {
-        super(getDefaultProperties().rarity(Rarity.EPIC).stacksTo(1).fireResistant(), "the_bless", attackDamage.getValue(), attackSpeed.getValue());
-        this.setAllowAllEnchantments(true);
     }
 
     @OnlyIn(Dist.CLIENT)

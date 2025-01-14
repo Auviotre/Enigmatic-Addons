@@ -7,10 +7,7 @@ import auviotre.enigmatic.addon.handlers.AddonEventHandler;
 import auviotre.enigmatic.addon.handlers.AddonKeybindHandler;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
-import auviotre.enigmatic.addon.packets.clients.PacketDisasterParry;
-import auviotre.enigmatic.addon.packets.clients.PacketEvilCage;
-import auviotre.enigmatic.addon.packets.clients.PacketMaliceTotem;
-import auviotre.enigmatic.addon.packets.clients.PacketStarParticles;
+import auviotre.enigmatic.addon.packets.clients.*;
 import auviotre.enigmatic.addon.packets.server.PacketCursedXPScrollKey;
 import auviotre.enigmatic.addon.packets.server.PacketEmptyLeftClick;
 import auviotre.enigmatic.addon.proxy.ClientProxy;
@@ -59,8 +56,8 @@ import static auviotre.enigmatic.addon.registries.AbstractRegistry.loadClass;
 public class EnigmaticAddons {
     public static final String MODID = "enigmaticaddons";
     public static final LoggerWrapper LOGGER = new LoggerWrapper("Enigmatic Addons");
-    public static SimpleChannel packetInstance;
     public static final CommonProxy PROXY = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+    public static SimpleChannel packetInstance;
 
     public EnigmaticAddons() {
         LOGGER.info("Constructing mod instance...");
@@ -103,6 +100,7 @@ public class EnigmaticAddons {
         packetInstance.registerMessage(3, PacketEvilCage.class, PacketEvilCage::encode, PacketEvilCage::decode, PacketEvilCage::handle);
         packetInstance.registerMessage(4, PacketDisasterParry.class, PacketDisasterParry::encode, PacketDisasterParry::decode, PacketDisasterParry::handle);
         packetInstance.registerMessage(5, PacketMaliceTotem.class, PacketMaliceTotem::encode, PacketMaliceTotem::decode, PacketMaliceTotem::handle);
+        packetInstance.registerMessage(6, PacketDescendingChaos.class, PacketDescendingChaos::encode, PacketDescendingChaos::decode, PacketDescendingChaos::handle);
         LOGGER.info("Common setup phase finished successfully.");
     }
 
@@ -214,7 +212,7 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticBlocks.BIG_REDSTONELAMP, EnigmaticBlocks.MASSIVE_REDSTONELAMP);
             putAfter(entries, EnigmaticBlocks.MASSIVE_REDSTONELAMP, EnigmaticBlocks.BIG_SHROOMLAMP);
             putAfter(entries, EnigmaticBlocks.BIG_SHROOMLAMP, EnigmaticBlocks.MASSIVE_SHROOMLAMP);
-            putAfter(entries, EnigmaticItems.ETHERIUM_SCRAPS, EnigmaticBlocks.ETHERIUM_BLOCK);
+            putAfter(entries, EnigmaticItems.ETHERIUM_NUGGET, EnigmaticBlocks.ETHERIUM_BLOCK);
             putAfter(entries, EnigmaticItems.ASTRAL_BREAKER, EnigmaticAddonItems.ASTRAL_SPEAR);
             putAfter(entries, EnigmaticAddonItems.ASTRAL_SPEAR, EnigmaticBlocks.END_ANCHOR);
             putAfter(entries, EnigmaticBlocks.END_ANCHOR, EnigmaticItems.ENIGMATIC_ELYTRA);
@@ -242,7 +240,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.CURSED_STONE, EnigmaticAddonItems.PURE_HEART);
             putAfter(entries, EnigmaticAddonItems.PURE_HEART, EnigmaticAddonItems.THE_BLESS);
             putAfter(entries, EnigmaticAddonItems.THE_BLESS, EnigmaticAddonItems.BLESS_AMPLIFIER);
-            putAfter(entries, EnigmaticAddonItems.BLESS_AMPLIFIER, EnigmaticAddonItems.EARTH_PROMISE);
+            putAfter(entries, EnigmaticAddonItems.BLESS_AMPLIFIER, EnigmaticAddonItems.SCORCHED_CHARM);
+            putAfter(entries, EnigmaticAddonItems.SCORCHED_CHARM, EnigmaticAddonItems.EARTH_PROMISE);
             putAfter(entries, EnigmaticAddonItems.EARTH_PROMISE, EnigmaticAddonItems.BLESS_STONE);
             putAfter(entries, EnigmaticAddonItems.BLESS_STONE, EnigmaticAddonItems.BLESS_RING);
             putAfter(entries, EnigmaticAddonItems.BLESS_RING, EnigmaticItems.DARKEST_SCROLL);
@@ -255,13 +254,15 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.ABYSSAL_HEART, EnigmaticItems.THE_INFINITUM);
             putAfter(entries, EnigmaticItems.THE_INFINITUM, EnigmaticItems.DESOLATION_RING);
             putAfter(entries, EnigmaticItems.DESOLATION_RING, EnigmaticItems.ELDRITCH_AMULET);
-            putAfter(entries, EnigmaticItems.ELDRITCH_AMULET, EnigmaticItems.ELDRITCH_PAN);
+            putAfter(entries, EnigmaticItems.ELDRITCH_AMULET, EnigmaticAddonItems.CHAOS_ELYTRA);
+            putAfter(entries, EnigmaticAddonItems.CHAOS_ELYTRA, EnigmaticItems.ELDRITCH_PAN);
             putAfter(entries, EnigmaticItems.ELDRITCH_PAN, EnigmaticItems.LOOT_GENERATOR);
             putAfter(entries, EnigmaticItems.LOOT_GENERATOR, EnigmaticItems.REDEMPTION_POTION);
             putAfter(entries, EnigmaticItems.REDEMPTION_POTION, EnigmaticItems.SOUL_CRYSTAL);
             putAfter(entries, EnigmaticItems.SOUL_CRYSTAL, EnigmaticItems.QUOTE_PLAYER);
             putAfter(entries, EnigmaticItems.QUOTE_PLAYER, EnigmaticItems.DECEPTION_AMULET);
-            putAfter(entries, EnigmaticItems.DECEPTION_AMULET, EnigmaticItems.SOUL_DUST);
+            putAfter(entries, EnigmaticItems.DECEPTION_AMULET, EnigmaticItems.ETHERIUM_SCRAPS);
+            putAfter(entries, EnigmaticItems.ETHERIUM_SCRAPS, EnigmaticItems.SOUL_DUST);
             putAfter(entries, EnigmaticItems.SOUL_DUST, EnigmaticItems.THE_JUDGEMENT);
             putAfter(entries, EnigmaticItems.THE_JUDGEMENT, EnigmaticBlocks.STAR_FABRIC);
 

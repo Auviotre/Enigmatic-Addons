@@ -9,6 +9,7 @@ import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -69,6 +70,11 @@ public class SuperAddonHandler {
         }
     }
 
+    @Nullable
+    public static ItemStack getChaosElytra(LivingEntity living) {
+        ItemStack stack = living.getItemBySlot(EquipmentSlot.CHEST);
+        return stack.is(EnigmaticAddonItems.CHAOS_ELYTRA) ? stack : SuperpositionHandler.getCurioStack(living, EnigmaticAddonItems.CHAOS_ELYTRA);
+    }
 
     public static ItemStack getItem(Player player, Item item) {
         for (NonNullList<ItemStack> stacks : player.getInventory().compartments) {
@@ -91,6 +97,10 @@ public class SuperAddonHandler {
 
     public static boolean isOKOne(Player player) {
         return hasBlessRing(player) || SuperpositionHandler.isTheCursedOne(player);
+    }
+
+    public static boolean isPunishedOne(LivingEntity entity) {
+        return entity instanceof Player player && hasBlessRing(player) && SuperpositionHandler.isTheCursedOne(player);
     }
 
     public static ItemStack findBookInBag(Player player, Item book) {

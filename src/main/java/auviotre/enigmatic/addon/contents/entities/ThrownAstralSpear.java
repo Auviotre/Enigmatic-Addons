@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon.contents.entities;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.client.particles.StarDustParticle;
+import auviotre.enigmatic.addon.contents.items.AstralSpear;
 import auviotre.enigmatic.addon.packets.clients.PacketStarParticles;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
@@ -35,9 +36,9 @@ public class ThrownAstralSpear extends AbstractSpear {
     private static final double seekDistance = 4.0;
     private static final double seekAngle = Math.PI / 15.0;
     private static final double seekThreshold = 0.5;
+    public int clientReturnTickCount;
     private boolean dealtDamage;
     private ItemStack spearItem;
-    public int clientReturnTickCount;
     @Nullable
     private IntOpenHashSet ignoreEntityIds;
 
@@ -66,6 +67,7 @@ public class ThrownAstralSpear extends AbstractSpear {
     }
 
     public void tick() {
+        super.tick();
         if (this.inGroundTime > 3) this.dealtDamage = true;
         Entity owner = this.getOwner();
         if (this.isPowered() && !this.dealtDamage && owner != null) {
@@ -84,12 +86,11 @@ public class ThrownAstralSpear extends AbstractSpear {
                 this.discard();
             } else {
                 this.setNoPhysics(true);
-                Vec3 pos = owner.getEyePosition().subtract(this.position());
-                this.setPosRaw(this.getX(), this.getY() + pos.y * 0.015 * (double) loyalty, this.getZ());
-                if (this.level().isClientSide) this.yOld = this.getY();
+                Vec3 delta = owner.getEyePosition().subtract(this.position());
+                this.setPosRaw(this.getX(), this.getY() + delta.y * 0.015 * (double) loyalty, this.getZ());
 
-                double scale = 0.07 * (double) loyalty;
-                this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(pos.normalize().scale(scale)));
+                double scale = 0.2 * (double) loyalty;
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.8).add(delta.normalize().scale(scale)));
                 if (this.clientReturnTickCount == 0) {
                     this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.5F);
                 }
@@ -121,13 +122,12 @@ public class ThrownAstralSpear extends AbstractSpear {
             double dx = vec3.x;
             double dy = vec3.y;
             double dz = vec3.z;
-            double length = vec3.length() * 1.6D;
-            for (int i = 0; i < length; ++i) {
+            double length = vec3.length() * 1.44D;
+            for (int i = 0; i < length + 1; ++i) {
                 this.level().addParticle(StarDustParticle.get(this.random), this.getRandomX(0.1F) + dx * (double) i / length, this.getRandomY() + dy * (double) i / length, this.getRandomZ(0.1F) + dz * (double) i / length, -dx * 0.1, -dy * 0.1, -dz * 0.1);
                 if (this.inGround) break;
             }
         }
-        super.tick();
     }
 
     @Nullable
@@ -143,47 +143,50 @@ public class ThrownAstralSpear extends AbstractSpear {
         this.dealtDamage = true;
         this.setDeltaMovement(this.getDeltaMovement().multiply(-0.02, -0.1, -0.02));
         if (this.isPowered()) this.setDeltaMovement(this.getDeltaMovement().scale(0.2));
-        this.setPowered(false);
+        this.hasImpulse = true;
     }
 
     protected void onHitEntity(EntityHitResult hitResult) {
         Entity entity = hitResult.getEntity();
         Entity owner = this.getOwner();
-        double damage = this.getBaseDamage() + (this.entityData.get(ID_SHARPNESS) > 0 ? this.entityData.get(ID_SHARPNESS) : 0);
-        DamageSource damageSource = this.damageSources().trident(this, owner == null ? this : owner);
-        if (this.isPowered()) {
-            this.areaAttack(this.level(), hitResult, damageSource, (float) (damage * 2));
-            this.stop();
-        } else {
-            if (this.getPierceLevel() > 0 && entity.isAlive()) {
-                if (this.ignoreEntityIds == null) this.ignoreEntityIds = new IntOpenHashSet(9);
-                Vec3 movement = this.getDeltaMovement();
-                AABB box = this.getBoundingBox().move(movement).inflate(movement.length() / 1.5);
-                boolean flag = true;
-                for (int i = 0; i < 5 && flag; i++) {
-                    List<LivingEntity> entityList = this.level().getEntitiesOfClass(LivingEntity.class, box);
-                    box = box.move(movement.add(0.0, -0.1, 0.0));
-                    for (LivingEntity living : entityList) {
-                        if (living.is(entity) || !this.canHitEntity(living)) continue;
-                        if (living == this.getOwner()) continue;
-                        flag = false;
-                    }
-                }
-                if (this.ignoreEntityIds.size() >= this.getPierceLevel() || flag) this.stop();
-                this.ignoreEntityIds.add(entity.getId());
-            } else this.stop();
-            if (entity.hurt(damageSource, (float) damage)) {
-                if (entity.getType() == EntityType.ENDERMAN) return;
-                if (entity instanceof LivingEntity living) {
-                    if (owner instanceof LivingEntity) {
-                        EnchantmentHelper.doPostHurtEffects(living, owner);
-                        EnchantmentHelper.doPostDamageEffects((LivingEntity) owner, living);
-                    }
-                    this.doPostHurtEffects(living);
+        if (!this.isPowered() && this.getPierceLevel() > 0 && entity.isAlive()) {
+            if (this.ignoreEntityIds == null) this.ignoreEntityIds = new IntOpenHashSet(9);
+            Vec3 movement = this.getDeltaMovement().scale(0.9);
+            AABB box = this.getBoundingBox().move(movement).inflate(movement.x, movement.y, movement.z);
+            boolean predictNoTarget = true;
+            for (int i = 0; i < 5 && predictNoTarget; i++) {
+                List<LivingEntity> entityList = this.level().getEntitiesOfClass(LivingEntity.class, box);
+                box = box.move(movement.add(0.0, -0.2, 0.0));
+                for (LivingEntity living : entityList) {
+                    if (living.is(entity) || !this.canHitEntity(living)) continue;
+                    if (living == this.getOwner()) continue;
+                    predictNoTarget = false;
                 }
             }
-            this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
+            if (this.ignoreEntityIds.size() >= this.getPierceLevel() || predictNoTarget) this.stop();
+            this.ignoreEntityIds.add(entity.getId());
+        } else this.stop();
+        double damage = this.getBaseDamage() + (this.entityData.get(ID_SHARPNESS) > 0 ? this.entityData.get(ID_SHARPNESS) : 0);
+        if (entity instanceof LivingEntity livingEntity) {
+            damage += EnchantmentHelper.getDamageBonus(this.spearItem, livingEntity.getMobType());
         }
+        DamageSource damageSource = this.damageSources().trident(this, owner == null ? this : owner);
+        if (entity.hurt(damageSource, (float) damage)) {
+            if (entity.getType() == EntityType.ENDERMAN) return;
+            if (entity instanceof LivingEntity living) {
+                if (!this.level().isClientSide && owner instanceof LivingEntity) {
+                    EnchantmentHelper.doPostHurtEffects(living, owner);
+                    EnchantmentHelper.doPostDamageEffects((LivingEntity) owner, living);
+                }
+                this.doPostHurtEffects(living);
+            }
+        }
+        if (this.isPowered()) {
+            this.areaAttack(this.level(), hitResult, damageSource, (float) damage);
+            this.setPowered(false);
+            this.stop();
+        }
+        this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
     }
 
     protected void onHitBlock(BlockHitResult hitResult) {
@@ -191,7 +194,8 @@ public class ThrownAstralSpear extends AbstractSpear {
             Entity owner = this.getOwner();
             double damage = this.getBaseDamage() + (this.entityData.get(ID_SHARPNESS) > 0 ? this.entityData.get(ID_SHARPNESS) : 0);
             DamageSource damageSource = this.damageSources().trident(this, owner == null ? this : owner);
-            areaAttack(this.level(), hitResult, damageSource, (float) damage * 2);
+            areaAttack(this.level(), hitResult, damageSource, (float) damage);
+            this.setPowered(false);
             this.dealtDamage = true;
         }
         super.onHitBlock(hitResult);
@@ -199,20 +203,21 @@ public class ThrownAstralSpear extends AbstractSpear {
     }
 
     protected void areaAttack(Level level, HitResult result, DamageSource source, float damage) {
+        damage = damage * (float) AstralSpear.poweredModifier.getValue();
         Vec3 location = result.getLocation();
         if (result instanceof EntityHitResult hitResult)
             location.add(0, hitResult.getEntity().getBbHeight() * 0.75, 0);
-        EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(location.x, location.y, location.z, 64.0, level.dimension())),
-                new PacketStarParticles(location.x, location.y, location.z, 160, 0));
+        if (!level.isClientSide)
+            EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(location.x, location.y, location.z, 64.0, level.dimension())),
+                    new PacketStarParticles(location.x, location.y, location.z, 160, 0));
         Entity owner = this.getOwner() == null ? this : this.getOwner();
         List<Entity> entities = level.getEntities(this, this.getBoundingBox().move(location.subtract(this.position())).inflate(5));
         for (Entity target : entities) {
-            if (target instanceof Mob && target.isAlive() && target != owner && target != this) {
+            if (target instanceof LivingEntity && target.isAlive() && target != owner && target != this) {
                 target.hurt(source, damage);
             }
         }
         this.playSound(SoundEvents.TRIDENT_HIT_GROUND, 2.0F, 0.0F);
-
         this.resetPiercedEntities();
     }
 
@@ -339,11 +344,11 @@ public class ThrownAstralSpear extends AbstractSpear {
         this.getEntityData().set(ID_TARGET, entity == null ? -1 : entity.getId());
     }
 
-    public void setPowered(boolean isPowered) {
-        this.entityData.set(ID_POWERED, isPowered);
-    }
-
     public boolean isPowered() {
         return this.entityData.get(ID_POWERED);
+    }
+
+    public void setPowered(boolean isPowered) {
+        this.entityData.set(ID_POWERED, isPowered);
     }
 }

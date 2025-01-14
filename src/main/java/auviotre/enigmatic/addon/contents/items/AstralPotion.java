@@ -30,16 +30,16 @@ public class AstralPotion extends ItemBasePotion {
     public static Omniconfig.IntParameter cooldown;
     public static Omniconfig.DoubleParameter durationMultiplier;
 
+    public AstralPotion() {
+        super(getDefaultProperties().stacksTo(1).rarity(Rarity.EPIC));
+    }
+
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("PotionofCosmic");
         cooldown = builder.comment("The cooldown of Potion of Cosmic. Measured in ticks.").max(32000).getInt("Cooldown", 2400);
         durationMultiplier = builder.comment("The Duration Multiplier of Potion of Cosmic.").max(32.0).getDouble("DurationMultiplier", 1.6);
         builder.popPrefix();
-    }
-
-    public AstralPotion() {
-        super(getDefaultProperties().stacksTo(1).rarity(Rarity.EPIC));
     }
 
     @OnlyIn(Dist.CLIENT)

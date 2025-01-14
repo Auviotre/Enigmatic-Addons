@@ -7,7 +7,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
-    private static final EnigmaticAddonEntities INSTANCE = new EnigmaticAddonEntities();
     @ObjectHolder(value = "enigmaticaddons:dragon_breath_arrow", registryName = "entity_type")
     public static final EntityType<DragonBreathArrow> DRAGON_BREATH_ARROW = null;
     @ObjectHolder(value = "enigmaticaddons:cobweb_ball", registryName = "entity_type")
@@ -24,6 +23,7 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     public static final EntityType<ThrownEvilDagger> EVIL_DAGGER = null;
     @ObjectHolder(value = "enigmaticaddons:disaster_chaos", registryName = "entity_type")
     public static final EntityType<DisasterChaos> DISASTER_CHAOS = null;
+    private static final EnigmaticAddonEntities INSTANCE = new EnigmaticAddonEntities();
 
     private EnigmaticAddonEntities() {
         super(ForgeRegistries.ENTITY_TYPES);

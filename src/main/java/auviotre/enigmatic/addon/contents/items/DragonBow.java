@@ -2,8 +2,10 @@ package auviotre.enigmatic.addon.contents.items;
 
 import auviotre.enigmatic.addon.contents.entities.DragonBreathArrow;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
+import com.aizistral.enigmaticlegacy.api.items.ICreativeTabMember;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticTabs;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.nbt.CompoundTag;
@@ -29,10 +31,15 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
-public class DragonBow extends ItemBase implements Vanishable {
+public class DragonBow extends BowItem implements Vanishable, ICreativeTabMember {
     public static Omniconfig.PerhapsParameter ownerResistance;
     public static Omniconfig.IntParameter maxPotionAmount;
+
+    public DragonBow() {
+        super(ItemBase.getDefaultProperties().rarity(Rarity.EPIC).stacksTo(1).durability(1024));
+    }
 
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
@@ -42,8 +49,38 @@ public class DragonBow extends ItemBase implements Vanishable {
         builder.popPrefix();
     }
 
-    public DragonBow() {
-        super(ItemBase.getDefaultProperties().rarity(Rarity.EPIC).stacksTo(1).durability(1024));
+    public static float getPowerForTime(int tick) {
+        float f = (float) tick / 32.0F;
+        f = (f * f + f * 2.0F) / 3.0F;
+        return Math.min(f, 1.0F);
+    }
+
+    public static void resetEffect(ItemStack stack) {
+        CompoundTag compoundTag = stack.getOrCreateTag();
+        compoundTag.remove("CustomPotionEffects");
+    }
+
+    public static void addEffect(ItemStack stack, MobEffectInstance effect) {
+        CompoundTag compoundTag = stack.getOrCreateTag();
+        List<MobEffectInstance> effects = PotionUtils.getCustomEffects(compoundTag);
+        int length = effects.toArray().length;
+        if (length < DragonBow.maxPotionAmount.getValue()) {
+            effects.add(effect);
+        } else {
+            List<MobEffectInstance> newEffects = new ArrayList<>();
+            for (int i = 1; i < length; i++) newEffects.add(effects.get(i));
+            newEffects.add(effect);
+            effects = newEffects;
+        }
+        if (!effects.isEmpty()) {
+            ListTag listTag = new ListTag();
+            for (MobEffectInstance effectInstance : effects) listTag.add(effectInstance.save(new CompoundTag()));
+            compoundTag.put("CustomPotionEffects", listTag);
+        }
+    }
+
+    public CreativeModeTab getCreativeTab() {
+        return EnigmaticTabs.MAIN;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -76,24 +113,10 @@ public class DragonBow extends ItemBase implements Vanishable {
                         world.addFreshEntity(arrow);
                     }
                 }
-                world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 2.5F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 2.5F / (user.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                 player.awardStat(Stats.ITEM_USED.get(this));
             }
         }
-    }
-
-    public static float getPowerForTime(int tick) {
-        float f = (float) tick / 32.0F;
-        f = (f * f + f * 2.0F) / 3.0F;
-        return Math.min(f, 1.0F);
-    }
-
-    public int getUseDuration(ItemStack p_40680_) {
-        return 72000;
-    }
-
-    public UseAnim getUseAnimation(ItemStack p_40678_) {
-        return UseAnim.BOW;
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
@@ -102,32 +125,12 @@ public class DragonBow extends ItemBase implements Vanishable {
         return InteractionResultHolder.consume(itemstack);
     }
 
+    public Predicate<ItemStack> getAllSupportedProjectiles() {
+        return null;
+    }
+
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return super.canApplyAtEnchantingTable(Items.BOW.getDefaultInstance(), enchantment) && enchantment != Enchantments.INFINITY_ARROWS && enchantment != Enchantments.FLAMING_ARROWS || enchantment == Enchantments.MULTISHOT;
-    }
-
-    public static void resetEffect(ItemStack stack) {
-        CompoundTag compoundTag = stack.getOrCreateTag();
-        compoundTag.remove("CustomPotionEffects");
-    }
-
-    public static void addEffect(ItemStack stack, MobEffectInstance effect) {
-        CompoundTag compoundTag = stack.getOrCreateTag();
-        List<MobEffectInstance> effects = PotionUtils.getCustomEffects(compoundTag);
-        int length = effects.toArray().length;
-        if (length < DragonBow.maxPotionAmount.getValue()) {
-            effects.add(effect);
-        } else {
-            List<MobEffectInstance> newEffects = new ArrayList<>();
-            for (int i = 1; i < length; i++) newEffects.add(effects.get(i));
-            newEffects.add(effect);
-            effects = newEffects;
-        }
-        if (!effects.isEmpty()) {
-            ListTag listTag = new ListTag();
-            for (MobEffectInstance effectInstance : effects) listTag.add(effectInstance.save(new CompoundTag()));
-            compoundTag.put("CustomPotionEffects", listTag);
-        }
     }
 }

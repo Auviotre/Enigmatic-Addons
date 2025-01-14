@@ -2,15 +2,24 @@ package auviotre.enigmatic.addon.proxy;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.client.renderers.*;
+import auviotre.enigmatic.addon.client.renderers.layers.ChaosElytraLayer;
 import auviotre.enigmatic.addon.client.screens.AntiqueBagScreen;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonMenus;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ClientProxy extends CommonProxy {
     public ClientProxy() {
@@ -44,5 +53,21 @@ public class ClientProxy extends CommonProxy {
         EntityRenderers.register(EnigmaticAddonEntities.ASTRAL_SPEAR, ThrownAstralSpearRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.EVIL_DAGGER, ThrownEvilDaggerRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.DISASTER_CHAOS, EmptyRenderer::new);
+    }
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public void addLayers(EntityRenderersEvent.AddLayers event) {
+        this.addPlayerLayer(event, "default");
+        this.addPlayerLayer(event, "slim");
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @OnlyIn(Dist.CLIENT)
+    private <T extends LivingEntity, M extends EntityModel<T>> void addPlayerLayer(EntityRenderersEvent.AddLayers event, String skin) {
+        EntityRenderer<? extends Player> renderer = event.getSkin(skin);
+        if (renderer instanceof LivingEntityRenderer livingRenderer) {
+             livingRenderer.addLayer(new ChaosElytraLayer(livingRenderer, event.getEntityModels()));
+        }
     }
 }

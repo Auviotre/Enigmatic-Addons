@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:chaos_elytra"
+    }
+  ],
+  "pattern": [
+    "AWA",
+    "QXQ",
+    "DGD"
+  ],
+  "key": {
+    "A": {
+      "item": "enigmaticlegacy:cosmic_heart"
+    },
+    "Q": {
+      "item": "enigmaticlegacy:evil_ingot"
+    },
+    "D": {
+      "item": "enigmaticlegacy:evil_essence"
+    },
+    "W": {
+      "item": "enigmaticlegacy:abyssal_heart"
+    },
+    "X": {
+      "item": "enigmaticlegacy:enigmatic_elytra"
+    },
+    "G": {
+      "item": "enigmaticlegacy:void_pearl"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:chaos_elytra"
+  }
+}

@@ -13,15 +13,15 @@ import java.util.EnumSet;
 
 public class SpiderRangedAttackGoal extends Goal {
     private final Monster spider;
-    @Nullable
-    private LivingEntity target;
-    private int attackTime;
     private final double speedModifier;
-    private int seeTime;
     private final int attackIntervalMin;
     private final int attackIntervalMax;
     private final float attackRadius;
     private final float attackRadiusSqr;
+    @Nullable
+    private LivingEntity target;
+    private int attackTime;
+    private int seeTime;
     private boolean hasAmmo;
 
     public SpiderRangedAttackGoal(Monster spider, double speed, int interval, float range) {

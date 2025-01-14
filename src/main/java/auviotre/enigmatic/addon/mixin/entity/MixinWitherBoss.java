@@ -34,12 +34,12 @@ public abstract class MixinWitherBoss extends Monster {
     @Unique
     private boolean enigmaticAddons$lastPower = false;
 
-    @Shadow
-    public abstract boolean isPowered();
-
     protected MixinWitherBoss(EntityType<? extends Monster> type, Level world) {
         super(type, world);
     }
+
+    @Shadow
+    public abstract boolean isPowered();
 
     @Inject(method = "customServerAiStep", at = @At(value = "HEAD"))
     public void customServerAiStep(CallbackInfo ci) {
@@ -61,7 +61,8 @@ public abstract class MixinWitherBoss extends Monster {
     @Inject(method = "hurt", at = @At("RETURN"))
     public void hurtMix(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (SuperAddonHandler.isCurseBoosted(this) && this.isPowered() && cir.getReturnValue() && this.random.nextInt(10) == 0) {
-            enigmaticAddons$randomSkeleton(1 + this.random.nextInt(Mth.ceil(amount / 7.5F)));
+            int temp = Math.max(1, Mth.ceil(amount / 7.5F));
+            enigmaticAddons$randomSkeleton(1 + this.random.nextInt(temp));
         }
     }
 

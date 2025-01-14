@@ -12,8 +12,14 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -26,9 +32,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable {
+    public static final List<ResourceLocation> extraRaiderList = new ArrayList<>();
     public static Omniconfig.DoubleParameter raiderBoost;
     public static Omniconfig.DoubleParameter raiderResistance;
-    public static final List<ResourceLocation> extraRaiderList = new ArrayList<>();
+
+    public TotemOfMalice() {
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).durability(3));
+    }
 
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
@@ -41,8 +51,32 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable 
         builder.popPrefix();
     }
 
-    public TotemOfMalice() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.RARE).durability(3));
+    public static boolean isEnable(Player player) {
+        return SuperpositionHandler.isTheCursedOne(player) && (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE) || SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE));
+    }
+
+    public static void hurtAndBreak(ItemStack stack, LivingEntity entity) {
+        if (!entity.level().isClientSide() && (!(entity instanceof Player) || !((Player) entity).getAbilities().instabuild)) {
+            int damage = getTotemDamage(stack);
+            int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+            damage = damage + 1;
+            if (damage >= 3 + level) {
+                stack.shrink(1);
+                if (entity instanceof Player player) {
+                    player.awardStat(Stats.ITEM_BROKEN.get(stack.getItem()));
+                }
+            }
+            entity.invulnerableTime = 60;
+            setTotemDamage(stack, damage);
+        }
+    }
+
+    public static int getTotemDamage(ItemStack stack) {
+        return !stack.hasTag() ? 0 : stack.getTag().getInt("TotemMDamage");
+    }
+
+    public static void setTotemDamage(ItemStack stack, int damage) {
+        stack.getOrCreateTag().putInt("TotemMDamage", Math.max(0, damage));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -69,7 +103,19 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable 
         return enchantment != Enchantments.MENDING;
     }
 
-    public static boolean isEnable(Player player) {
-        return SuperpositionHandler.isTheCursedOne(player) && (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE) || SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE));
+    public boolean isBarVisible(ItemStack stack) {
+        return getTotemDamage(stack) > 0;
+    }
+
+    public int getBarWidth(ItemStack stack) {
+        int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+        return Math.round(13.0F - (float) getTotemDamage(stack) * 13.0F / (3.0F + level));
+    }
+
+    public int getBarColor(ItemStack stack) {
+        int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+        float stackMaxDamage = 3.0F + level;
+        float f = Math.max(0.0F, (stackMaxDamage - getTotemDamage(stack)) / stackMaxDamage);
+        return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
 }

@@ -23,8 +23,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AntiqueBagContainerMenu extends AbstractContainerMenu {
-    protected final Player player;
     public final LazyOptional<IAntiqueBagHandler> bagHandler;
+    protected final Player player;
 
     public AntiqueBagContainerMenu(int syncID, Inventory playerInv) {
         this(syncID, playerInv, ContainerLevelAccess.create(playerInv.player.level(), playerInv.player.blockPosition()));

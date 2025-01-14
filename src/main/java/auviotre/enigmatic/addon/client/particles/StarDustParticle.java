@@ -27,6 +27,14 @@ public class StarDustParticle extends SimpleAnimatedParticle {
         this.setSpriteFromAge(spriteSet);
     }
 
+    public static ParticleOptions get(RandomSource random) {
+        return switch (random.nextInt(3)) {
+            case 0 -> EnigmaticAddonParticles.BLUE_STAR_DUST;
+            case 1 -> EnigmaticAddonParticles.RED_STAR_DUST;
+            default -> EnigmaticAddonParticles.PURPLE_STAR_DUST;
+        };
+    }
+
     public void tick() {
         this.gravity -= 0.012F;
         super.tick();
@@ -74,13 +82,5 @@ public class StarDustParticle extends SimpleAnimatedParticle {
         public Particle createParticle(SimpleParticleType type, ClientLevel level, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
             return new StarDustParticle(level, 16422123, posX, posY, posZ, speedX, speedY, speedZ, this.sprites);
         }
-    }
-
-    public static ParticleOptions get(RandomSource random) {
-        return switch (random.nextInt(3)) {
-            case 0 -> EnigmaticAddonParticles.BLUE_STAR_DUST;
-            case 1 -> EnigmaticAddonParticles.RED_STAR_DUST;
-            default -> EnigmaticAddonParticles.PURPLE_STAR_DUST;
-        };
     }
 }

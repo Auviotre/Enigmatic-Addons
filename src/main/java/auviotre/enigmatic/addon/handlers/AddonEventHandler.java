@@ -19,6 +19,7 @@ import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.items.*;
 import com.aizistral.enigmaticlegacy.objects.RegisteredMeleeAttack;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticEffects;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -74,6 +75,9 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderBlockScreenEffectEvent;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.util.LazyOptional;
@@ -94,6 +98,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.caelus.api.RenderCapeEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.DropRulesEvent;
 import top.theillusivec4.curios.api.type.capability.ICurio;
@@ -113,6 +118,10 @@ public class AddonEventHandler {
     public static final UUID UUID_ARMOR = UUID.fromString("2F35F0A9-794F-448C-921D-EBCC2CA951D3");
     public static final UUID UUID_ATTACK_KB = UUID.fromString("73B52DA4-C79F-48AF-87BB-4B9C037FED9F");
     public static final UUID UUID_ARMOR_TH = UUID.fromString("2F35F0A9-794F-448C-921D-EBCC2CA951D3");
+
+    public static int getGoalPriority(Mob mob, Predicate<WrappedGoal> filter) {
+        return mob.goalSelector.getAvailableGoals().stream().filter(filter).findFirst().map(WrappedGoal::getPriority).orElse(-1);
+    }
 
     @SubscribeEvent
     public void onEntityAttacked(LivingAttackEvent event) {
@@ -181,22 +190,6 @@ public class AddonEventHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onEntitySpawn(MobSpawnEvent.FinalizeSpawn event) {
-        if (event.getSpawnType() == MobSpawnType.NATURAL) {
-            LivingEntity entity = event.getEntity();
-            if (entity instanceof Phantom || entity.getVehicle() instanceof Phantom) {
-                if (NIGHT_SCROLL_BOXES.values().stream().anyMatch(entity.getBoundingBox()::intersects)) {
-                    event.setSpawnCancelled(true);
-                    event.setResult(Event.Result.DENY);
-                    event.setCanceled(true);
-                }
-            }
-        }
-        if (OmniconfigAddonHandler.ImmediatelyCurseBoost.getValue())
-            SuperAddonHandler.setCurseBoosted(event.getEntity(), true, null);
-    }
-
     /* 47.1 Forge Back-Compat
     @SubscribeEvent
     public void onPhantomsSpawn(PlayerSpawnPhantomsEvent event) {
@@ -217,13 +210,30 @@ public class AddonEventHandler {
     }
     */
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void onEntitySpawn(MobSpawnEvent.FinalizeSpawn event) {
+        if (event.getSpawnType() == MobSpawnType.NATURAL) {
+            LivingEntity entity = event.getEntity();
+            if (entity instanceof Phantom || entity.getVehicle() instanceof Phantom) {
+                if (NIGHT_SCROLL_BOXES.values().stream().anyMatch(entity.getBoundingBox()::intersects)) {
+                    event.setSpawnCancelled(true);
+                    event.setResult(Event.Result.DENY);
+                    event.setCanceled(true);
+                }
+            }
+        }
+        if (OmniconfigAddonHandler.ImmediatelyCurseBoost.getValue())
+            SuperAddonHandler.setCurseBoosted(event.getEntity(), true, null);
+    }
+
     @SubscribeEvent
     public void onTick(LivingEvent.LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
         if (!entity.isAlive()) return;
 
-        if (entity instanceof Player player && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.THE_BLESS)) {
-            player.clearFire();
+        if (entity instanceof Player player) {
+            DisasterSword.tick(player);
+            if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.THE_BLESS)) player.clearFire();
         }
 
         if (entity instanceof Phantom phantom) {
@@ -289,14 +299,11 @@ public class AddonEventHandler {
         if (data.contains(BlessRing.BLESS_SPAWN)) data.remove(BlessRing.BLESS_SPAWN);
 
         if (data.getInt("EvilCurseThreshold") > 0) EvilDagger.EvilCursing(entity);
-        // Disaster
-        DisasterSword.tick(data);
+
         int disaster = data.getInt("DisasterCurse");
-        if (disaster > 0) {
-            disaster--;
-            if (disaster > 0) data.putInt("DisasterCurse", disaster);
-            else data.remove("DisasterCurse");
-        } else data.remove("DisasterCurse");
+        if (disaster > 0) data.putInt("DisasterCurse", disaster - 1);
+        else data.remove("DisasterCurse");
+
 
         int level = EnchantmentHelper.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_PROTECTION, entity);
         if (level >= 16) {
@@ -374,11 +381,15 @@ public class AddonEventHandler {
         if (event.getEntity() instanceof Player player) {
             if (player.getUseItem().is(EnigmaticAddonItems.DISASTER_SWORD)) {
                 Entity directEntity = event.getSource().getDirectEntity();
-                if (directEntity.position().subtract(player.position()).dot(player.getForward()) > 0) {
+                if (directEntity != null && directEntity.position().subtract(player.position()).dot(player.getForward()) > 0) {
                     DisasterSword.parry(player.level(), player, event.getSource(), event.getAmount());
                     event.setCanceled(true);
                 }
             }
+        }
+
+        if (SuperpositionHandler.hasCurio(event.getEntity(), EnigmaticAddonItems.SCORCHED_CHARM) && EnigmaticAddonItems.SCORCHED_CHARM.immunityList.stream().anyMatch(event.getSource()::is)) {
+            event.setCanceled(true);
         }
 
         if (event.getSource().getEntity() instanceof Player player) {
@@ -402,23 +413,28 @@ public class AddonEventHandler {
                 player.getPersistentData().remove("EtheriumCounterattack");
             }
 
-            if (player.getMainHandItem().is(EnigmaticAddonItems.DISASTER_SWORD)) {
+            ItemStack mainHandItem = player.getMainHandItem();
+            if (mainHandItem.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_ASPECT) > 0) {
+                ModifyDamageBaseOne(event, 0.1 * mainHandItem.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_ASPECT));
+            }
+
+            if (mainHandItem.is(EnigmaticAddonItems.DISASTER_SWORD)) {
                 double modifier = 0;
                 if (player.hasEffect(MobEffects.BAD_OMEN))
                     modifier = modifier + player.getEffect(MobEffects.BAD_OMEN).getAmplifier() * DisasterSword.badOmenBoost.getValue();
-                if (player.getPersistentData().getInt("DisasterCounterattack") > 0)
+                if (SuperpositionHandler.getPersistentInteger(player, "DisasterCounterattack", 0) > 0)
                     modifier = modifier + DisasterSword.counterattackBoost.getValue();
                 ModifyDamageBaseOne(event, modifier);
             }
 
-            if (player.getMainHandItem().is(EnigmaticAddonItems.EVIL_DAGGER)) {
+            if (mainHandItem.is(EnigmaticAddonItems.EVIL_DAGGER)) {
                 if (!SuperpositionHandler.isTheCursedOne(player)) {
                     event.setCanceled(true);
                     return;
                 }
             }
 
-            if (player.getMainHandItem().is(EnigmaticAddonItems.THE_BLESS)) {
+            if (mainHandItem.is(EnigmaticAddonItems.THE_BLESS)) {
                 LivingEntity entity = event.getEntity();
                 ModifyDamageBaseOne(event, Math.min(1.0F, entity.getRemainingFireTicks() * 0.0015F));
                 if (event.getEntity() instanceof Monster || event.getEntity() instanceof EnderDragon)
@@ -535,7 +551,7 @@ public class AddonEventHandler {
             }
 
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.HELL_BLADE_CHARM)) {
-                float damageMultiplier = 1.0F;
+                float damageMultiplier = HellBladeCharm.damageMultiplier.getValue().asModifier();
                 if (SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM))
                     damageMultiplier += (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.attackDamage.getValue() / 5);
                 ModifyDamageBaseOne(event, (NEMESIS_LIST.stream().anyMatch(source::is) ? 1.0F : 0.5F) * damageMultiplier);
@@ -706,6 +722,9 @@ public class AddonEventHandler {
                     lifesteal += amount * NightScroll.abilityBoost.getValue().asModifier(false);
                 }
             }
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.SCORCHED_CHARM) && victim.isOnFire()) {
+                lifesteal += amount * ScorchedCharm.lifestealModifier.getValue().asModifier(false);
+            }
             if (!SuperAddonHandler.findBookInBag(player, EnigmaticItems.THE_INFINITUM).isEmpty()) {
                 if (SuperpositionHandler.isTheWorthyOne(player)) {
                     lifesteal += amount * 0.1F;
@@ -841,7 +860,7 @@ public class AddonEventHandler {
                 }
             }
         }
-        if (event.isVanillaCritical() && target instanceof LivingEntity living && player.getPersistentData().getInt("DisasterCounterattack") > 0) {
+        if (event.isVanillaCritical() && target instanceof LivingEntity living && SuperpositionHandler.getPersistentInteger(player, "DisasterCounterattack", 0) > 0) {
             if (player.getMainHandItem().is(EnigmaticAddonItems.DISASTER_SWORD)) {
                 event.setDamageModifier((float) (event.getDamageModifier() + DisasterSword.critBoost.getValue()));
                 living.knockback(0.4000000059604645, Mth.sin(player.getYRot() * 0.017453292F), -Mth.cos(player.getYRot() * 0.017453292F));
@@ -927,6 +946,9 @@ public class AddonEventHandler {
         event.setNewSpeed(event.getOriginalSpeed() * miningModifier + event.getNewSpeed());
 
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ADVENTURE_CHARM) && !(player.isCrouching() && AdventureCharm.shiftEnable.getValue())) {
+            event.setCanceled(true);
+        }
+        if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.DESPAIR_INSIGNIA)) {
             event.setCanceled(true);
         }
     }
@@ -1176,10 +1198,6 @@ public class AddonEventHandler {
         rareTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4), new ItemStack(EnigmaticAddonItems.EARTH_HEART_FRAGMENT), 2, 5, 0.25F));
     }
 
-    public static int getGoalPriority(Mob mob, Predicate<WrappedGoal> filter) {
-        return mob.goalSelector.getAvailableGoals().stream().filter(filter).findFirst().map(WrappedGoal::getPriority).orElse(-1);
-    }
-
     private void ModifyDamageBaseOne(LivingHurtEvent event, double multiplier) {
         if (multiplier == 0) return;
         event.setAmount(event.getAmount() * (1.0F + (float) multiplier));
@@ -1240,6 +1258,28 @@ public class AddonEventHandler {
         }
         if (SuperAddonHandler.isTheBlessedOne(event.getEntity())) {
             event.getEntity().getPersistentData().putBoolean(BlessRing.BLESS_SPAWN, true);
+        }
+    }
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public void onRenderFireOverlay(RenderBlockScreenEffectEvent event) {
+        Player player = event.getPlayer();
+        if (event.getOverlayType() == RenderBlockScreenEffectEvent.OverlayType.FIRE) {
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.SCORCHED_CHARM)) {
+                event.setCanceled(true);
+                return;
+            }
+            if (SuperpositionHandler.hasCurio(player, EnigmaticItems.BLAZING_CORE) || player.hasEffect(EnigmaticEffects.MOLTEN_HEART))
+                event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public void renderCape(RenderCapeEvent event) {
+        if (SuperAddonHandler.getChaosElytra(event.getEntity()) != null) {
+            event.setCanceled(true);
         }
     }
 }

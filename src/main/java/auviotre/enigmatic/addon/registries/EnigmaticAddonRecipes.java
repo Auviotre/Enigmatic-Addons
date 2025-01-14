@@ -11,15 +11,13 @@ import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.registries.RegisterEvent;
 
 public class EnigmaticAddonRecipes extends AbstractRegistry<RecipeSerializer<?>> {
-    private static final EnigmaticAddonRecipes INSTANCE = new EnigmaticAddonRecipes();
     @ObjectHolder(value = "enigmaticaddons:primeval_cube", registryName = "recipe_serializer")
     public static final RecipeSerializer<PrimevalCubeRecipe> PRIMEVAL_CUBE_RECIPE = null;
-
     @ObjectHolder(value = "enigmaticaddons:enchantment_amplifying", registryName = "recipe_serializer")
     public static final RecipeSerializer<EnchantmentAmplifierRecipe> ENCHANTMENT_AMPLIFIER_RECIPE = null;
-
     @ObjectHolder(value = "enigmaticaddons:dragon_bow_brewing", registryName = "recipe_serializer")
     public static final RecipeSerializer<DragonBowBrewingRecipe> DRAGON_BOW_BREWING_RECIPE = null;
+    private static final EnigmaticAddonRecipes INSTANCE = new EnigmaticAddonRecipes();
 
     private EnigmaticAddonRecipes() {
         super(ForgeRegistries.RECIPE_SERIALIZERS);

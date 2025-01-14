@@ -38,7 +38,8 @@
     "legacy.MixinUltimatePotionSplash"
   ],
   "client": [
-    "MixinHumanoidArmorLayer"
+    "MixinHumanoidArmorLayer",
+    "MixinLightTexture"
   ],
   "injectors": {
     "defaultRequire": 1

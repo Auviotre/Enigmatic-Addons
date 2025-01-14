@@ -38,16 +38,24 @@ public class NightScroll extends ItemBaseCurio implements ICursed {
     public static Omniconfig.PerhapsParameter abilityBoost;
     public static Omniconfig.IntParameter darkCondition;
 
+    public NightScroll() {
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));
+    }
+
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("PactofDarkNight");
-        abilityBoost = builder.comment("Default amount of armor points provided by Pact of Dark Night.").max(100).getPerhaps("AbilityBoost", 10);
-        darkCondition = builder.comment("Resistance to magic damage provided by Pact of Dark Night. Defined as percentage.").max(14).getInt("DarkCondition", 5);
+        abilityBoost = builder.comment("The boost modifier provided by Pact of Dark Night.").max(100).getPerhaps("AbilityBoost", 10);
+        darkCondition = builder.comment("The dark condition for Pact of Dark Night to trigger the ability.").max(14).getInt("DarkCondition", 5);
         builder.popPrefix();
     }
 
-    public NightScroll() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));
+    public static boolean isDark(Player player) {
+        if (!SuperAddonHandler.isOKOne(player)) return false;
+        if (player.hasEffect(MobEffects.DARKNESS)) return true;
+        LevelLightEngine lightEngine = player.level().getLightEngine();
+        BlockPos blockPos = player.blockPosition();
+        return lightEngine.getRawBrightness(blockPos, 7) <= darkCondition.getValue();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -83,13 +91,5 @@ public class NightScroll extends ItemBaseCurio implements ICursed {
             attributes.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("6F27C266-9DCD-22DC-E491-4AF7B6A8CCF9"), "Dark Bonus", NightScroll.abilityBoost.getValue().asModifier(false), AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
         return attributes;
-    }
-
-    public static boolean isDark(Player player) {
-        if (!SuperAddonHandler.isOKOne(player)) return false;
-        if (player.hasEffect(MobEffects.DARKNESS)) return true;
-        LevelLightEngine lightEngine = player.level().getLightEngine();
-        BlockPos blockPos = player.blockPosition();
-        return lightEngine.getRawBrightness(blockPos, 7) <= darkCondition.getValue();
     }
 }

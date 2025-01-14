@@ -9,18 +9,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class EnigmaticAddonEffects extends AbstractRegistry<MobEffect> {
-    private static final EnigmaticAddonEffects INSTANCE = new EnigmaticAddonEffects();
     @ObjectHolder(value = "enigmaticaddons:dragon_breath", registryName = "mob_effect")
     public static final RemainDragonBreath DRAGON_BREATH_EFFECT = null;
-
     @ObjectHolder(value = "enigmaticaddons:frozen_heart", registryName = "mob_effect")
     public static final FrozenHeart FROZEN_HEART_EFFECT = null;
-
     @ObjectHolder(value = "enigmaticaddons:pure_resistance", registryName = "mob_effect")
     public static final PureResistance PURE_RESISTANCE_EFFECT = null;
-
     @ObjectHolder(value = "enigmaticaddons:ichor_corrosion", registryName = "mob_effect")
     public static final IchorCorrosion ICHOR_CORROSION_EFFECT = null;
+    private static final EnigmaticAddonEffects INSTANCE = new EnigmaticAddonEffects();
 
     private EnigmaticAddonEffects() {
         super(ForgeRegistries.MOB_EFFECTS);

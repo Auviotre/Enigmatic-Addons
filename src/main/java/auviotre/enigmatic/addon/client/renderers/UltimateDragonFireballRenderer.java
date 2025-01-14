@@ -20,10 +20,13 @@ import org.joml.Matrix4f;
 public class UltimateDragonFireballRenderer extends EntityRenderer<UltimateDragonFireball> {
     private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation("textures/entity/enderdragon/dragon_fireball.png");
     private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE_LOCATION);
-    ;
 
     public UltimateDragonFireballRenderer(EntityRendererProvider.Context context) {
         super(context);
+    }
+
+    private static void vertex(VertexConsumer consumer, Matrix4f matrix4f, Matrix3f matrix3f, int p_253829_, float p_253995_, int p_254031_, int p_253641_, int p_254243_) {
+        consumer.vertex(matrix4f, p_253995_ - 0.5F, (float) p_254031_ - 0.25F, 0.0F).color(255, 255, 255, 255).uv((float) p_253641_, (float) p_254243_).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(p_253829_).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
     }
 
     protected int getBlockLightLevel(UltimateDragonFireball entity, BlockPos pos) {
@@ -45,10 +48,6 @@ public class UltimateDragonFireballRenderer extends EntityRenderer<UltimateDrago
         vertex($$9, pose, normal, p_114085_, 0.0F, 1, 0, 0);
         poseStack.popPose();
         super.render(entity, p_114081_, p_114082_, poseStack, buffer, p_114085_);
-    }
-
-    private static void vertex(VertexConsumer consumer, Matrix4f matrix4f, Matrix3f matrix3f, int p_253829_, float p_253995_, int p_254031_, int p_253641_, int p_254243_) {
-        consumer.vertex(matrix4f, p_253995_ - 0.5F, (float) p_254031_ - 0.25F, 0.0F).color(255, 255, 255, 255).uv((float) p_253641_, (float) p_254243_).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(p_253829_).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
     }
 
     public ResourceLocation getTextureLocation(UltimateDragonFireball entity) {

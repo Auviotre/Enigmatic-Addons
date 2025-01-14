@@ -1,0 +1,27 @@
+{
+  "components": [
+    {
+      "type": "patchouli:header",
+      "text": "#heading",
+      "x": -1,
+      "y": -1
+    },
+    {
+      "type": "patchouli:image",
+      "image": "enigmaticaddons:textures/gui/dragon_bow_brewing_overlay.png",
+      "x": 9,
+      "y": 0,
+      "width": 96,
+      "height": 64,
+      "u": 0,
+      "v": 0
+    },
+    {
+      "type": "patchouli:text",
+      "text": "#text",
+      "x": 1,
+      "y": 70,
+      "max_width": 115
+    }
+  ]
+}

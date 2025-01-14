@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.mixin;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
+import auviotre.enigmatic.addon.contents.items.TotemOfMalice;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.packets.clients.PacketEvilCage;
@@ -15,6 +16,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Attackable;
 import net.minecraft.world.entity.Entity;
@@ -25,6 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.FrostWalkerEnchantment;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.extensions.IForgeLivingEntity;
 import net.minecraftforge.network.PacketDistributor;
@@ -40,6 +44,10 @@ import java.util.List;
 
 @Mixin(LivingEntity.class)
 public abstract class MixinLivingEntity extends Entity implements Attackable, IForgeLivingEntity {
+    public MixinLivingEntity(EntityType<?> type, Level level) {
+        super(type, level);
+    }
+
     @Shadow
     public abstract boolean canFreeze();
 
@@ -52,9 +60,11 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
     @Shadow
     public abstract boolean removeAllEffects();
 
-    public MixinLivingEntity(EntityType<?> type, Level level) {
-        super(type, level);
-    }
+    @Shadow
+    public abstract boolean equipmentHasChanged(ItemStack p_252265_, ItemStack p_251043_);
+
+    @Shadow
+    public abstract boolean canTakeItem(ItemStack p_21249_);
 
     @Inject(method = "tick", at = @At("TAIL"))
     public void tickMix(CallbackInfo ci) {
@@ -87,16 +97,16 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
 
     @Inject(method = "checkTotemDeathProtection", at = @At("RETURN"), cancellable = true)
     public void checkMix(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue() && this.self() instanceof Player player && SuperpositionHandler.isTheCursedOne(player)) {
+        if (!cir.getReturnValue() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && this.self() instanceof Player player && SuperpositionHandler.isTheCursedOne(player)) {
             ItemStack stack = ItemStack.EMPTY;
             if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
                 ItemStack itemStack = SuperAddonHandler.getItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
                 stack = itemStack.copy();
-                itemStack.hurtAndBreak(1, player, (consumer) -> consumer.invulnerableTime = 60);
+                TotemOfMalice.hurtAndBreak(itemStack, player);
             } else if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
                 ItemStack curioStack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
                 stack = curioStack.copy();
-                curioStack.hurtAndBreak(1, player, (consumer) -> consumer.invulnerableTime = 60);
+                TotemOfMalice.hurtAndBreak(curioStack, player);
             }
             if (!stack.isEmpty()) {
                 PacketDistributor.PacketTarget packet = PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(this.getX(), this.getY(), this.getZ(), 64.0, level().dimension()));
@@ -121,6 +131,13 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
                 this.removeAllEffects();
                 cir.setReturnValue(true);
             }
+        }
+    }
+
+    @Inject(method = "canStandOnFluid", at = @At("RETURN"), cancellable = true)
+    public void canStandOnFluidMix(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
+        if (!cir.getReturnValue() && SuperpositionHandler.hasCurio(this.self(), EnigmaticAddonItems.SCORCHED_CHARM)) {
+            cir.setReturnValue(fluidState.is(FluidTags.LAVA));
         }
     }
 }

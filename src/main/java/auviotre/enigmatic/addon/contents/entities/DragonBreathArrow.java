@@ -83,8 +83,8 @@ public class DragonBreathArrow extends AbstractArrow {
         effectCloud.setWaitTime(1);
         effectCloud.addEffect(new MobEffectInstance(EnigmaticAddonEffects.DRAGON_BREATH_EFFECT, 1, Mth.floor(dmg)));
         if (!this.effects.isEmpty()) for (MobEffectInstance effect : this.effects) {
-            effect.duration /= 5;
-            effectCloud.addEffect(effect);
+            MobEffectInstance effectInstance = new MobEffectInstance(effect.getEffect(), effect.getDuration() / 5, effect.getAmplifier());
+            effectCloud.addEffect(effectInstance);
         }
         if (!entities.isEmpty()) {
             for (LivingEntity entity : entities) {

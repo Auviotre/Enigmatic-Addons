@@ -49,6 +49,18 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
     public static Omniconfig.PerhapsParameter damageConversion;
     public static Omniconfig.DoubleParameter damageConversionMax;
 
+    public EtheriumCore() {
+        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.EPIC));
+        this.immunityList.add(DamageTypes.CACTUS);
+        this.immunityList.add(DamageTypes.CRAMMING);
+        this.immunityList.add(DamageTypes.IN_WALL);
+        this.immunityList.add(DamageTypes.FALLING_BLOCK);
+        this.immunityList.add(DamageTypes.SWEET_BERRY_BUSH);
+        this.immunityList.add(DamageTypes.SWEET_BERRY_BUSH);
+        this.immunityList.add(DamageTypes.EXPLOSION);
+        this.immunityList.add(DamageTypes.PLAYER_EXPLOSION);
+    }
+
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("EtheriumCore");
@@ -63,16 +75,9 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
         builder.popPrefix();
     }
 
-    public EtheriumCore() {
-        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.EPIC));
-        this.immunityList.add(DamageTypes.CACTUS);
-        this.immunityList.add(DamageTypes.CRAMMING);
-        this.immunityList.add(DamageTypes.IN_WALL);
-        this.immunityList.add(DamageTypes.FALLING_BLOCK);
-        this.immunityList.add(DamageTypes.SWEET_BERRY_BUSH);
-        this.immunityList.add(DamageTypes.SWEET_BERRY_BUSH);
-        this.immunityList.add(DamageTypes.EXPLOSION);
-        this.immunityList.add(DamageTypes.PLAYER_EXPLOSION);
+    public static boolean hasShield(Player player) {
+        Item item = EnigmaticAddonItems.ETHERIUM_CORE;
+        return player != null && SuperpositionHandler.hasCurio(player, item) && (player.getCooldowns().getCooldownPercent(item, 0.0F) > 0.4F || (double) (player.getHealth() / player.getMaxHealth()) <= EtheriumConfigHandler.instance().getShieldThreshold(player).asMultiplier() * 1.5F);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
@@ -138,11 +143,6 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
         if (!SuperpositionHandler.hasSpellstoneCooldown(player)) {
             SuperpositionHandler.setSpellstoneCooldown(player, spellstoneCooldown.getValue());
         }
-    }
-
-    public static boolean hasShield(Player player) {
-        Item item = EnigmaticAddonItems.ETHERIUM_CORE;
-        return player != null && SuperpositionHandler.hasCurio(player, item) && (player.getCooldowns().getCooldownPercent(item, 0.0F) > 0.4F || (double) (player.getHealth() / player.getMaxHealth()) <= EtheriumConfigHandler.instance().getShieldThreshold(player).asMultiplier() * 1.5F);
     }
 
     public boolean canEquipFromUse(SlotContext context, ItemStack stack) {

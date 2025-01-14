@@ -20,12 +20,12 @@ public abstract class MixinAnvilMenu extends ItemCombinerMenu {
     @Final
     private DataSlot cost;
 
-    @Shadow
-    public abstract int getCost();
-
     public MixinAnvilMenu(@Nullable MenuType<?> menuType, int id, Inventory inventory, ContainerLevelAccess level) {
         super(menuType, id, inventory, level);
     }
+
+    @Shadow
+    public abstract int getCost();
 
     @Inject(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/AnvilMenu;broadcastChanges()V"))
     public void createResultMix(CallbackInfo ci) {

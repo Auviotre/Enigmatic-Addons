@@ -51,6 +51,17 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
     public static Omniconfig.IntParameter regenerationTime;
     public static Omniconfig.IntParameter regenerationLevel;
 
+    public RevivalLeaf() {
+        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.RARE));
+        this.immunityList.add(DamageTypes.WITHER);
+        this.resistanceList.put(DamageTypes.IN_FIRE, () -> 2.0F);
+        this.resistanceList.put(DamageTypes.ON_FIRE, () -> 2.0F);
+        this.resistanceList.put(DamageTypes.LAVA, () -> 2.0F);
+        this.resistanceList.put(DamageTypes.HOT_FLOOR, () -> 2.0F);
+        this.resistanceList.put(DamageTypes.FIREBALL, () -> 2.0F);
+        this.resistanceList.put(DamageTypes.MOB_PROJECTILE, () -> 1.5F);
+    }
+
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("RevivalLeaf");
@@ -63,18 +74,6 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
         regenerationLevel = builder.comment("Level of Regeneration that bearer of the leaf will apply to entities nearby when ability activated.").max(3.0).getInt("RegenerationLevel", 1);
         builder.popPrefix();
     }
-
-    public RevivalLeaf() {
-        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.RARE));
-        this.immunityList.add(DamageTypes.WITHER);
-        this.resistanceList.put(DamageTypes.IN_FIRE, () -> 2.0F);
-        this.resistanceList.put(DamageTypes.ON_FIRE, () -> 2.0F);
-        this.resistanceList.put(DamageTypes.LAVA, () -> 2.0F);
-        this.resistanceList.put(DamageTypes.HOT_FLOOR, () -> 2.0F);
-        this.resistanceList.put(DamageTypes.FIREBALL, () -> 2.0F);
-        this.resistanceList.put(DamageTypes.MOB_PROJECTILE, () -> 1.5F);
-    }
-
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {

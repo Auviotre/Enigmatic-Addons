@@ -32,6 +32,14 @@ public abstract class AbstractRegistry<T> {
         this(registry, EnigmaticAddons.MODID);
     }
 
+    public static void loadClass(@NotNull Class<?> theClass) {
+        try {
+            Class.forName(theClass.getName());
+        } catch (ClassNotFoundException exception) {
+            throw new IllegalStateException("This can't be happening.");
+        }
+    }
+
     protected void register(String name, Supplier<T> supplier) {
         this.register.register(name, supplier);
     }
@@ -43,14 +51,6 @@ public abstract class AbstractRegistry<T> {
     }
 
     protected void onRegister(RegisterEvent event) {
-    }
-
-    public static void loadClass(@NotNull Class<?> theClass) {
-        try {
-            Class.forName(theClass.getName());
-        } catch (ClassNotFoundException exception) {
-            throw new IllegalStateException("This can't be happening.");
-        }
     }
 }
 

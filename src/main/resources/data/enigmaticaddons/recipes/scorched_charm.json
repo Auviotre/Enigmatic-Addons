@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:scorched_charm"
+    }
+  ],
+  "pattern": [
+    "n n",
+    "aXa",
+    "qbq"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:blazing_core"
+    },
+    "n": {
+      "item": "minecraft:blaze_powder"
+    },
+    "q": {
+      "item": "minecraft:basalt"
+    },
+    "b": {
+      "item": "enigmaticaddons:pure_heart"
+    },
+    "a": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:scorched_charm"
+  }
+}
