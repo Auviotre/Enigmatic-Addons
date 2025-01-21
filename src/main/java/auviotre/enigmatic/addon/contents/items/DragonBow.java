@@ -126,7 +126,7 @@ public class DragonBow extends BowItem implements Vanishable, ICreativeTabMember
     }
 
     public Predicate<ItemStack> getAllSupportedProjectiles() {
-        return null;
+        return (itemStack) -> false;
     }
 
     @Override

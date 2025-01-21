@@ -9,6 +9,7 @@
     "MixinEnchantmentHelper",
     "MixinEntity",
     "MixinItemEntity",
+    "MixinLightningBolt",
     "MixinLivingEntity",
     "MixinNearestAttackableTargetGoal",
     "MixinPlayer",
@@ -39,7 +40,8 @@
   ],
   "client": [
     "MixinHumanoidArmorLayer",
-    "MixinLightTexture"
+    "MixinLightTexture",
+    "legacy.MixinEnigmaticElytraLayer"
   ],
   "injectors": {
     "defaultRequire": 1

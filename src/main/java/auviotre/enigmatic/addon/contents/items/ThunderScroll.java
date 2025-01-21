@@ -30,7 +30,7 @@ public class ThunderScroll extends ItemBaseCurio implements ICursed {
         if (target.getAttributes().hasAttribute(Attributes.ARMOR)) {
             double value = target.getAttribute(Attributes.ARMOR).getValue();
             if (value > 0) {
-                double factor = 1.0 - Math.min(0.04 * value, 0.8);
+                double factor = 1.0 - Math.min(0.0375 * value, 0.75);
                 damage = (float) (damage / Math.sqrt(factor));
             }
         }
@@ -45,6 +45,7 @@ public class ThunderScroll extends ItemBaseCurio implements ICursed {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.thunderScroll2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.thunderScroll3");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.thunderScroll4");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.thunderScroll5");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }

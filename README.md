@@ -1,6 +1,6 @@
 # Enigmatic Addons 
 
-**Current Version:** 1.1.4
+**Current Version:** 1.2.1
 
 **Minecraft Version:** 1.20.1
 

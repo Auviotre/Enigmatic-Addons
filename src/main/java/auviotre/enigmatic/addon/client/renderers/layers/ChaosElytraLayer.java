@@ -2,6 +2,8 @@ package auviotre.enigmatic.addon.client.renderers.layers;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
+import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.ElytraModel;
@@ -19,6 +21,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import top.theillusivec4.curios.api.CuriosApi;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @OnlyIn(Dist.CLIENT)
 public class ChaosElytraLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
@@ -32,6 +37,13 @@ public class ChaosElytraLayer<T extends LivingEntity, M extends EntityModel<T>> 
 
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack stack = SuperAddonHandler.getChaosElytra(livingEntity);
+        if (SuperpositionHandler.hasCurio(livingEntity, EnigmaticAddonItems.CHAOS_ELYTRA)) {
+            AtomicBoolean flag = new AtomicBoolean(false);
+            CuriosApi.getCuriosInventory(livingEntity).ifPresent((handler) -> handler.findFirstCurio((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA)).ifPresent(curio -> {
+                if (!curio.slotContext().visible()) flag.set(true);
+            }));
+            if (flag.get()) return;
+        }
         if (stack != null) {
             poseStack.pushPose();
             poseStack.translate(0.0, 0.0, 0.125);

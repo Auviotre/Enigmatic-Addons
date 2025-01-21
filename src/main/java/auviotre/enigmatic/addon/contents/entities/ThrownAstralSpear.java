@@ -117,7 +117,7 @@ public class ThrownAstralSpear extends AbstractSpear {
                 } else this.setTarget(null);
             }
         }
-        if (!this.inGround) {
+        if (!this.inGround && this.level().isClientSide()) {
             Vec3 vec3 = this.getDeltaMovement();
             double dx = vec3.x;
             double dy = vec3.y;

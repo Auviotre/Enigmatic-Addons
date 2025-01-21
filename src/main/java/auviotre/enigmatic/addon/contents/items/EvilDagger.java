@@ -42,13 +42,16 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
 public class EvilDagger extends ItemBase implements Vanishable, ICursed {
     public static Omniconfig.IntParameter cooldown;
     public static Omniconfig.IntParameter curseHurtInterval;
     public static Omniconfig.DoubleParameter curseHurtAmount;
     public static Omniconfig.PerhapsParameter curseDamageRatio;
+    public static Omniconfig.PerhapsParameter curseModifierRatio;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+    private static final Multimap<Attribute, AttributeModifier> EVIL_CURSE_MODIFIER = ImmutableMultimap.of(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("637f51eb-218e-46aa-bcd3-10380acfd2d6"), "Evil Curse Modifier", -0.25, AttributeModifier.Operation.MULTIPLY_TOTAL));
 
     public EvilDagger() {
         super(ItemBase.getDefaultProperties().fireResistant().rarity(Rarity.EPIC).durability(640));
@@ -65,11 +68,13 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
         curseHurtInterval = builder.comment("The hurt interval time of cursed target. Measured as ticks.").max(40).min(1).getInt("CurseHurtInterval", 4);
         curseHurtAmount = builder.comment("The hurt damage amount of cursed target.").max(32768).min(0).getDouble("CurseHurtAmount", 2.0);
         curseDamageRatio = builder.comment("The hurt damage amount of cursed target.").max(100).min(10).getPerhaps("CurseDamageRatio", 20);
+        curseModifierRatio = builder.comment("The hurt damage amount of cursed target.").max(100).min(10).getPerhaps("CurseModifierRatio", 20);
         builder.popPrefix();
     }
 
     public static void EvilCursing(LivingEntity entity) {
         if (entity.getPersistentData().getBoolean("EvilCrashed")) {
+            entity.getAttributes().addTransientAttributeModifiers(EVIL_CURSE_MODIFIER);
             entity.getPersistentData().remove("EvilCurseThreshold");
             return;
         }

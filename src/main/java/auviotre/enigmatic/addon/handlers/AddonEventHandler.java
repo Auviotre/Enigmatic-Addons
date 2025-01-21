@@ -35,6 +35,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -86,13 +87,13 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.PacketDistributor;
@@ -260,7 +261,7 @@ public class AddonEventHandler {
             cooldown -= entity.getActiveEffects().isEmpty() ? 3 : 1;
             if (cooldown > 0) data.putInt("CosmicPotion", cooldown);
             else data.remove("CosmicPotion");
-        } else data.remove("CosmicPotion");
+        }
         // Ichoroot
         int ichor = data.getInt("Ichor");
         if (ichor > 0) {
@@ -274,7 +275,7 @@ public class AddonEventHandler {
         int electric = data.getInt("Electric");
         if (electric > 0) {
             if (electric > 1200) {
-                List<Entity> entities = entity.level().getEntities(entity, entity.getBoundingBox().inflate(2));
+                List<Entity> entities = entity.level().getEntities(entity, entity.getBoundingBox().inflate(2.2));
                 boolean flag = true;
                 for (Entity target : entities) {
                     if (target instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.THUNDER_SCROLL)) {
@@ -287,6 +288,7 @@ public class AddonEventHandler {
                     if (lightningbolt != null) {
                         lightningbolt.moveTo(Vec3.atBottomCenterOf(entity.blockPosition()));
                         lightningbolt.setSilent(entity.getRandom().nextBoolean());
+                        lightningbolt.addTag("HarmlessThunder");
                         lightningbolt.setDamage(lightningbolt.getDamage() * electric / 600.0F);
                         entity.level().addFreshEntity(lightningbolt);
                     }
@@ -327,7 +329,6 @@ public class AddonEventHandler {
                     }
                 }
             }
-            return;
         }
 
         if (!player.level().isClientSide) {
@@ -351,7 +352,7 @@ public class AddonEventHandler {
         if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE)) {
             if (player.tickCount % 2 == 0) player.getCooldowns().tick();
 
-            if (event.side == LogicalSide.CLIENT) {
+            if (player.level().isClientSide() && Minecraft.getInstance().player == player) {
                 boolean spaceDown = Minecraft.getInstance().options.keyJump.isDown();
                 if (spaceDown && player.getDeltaMovement().y > 0.225F && !player.level().getBlockState(player.blockPosition()).canOcclude()) {
                     player.addDeltaMovement(new Vec3(0.0D, 0.0256D, 0.0D));
@@ -384,12 +385,20 @@ public class AddonEventHandler {
                 if (directEntity != null && directEntity.position().subtract(player.position()).dot(player.getForward()) > 0) {
                     DisasterSword.parry(player.level(), player, event.getSource(), event.getAmount());
                     event.setCanceled(true);
+                    return;
+                }
+            }
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.SCORCHED_CHARM)) {
+                if (player.getRandom().nextInt(100) < ScorchedCharm.resistanceProbability.getValue().asPercentage()) {
+                    event.setCanceled(true);
+                    return;
                 }
             }
         }
 
         if (SuperpositionHandler.hasCurio(event.getEntity(), EnigmaticAddonItems.SCORCHED_CHARM) && EnigmaticAddonItems.SCORCHED_CHARM.immunityList.stream().anyMatch(event.getSource()::is)) {
             event.setCanceled(true);
+            return;
         }
 
         if (event.getSource().getEntity() instanceof Player player) {
@@ -571,6 +580,10 @@ public class AddonEventHandler {
         if (victim instanceof Player player) {
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.NIGHT_SCROLL) && NightScroll.isDark(player)) {
                 ModifyDamageBaseOne(event, -NightScroll.abilityBoost.getValue().asModifier(false));
+            }
+
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.THUNDER_SCROLL) && source.is(DamageTypeTags.IS_LIGHTNING)) {
+                ModifyDamageBaseOne(event, -0.5);
             }
 
             if (TotemOfMalice.isEnable(player) && (victim instanceof Raider || TotemOfMalice.extraRaiderList.contains(ForgeRegistries.ENTITY_TYPES.getKey(victim.getType())))) {
@@ -840,6 +853,12 @@ public class AddonEventHandler {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onLightningStrike(EntityStruckByLightningEvent event) {
+        if (event.getEntity() instanceof ItemEntity && event.getLightning().getTags().contains("HarmlessThunder"))
+            event.setCanceled(true);
     }
 
     @SubscribeEvent

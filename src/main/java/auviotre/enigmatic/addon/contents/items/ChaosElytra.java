@@ -54,7 +54,6 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.network.simple.SimpleChannel;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.caelus.api.CaelusApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -68,6 +67,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     private static final AttributeModifier ELYTRA_MODIFIER = new AttributeModifier(UUID.fromString("446f9584-38bb-4fc0-bbed-16d126e377a7"), "enigmaticaddons:elytra_modifier", 1.0, AttributeModifier.Operation.ADDITION);
     @OnlyIn(Dist.CLIENT)
     private static boolean isBoosting;
+    public static Omniconfig.DoubleParameter flyingSpeedModifier;
     public static Omniconfig.DoubleParameter descendingPowerModifier;
     public static Omniconfig.IntParameter descendingCooldown;
     public static Omniconfig.PerhapsParameter damageResistance;
@@ -81,6 +81,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("TheArroganceofChaos");
+        flyingSpeedModifier = builder.comment("The flying speed modifier when elytra boost.").max(10).min(1).getDouble("FlyingSpeedModifier", 1.6);
         descendingPowerModifier = builder.comment("The damage modifier when hit the ground with elytra boost.").max(10).min(1).getDouble("DescendingPowerModifier", 1.6);
         descendingCooldown = builder.comment("The cooldown of special descending skill of The Arrogance of Chaos.").max(2400).min(200).getInt("DescendingCooldown", 500);
         damageResistance = builder.comment("The special damage resistance of The Arrogance of Chaos. Measured in percentage.").max(100).min(0).getPerhaps("DamageResistance", 80);
@@ -141,7 +142,6 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     @OnlyIn(Dist.CLIENT)
     private void handleBoosting(Player player) {
         if (Minecraft.getInstance().player == player) {
-            SimpleChannel channel;
             PacketDistributor.PacketTarget target;
             if (Minecraft.getInstance().options.keyJump.isDown() && this.boostPlayer(player)) {
                 if (!isBoosting) {
@@ -159,7 +159,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
 
     private boolean boostPlayer(Player player) {
         if (player.isFallFlying()) {
-            Vec3 look = player.getLookAngle().scale(1.6F);
+            Vec3 look = player.getLookAngle().scale(flyingSpeedModifier.getValue());
             Vec3 move = player.getDeltaMovement();
             player.setDeltaMovement(move.add(look.x * 0.1 + (look.x * 1.5 - move.x) * 0.5, look.y * 0.1 + (look.y * 1.5 - move.y) * 0.5, look.z * 0.1 + (look.z * 1.5 - move.z) * 0.5));
             return true;
@@ -263,7 +263,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     }
 
     private void chaosDescending(Player player) {
-        if (lastMovement.y / lastMovement.length() < -0.85 && !player.getCooldowns().isOnCooldown(this)) {
+        if (player.getViewVector(0.0F).y < -0.95 && !player.getCooldowns().isOnCooldown(this)) {
             if (!player.getAbilities().instabuild) player.getCooldowns().addCooldown(this, descendingCooldown.getValue());
             if (!player.level().isClientSide()) {
                 EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(), 64.0, player.level().dimension())),

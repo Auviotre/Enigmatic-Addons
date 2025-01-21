@@ -33,6 +33,7 @@ import java.util.List;
 public class ScorchedCharm extends ItemBaseCurio implements ICursed {
     public static Omniconfig.DoubleParameter lavaHealAmount;
     public static Omniconfig.PerhapsParameter lifestealModifier;
+    public static Omniconfig.PerhapsParameter resistanceProbability;
     public List<ResourceKey<DamageType>> immunityList = new ArrayList<>();
 
     public ScorchedCharm() {
@@ -46,8 +47,9 @@ public class ScorchedCharm extends ItemBaseCurio implements ICursed {
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("CharmofScorchedSun");
-        lavaHealAmount = builder.comment("The heal amount per second when you're in lava with this Charm.").max(100).min(0).getDouble("LavaHealAmount", 1.5);
+        lavaHealAmount = builder.comment("The heal amount per second when you're in lava with this Charm.").max(100).min(0).getDouble("LavaHealAmount", 2);
         lifestealModifier = builder.comment("The lifesteal modifier provided by this charm when you attack a target on fire. Measured in percentage.").max(100).getPerhaps("LifestealModifier", 20);
+        resistanceProbability = builder.comment("The probability to resist damage when you are attacked with this charm. Measured in percentage.").max(100).getPerhaps("ResistanceProbability", 10);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -58,6 +60,7 @@ public class ScorchedCharm extends ItemBaseCurio implements ICursed {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.scorchedCharm2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.scorchedCharm3");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.scorchedCharm4");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.scorchedCharm5");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }

@@ -120,6 +120,7 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
+    implementation fg.deobf("curse.maven:l2library-620203:5921890")
 //    implementation fg.deobf("curse.maven:appleskin-248787:4770828")
 //    implementation fg.deobf("curse.maven:legendary-tooltips-532127:4662781")
 //    implementation fg.deobf("curse.maven:iceberg-520110:5138899")

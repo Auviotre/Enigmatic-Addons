@@ -206,6 +206,7 @@
   "tooltip.enigmaticaddons.thunderScroll2": "§5对有§d护甲§5目标造成更多伤害",
   "tooltip.enigmaticaddons.thunderScroll3": "§5目标在受击一定次数后",
   "tooltip.enigmaticaddons.thunderScroll4": "§5会受到§6落雷§5打击",
+  "tooltip.enigmaticaddons.thunderScroll5": "§5受到闪电伤害减半",
 
   "book.enigmaticaddons.entry.thunder_scroll.name": "万钧之护卷轴",
   "book.enigmaticaddons.entry.thunder_scroll.page.1": "虽说海洋意志术石能够一定程度上控制雷电的产生，但这终究只是间接控制，不够迅速。<br2/>我们利用神圣之力将共鸣闪电的咒语书写与卷轴之上，以术石为基底，以剑为媒介去释放来自天穹的力量。在战斗的过程中，这个卷轴会驱使你施展横扫攻击，来尽可能地去将闪电的目标扩大，同时",
@@ -315,10 +316,11 @@
   "tooltip.enigmaticaddons.scorchedCharm2": "§5并能够行走在岩浆上",
   "tooltip.enigmaticaddons.scorchedCharm3": "§5接触岩浆时获得自然恢复效果",
   "tooltip.enigmaticaddons.scorchedCharm4": "§5攻击着火目标时触发生命汲取",
+  "tooltip.enigmaticaddons.scorchedCharm5": "§5有概率抵挡攻击伤害",
 
   "book.enigmaticaddons.entry.scorched_charm.name": "阳灼护符",
-  "book.enigmaticaddons.entry.scorched_charm.page.1": "",
-  "book.enigmaticaddons.entry.scorched_charm.page.2": "",
+  "book.enigmaticaddons.entry.scorched_charm.page.1": "将烈焰的力量提纯而出，除防护之外，我们还需要更多的辅助能力。<br2/>不同于冰霜行者，这枚护符能够让你直接行走于岩浆之上，无需再将岩浆化做其他奇怪的物体，让你能够更方便的穿行在下届之中。",
+  "book.enigmaticaddons.entry.scorched_charm.page.2": "此外，借助了灵液的力量，这枚护符唤起了部分来自远古的祝福，能让岩浆中的热量成为生命的动力。而祝福本身，似乎被称之为“七阳”。",
 
   "item.enigmaticaddons.pure_heart": "纯净之心",
 
@@ -426,8 +428,8 @@
   "tooltip.enigmaticaddons.chaosElytra3": "",
 
   "book.enigmaticaddons.entry.chaos_elytra.name": "混沌之傲",
-  "book.enigmaticaddons.entry.chaos_elytra.page.1": "",
-  "book.enigmaticaddons.entry.chaos_elytra.page.2": "",
+  "book.enigmaticaddons.entry.chaos_elytra.page.1": "既然深渊之心在手，为何不将目光置于天空之中？<br2/>基于壮丽鞘翅相同的制作工艺，用上更为邪恶、更有力量的材料，便可获得这更为强力的鞘翅。借助末影和星辰之力翱翔在天空之中，去傲视那些匍匐在大地的生灵。",
+  "book.enigmaticaddons.entry.chaos_elytra.page.2": "当从空中去向地面，伴随我们的降临必是混乱邪恶，带给地面以冲击，将一切置以混沌。",
 
   "death.attack.evil_curse": "%1$s被诅咒撕裂",
   "death.attack.false_justice": "%1$s消失在虚无的审判中。",

@@ -69,7 +69,7 @@ public class DragonBreathArrow extends AbstractArrow {
 
     private void summonAreaEffect() {
         float speed = (float) this.getDeltaMovement().length();
-        float dmg = Mth.ceil(Mth.clamp((double) speed * this.getBaseDamage(), 0.0, 2.147483647E9)) / 4.0F;
+        float dmg = Mth.ceil(Mth.clamp(Math.sqrt(speed) * this.getBaseDamage(), 0.0, 2.147483647E9)) / 4.0F;
         List<LivingEntity> entities = this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4.0, 2.0, 4.0));
         AreaEffectCloud effectCloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
         Entity owner = this.getOwner();

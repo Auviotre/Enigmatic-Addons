@@ -203,9 +203,10 @@
   "item.enigmaticaddons.thunder_scroll": "Scroll of Thunder Embrace",
 
   "tooltip.enigmaticaddons.thunderScroll1": "§5Sweep attack deals §6100% §5damage.",
-  "tooltip.enigmaticaddons.thunderScroll2": "§5Deal more damage to §darmored §5targets.",
+  "tooltip.enigmaticaddons.thunderScroll2": "§5Deal more damage to§d armored §5targets.",
   "tooltip.enigmaticaddons.thunderScroll3": "§5After being hit much times,the target",
   "tooltip.enigmaticaddons.thunderScroll4": "§5will be struck by §6lightning bolt§5.",
+  "tooltip.enigmaticaddons.thunderScroll5": "§5Reduce lightning damage by half.",
 
   "book.enigmaticaddons.entry.thunder_scroll.name": "Scroll of Thunder",
   "book.enigmaticaddons.entry.thunder_scroll.page.1": "Although the Will of Ocean can partly control the lightning, this is ultimately only indirect control and not fast enough.<br2/>We use the divine power to write spells that resonate with lightning onto scrolls, using spellstone as the foundation and swords as the medium to release the power. During the battle, this scroll will drive you to use sweeping attacks",
@@ -315,10 +316,11 @@
   "tooltip.enigmaticaddons.scorchedCharm2": "§5And be able to walk on the lava.",
   "tooltip.enigmaticaddons.scorchedCharm3": "§5Obtain natural regeneration when in contact with lava.",
   "tooltip.enigmaticaddons.scorchedCharm4": "§5Trigger lifesteal when attacking a target on fire.",
+  "tooltip.enigmaticaddons.scorchedCharm5": "§5Probability to resist the attack damage.",
 
   "book.enigmaticaddons.entry.scorched_charm.name": "Charm of Scorched Sun",
-  "book.enigmaticaddons.entry.scorched_charm.page.1": "",
-  "book.enigmaticaddons.entry.scorched_charm.page.2": "",
+  "book.enigmaticaddons.entry.scorched_charm.page.1": "To purify the power of flames, in addition to protection, we also need more auxiliary abilities.<br2/>Unlike Frost Walker, this charm allows you to walk directly on lava without the need to transform it into other strange objects, making it easier for you to travel in the Nether.",
+  "book.enigmaticaddons.entry.scorched_charm.page.2": "In addition, with the power of ichor, this charm has awakened some blessings from ancient times, which can turn the heat in lava into the driving force of life. And the blessing itself seems to be called the 'Seven Suns'.",
 
   "item.enigmaticaddons.the_bless": "The Bless",
 
@@ -426,8 +428,8 @@
   "tooltip.enigmaticaddons.chaosElytra3": "§5the ground, it will cause range damage.",
 
   "book.enigmaticaddons.entry.chaos_elytra.name": "The Arrogance of Chaos",
-  "book.enigmaticaddons.entry.chaos_elytra.page.1": "",
-  "book.enigmaticaddons.entry.chaos_elytra.page.2": "",
+  "book.enigmaticaddons.entry.chaos_elytra.page.1": "Since the Heart of Abyss is in hand, why not set your gaze on the sky?<br2/>Based on the same process as the Majestic Elytra, using more evil and powerful materials can obtain these stronger elytra. Soar in the sky with the power of the cosmic and the ender, to look down upon the creatures crawling on the ground.",
+  "book.enigmaticaddons.entry.chaos_elytra.page.2": "When we descend from the sky to the ground, chaos and evil will accompany us, bringing impact to the ground and putting everything in chaos.",
 
   "death.attack.evil_curse": "%1$s is torn apart by curse.",
   "death.attack.false_justice": "%1$s disappeared into the void of judgement.",
