@@ -2,9 +2,11 @@ package auviotre.enigmatic.addon.contents.items;
 
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
+import com.aizistral.enigmaticlegacy.config.OmniconfigHandler;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import com.google.common.collect.HashMultimap;
@@ -81,8 +83,10 @@ public class AdventureCharm extends ItemBaseCurio {
     public void onEquip(SlotContext context, ItemStack prevStack, ItemStack stack) {
         int index = context.index();
         LivingEntity entity = context.entity();
-        if (entity instanceof Player player && player.level().getLevelData().isHardcore()) {
-            CuriosApi.getCuriosInventory(player).ifPresent((handler) -> handler.setEquippedCurio(context.identifier(), context.index(), EnigmaticAddonItems.DESPAIR_INSIGNIA.getDefaultInstance()));
+        if (entity instanceof Player player) {
+            boolean despair = EnigmaticItems.SOUL_CRYSTAL.getLostCrystals(player) == OmniconfigHandler.maxSoulCrystalLoss.getValue() || player.level().getLevelData().isHardcore();
+            if (despair)
+                CuriosApi.getCuriosInventory(player).ifPresent((handler) -> handler.setEquippedCurio(context.identifier(), context.index(), EnigmaticAddonItems.DESPAIR_INSIGNIA.getDefaultInstance()));
         }
     }
 }

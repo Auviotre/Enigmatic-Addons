@@ -448,6 +448,10 @@
   "effect.enigmaticaddons.ichor_corrosion": "Ichor Corrosion",
   "effect.enigmaticaddons.pure_resistance": "Pure Resistance",
 
+  "item.enigmaticaddons.common_potion.effect.luck": "Potion of Luck",
+  "item.enigmaticaddons.common_potion_splash.effect.luck": "Splash Potion of Luck",
+  "item.enigmaticaddons.common_potion_lingering.effect.luck": "Lingering Potion of Luck",
+
   "item.enigmaticaddons.common_potion.effect.frozen_heart": "Potion of Frozen Heart",
   "item.enigmaticaddons.common_potion.effect.long_frozen_heart": "Potion of Frozen Heart",
   "item.enigmaticaddons.ultimate_potion.effect.ultimate_frozen_heart": "Potion of Frozen Heart",

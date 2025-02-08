@@ -423,7 +423,7 @@ public class AddonEventHandler {
             }
 
             ItemStack mainHandItem = player.getMainHandItem();
-            if (mainHandItem.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_ASPECT) > 0) {
+            if (mainHandItem.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_ASPECT) > 0 && event.getEntity().isFullyFrozen()) {
                 ModifyDamageBaseOne(event, 0.1 * mainHandItem.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_ASPECT));
             }
 

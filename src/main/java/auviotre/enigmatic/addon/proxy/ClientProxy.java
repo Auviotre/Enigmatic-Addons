@@ -67,7 +67,7 @@ public class ClientProxy extends CommonProxy {
     private <T extends LivingEntity, M extends EntityModel<T>> void addPlayerLayer(EntityRenderersEvent.AddLayers event, String skin) {
         EntityRenderer<? extends Player> renderer = event.getSkin(skin);
         if (renderer instanceof LivingEntityRenderer livingRenderer) {
-             livingRenderer.addLayer(new ChaosElytraLayer(livingRenderer, event.getEntityModels()));
+            livingRenderer.addLayer(new ChaosElytraLayer(livingRenderer, event.getEntityModels()));
         }
     }
 }

@@ -448,6 +448,10 @@
   "effect.enigmaticaddons.ichor_corrosion": "灵液腐蚀",
   "effect.enigmaticaddons.pure_resistance": "纯化抗性",
 
+  "item.enigmaticaddons.common_potion.effect.luck": "幸运药水",
+  "item.enigmaticaddons.common_potion_splash.effect.luck": "喷溅型幸运药水",
+  "item.enigmaticaddons.common_potion_lingering.effect.luck": "滞留型幸运药水",
+
   "item.enigmaticaddons.common_potion.effect.frozen_heart": "冻结之心药水",
   "item.enigmaticaddons.common_potion.effect.long_frozen_heart": "冻结之心药水",
   "item.enigmaticaddons.ultimate_potion.effect.ultimate_frozen_heart": "冻结之心药水",

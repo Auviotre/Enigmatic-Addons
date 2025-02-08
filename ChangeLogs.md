@@ -1,17 +1,17 @@
 ***
 ## 1.2 ~ 1.3 Update
-### [Release 1.2.1]
+### [Release 1.2.1] (2025/1/22)
 ### Features:
 - 3 new Items (**The Arrogance of Chaos**, **Insignia of Despair**, **Charm of Scorched Sun**);
 - Updated the **Frost Aspect**;
 ### Changes:
 - Changed the effect of **Dragon Breath Bow**;
-- Changed the effect of **Scroll of Thunder Embrace**;
+- Changed the effect of **Scroll of Thunder Embrace** and **The Curse Carver**;
 - Now some fire-resistant related content will prevent flame rendering in first person.
 ### Fixes:
 - Fixed the error of the Luck attribute of **Magic Quartz Ring**;
 - Fixed some small issues.
-### [Release 1.2.0]
+### [Release 1.2.0] (2024/12/30)
 ### Features:
 - 4 new Items (**Astral Spear**, **The Curse Carver**, **Disaster Broadsword**, **Totem of Malice**);
 - Updated the **Dragon Breath Bow**;

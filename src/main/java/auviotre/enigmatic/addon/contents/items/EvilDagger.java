@@ -45,13 +45,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class EvilDagger extends ItemBase implements Vanishable, ICursed {
+    private static final Multimap<Attribute, AttributeModifier> EVIL_CURSE_MODIFIER = ImmutableMultimap.of(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("637f51eb-218e-46aa-bcd3-10380acfd2d6"), "Evil Curse Modifier", -0.25, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static Omniconfig.IntParameter cooldown;
     public static Omniconfig.IntParameter curseHurtInterval;
     public static Omniconfig.DoubleParameter curseHurtAmount;
     public static Omniconfig.PerhapsParameter curseDamageRatio;
     public static Omniconfig.PerhapsParameter curseModifierRatio;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
-    private static final Multimap<Attribute, AttributeModifier> EVIL_CURSE_MODIFIER = ImmutableMultimap.of(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("637f51eb-218e-46aa-bcd3-10380acfd2d6"), "Evil Curse Modifier", -0.25, AttributeModifier.Operation.MULTIPLY_TOTAL));
 
     public EvilDagger() {
         super(ItemBase.getDefaultProperties().fireResistant().rarity(Rarity.EPIC).durability(640));
@@ -121,15 +121,18 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
             int curseAmount = SuperpositionHandler.getCurseAmount(stack);
             if (!level.isClientSide) {
                 ThrownEvilDagger dagger = new ThrownEvilDagger(player, level);
+                double damage = dagger.getBaseDamage() + stack.getEnchantmentLevel(Enchantments.SHARPNESS) * 0.1;
                 dagger.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3.25F, 0.0F);
                 dagger.setNoGravity(true);
                 dagger.setCurseAmount(curseAmount);
+                dagger.setBaseDamage(damage);
                 level.addFreshEntity(dagger);
                 for (int i = 0; i < (stack.getEnchantmentLevel(Enchantments.MULTISHOT) > 0 ? 4 : 2); i++) {
                     dagger = new ThrownEvilDagger(player, level);
                     dagger.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3F, 9.6F);
                     dagger.setNoGravity(true);
                     dagger.setCurseAmount(curseAmount);
+                    dagger.setBaseDamage(damage);
                     level.addFreshEntity(dagger);
                 }
             }

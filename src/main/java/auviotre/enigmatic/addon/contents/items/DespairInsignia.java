@@ -38,10 +38,6 @@ public class DespairInsignia extends ItemBaseCurio {
         super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.RARE).fireResistant());
     }
 
-    public CreativeModeTab getCreativeTab() {
-        return null;
-    }
-
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("InsigniaofDespair");
@@ -49,6 +45,10 @@ public class DespairInsignia extends ItemBaseCurio {
         attackSpeedMultiplier = builder.comment("The attack speed multiplier of Insignia of Despair. Measures in percentage.").max(100.0).getPerhaps("AttackSpeedMultiplier", 16);
         speedMultiplier = builder.comment("The movement speed multiplier of Insignia of Despair. Measures in percentage.").max(100.0).getPerhaps("MovementSpeedMultiplier", 5);
         builder.popPrefix();
+    }
+
+    public CreativeModeTab getCreativeTab() {
+        return null;
     }
 
     @OnlyIn(Dist.CLIENT)

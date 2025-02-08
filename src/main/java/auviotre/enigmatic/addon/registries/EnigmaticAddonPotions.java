@@ -18,6 +18,7 @@ public class EnigmaticAddonPotions {
      * @see EnigmaticPotions
      **/
 
+    public static final AdvancedPotion LUCK = new AdvancedPotion("luck", new MobEffectInstance(MobEffects.LUCK, 6000));
     public static final AdvancedPotion FROZEN_HEART = new AdvancedPotion("frozen_heart", new MobEffectInstance(EnigmaticAddonEffects.FROZEN_HEART_EFFECT, 3600));
     public static final AdvancedPotion LONG_FROZEN_HEART = new AdvancedPotion("long_frozen_heart", new MobEffectInstance(EnigmaticAddonEffects.FROZEN_HEART_EFFECT, 9600));
     public static final AdvancedPotion ULTIMATE_FROZEN_HEART = new AdvancedPotion("ultimate_frozen_heart", new MobEffectInstance(EnigmaticAddonEffects.FROZEN_HEART_EFFECT, 19200));

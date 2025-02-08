@@ -3,6 +3,7 @@ package auviotre.enigmatic.addon.contents.items;
 import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.packets.clients.PacketDescendingChaos;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
@@ -22,6 +23,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -65,13 +67,15 @@ import java.util.UUID;
 
 public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     private static final AttributeModifier ELYTRA_MODIFIER = new AttributeModifier(UUID.fromString("446f9584-38bb-4fc0-bbed-16d126e377a7"), "enigmaticaddons:elytra_modifier", 1.0, AttributeModifier.Operation.ADDITION);
-    @OnlyIn(Dist.CLIENT)
-    private static boolean isBoosting;
     public static Omniconfig.DoubleParameter flyingSpeedModifier;
     public static Omniconfig.DoubleParameter descendingPowerModifier;
     public static Omniconfig.IntParameter descendingCooldown;
     public static Omniconfig.PerhapsParameter damageResistance;
+    @OnlyIn(Dist.CLIENT)
+    private static boolean isBoosting;
     private Vec3 lastMovement = Vec3.ZERO;
+    private int flyingTick = 0;
+
     public ChaosElytra() {
         super(ItemBaseCurio.getDefaultProperties().durability(3600).fireResistant().rarity(Rarity.EPIC));
         DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
@@ -130,7 +134,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
 
     public void curioTick(SlotContext context, ItemStack stack) {
         if (context.entity() instanceof Player player) {
-            if (player.level().isClientSide)  this.handleBoosting(player);
+            if (player.level().isClientSide) this.handleBoosting(player);
         }
         LivingEntity livingEntity = context.entity();
         int ticks = livingEntity.getFallFlyingTicks();
@@ -222,8 +226,10 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                 }
             }
 
-            if (event.player instanceof ServerPlayer serverPlayer) {
-                if (serverPlayer.tickCount % 4 == 0) {
+            if (!event.player.onGround() && event.player.isFallFlying()) this.flyingTick++;
+            else this.flyingTick = 0;
+            if (event.player instanceof ServerPlayer serverPlayer && !SuperAddonHandler.getChaosElytra(event.player).isEmpty()) {
+                if (serverPlayer.tickCount % 3 == 0) {
                     if (serverPlayer.isFallFlying()) lastMovement = serverPlayer.getDeltaMovement();
                     else lastMovement = Vec3.ZERO;
                 }
@@ -245,7 +251,8 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     public void onFall(PlayerFlyableFallEvent event) {
         LivingEntity victim = event.getEntity();
         if (!(victim instanceof Player player) || !SuperpositionHandler.isTheWorthyOne(player)) return;
-        if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA))) return;
+        if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA)))
+            return;
         if (TransientPlayerData.get(player).isElytraBoosting()) {
             chaosDescending(player);
         }
@@ -255,7 +262,8 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     public void onFall(LivingFallEvent event) {
         LivingEntity victim = event.getEntity();
         if (!(victim instanceof Player player) || !SuperpositionHandler.isTheWorthyOne(player)) return;
-        if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA))) return;
+        if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA)))
+            return;
         if (TransientPlayerData.get(player).isElytraBoosting()) {
             event.setCanceled(true);
             chaosDescending(player);
@@ -263,8 +271,9 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
     }
 
     private void chaosDescending(Player player) {
-        if (player.getViewVector(0.0F).y < -0.95 && !player.getCooldowns().isOnCooldown(this)) {
-            if (!player.getAbilities().instabuild) player.getCooldowns().addCooldown(this, descendingCooldown.getValue());
+        if (player.getViewVector(0.0F).y < -0.95 && !player.getCooldowns().isOnCooldown(this) && this.spaceCheck(player.blockPosition(), player.level()) && this.flyingTick > 36) {
+            if (!player.getAbilities().instabuild)
+                player.getCooldowns().addCooldown(this, descendingCooldown.getValue());
             if (!player.level().isClientSide()) {
                 EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(), 64.0, player.level().dimension())),
                         new PacketDescendingChaos(player.getX(), player.getY(), player.getZ()));
@@ -276,16 +285,27 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                 float modifier = Math.min(1.0F, 1.2F / entity.distanceTo(player));
                 Vec3 vec = new Vec3(delta.x, 0, delta.z).normalize().scale(modifier);
                 entity.addDeltaMovement(new Vec3(vec.x, entity.onGround() ? 1.2F * modifier : 0.0F, vec.z));
-                entity.hurt(entity.damageSources().mobAttack(player), (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * Math.pow(descendingPowerModifier.getValue(), Math.abs(lastMovement.y))));
+                entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, player), (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * Math.pow(descendingPowerModifier.getValue(), Math.abs(lastMovement.y))));
             }
         }
+    }
+
+    private boolean spaceCheck(BlockPos pos, Level level) {
+        Iterable<BlockPos> iterable = BlockPos.betweenClosed(pos.offset(2, 2, 2), pos.offset(-2, -2, -2));
+        int space = 0;
+        for (BlockPos blockPos : iterable) {
+            if (level.getBlockState(blockPos).isAir()) space += 3;
+            else space -= 1;
+        }
+        return space > 0;
     }
 
     @SubscribeEvent
     public void onHurt(LivingDamageEvent event) {
         LivingEntity entity = event.getEntity();
         if (!(entity instanceof Player player) || !SuperpositionHandler.isTheWorthyOne(player)) return;
-        if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA))) return;
+        if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA)))
+            return;
         DamageSource source = event.getSource();
         if (!(source.is(DamageTypes.FALL) || source.is(DamageTypes.FLY_INTO_WALL))) {
             Entity directEntity = event.getSource().getDirectEntity();
@@ -303,11 +323,12 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
         if (event.phase == TickEvent.Phase.START && event.player.level().isClientSide()) {
             Player player = event.player;
             if (!SuperpositionHandler.isTheWorthyOne(player)) return;
-            if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA))) return;
+            if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA)))
+                return;
             if (TransientPlayerData.get(player).isElytraBoosting() && player.isFallFlying()) {
                 int amount = 3;
                 double rangeModifier = 0.1;
-                for(int counter = 0; counter <= amount; ++counter) {
+                for (int counter = 0; counter <= amount; ++counter) {
                     Vector3 vec = Vector3.fromEntityCenter(player);
                     vec = vec.add(Math.random() - 0.5, -1.0 + Math.random() - 0.5, Math.random() - 0.5);
                     player.level().addParticle(EnigmaticAddonParticles.ABYSS_CHAOS, true, vec.x, vec.y, vec.z, (Math.random() - 0.5) * 2.0 * rangeModifier, (Math.random() - 0.5) * 2.0 * rangeModifier, (Math.random() - 0.5) * 2.0 * rangeModifier);
