@@ -71,7 +71,7 @@ public class ScorchedCharm extends ItemBaseCurio implements ICursed {
 
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         LivingEntity entity = slotContext.entity();
-        entity.clearFire();
+        if (entity.isOnFire()) entity.clearFire();
         if (entity.isInLava()) {
             if (entity.tickCount % 20 == 0) entity.heal((float) lavaHealAmount.getValue());
             CollisionContext collisionContext = CollisionContext.of(entity);

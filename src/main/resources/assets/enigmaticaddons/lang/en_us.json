@@ -1,5 +1,6 @@
 {
   "__contributor": "Auviotre",
+  "tooltip.enigmaticaddons.wip": "§4There is an Error, please use it with caution",
 
   "tooltip.enigmaticaddons.armor": "§6%1$s§d Armor",
   "tooltip.enigmaticaddons.armor_toughness": "§6%1$s§d Armor Toughness",
@@ -431,7 +432,8 @@
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "Since the Heart of Abyss is in hand, why not set your gaze on the sky?<br2/>Based on the same process as the Majestic Elytra, using more evil and powerful materials can obtain these stronger elytra. Soar in the sky with the power of the cosmic and the ender, to look down upon the creatures crawling on the ground.",
   "book.enigmaticaddons.entry.chaos_elytra.page.2": "When we descend from the sky to the ground, chaos and evil will accompany us, bringing impact to the ground and putting everything in chaos.",
 
-  "death.attack.evil_curse": "%1$s is torn apart by curse.",
+  "death.attack.abyss": "%1$s fell into an endless abyss.",
+  "death.attack.evil_curse": "%1$s was torn apart by curse.",
   "death.attack.false_justice": "%1$s disappeared into the void of judgement.",
 
   "entity.enigmaticaddons.astral_spear": "Astral Spear",

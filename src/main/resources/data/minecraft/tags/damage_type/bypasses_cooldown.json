@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "enigmaticaddons:abyss",
     "enigmaticaddons:evil_curse"
   ]
 }

@@ -48,7 +48,7 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                         .setCustomClientFactory((spawnEntity, world) -> new ThrownIchorSpear(ICHOR_SPEAR, world)).setUpdateInterval(20)
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:ichor_spear"));
         this.register("astral_spear",
-                () -> EntityType.Builder.<ThrownAstralSpear>of(ThrownAstralSpear::new, MobCategory.MISC).sized(0.45F, 0.45F).clientTrackingRange(16)
+                () -> EntityType.Builder.<ThrownAstralSpear>of(ThrownAstralSpear::new, MobCategory.MISC).sized(0.45F, 0.45F).clientTrackingRange(24)
                         .setCustomClientFactory((spawnEntity, world) -> new ThrownAstralSpear(ASTRAL_SPEAR, world)).setUpdateInterval(20).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:astral_spear"));
         this.register("evil_dagger",

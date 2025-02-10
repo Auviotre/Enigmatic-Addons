@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.mixin;
 
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
@@ -28,7 +29,7 @@ public abstract class MixinPlayer extends LivingEntity {
     @ModifyVariable(method = "hurt", at = @At("HEAD"), index = 1, argsOnly = true)
     public DamageSource hurtMix(DamageSource source) {
         if (this.self() instanceof Player player && SuperpositionHandler.isTheCursedOne(player) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.FALSE_JUSTICE)) {
-            return player.damageSources().source(EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), source.getEntity());
+            return SuperAddonHandler.damageSource(EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), source.getEntity());
         }
         return source;
     }

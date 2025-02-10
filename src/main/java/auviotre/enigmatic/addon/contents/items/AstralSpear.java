@@ -66,6 +66,7 @@ public class AstralSpear extends ItemBase implements Vanishable {
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.wip");
         if (Screen.hasShiftDown()) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralSpear1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralSpear2");

@@ -7,7 +7,8 @@
 ### Changes:
 - Changed the effect of **Dragon Breath Bow**;
 - Changed the effect of **Scroll of Thunder Embrace** and **The Curse Carver**;
-- Now some fire-resistant related content will prevent flame rendering in first person.
+- Now some fire-resistant related content will prevent flame rendering in first person;
+- Added more Cursed AI.
 ### Fixes:
 - Fixed the error of the Luck attribute of **Magic Quartz Ring**;
 - Fixed some small issues.

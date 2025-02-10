@@ -67,7 +67,6 @@ public class ThrownAstralSpear extends AbstractSpear {
     }
 
     public void tick() {
-        super.tick();
         if (this.inGroundTime > 3) this.dealtDamage = true;
         Entity owner = this.getOwner();
         if (this.isPowered() && !this.dealtDamage && owner != null) {
@@ -97,11 +96,11 @@ public class ThrownAstralSpear extends AbstractSpear {
                 ++this.clientReturnTickCount;
             }
         }
-        if (!this.dealtDamage && !this.inGround) {
+        if (!this.dealtDamage && !this.inGround && !this.level().isClientSide) {
             this.updateTarget();
             Entity target = this.getTarget();
-            if (target != null) {
-                Vec3 targetVec = this.getVectorToTarget(target);
+            if (target instanceof LivingEntity) {
+                Vec3 targetVec = this.getVectorToTarget((LivingEntity) target);
                 Vec3 courseVec = this.getDeltaMovement();
 
                 double courseLen = courseVec.length();
@@ -111,7 +110,9 @@ public class ThrownAstralSpear extends AbstractSpear {
                 if (dotProduct > seekThreshold) {
                     double factor = (int) getPierceLevel() * 0.03 + 0.2;
                     factor = Mth.clamp(factor, 0.2, 0.35) * (this.isPowered() ? 0.5 : 1.0);
-                    Vec3 newMotion = courseVec.scale(1 - factor).add(targetVec.scale(courseLen / targetLen * factor));
+                    double bias = Math.abs(dotProduct - seekThreshold) * 2;
+                    bias = bias * Math.sqrt(bias);
+                    Vec3 newMotion = courseVec.scale(1 - factor).add(targetVec.scale(courseLen / targetLen * factor * bias));
                     this.setDeltaMovement(newMotion.add(0, 0.01F, 0));
                     this.hasImpulse = true;
                 } else this.setTarget(null);
@@ -128,6 +129,7 @@ public class ThrownAstralSpear extends AbstractSpear {
                 if (this.inGround) break;
             }
         }
+        super.tick();
     }
 
     @Nullable
@@ -146,9 +148,27 @@ public class ThrownAstralSpear extends AbstractSpear {
         this.hasImpulse = true;
     }
 
+
     protected void onHitEntity(EntityHitResult hitResult) {
         Entity entity = hitResult.getEntity();
         Entity owner = this.getOwner();
+        double damage = this.getBaseDamage() + (this.entityData.get(ID_SHARPNESS) > 0 ? this.entityData.get(ID_SHARPNESS) : 0);
+        if (entity instanceof LivingEntity livingEntity) {
+            damage += EnchantmentHelper.getDamageBonus(this.spearItem, livingEntity.getMobType());
+        }
+        DamageSource damageSource = this.damageSources().trident(this, owner == null ? this : owner);
+        if (entity.hurt(damageSource, (float) damage)) {
+            if (entity.getType() == EntityType.ENDERMAN) return;
+            if (entity instanceof LivingEntity living) {
+                if (owner instanceof LivingEntity) {
+                    EnchantmentHelper.doPostHurtEffects(living, owner);
+                    EnchantmentHelper.doPostDamageEffects((LivingEntity) owner, living);
+                }
+                this.doPostHurtEffects(living);
+            }
+        }
+        if (this.isPowered()) this.areaAttack(this.level(), hitResult, damageSource, (float) damage);
+        this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
         if (!this.isPowered() && this.getPierceLevel() > 0 && entity.isAlive()) {
             if (this.ignoreEntityIds == null) this.ignoreEntityIds = new IntOpenHashSet(9);
             Vec3 movement = this.getDeltaMovement().scale(0.9);
@@ -166,27 +186,6 @@ public class ThrownAstralSpear extends AbstractSpear {
             if (this.ignoreEntityIds.size() >= this.getPierceLevel() || predictNoTarget) this.stop();
             this.ignoreEntityIds.add(entity.getId());
         } else this.stop();
-        double damage = this.getBaseDamage() + (this.entityData.get(ID_SHARPNESS) > 0 ? this.entityData.get(ID_SHARPNESS) : 0);
-        if (entity instanceof LivingEntity livingEntity) {
-            damage += EnchantmentHelper.getDamageBonus(this.spearItem, livingEntity.getMobType());
-        }
-        DamageSource damageSource = this.damageSources().trident(this, owner == null ? this : owner);
-        if (entity.hurt(damageSource, (float) damage)) {
-            if (entity.getType() == EntityType.ENDERMAN) return;
-            if (entity instanceof LivingEntity living) {
-                if (!this.level().isClientSide && owner instanceof LivingEntity) {
-                    EnchantmentHelper.doPostHurtEffects(living, owner);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity) owner, living);
-                }
-                this.doPostHurtEffects(living);
-            }
-        }
-        if (this.isPowered()) {
-            this.areaAttack(this.level(), hitResult, damageSource, (float) damage);
-            this.setPowered(false);
-            this.stop();
-        }
-        this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
     }
 
     protected void onHitBlock(BlockHitResult hitResult) {
@@ -195,7 +194,6 @@ public class ThrownAstralSpear extends AbstractSpear {
             double damage = this.getBaseDamage() + (this.entityData.get(ID_SHARPNESS) > 0 ? this.entityData.get(ID_SHARPNESS) : 0);
             DamageSource damageSource = this.damageSources().trident(this, owner == null ? this : owner);
             areaAttack(this.level(), hitResult, damageSource, (float) damage);
-            this.setPowered(false);
             this.dealtDamage = true;
         }
         super.onHitBlock(hitResult);
@@ -219,6 +217,7 @@ public class ThrownAstralSpear extends AbstractSpear {
         }
         this.playSound(SoundEvents.TRIDENT_HIT_GROUND, 2.0F, 0.0F);
         this.resetPiercedEntities();
+        this.setPowered(false);
     }
 
     protected boolean canHitEntity(Entity entity) {
@@ -287,7 +286,7 @@ public class ThrownAstralSpear extends AbstractSpear {
             targetBB = targetBB.inflate(0, seekDistance * 0.5, 0);
 
             double closestDot = -1.0;
-            Entity closestTarget = null;
+            LivingEntity closestTarget = null;
 
             List<LivingEntity> entityList = this.level().getEntitiesOfClass(LivingEntity.class, targetBB);
             List<LivingEntity> monsters = entityList.stream().filter(living -> living instanceof Monster).toList();
@@ -331,7 +330,7 @@ public class ThrownAstralSpear extends AbstractSpear {
         }
     }
 
-    private Vec3 getVectorToTarget(Entity target) {
+    private Vec3 getVectorToTarget(LivingEntity target) {
         return new Vec3(target.getX() - this.getX(), target.getY(0.81F) - this.getY(), target.getZ() - this.getZ());
     }
 

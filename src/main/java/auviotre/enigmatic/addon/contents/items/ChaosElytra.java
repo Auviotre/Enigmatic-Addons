@@ -228,7 +228,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
 
             if (!event.player.onGround() && event.player.isFallFlying()) this.flyingTick++;
             else this.flyingTick = 0;
-            if (event.player instanceof ServerPlayer serverPlayer && !SuperAddonHandler.getChaosElytra(event.player).isEmpty()) {
+            if (event.player instanceof ServerPlayer serverPlayer && SuperAddonHandler.getChaosElytra(event.player) != null) {
                 if (serverPlayer.tickCount % 3 == 0) {
                     if (serverPlayer.isFallFlying()) lastMovement = serverPlayer.getDeltaMovement();
                     else lastMovement = Vec3.ZERO;
@@ -238,7 +238,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                     if (stack != null && stack.is(this)) {
                         int flightTicks = serverPlayer.getFallFlyingTicks();
                         int nextFlightTick = flightTicks + 1;
-                        if (nextFlightTick % 5 == 0) {
+                        if (nextFlightTick % 6 == 0) {
                             stack.hurtAndBreak(1, serverPlayer, (player) -> player.broadcastBreakEvent(EquipmentSlot.CHEST));
                         }
                     }
@@ -285,7 +285,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                 float modifier = Math.min(1.0F, 1.2F / entity.distanceTo(player));
                 Vec3 vec = new Vec3(delta.x, 0, delta.z).normalize().scale(modifier);
                 entity.addDeltaMovement(new Vec3(vec.x, entity.onGround() ? 1.2F * modifier : 0.0F, vec.z));
-                entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, player), (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * Math.pow(descendingPowerModifier.getValue(), Math.abs(lastMovement.y))));
+                entity.hurt(SuperAddonHandler.damageSource(EnigmaticAddonDamageTypes.ABYSS, player), (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * Math.pow(descendingPowerModifier.getValue(), Math.abs(lastMovement.y))));
             }
         }
     }

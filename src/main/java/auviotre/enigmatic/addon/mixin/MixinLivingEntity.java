@@ -23,6 +23,7 @@ import net.minecraft.world.entity.Attackable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -66,6 +67,8 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
     @Shadow
     public abstract boolean canTakeItem(ItemStack p_21249_);
 
+    @Shadow public abstract void indicateDamage(double p_270514_, double p_270826_);
+
     @Inject(method = "tick", at = @At("TAIL"))
     public void tickMix(CallbackInfo ci) {
         if (this.level().isClientSide && OmniconfigAddonHandler.frostParticle.getValue() && this.isFullyFrozen() && Math.random() > 0.25D) {
@@ -90,7 +93,7 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
     public DamageSource hurtMix(DamageSource source) {
         Entity entity = source.getEntity();
         if (entity instanceof Player player && SuperpositionHandler.isTheCursedOne(player) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.FALSE_JUSTICE)) {
-            return player.damageSources().source(EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), player);
+            return SuperAddonHandler.damageSource(EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), player);
         }
         return source;
     }
@@ -123,7 +126,7 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
                     float modifier = Math.min(1.0F, 0.8F / entity.distanceTo(this));
                     Vec3 vec = new Vec3(delta.x, 0, delta.z).normalize().scale(modifier);
                     entity.addDeltaMovement(new Vec3(vec.x, entity.onGround() ? 1.2F * modifier : 0.0F, vec.z));
-                    entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, player), damage);
+                    entity.hurt(SuperAddonHandler.damageSource(EnigmaticAddonDamageTypes.EVIL_CURSE, player), damage);
                     entity.invulnerableTime = 0;
                     EnigmaticAddons.packetInstance.send(packet, new PacketEvilCage(entity.getX(), entity.getY(), entity.getZ(), entity.getBbWidth() / 2, entity.getBbHeight(), 0));
                 }
@@ -139,5 +142,11 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
         if (!cir.getReturnValue() && SuperpositionHandler.hasCurio(this.self(), EnigmaticAddonItems.SCORCHED_CHARM)) {
             cir.setReturnValue(fluidState.is(FluidTags.LAVA));
         }
+    }
+
+    @Inject(method = "getJumpPower", at = @At("RETURN"), cancellable = true)
+    public void getJumpPowerMix(CallbackInfoReturnable<Float> cir) {
+        if (this.self() instanceof Slime slime && SuperAddonHandler.isCurseBoosted(slime))
+            cir.setReturnValue(cir.getReturnValue() + 0.08F);
     }
 }

@@ -1,5 +1,6 @@
 {
   "__contributor": "Auviotre",
+  "tooltip.enigmaticaddons.wip": "§4该物品存在错误，请谨慎使用",
 
   "tooltip.enigmaticaddons.armor": "§6%1$s§d 护甲值",
   "tooltip.enigmaticaddons.armor_toughness": "§6%1$s§d 盔甲韧性",
@@ -431,6 +432,7 @@
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "既然深渊之心在手，为何不将目光置于天空之中？<br2/>基于壮丽鞘翅相同的制作工艺，用上更为邪恶、更有力量的材料，便可获得这更为强力的鞘翅。借助末影和星辰之力翱翔在天空之中，去傲视那些匍匐在大地的生灵。",
   "book.enigmaticaddons.entry.chaos_elytra.page.2": "当从空中去向地面，伴随我们的降临必是混乱邪恶，带给地面以冲击，将一切置以混沌。",
 
+  "death.attack.abyss": "%1$s陷入了无底深渊",
   "death.attack.evil_curse": "%1$s被诅咒撕裂",
   "death.attack.false_justice": "%1$s消失在虚无的审判中。",
 

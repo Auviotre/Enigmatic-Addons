@@ -7,7 +7,10 @@ import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -85,6 +88,14 @@ public class SuperAddonHandler {
             }
         }
         return ItemStack.EMPTY;
+    }
+
+    public static DamageSource damageSource(ResourceKey<DamageType> type, Entity source) {
+        return source.damageSources().source(type, source);
+    }
+
+    public static DamageSource damageSource(ResourceKey<DamageType> type, Entity direct, Entity source) {
+        return source.damageSources().source(type, direct, source);
     }
 
     private static boolean hasBlessRing(Player player) {

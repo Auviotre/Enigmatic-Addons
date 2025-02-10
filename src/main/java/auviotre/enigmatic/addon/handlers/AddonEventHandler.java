@@ -19,7 +19,6 @@ import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.items.*;
 import com.aizistral.enigmaticlegacy.objects.RegisteredMeleeAttack;
-import com.aizistral.enigmaticlegacy.registries.EnigmaticEffects;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -37,6 +36,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
@@ -65,6 +65,7 @@ import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -76,9 +77,6 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderBlockScreenEffectEvent;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.util.LazyOptional;
@@ -99,7 +97,6 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import top.theillusivec4.caelus.api.RenderCapeEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.DropRulesEvent;
 import top.theillusivec4.curios.api.type.capability.ICurio;
@@ -628,7 +625,7 @@ public class AddonEventHandler {
                 victim.addEffect(new MobEffectInstance(MobEffects.POISON, RevivalLeaf.poisonTime.getValue(), RevivalLeaf.poisonLevel.getValue(), false, true), attacker);
             }
 
-            if (attacker instanceof Vindicator vindicator) {
+            if (attacker instanceof Vindicator vindicator && SuperAddonHandler.isCurseBoosted(attacker)) {
                 boolean flag = vindicator.fallDistance > 0.0F && !vindicator.onGround() && !vindicator.onClimbable() && !vindicator.isInWater() && !vindicator.hasEffect(MobEffects.BLINDNESS) && !vindicator.isPassenger();
                 if (flag) {
                     if (!victim.level().isClientSide) {
@@ -639,16 +636,20 @@ public class AddonEventHandler {
                 }
             }
 
-            if (attacker instanceof Stray && victim.canFreeze()) {
+            if (attacker instanceof Stray && victim.canFreeze() && SuperAddonHandler.isCurseBoosted(attacker)) {
                 victim.setTicksFrozen(victim.getTicksFrozen() + 65 + Mth.floor(amount * 10));
             }
 
-            if (attacker instanceof MagmaCube) {
+            if (attacker instanceof MagmaCube && SuperAddonHandler.isCurseBoosted(attacker)) {
                 victim.setSecondsOnFire(4);
             }
 
-            if (attacker instanceof WitherSkeleton) {
+            if (attacker instanceof WitherSkeleton && SuperAddonHandler.isCurseBoosted(attacker)) {
                 victim.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 2), attacker);
+            }
+
+            if (attacker instanceof Phantom && SuperAddonHandler.isCurseBoosted(attacker)) {
+                victim.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 1), attacker);
             }
 
             if (attacker instanceof TamableAnimal pet && pet.isTame() && pet.getOwner() instanceof Player owner) {
@@ -747,15 +748,19 @@ public class AddonEventHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
-    public void onDealDamage(LivingDamageEvent event) {
-        LivingEntity entity = event.getEntity();
-    }
-
     @SubscribeEvent
-    public void onFinalDeath(LivingDeathEvent event) {
+    public void onLivingDeath(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();
         Entity sourceEntity = event.getSource().getEntity();
+
+        if (entity instanceof Blaze blaze && SuperAddonHandler.isCurseBoosted(blaze)) {
+            RandomSource random = blaze.getRandom();
+            for(int i = 0; i < 15; ++i) {
+                SmallFireball fireball = new SmallFireball(blaze.level(), blaze, random.nextGaussian(), random.nextFloat() - 0.6, random.nextGaussian());
+                fireball.setPos(fireball.getX(), blaze.getY(0.5) + 0.5, fireball.getZ());
+                blaze.level().addFreshEntity(fireball);
+            }
+        }
 
         if (entity instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.CURSED_XP_SCROLL)) {
             ItemStack curioStack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.CURSED_XP_SCROLL);
@@ -765,9 +770,9 @@ public class AddonEventHandler {
         if (!OmniconfigAddonHandler.NearDeathAnger.getValue()) return;
         if (entity instanceof Mob && SuperAddonHandler.isCurseBoosted(entity) && sourceEntity instanceof LivingEntity target && target.isAlive()) {
             if (target instanceof Player player && (player.isCreative() || player.isSpectator())) return;
-            List<Entity> entities = entity.level().getEntities(entity, entity.getBoundingBox().inflate(16.0D));
-            for (Entity near : entities) {
-                if (near instanceof Mob mob && mob.getClass() == entity.getClass() && mob.getTarget() == null) {
+            List<? extends LivingEntity> entities = entity.level().getEntitiesOfClass(entity.getClass(), entity.getBoundingBox().inflate(16.0D));
+            for (LivingEntity near : entities) {
+                if (near instanceof Mob mob && mob != entity && mob.isAlive() && mob.getTarget() == null) {
                     if (mob.distanceToSqr(entity) < 12.0) {
                         mob.setTarget(target);
                     } else {
@@ -928,7 +933,7 @@ public class AddonEventHandler {
             vex.setDropChance(EquipmentSlot.OFFHAND, 0.0F);
             vex.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
             vex.setDropChance(EquipmentSlot.CHEST, -1.0F);
-            vex.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 1));
+            vex.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 120, 1));
         }
         if (entity instanceof Blaze blaze) {
             blaze.getAttribute(Attributes.ATTACK_DAMAGE).addPermanentModifier(new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
@@ -939,9 +944,18 @@ public class AddonEventHandler {
             piglin.getAttribute(Attributes.ARMOR).addPermanentModifier(new AttributeModifier(UUID_ARMOR, boost, 8.0, AttributeModifier.Operation.ADDITION));
             piglin.getAttribute(Attributes.ARMOR_TOUGHNESS).addPermanentModifier(new AttributeModifier(UUID_ARMOR_TH, boost, 4.0, AttributeModifier.Operation.ADDITION));
         }
+        if (entity instanceof Slime slime) {
+            int size = slime.getSize();
+            if (size > 1) slime.setSize(Mth.ceil(size * 1.2), true);
+            slime.getAttribute(Attributes.ATTACK_KNOCKBACK).addPermanentModifier(new AttributeModifier(UUID_ATTACK_KB, boost, 1.0, AttributeModifier.Operation.ADDITION));
+        }
         if (entity instanceof MagmaCube magma) {
             magma.getAttribute(Attributes.ARMOR).addPermanentModifier(new AttributeModifier(UUID_ARMOR, boost, 3.0, AttributeModifier.Operation.ADDITION));
             magma.getAttribute(Attributes.ARMOR_TOUGHNESS).addPermanentModifier(new AttributeModifier(UUID_ARMOR_TH, boost, 4.0, AttributeModifier.Operation.ADDITION));
+        }
+        if (entity instanceof Phantom phantom) {
+            phantom.setPhantomSize(phantom.getPhantomSize() + 2);
+            phantom.getAttribute(Attributes.ATTACK_DAMAGE).addPermanentModifier(new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
         }
     }
 
@@ -1277,28 +1291,6 @@ public class AddonEventHandler {
         }
         if (SuperAddonHandler.isTheBlessedOne(event.getEntity())) {
             event.getEntity().getPersistentData().putBoolean(BlessRing.BLESS_SPAWN, true);
-        }
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void onRenderFireOverlay(RenderBlockScreenEffectEvent event) {
-        Player player = event.getPlayer();
-        if (event.getOverlayType() == RenderBlockScreenEffectEvent.OverlayType.FIRE) {
-            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.SCORCHED_CHARM)) {
-                event.setCanceled(true);
-                return;
-            }
-            if (SuperpositionHandler.hasCurio(player, EnigmaticItems.BLAZING_CORE) || player.hasEffect(EnigmaticEffects.MOLTEN_HEART))
-                event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void renderCape(RenderCapeEvent event) {
-        if (SuperAddonHandler.getChaosElytra(event.getEntity()) != null) {
-            event.setCanceled(true);
         }
     }
 }
