@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.client.handlers;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
+import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
@@ -11,12 +12,20 @@ import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticEffects;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
+import com.aizistral.etherium.items.EtheriumArmor;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderBlockScreenEffectEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,6 +34,9 @@ import top.theillusivec4.caelus.api.RenderCapeEvent;
 
 @Mod.EventBusSubscriber(modid = EnigmaticAddons.MODID)
 public class ClientEventHandler {
+    public static final ResourceLocation MC_ICONS = new ResourceLocation("textures/gui/icons.png");
+    public static final ResourceLocation ICONS_LOCATION = new ResourceLocation(EnigmaticAddons.MODID, "textures/gui/icons.png");
+
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
@@ -71,6 +83,28 @@ public class ClientEventHandler {
     public void renderCape(RenderCapeEvent event) {
         if (SuperAddonHandler.getChaosElytra(event.getEntity()) != null) {
             event.setCanceled(true);
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent(receiveCanceled = true)
+    public void onOverlayRender(RenderGuiOverlayEvent.Pre event) {
+        Minecraft mc = Minecraft.getInstance();
+        Player player = mc.player;
+        if (event.getOverlay().equals(VanillaGuiOverlay.PLAYER_HEALTH.type()) && OmniconfigAddonHandler.etheriumShieldIcon.getValue() && EtheriumArmor.hasShield(player)) {
+            if (player.isCreative() || player.isSpectator()) return;
+            GuiGraphics graphics = event.getGuiGraphics();
+            PoseStack pose = graphics.pose();
+            int x = event.getWindow().getGuiScaledWidth() / 2 - 92;
+
+            int xCorrection = 0;
+            int yCorrection = 0;
+            RenderSystem.enableBlend();
+            RenderSystem.setShaderTexture(0, ICONS_LOCATION);
+            int l = event.getWindow().getGuiScaledHeight() - 32 - 8;
+            graphics.blit(ICONS_LOCATION, x + xCorrection, l + yCorrection, 0, 16, 83, 11, 256, 256);
+            RenderSystem.disableBlend();
+            RenderSystem.setShaderTexture(0, MC_ICONS);
         }
     }
 }

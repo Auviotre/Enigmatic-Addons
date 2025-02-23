@@ -72,7 +72,7 @@ public class BlessRing extends ItemBaseCurio {
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("RingofRedemption");
-        damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 40);
+        damageResistance = builder.comment("The damage resistance of the Ring of Redemption. Measured in percentage.").min(0).max(100).getPerhaps("DamageResistance", 25);
         damageBoost = builder.comment("The damage boost of the Ring of Redemption. Measured in percentage.").min(0).max(500).getPerhaps("DamageBoost", 20);
         regenerationSpeed = builder.comment("The time required for each regeneration of Ring of Redemption. Measured in ticks.").min(5).getInt("RegenerationTick", 20);
         builder.popPrefix();

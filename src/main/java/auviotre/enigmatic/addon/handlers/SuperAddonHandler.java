@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.handlers;
 
 import auviotre.enigmatic.addon.api.events.LivingCurseBoostEvent;
+import auviotre.enigmatic.addon.contents.enchantments.RedemptionCurseEnchantment;
 import auviotre.enigmatic.addon.contents.items.BlessRing;
 import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
 import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
@@ -19,6 +20,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
@@ -28,13 +31,11 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import org.apache.commons.lang3.mutable.MutableBoolean;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class SuperAddonHandler {
     public static final UUID SCROLL_SLOT_UUID = UUID.fromString("6baf05e3-a59c-43d8-9154-613ff87073e2");
@@ -90,12 +91,16 @@ public class SuperAddonHandler {
         return ItemStack.EMPTY;
     }
 
-    public static DamageSource damageSource(ResourceKey<DamageType> type, Entity source) {
-        return source.damageSources().source(type, source);
+    public static DamageSource simpleSource(@NotNull Entity target, ResourceKey<DamageType> type) {
+        return target.damageSources().source(type, null);
     }
 
-    public static DamageSource damageSource(ResourceKey<DamageType> type, Entity direct, Entity source) {
-        return source.damageSources().source(type, direct, source);
+    public static DamageSource damageSource(@NotNull Entity target, ResourceKey<DamageType> type, Entity source) {
+        return target.damageSources().source(type, source);
+    }
+
+    public static DamageSource damageSource(@NotNull Entity target, ResourceKey<DamageType> type, Entity direct, Entity source) {
+        return target.damageSources().source(type, direct, source);
     }
 
     private static boolean hasBlessRing(Player player) {
@@ -127,6 +132,17 @@ public class SuperAddonHandler {
 
     public static AABB getBoundingBoxAroundEntity(Entity entity, double x, double y, double z) {
         return new AABB(entity.getX() - x, entity.getY() - y, entity.getZ() - z, entity.getX() + x, entity.getY() + y, entity.getZ() + z);
+    }
+
+    public static int getRedemptionCurseAmount(ItemStack stack) {
+        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
+        int totalCurses = 0;
+        for (Enchantment enchantment : enchantments.keySet()) {
+            if (enchantment instanceof RedemptionCurseEnchantment && enchantments.get(enchantment) > 0) {
+                ++totalCurses;
+            }
+        }
+        return totalCurses;
     }
 
     @Nullable

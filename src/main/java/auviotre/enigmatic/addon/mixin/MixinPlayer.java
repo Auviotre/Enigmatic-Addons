@@ -29,7 +29,7 @@ public abstract class MixinPlayer extends LivingEntity {
     @ModifyVariable(method = "hurt", at = @At("HEAD"), index = 1, argsOnly = true)
     public DamageSource hurtMix(DamageSource source) {
         if (this.self() instanceof Player player && SuperpositionHandler.isTheCursedOne(player) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.FALSE_JUSTICE)) {
-            return SuperAddonHandler.damageSource(EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), source.getEntity());
+            return SuperAddonHandler.damageSource(this, EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), source.getEntity());
         }
         return source;
     }

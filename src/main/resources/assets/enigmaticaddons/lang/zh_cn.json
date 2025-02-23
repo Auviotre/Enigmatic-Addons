@@ -14,6 +14,9 @@
   "tooltip.enigmaticaddons.legacy_future1": "§5下个版本§d神秘遗物可能会",
   "tooltip.enigmaticaddons.legacy_future2": "§5实现的物品（猜测，来自扩展）",
 
+  "enchantment.enigmaticaddons.redemption_curse": "救赎诅咒",
+  "enchantment.enigmaticaddons.redemption_curse_alt": "救赎祝福",
+  "enchantment.enigmaticaddons.redemption_curse.desc": "增加收到的伤害（佩戴救赎之戒时变为减少）",
   "enchantment.enigmaticaddons.frost_aspect": "霜冻附加",
   "enchantment.enigmaticaddons.frost_aspect.desc": "攻击目标逐渐冻结",
   "enchantment.enigmaticaddons.frost_protection": "霜冻保护",
@@ -21,6 +24,10 @@
   "enchantment.enigmaticaddons.frost_shattering": "碎冰",
   "enchantment.enigmaticaddons.frost_shattering.desc": "增加斧对完全冻结目标的暴击伤害.",
 
+  "book.enigmaticaddons.entry.redemption_curse.name": "救赎诅咒",
+  "book.enigmaticaddons.entry.redemption_curse.heading.1": "诅咒附魔",
+  "book.enigmaticaddons.entry.redemption_curse.page.1": "这些依附在盔甲的诅咒，是来自救赎命途的磨练之一。<br2/>这个诅咒会放大你收到的伤害，削弱护甲提供的防御能力。但是在你完成救赎仪式之后，这些诅咒就会转变成来自救赎的祝福，为你提供伤害减免。",
+  "book.enigmaticaddons.entry.redemption_curse.page.2": "而因其独特的诅咒方式，救赎诅咒与其他诅咒并不相容，所以在一定程度上，它能够保护你的护甲免受其他诅咒侵害。",
   "book.enigmaticaddons.entry.frost_enchantment.name": "霜冻",
   "book.enigmaticaddons.entry.frost_enchantment.heading.1": "附魔",
   "book.enigmaticaddons.entry.frost_enchantment.heading.2": "附魔",
@@ -404,8 +411,10 @@
   "tooltip.enigmaticaddons.totemofMalice1": "§5当在物品栏或饰品栏内时：",
   "tooltip.enigmaticaddons.totemofMalice2": "§5对§d灾厄村民§5增加 §6%1$s §5伤害",
   "tooltip.enigmaticaddons.totemofMalice3": "§5受到§d灾厄村民§5的伤害减少 §6%1$s",
-  "tooltip.enigmaticaddons.totemofMalice4": "§5可以避免一次死亡",
+  "tooltip.enigmaticaddons.totemofMalice4": "§5可以避免死亡",
   "tooltip.enigmaticaddons.totemofMalice5": "§5触发时对周围造成伤害",
+  "tooltip.enigmaticaddons.totemofMalice4_alt": "§5§m可以避免死亡",
+  "tooltip.enigmaticaddons.totemofMalice5_alt": "§5§m触发时对周围造成伤害",
 
   "book.enigmaticaddons.entry.totem_of_malice.name": "恶意图腾",
   "book.enigmaticaddons.entry.totem_of_malice.page.1": "我们也许无法得知灾厄村民如何制得了不死图腾，但每一个图腾背后必定存在生灵的牺牲。<br2/>但现在，利用邪恶精髓来释放这些封印灵魂的恶意，调动它们对于灾厄村民的怒火，来完成他们最后复仇的愿望。",

@@ -93,14 +93,14 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
     public DamageSource hurtMix(DamageSource source) {
         Entity entity = source.getEntity();
         if (entity instanceof Player player && SuperpositionHandler.isTheCursedOne(player) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.FALSE_JUSTICE)) {
-            return SuperAddonHandler.damageSource(EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), player);
+            return SuperAddonHandler.damageSource(this, EnigmaticAddonDamageTypes.FALSE_JUSTICE, source.getDirectEntity(), player);
         }
         return source;
     }
 
     @Inject(method = "checkTotemDeathProtection", at = @At("RETURN"), cancellable = true)
     public void checkMix(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && this.self() instanceof Player player && SuperpositionHandler.isTheCursedOne(player)) {
+        if (!cir.getReturnValue() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && this.self() instanceof Player player && TotemOfMalice.isEnable(player)) {
             ItemStack stack = ItemStack.EMPTY;
             if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
                 ItemStack itemStack = SuperAddonHandler.getItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
@@ -126,7 +126,7 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
                     float modifier = Math.min(1.0F, 0.8F / entity.distanceTo(this));
                     Vec3 vec = new Vec3(delta.x, 0, delta.z).normalize().scale(modifier);
                     entity.addDeltaMovement(new Vec3(vec.x, entity.onGround() ? 1.2F * modifier : 0.0F, vec.z));
-                    entity.hurt(SuperAddonHandler.damageSource(EnigmaticAddonDamageTypes.EVIL_CURSE, player), damage);
+                    entity.hurt(SuperAddonHandler.damageSource(entity, EnigmaticAddonDamageTypes.EVIL_CURSE, player), damage);
                     entity.invulnerableTime = 0;
                     EnigmaticAddons.packetInstance.send(packet, new PacketEvilCage(entity.getX(), entity.getY(), entity.getZ(), entity.getBbWidth() / 2, entity.getBbHeight(), 0));
                 }

@@ -1,5 +1,19 @@
 ***
 ## 1.2 ~ 1.3 Update
+### [Release 1.2.2] (2025/2/15)
+### Features:
+- 1 new Enchantment (**Curse of Redemption**)
+### Changes:
+- Adjusted the effect of **Redemption** related contents such as **Ring of Redemption**;
+- Now **Totem of Malice** will not disappear (Unable to trigger revival after exhausting durability);
+- Remade the **Potion of Luck**;
+- Added weapon attributes to compat **Better Combat** mod;
+- Added GUI display for Etherium Shield;
+- Added more Cursed AI.
+### Fixes:
+- Fixed the wrong enchantment on **Totem of Malice**;
+- Fixed an error related to **Deceptive Justice**;
+- Fixed some small issues.
 ### [Release 1.2.1] (2025/1/22)
 ### Features:
 - 3 new Items (**The Arrogance of Chaos**, **Insignia of Despair**, **Charm of Scorched Sun**);
@@ -7,8 +21,7 @@
 ### Changes:
 - Changed the effect of **Dragon Breath Bow**;
 - Changed the effect of **Scroll of Thunder Embrace** and **The Curse Carver**;
-- Now some fire-resistant related content will prevent flame rendering in first person;
-- Added more Cursed AI.
+- Now some fire-resistant related content will prevent flame rendering in first person.
 ### Fixes:
 - Fixed the error of the Luck attribute of **Magic Quartz Ring**;
 - Fixed some small issues.

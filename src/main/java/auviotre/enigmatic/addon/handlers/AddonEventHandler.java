@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon.handlers;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.api.events.LivingCurseBoostEvent;
+import auviotre.enigmatic.addon.contents.enchantments.RedemptionCurseEnchantment;
 import auviotre.enigmatic.addon.contents.entities.goal.*;
 import auviotre.enigmatic.addon.contents.items.*;
 import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
@@ -559,7 +560,7 @@ public class AddonEventHandler {
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.HELL_BLADE_CHARM)) {
                 float damageMultiplier = HellBladeCharm.damageMultiplier.getValue().asModifier();
                 if (SuperpositionHandler.hasCurio(player, EnigmaticItems.BERSERK_CHARM))
-                    damageMultiplier += (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.attackDamage.getValue() / 5);
+                    damageMultiplier += (SuperpositionHandler.getMissingHealthPool(player) * (float) BerserkEmblem.attackDamage.getValue() / 4);
                 ModifyDamageBaseOne(event, (NEMESIS_LIST.stream().anyMatch(source::is) ? 1.0F : 0.5F) * damageMultiplier);
             }
 
@@ -687,7 +688,7 @@ public class AddonEventHandler {
             ItemCooldowns cooldowns = player.getCooldowns();
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.EARTH_PROMISE) && !cooldowns.isOnCooldown(EnigmaticAddonItems.EARTH_PROMISE)) {
                 float damage = event.getAmount() * EarthPromise.totalResistance.getValue().asModifierInverted();
-                if (player.isAlive() && damage >= player.getHealth() * EarthPromise.abilityTriggerPercent.getValue().asModifier(false)) {
+                if (player.isAlive() && !event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY) && damage >= player.getHealth() * EarthPromise.abilityTriggerPercent.getValue().asModifier(false)) {
                     cooldowns.addCooldown(EnigmaticAddonItems.EARTH_PROMISE, EarthPromise.cooldown.getValue());
                     if (!player.level().isClientSide()) {
                         ((ServerLevel) player.level()).sendParticles(ParticleTypes.FLASH, player.getX(), player.getY(), player.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
@@ -707,6 +708,8 @@ public class AddonEventHandler {
             if (victim.getRandom().nextInt(5) <= amplifier) event.setCanceled(true);
             else event.setAmount(event.getAmount() * 0.2F * (4 - amplifier));
         }
+
+        event.setAmount(event.getAmount() * (1 + RedemptionCurseEnchantment.modify(victim)));
 
         if (SuperpositionHandler.hasCurio(victim, EnigmaticAddonItems.QUARTZ_RING) && EnigmaticAddonItems.QUARTZ_RING.resistanccList.stream().anyMatch(event.getSource()::is)) {
             event.setAmount(event.getAmount() * (1 - QuartzRing.magicResistance.getValue().asModifier(false)));
@@ -762,11 +765,6 @@ public class AddonEventHandler {
             }
         }
 
-        if (entity instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.CURSED_XP_SCROLL)) {
-            ItemStack curioStack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.CURSED_XP_SCROLL);
-            ItemNBTHelper.setInt(curioStack, "XPStored", 0);
-        }
-
         if (!OmniconfigAddonHandler.NearDeathAnger.getValue()) return;
         if (entity instanceof Mob && SuperAddonHandler.isCurseBoosted(entity) && sourceEntity instanceof LivingEntity target && target.isAlive()) {
             if (target instanceof Player player && (player.isCreative() || player.isSpectator())) return;
@@ -793,6 +791,11 @@ public class AddonEventHandler {
             if (event.isCanceled()) {
                 POSTMORTAL_POSSESSIONS.removeAll(player);
                 return;
+            }
+
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.CURSED_XP_SCROLL)) {
+                ItemStack curioStack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.CURSED_XP_SCROLL);
+                ItemNBTHelper.setInt(curioStack, "XPStored", 0);
             }
 
             if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.BLESS_STONE) && !SuperpositionHandler.hasItem(player, EnigmaticItems.CURSED_STONE) && SuperpositionHandler.hasCurio(player, EnigmaticItems.CURSED_RING)) {
@@ -1001,17 +1004,27 @@ public class AddonEventHandler {
         ItemStack left = event.getLeft();
         ItemStack right = event.getRight();
         if (!left.isEmpty() && !right.isEmpty()) {
+            ItemStack copy = left.copy();
             if (player != null && EnigmaticAddonItems.FORGER_GEM.isPresent(player) && SuperAddonHandler.isOKOne(player)) {
                 boolean check = left.isDamageableItem() && !ForgerGem.blackList.contains(ForgeRegistries.ITEMS.getKey(left.getItem()));
                 if (check && ForgerGem.strictUnbreakableForge.getValue()) {
                     check = left.isRepairable() && (left.getItem() instanceof TieredItem || left.getItem() instanceof ArmorItem);
                 }
                 if (left.is(right.getItem()) && check && left.getDamageValue() == 0 && right.getDamageValue() == 0 && !left.isEnchanted() && !right.isEnchanted()) {
-                    ItemStack copy = left.copy();
                     copy.addTagElement("Unbreakable", ByteTag.valueOf(true));
                     copy.setRepairCost(12);
                     event.setOutput(copy);
                     event.setCost(30);
+                }
+            }
+
+            if (left.is(EnigmaticAddonItems.TOTEM_OF_MALICE) && right.is(EnigmaticItems.EVIL_ESSENCE)) {
+                if (TotemOfMalice.getTotemDamage(left) > 0) {
+                    TotemOfMalice.setTotemDamage(copy, 0);
+                    copy.setRepairCost(copy.getBaseRepairCost() + 2);
+                    event.setOutput(copy);
+                    event.setCost(copy.getBaseRepairCost() - 2);
+                    event.setMaterialCost(1);
                 }
             }
         }

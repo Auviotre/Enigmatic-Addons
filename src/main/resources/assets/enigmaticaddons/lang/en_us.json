@@ -14,6 +14,9 @@
   "tooltip.enigmaticaddons.legacy_future1": "§5Possible items that may be implemented in the next",
   "tooltip.enigmaticaddons.legacy_future2": "§5version of §dEnigmatic Legacy (I Guess from Addon)",
 
+  "enchantment.enigmaticaddons.redemption_curse": "Curse of Redemption",
+  "enchantment.enigmaticaddons.redemption_curse_alt": "Blessing of Redemption",
+  "enchantment.enigmaticaddons.redemption_curse.desc": "Increase the received damage (decrease when wear Ring of Redemption).",
   "enchantment.enigmaticaddons.frost_aspect": "Frost Aspect",
   "enchantment.enigmaticaddons.frost_aspect.desc": "The attack target is gradually freezing.",
   "enchantment.enigmaticaddons.frost_protection": "Frost Protection",
@@ -21,6 +24,10 @@
   "enchantment.enigmaticaddons.frost_shattering": "Frost Shattering",
   "enchantment.enigmaticaddons.frost_shattering.desc": "Increase critical damage of axe to fully frozen target.",
 
+  "book.enigmaticaddons.entry.redemption_curse.name": "Curse of Redemption",
+  "book.enigmaticaddons.entry.redemption_curse.heading.1": "The Curse",
+  "book.enigmaticaddons.entry.redemption_curse.page.1": "These curses attached to armor are one of the trials from the path of redemption.<br2/>This curse will amplify the damage you receive. But after you complete the redemption ceremony, these curses will transform into blessings from redemption, providing you with damage resistance.",
+  "book.enigmaticaddons.entry.redemption_curse.page.2": "And due to its unique curse method, the Redemption Curse is incompatible with other curses, so it can be said that it can protect your armor from other curses.",
   "book.enigmaticaddons.entry.frost_enchantment.name": "Frost",
   "book.enigmaticaddons.entry.frost_enchantment.heading.1": "The Enchantment",
   "book.enigmaticaddons.entry.frost_enchantment.heading.2": "The Enchantment",
@@ -286,7 +293,7 @@
   "tooltip.enigmaticaddons.primevalCube": "§5Useless Stone...",
 
   "book.enigmaticaddons.entry.primeval_cube.name": "Useless Stone...",
-  "book.enigmaticaddons.entry.primeval_cube.page.1": "You have discovered this ancient record, which seems to be about the rebirth of spellstones.<br2/>Under the catalysis of the radiance of the stars...<br/>Six becomes one...<br/>Accompanied by the power of two \"Heart\".",
+  "book.enigmaticaddons.entry.primeval_cube.page.1": "You have discovered this ancient record, which seems to be about the rebirth of spellstones.<br2/>Under the catalysis of the radiance of the stars...<br/>Six becomes one...<br/>Accompanied by the power of two \"Heart\".<br2/>Why not try to throw it onto the Sack of Astral Dust?",
 
   "item.enigmaticaddons.ichor_droplet": "Ichor Droplet",
 
@@ -366,8 +373,8 @@
   "book.enigmaticaddons.entry.bless_stone.name": "The Choice of Rebirth",
   "book.enigmaticaddons.entry.bless_stone.heading": "The True Redemption",
   "book.enigmaticaddons.entry.bless_stone.page.1": "When you are hesitating whether to sacrifice yourself to break free from the Seven Curse Ring, there is a brand new choice in front of you.<br2/>The biggest problem is the Loss of Soul, and with the current materials and methods, it seems impossible. Although we can't break the connection, we could let the connection be presented in a new way.",
-  "book.enigmaticaddons.entry.bless_stone.page.2": "Slowly infiltrate a little pure power into the Ring of Seven Curses, and mobilize the bless to change the curses. However, all these operations still need to be carried out when the contact is vulnerable, that is, you need to face death.",
-  "book.enigmaticaddons.entry.bless_stone.page.3": "After the final soul loss, the Ring of Seven Curses will completely disappear from your sight and turn into a touch of gold on your hand.<br2/>The previous curses has completely disappeared, also the original bless has been partially preserved. Although most of the objects that once",
+  "book.enigmaticaddons.entry.bless_stone.page.2": "Slowly infiltrate a little pure power into the Ring of Seven Curses, and mobilize the blessings to change the curses. However, all these operations still need to be carried out when the contact is vulnerable, that is, you need to face death.",
+  "book.enigmaticaddons.entry.bless_stone.page.3": "After the final soul loss, the Ring of Seven Curses will completely disappear from your sight and turn into a touch of gold on your hand.<br2/>The previous curses has completely disappeared, also the original blessing has been partially preserved. Although most of the objects that once",
   "book.enigmaticaddons.entry.bless_stone.page.4": "accompanied you are no longer usable, there are still some things that bear witness to your past filled with suffering, which is constantly approaching death. They still recognize your qualifications, are willing to break the shackles of the curse for you. <br2/>May you enjoy life to the fullest on days away from the curses. But you cannot truly understand this ring, please do not make the choice easily.",
 
   "item.enigmaticaddons.bless_ring": "Ring of Redemption",
@@ -404,8 +411,10 @@
   "tooltip.enigmaticaddons.totemofMalice1": "§5When in the inventory or curio slot:",
   "tooltip.enigmaticaddons.totemofMalice2": "§5Increase damage to §dIllagers§5 by §6%1$s",
   "tooltip.enigmaticaddons.totemofMalice3": "§5Reduce damage from §dIllagers§5 by §6%1$s",
-  "tooltip.enigmaticaddons.totemofMalice4": "§5Can avoid death once.",
+  "tooltip.enigmaticaddons.totemofMalice4": "§5Can avoid death.",
   "tooltip.enigmaticaddons.totemofMalice5": "§5Causing damage to the surroundings when triggered.",
+  "tooltip.enigmaticaddons.totemofMalice4_alt": "§5§mCan avoid death.",
+  "tooltip.enigmaticaddons.totemofMalice5_alt": "§5§mCausing damage to the surroundings when triggered.",
 
   "book.enigmaticaddons.entry.totem_of_malice.name": "Totem of Malice",
   "book.enigmaticaddons.entry.totem_of_malice.page.1": "We have no idea about how the illagers created totems of undying, but behind each totem there must be sacrifices of living beings.<br2/>But now, using the nefarious essence to release the malice of these sealed souls, mobilizing their anger towards illagers, to fulfill their final desire for revenge.",

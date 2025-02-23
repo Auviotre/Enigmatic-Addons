@@ -3,6 +3,7 @@ package auviotre.enigmatic.addon.registries;
 import auviotre.enigmatic.addon.contents.enchantments.FrostAspectEnchantment;
 import auviotre.enigmatic.addon.contents.enchantments.FrostProtectionEnchantment;
 import auviotre.enigmatic.addon.contents.enchantments.FrostShatteringEnchantment;
+import auviotre.enigmatic.addon.contents.enchantments.RedemptionCurseEnchantment;
 import com.aizistral.enigmaticlegacy.api.generic.ConfigurableItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -19,6 +20,9 @@ public class EnigmaticAddonEnchantments extends AbstractRegistry<Enchantment> {
     @ConfigurableItem("Frost Shattering Enchantment")
     @ObjectHolder(value = "enigmaticaddons:frost_shattering", registryName = "enchantment")
     public static final FrostShatteringEnchantment FROST_SHATTERING = null;
+    @ConfigurableItem("Curse of Redemption Enchantment")
+    @ObjectHolder(value = "enigmaticaddons:redemption_curse", registryName = "enchantment")
+    public static final RedemptionCurseEnchantment REDEMPTION_CURSE = null;
     private static final EnigmaticAddonEnchantments INSTANCE = new EnigmaticAddonEnchantments();
 
     private EnigmaticAddonEnchantments() {
@@ -27,5 +31,6 @@ public class EnigmaticAddonEnchantments extends AbstractRegistry<Enchantment> {
         this.register("frost_aspect", () -> new FrostAspectEnchantment(Enchantment.Rarity.RARE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
         this.register("frost_protection", () -> new FrostProtectionEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS));
         this.register("frost_shattering", () -> new FrostShatteringEnchantment(Enchantment.Rarity.RARE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+        this.register("redemption_curse", () -> new RedemptionCurseEnchantment(Enchantment.Rarity.RARE, ARMOR_SLOTS));
     }
 }

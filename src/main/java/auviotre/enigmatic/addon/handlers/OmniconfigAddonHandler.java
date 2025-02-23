@@ -17,6 +17,7 @@ import java.util.Map;
 public class OmniconfigAddonHandler {
     public static final Map<Field, Omniconfig.BooleanParameter> ITEMS_OPTIONS = new HashMap<>();
     public static Omniconfig.BooleanParameter frostParticle;
+    public static Omniconfig.BooleanParameter etheriumShieldIcon;
     public static Omniconfig.BooleanParameter EnableCurseBoost;
     public static Omniconfig.BooleanParameter ImmediatelyCurseBoost;
     public static Omniconfig.BooleanParameter NearDeathAnger;
@@ -62,6 +63,7 @@ public class OmniconfigAddonHandler {
         client.loadConfigFile();
         client.pushCategory("Generic Config", "Some more different stuff");
         frostParticle = client.comment("If false, disables the particle effect for fully frozen entities.").clientOnly().getBoolean("CustomFrostParticle", true);
+        etheriumShieldIcon = client.comment("If false, disables the icon display of the Etherium Shield.").clientOnly().getBoolean("EtheriumShieldIconDisplay", true);
         client.popCategory();
         client.build();
     }

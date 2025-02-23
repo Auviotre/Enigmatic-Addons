@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.redemption_curse.name",
+  "icon": "minecraft:enchanted_book",
+  "category": "enigmaticlegacy:enchantments",
+  "advancement": "enigmaticlegacy:book/enchantments/generic",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 200,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.redemption_curse.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond_chestplate#1{Enchantments:[{lvl:1s,id:'enigmaticaddons:redemption_curse'}]}",
+      "link_recipe": false,
+      "title": "book.enigmaticaddons.entry.redemption_curse.heading.1",
+      "text": "book.enigmaticaddons.entry.redemption_curse.page.2"
+    }
+  ]
+}

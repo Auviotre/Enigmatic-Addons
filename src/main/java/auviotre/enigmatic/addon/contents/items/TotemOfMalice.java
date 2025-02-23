@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
@@ -12,14 +13,12 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -30,14 +29,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable {
+public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     public static final List<ResourceLocation> extraRaiderList = new ArrayList<>();
     public static Omniconfig.DoubleParameter raiderBoost;
     public static Omniconfig.DoubleParameter raiderResistance;
 
     public TotemOfMalice() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).durability(3));
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));
     }
 
     @SubscribeConfig
@@ -52,7 +50,14 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable 
     }
 
     public static boolean isEnable(Player player) {
-        return SuperpositionHandler.isTheCursedOne(player) && (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE) || SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE));
+        if (!SuperpositionHandler.isTheCursedOne(player)) return false;
+        ItemStack totem = null;
+        if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
+            totem = SuperAddonHandler.getItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
+        } else if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
+            totem = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
+        }
+        return isNotBroken(totem);
     }
 
     public static void hurtAndBreak(ItemStack stack, LivingEntity entity) {
@@ -60,15 +65,16 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable 
             int damage = getTotemDamage(stack);
             int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
             damage = damage + 1;
-            if (damage >= 3 + level) {
-                stack.shrink(1);
-                if (entity instanceof Player player) {
-                    player.awardStat(Stats.ITEM_BROKEN.get(stack.getItem()));
-                }
-            }
             entity.invulnerableTime = 60;
             setTotemDamage(stack, damage);
         }
+    }
+
+    public static boolean isNotBroken(ItemStack stack) {
+        if (stack == null) return false;
+        int damage = getTotemDamage(stack);
+        int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+        return damage < 3 + level;
     }
 
     public static int getTotemDamage(ItemStack stack) {
@@ -76,7 +82,8 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable 
     }
 
     public static void setTotemDamage(ItemStack stack, int damage) {
-        stack.getOrCreateTag().putInt("TotemMDamage", Math.max(0, damage));
+        int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+        stack.getOrCreateTag().putInt("TotemMDamage", Mth.clamp(damage, 0, level + 3));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -86,8 +93,13 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable 
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice2", ChatFormatting.GOLD, String.format("%.0f", 100 * raiderBoost.getValue()) + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice3", ChatFormatting.GOLD, String.format("%.0f", 100 * raiderResistance.getValue()) + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice4");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice5");
+            if (isNotBroken(stack)) {
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice4");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice5");
+            } else {
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice4_alt");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice5_alt");
+            }
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }
@@ -96,11 +108,11 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed, Vanishable 
     }
 
     public boolean isFoil(ItemStack stack) {
-        return true;
+        return isNotBroken(stack);
     }
 
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment != Enchantments.MENDING;
+        return enchantment == Enchantments.UNBREAKING;
     }
 
     public boolean isBarVisible(ItemStack stack) {
