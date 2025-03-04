@@ -46,7 +46,9 @@
   "tooltip.enigmaticaddons.livingOde3": "§5Most animals around you are rendered passive.",
   "tooltip.enigmaticaddons.livingOde4": "§dAlteration of the §6Second Curse§d:",
   "tooltip.enigmaticaddons.livingOde5": "§5- Neutral animals will not actively attack.",
-  "tooltip.enigmaticaddons.livingOde6": "§6Use to appease animals.",
+  "tooltip.enigmaticaddons.livingOde6": "§5Attack with this item to temporarily prevent the target from being",
+  "tooltip.enigmaticaddons.livingOde7": "§5protected by this and make neutral animals around it target it.",
+  "tooltip.enigmaticaddons.livingOde8": "§dUse to appease animals.",
 
   "book.enigmaticaddons.entry.ode_to_living.name": "Ode to the Living Beings",
   "book.enigmaticaddons.entry.ode_to_living.page.1": "The previous guidebook seemed unable to make all animal friends recognize you, but this hymn can soothe the emotions of some animal friends. It also inherits the functionality of the previous version of the guidebook.",

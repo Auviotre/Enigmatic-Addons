@@ -67,7 +67,8 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
     @Shadow
     public abstract boolean canTakeItem(ItemStack p_21249_);
 
-    @Shadow public abstract void indicateDamage(double p_270514_, double p_270826_);
+    @Shadow
+    public abstract void indicateDamage(double p_270514_, double p_270826_);
 
     @Inject(method = "tick", at = @At("TAIL"))
     public void tickMix(CallbackInfo ci) {
@@ -100,10 +101,10 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
 
     @Inject(method = "checkTotemDeathProtection", at = @At("RETURN"), cancellable = true)
     public void checkMix(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && this.self() instanceof Player player && TotemOfMalice.isEnable(player)) {
+        if (!cir.getReturnValue() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && this.self() instanceof Player player && TotemOfMalice.isEnable(player, true)) {
             ItemStack stack = ItemStack.EMPTY;
-            if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
-                ItemStack itemStack = SuperAddonHandler.getItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
+            if (!TotemOfMalice.getValidTotem(player).isEmpty()) {
+                ItemStack itemStack = TotemOfMalice.getValidTotem(player);
                 stack = itemStack.copy();
                 TotemOfMalice.hurtAndBreak(itemStack, player);
             } else if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {

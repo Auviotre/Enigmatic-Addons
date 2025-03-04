@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon.contents.crafting;
 
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
+import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -26,18 +27,21 @@ public class PrimevalCubeRecipe extends CustomRecipe {
         int spellstoneCount = 0;
         int goldCount = 0;
         int heartCount = 0;
-
+        ItemStack cube = new ItemStack(EnigmaticAddonItems.PRIMEVAL_CUBE);
         for (int i = 0; i < inventory.getContainerSize(); ++i) {
             ItemStack slotStack = inventory.getItem(i);
             if (!slotStack.isEmpty()) {
-                if (EnigmaticItems.SPELLSTONES.contains(slotStack.getItem())) spellstoneCount++;
+                if (EnigmaticItems.SPELLSTONES.contains(slotStack.getItem())) {
+                    ItemNBTHelper.setBoolean(cube, slotStack.getDescriptionId(), true);
+                    spellstoneCount++;
+                }
                 if (slotStack.is(Blocks.GOLD_BLOCK.asItem())) goldCount++;
                 if (slotStack.is(EnigmaticItems.EARTH_HEART)) heartCount++;
                 if (slotStack.is(Items.HEART_OF_THE_SEA)) heartCount += 128;
             }
         }
         if (spellstoneCount == 6 && goldCount == 1 && heartCount == 129 && OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.PRIMEVAL_CUBE))
-            return new ItemStack(EnigmaticAddonItems.PRIMEVAL_CUBE);
+            return cube;
         return ItemStack.EMPTY;
     }
 

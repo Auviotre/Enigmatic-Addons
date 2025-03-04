@@ -132,8 +132,8 @@ public class AddonEventHandler {
             }
         }
         if (event.getEntity() instanceof Animal animal && event.getSource().getEntity() instanceof Player player) {
-            if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LIVING_ODE)) {
-                if (EnigmaticItems.ANIMAL_GUIDEBOOK.isProtectedAnimal(animal)) {
+            if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LIVING_ODE) && !player.getMainHandItem().is(EnigmaticAddonItems.LIVING_ODE)) {
+                if (OdeToLiving.isProtectedAnimal(player, animal)) {
                     event.setCanceled(true);
 
                     if (animal.getTarget() == player) {
@@ -569,7 +569,7 @@ public class AddonEventHandler {
             }
 
             if (player instanceof ServerPlayer && SuperpositionHandler.isTheCursedOne(player)) {
-                if (TotemOfMalice.isEnable(player) && (victim instanceof Raider || TotemOfMalice.extraRaiderList.contains(ForgeRegistries.ENTITY_TYPES.getKey(victim.getType())))) {
+                if (TotemOfMalice.isEnable(player, false) && (victim instanceof Raider || TotemOfMalice.extraRaiderList.contains(ForgeRegistries.ENTITY_TYPES.getKey(victim.getType())))) {
                     ModifyDamageBaseOne(event, TotemOfMalice.raiderBoost.getValue());
                 }
             }
@@ -584,7 +584,7 @@ public class AddonEventHandler {
                 ModifyDamageBaseOne(event, -0.5);
             }
 
-            if (TotemOfMalice.isEnable(player) && (victim instanceof Raider || TotemOfMalice.extraRaiderList.contains(ForgeRegistries.ENTITY_TYPES.getKey(victim.getType())))) {
+            if (TotemOfMalice.isEnable(player, false) && (victim instanceof Raider || TotemOfMalice.extraRaiderList.contains(ForgeRegistries.ENTITY_TYPES.getKey(victim.getType())))) {
                 ModifyDamageBaseOne(event, -TotemOfMalice.raiderResistance.getValue());
             }
 
@@ -758,7 +758,7 @@ public class AddonEventHandler {
 
         if (entity instanceof Blaze blaze && SuperAddonHandler.isCurseBoosted(blaze)) {
             RandomSource random = blaze.getRandom();
-            for(int i = 0; i < 15; ++i) {
+            for (int i = 0; i < 15; ++i) {
                 SmallFireball fireball = new SmallFireball(blaze.level(), blaze, random.nextGaussian(), random.nextFloat() - 0.6, random.nextGaussian());
                 fireball.setPos(fireball.getX(), blaze.getY(0.5) + 0.5, fireball.getZ());
                 blaze.level().addFreshEntity(fireball);

@@ -2,17 +2,21 @@
 ## 1.2 ~ 1.3 Update
 ### [Release 1.2.2] (2025/2/15)
 ### Features:
-- 1 new Enchantment (**Curse of Redemption**)
+- 1 new Enchantment (**Curse of Redemption**);
+- Updated the **Astral Spear** and the **Ode to Living Beings**;
+- Added the recipe of **Darkest Scroll**.
 ### Changes:
 - Adjusted the effect of **Redemption** related contents such as **Ring of Redemption**;
 - Now **Totem of Malice** will not disappear (Unable to trigger revival after exhausting durability);
-- Remade the **Potion of Luck**;
+- Changed the output function of **Primeval Cube**;
 - Added weapon attributes to compat **Better Combat** mod;
 - Added GUI display for Etherium Shield;
 - Added more Cursed AI.
 ### Fixes:
+- Fixed the wrong sample crafting recipe of **Dragon Breath Bow** in Book;
 - Fixed the wrong enchantment on **Totem of Malice**;
 - Fixed an error related to **Deceptive Justice**;
+- Fixed an error related to **Potion of Luck**;
 - Fixed some small issues.
 ### [Release 1.2.1] (2025/1/22)
 ### Features:

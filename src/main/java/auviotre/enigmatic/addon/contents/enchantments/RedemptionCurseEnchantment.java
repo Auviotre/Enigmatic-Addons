@@ -21,14 +21,27 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 public class RedemptionCurseEnchantment extends Enchantment {
     public static Omniconfig.PerhapsParameter resistanceModifier;
 
+    public RedemptionCurseEnchantment(Rarity rarity, EquipmentSlot[] slots) {
+        super(rarity, EnchantmentCategory.ARMOR, slots);
+    }
+
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("CurseofRedemptionEnchantment");
         resistanceModifier = builder.comment("The damage modifier per every this curse.").max(40).min(0).getPerhaps("ResistanceModifier", 4);
         builder.popPrefix();
     }
-    public RedemptionCurseEnchantment(Rarity rarity, EquipmentSlot[] slots) {
-        super(rarity, EnchantmentCategory.ARMOR, slots);
+
+    public static float modify(LivingEntity entity) {
+        int amount = 0;
+        for (ItemStack armor : entity.getArmorSlots()) {
+            amount += SuperAddonHandler.getRedemptionCurseAmount(armor);
+        }
+        if (amount > 0) {
+            if (entity instanceof Player player && SuperAddonHandler.isTheBlessedOne(player)) amount = -amount;
+            return resistanceModifier.getValue().asModifier() * amount;
+        }
+        return 0;
     }
 
     public int getMinCost(int enchantmentLevel) {
@@ -82,17 +95,5 @@ public class RedemptionCurseEnchantment extends Enchantment {
             mutablecomponent.withStyle(ChatFormatting.RED);
         }
         return mutablecomponent;
-    }
-
-    public static float modify(LivingEntity entity) {
-        int amount = 0;
-        for (ItemStack armor : entity.getArmorSlots()) {
-            amount += SuperAddonHandler.getRedemptionCurseAmount(armor);
-        }
-        if (amount > 0) {
-            if (entity instanceof Player player && SuperAddonHandler.isTheBlessedOne(player)) amount = -amount;
-            return resistanceModifier.getValue().asModifier() * amount;
-        }
-        return 0;
     }
 }

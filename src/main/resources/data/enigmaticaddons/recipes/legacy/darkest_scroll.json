@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticlegacy:is_enabled",
+      "item": "enigmaticlegacy:darkest_scroll"
+    }
+  ],
+  "pattern": [
+    "IWI",
+    "PXP",
+    "IWI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:black_dye"
+    },
+    "X": {
+      "item": "enigmaticlegacy:darkest_scroll"
+    },
+    "W": {
+      "item": "minecraft:wither_rose"
+    },
+    "P": {
+      "item": "enigmaticlegacy:thicc_scroll"
+    }
+  },
+  "result": {
+    "item": "enigmaticlegacy:darkest_scroll",
+    "count": 2
+  }
+}

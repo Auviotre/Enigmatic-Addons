@@ -1,6 +1,5 @@
 package auviotre.enigmatic.addon.contents.items;
 
-import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
@@ -11,6 +10,7 @@ import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     public static final List<ResourceLocation> extraRaiderList = new ArrayList<>();
     public static Omniconfig.DoubleParameter raiderBoost;
@@ -49,15 +50,30 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
         builder.popPrefix();
     }
 
-    public static boolean isEnable(Player player) {
-        if (!SuperpositionHandler.isTheCursedOne(player)) return false;
-        ItemStack totem = null;
-        if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
-            totem = SuperAddonHandler.getItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
-        } else if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
-            totem = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
+    public static ItemStack getValidTotem(Player player) {
+        for (NonNullList<ItemStack> stacks : player.getInventory().compartments) {
+            for (ItemStack itemstack : stacks) {
+                if (!itemstack.isEmpty() && itemstack.is(EnigmaticAddonItems.TOTEM_OF_MALICE) && isNotBroken(itemstack)) {
+                    return itemstack;
+                }
+            }
         }
-        return isNotBroken(totem);
+        return ItemStack.EMPTY;
+    }
+
+    public static boolean isEnable(Player player, Boolean needUnbroken) {
+        if (!SuperpositionHandler.isTheCursedOne(player)) return false;
+        ItemStack totem;
+        if (needUnbroken) {
+            if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
+                totem = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
+                return isNotBroken(totem);
+            } else return !getValidTotem(player).isEmpty();
+        } else {
+            if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
+                return true;
+            } else return SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
+        }
     }
 
     public static void hurtAndBreak(ItemStack stack, LivingEntity entity) {
@@ -71,7 +87,7 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     }
 
     public static boolean isNotBroken(ItemStack stack) {
-        if (stack == null) return false;
+        if (stack.isEmpty()) return false;
         int damage = getTotemDamage(stack);
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
         return damage < 3 + level;

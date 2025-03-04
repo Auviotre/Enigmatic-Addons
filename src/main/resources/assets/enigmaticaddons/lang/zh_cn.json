@@ -46,7 +46,9 @@
   "tooltip.enigmaticaddons.livingOde3": "§5在你周围的大部分动物变得被动。",
   "tooltip.enigmaticaddons.livingOde4": "§d修正§6第二诅咒§d的方法：",
   "tooltip.enigmaticaddons.livingOde5": "§5- 中立动物不会主动攻击。",
-  "tooltip.enigmaticaddons.livingOde6": "§6对动物使用来安抚对方。",
+  "tooltip.enigmaticaddons.livingOde6": "§5用该物品对目标攻击可使其暂时无法受到",
+  "tooltip.enigmaticaddons.livingOde7": "§5该物品保护并使周围中立动物以其为目标",
+  "tooltip.enigmaticaddons.livingOde8": "§d对动物使用来安抚对方",
 
   "book.enigmaticaddons.entry.ode_to_living.name": "生灵颂词",
   "book.enigmaticaddons.entry.ode_to_living.page.1": "之前的指南似乎无法让所有的动物朋友去认可你，这本颂词能够安抚一些动物朋友的情绪。它也继承了前一版指南的功能。<br2/>颂词的内容对你来说还是过于晦涩，因此只能随身携带，以便随时需要。",

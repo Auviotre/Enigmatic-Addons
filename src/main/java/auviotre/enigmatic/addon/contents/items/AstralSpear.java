@@ -66,7 +66,6 @@ public class AstralSpear extends ItemBase implements Vanishable {
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.wip");
         if (Screen.hasShiftDown()) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralSpear1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.astralSpear2");
@@ -98,25 +97,22 @@ public class AstralSpear extends ItemBase implements Vanishable {
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int tickCount) {
         if (entity instanceof Player player) {
             int duration = this.getUseDuration(stack) - tickCount;
-            if (duration >= 10) {
-                stack.hurtAndBreak(duration >= 75 ? 5 : 2, player, (consumer) -> consumer.broadcastBreakEvent(entity.getUsedItemHand()));
+            if (duration >= 12) {
+                stack.hurtAndBreak(duration >= 60 ? 5 : 2, player, (consumer) -> consumer.broadcastBreakEvent(entity.getUsedItemHand()));
                 if (!level.isClientSide) {
                     ThrownAstralSpear spear = new ThrownAstralSpear(player, level, stack);
                     float strength = Mth.clamp((float) (duration - 8) / 12F, 0.0F, 1.0F);
-                    if (player.getAbilities().instabuild) spear.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
+                    spear.pickup = AbstractArrow.Pickup.DISALLOWED;
                     if (duration >= 60) {
                         spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 4.5F, 1.1F);
                         spear.setPowered(true);
-                        level.playSound(null, spear, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.25F, 2.0F);
                     } else {
                         spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F + strength, 1.0F);
-                        level.playSound(null, spear, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, 1.5F);
                     }
                     level.addFreshEntity(spear);
-
-                    if (!player.getAbilities().instabuild) player.getInventory().removeItem(stack);
+                    this.soundPlayed1 = this.soundPlayed2 = this.soundPlayed3 = false;
                 }
-                this.soundPlayed1 = this.soundPlayed2 = this.soundPlayed3 = false;
+                level.playSound(null, entity, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, 1.5F);
                 player.awardStat(Stats.ITEM_USED.get(this));
                 player.swing(player.getUsedItemHand());
             }
@@ -168,7 +164,7 @@ public class AstralSpear extends ItemBase implements Vanishable {
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         boolean base = enchantment == Enchantments.UNBREAKING || enchantment == Enchantments.MENDING;
         boolean curse = base || enchantment == Enchantments.VANISHING_CURSE || enchantment == EnigmaticEnchantments.NEMESIS;
-        return enchantment == Enchantments.PIERCING || enchantment == Enchantments.SHARPNESS || enchantment == Enchantments.LOYALTY || curse;
+        return enchantment == Enchantments.PIERCING || enchantment == Enchantments.SHARPNESS || curse;
     }
 
     public int getEnchantmentValue() {
