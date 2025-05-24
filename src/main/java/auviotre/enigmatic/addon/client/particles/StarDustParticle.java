@@ -46,41 +46,15 @@ public class StarDustParticle extends SimpleAnimatedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class BlueProvider implements ParticleProvider<SimpleParticleType> {
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet sprites;
 
-        public BlueProvider(SpriteSet spriteSet) {
+        public Provider(SpriteSet spriteSet) {
             this.sprites = spriteSet;
         }
 
         public Particle createParticle(SimpleParticleType type, ClientLevel level, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
             return new StarDustParticle(level, 12841470, posX, posY, posZ, speedX, speedY, speedZ, this.sprites);
-        }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static class RedProvider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprites;
-
-        public RedProvider(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
-        }
-
-        public Particle createParticle(SimpleParticleType type, ClientLevel level, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
-            return new StarDustParticle(level, 16742489, posX, posY, posZ, speedX, speedY, speedZ, this.sprites);
-        }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static class PurpleProvider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprites;
-
-        public PurpleProvider(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
-        }
-
-        public Particle createParticle(SimpleParticleType type, ClientLevel level, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
-            return new StarDustParticle(level, 16422123, posX, posY, posZ, speedX, speedY, speedZ, this.sprites);
         }
     }
 }

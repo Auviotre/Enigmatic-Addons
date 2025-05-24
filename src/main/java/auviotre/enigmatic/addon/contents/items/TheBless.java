@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
@@ -27,7 +28,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class TheBless extends TheAcknowledgment implements ICursed {
+public class TheBless extends TheAcknowledgment implements ICursed, IBlessed {
     public static Omniconfig.DoubleParameter attackDamage;
     public static Omniconfig.DoubleParameter attackSpeed;
     public static Omniconfig.IntParameter invulnerableTime;

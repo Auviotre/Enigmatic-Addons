@@ -34,9 +34,9 @@ public class ClientSetupHandler {
 
     @SubscribeEvent
     public static void onRegisterParticles(final RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(EnigmaticAddonParticles.BLUE_STAR_DUST, StarDustParticle.BlueProvider::new);
-        event.registerSpriteSet(EnigmaticAddonParticles.RED_STAR_DUST, StarDustParticle.RedProvider::new);
-        event.registerSpriteSet(EnigmaticAddonParticles.PURPLE_STAR_DUST, StarDustParticle.PurpleProvider::new);
+        event.registerSpriteSet(EnigmaticAddonParticles.BLUE_STAR_DUST, StarDustParticle.Provider::new);
+        event.registerSpriteSet(EnigmaticAddonParticles.RED_STAR_DUST, StarDustParticle.Provider::new);
+        event.registerSpriteSet(EnigmaticAddonParticles.PURPLE_STAR_DUST, StarDustParticle.Provider::new);
         event.registerSpriteSet(EnigmaticAddonParticles.ICHOR, IchorParticle.Provider::new);
         event.registerSpriteSet(EnigmaticAddonParticles.ABYSS_CHAOS, ChaosParticle.Provider::new);
     }

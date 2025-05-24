@@ -141,6 +141,7 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
     @Inject(method = "canStandOnFluid", at = @At("RETURN"), cancellable = true)
     public void canStandOnFluidMix(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue() && SuperpositionHandler.hasCurio(this.self(), EnigmaticAddonItems.SCORCHED_CHARM)) {
+            if (this.self().isCrouching()) return;
             cir.setReturnValue(fluidState.is(FluidTags.LAVA));
         }
     }

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:extradimensional_scepter"
+    }
+  ],
+  "pattern": [
+    " BE",
+    "IRB",
+    "GI "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:blaze_rod"
+    },
+    "I": {
+      "item": "enigmaticaddons:ichor_droplet"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "E": {
+      "item": "enigmaticlegacy:extradimensional_eye"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:extradimensional_scepter"
+  }
+}

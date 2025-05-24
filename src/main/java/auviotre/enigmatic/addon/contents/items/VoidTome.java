@@ -47,10 +47,11 @@ public class VoidTome extends ItemBase {
             }
         } else {
             SuperpositionHandler.setPersistentBoolean(player, "UsedVoidTome", true);
-            SuperAddonHandler.unlockSpecialSlot("scroll", player);
+            if (SuperAddonHandler.unlockSpecialSlot("scroll", player)) {
+                player.level().playLocalSound(player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.0F, true);
+            }
         }
         player.hurt(player.damageSources().fellOutOfWorld(), player.getHealth() * 0.3F);
-        player.level().playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.0F);
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 400, 0, false, true));
         player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 400, 0, false, true));
         player.awardStat(Stats.ITEM_USED.get(this));

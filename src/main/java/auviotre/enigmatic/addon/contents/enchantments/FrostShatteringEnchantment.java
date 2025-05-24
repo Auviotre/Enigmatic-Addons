@@ -38,6 +38,6 @@ public class FrostShatteringEnchantment extends Enchantment {
     }
 
     protected boolean checkCompatibility(Enchantment enchantment) {
-        return enchantment != Enchantments.FIRE_ASPECT && enchantment != EnigmaticAddonEnchantments.FROST_ASPECT;
+        return enchantment != Enchantments.FIRE_ASPECT && enchantment != EnigmaticAddonEnchantments.FROST_ASPECT && super.checkCompatibility(enchantment);
     }
 }

@@ -7,6 +7,8 @@ import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -27,6 +29,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import top.theillusivec4.curios.api.CuriosApi;
 
@@ -37,6 +41,7 @@ public class BlessStone extends ItemBase implements ICursed {
         super(ItemBase.getDefaultProperties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }
 
+    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> list, TooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
             if (ItemNBTHelper.getBoolean(stack, "Hardcore", false)) {
@@ -58,6 +63,7 @@ public class BlessStone extends ItemBase implements ICursed {
 
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.indicateCursedOnesOnly(list);
+        list.add(Component.translatable("tooltip.enigmaticlegacy.worthyOnesOnly4").withStyle(ChatFormatting.DARK_RED).append(Component.literal(" " + SuperpositionHandler.getSufferingTime(Minecraft.getInstance().player)).withStyle(ChatFormatting.LIGHT_PURPLE)));
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -67,7 +73,9 @@ public class BlessStone extends ItemBase implements ICursed {
                 IItemHandlerModifiable curios = handler.getEquippedCurios();
                 for (int i = 0; i < handler.getSlots() - 1; ++i) {
                     if (curios.getStackInSlot(i) != null && curios.getStackInSlot(i).getItem() == EnigmaticItems.CURSED_RING) {
-                        curios.setStackInSlot(i, EnigmaticAddonItems.BLESS_RING.getDefaultInstance());
+                        ItemStack stack = EnigmaticAddonItems.BLESS_RING.getDefaultInstance();
+                        BlessRing.Helper.setBlessLevel(player, stack);
+                        curios.setStackInSlot(i, stack);
                     }
                 }
             });

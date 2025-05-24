@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon.contents.items;
 
 import auviotre.enigmatic.addon.contents.entities.UltimatePotionEntity;
 import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonPotions;
 import com.aizistral.enigmaticlegacy.api.items.IAdvancedPotionItem;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
@@ -71,9 +72,9 @@ public abstract class UltimatePotionAddon extends ItemBase implements IAdvancedP
         AdvancedPotion potion;
         ItemStack stack;
         if (this.potionType == PotionType.COMMON) {
-            iterator = PotionAddonHelper.COMMON_POTIONS.iterator();
+            iterator = EnigmaticAddonPotions.COMMON_POTIONS.iterator();
         } else {
-            iterator = PotionAddonHelper.ULTIMATE_POTIONS.iterator();
+            iterator = EnigmaticAddonPotions.ULTIMATE_POTIONS.iterator();
         }
         while (iterator.hasNext()) {
             potion = iterator.next();

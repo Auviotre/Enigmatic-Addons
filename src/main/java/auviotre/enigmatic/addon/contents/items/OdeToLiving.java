@@ -89,7 +89,11 @@ public class OdeToLiving extends ItemBase implements Vanishable {
             }
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.livingOde6");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.livingOde7");
+            if (Minecraft.getInstance().player != null && SuperAddonHandler.isTheBlessedOne(Minecraft.getInstance().player)) {
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.livingOde7_alt");
+            } else {
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.livingOde7");
+            }
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.livingOde8");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
@@ -118,10 +122,12 @@ public class OdeToLiving extends ItemBase implements Vanishable {
         if (event.getSource().getEntity() instanceof Player player && player.getMainHandItem().is(EnigmaticAddonItems.LIVING_ODE)) {
             ItemStack livingOde = player.getMainHandItem();
             ItemNBTHelper.setUUID(livingOde, "odeTarget", entity.getUUID());
-            List<Animal> animals = player.level().getEntitiesOfClass(Animal.class, entity.getBoundingBox().inflate(10.0D));
-            for (Animal animal : animals) {
-                if (animal instanceof NeutralMob neutralMob && animal.getClass() != entity.getClass() && animal.getTarget() == null)
-                    neutralMob.setTarget(entity);
+            if (SuperAddonHandler.isTheBlessedOne(player)) {
+                List<Animal> animals = player.level().getEntitiesOfClass(Animal.class, entity.getBoundingBox().inflate(10.0D));
+                for (Animal animal : animals) {
+                    if (animal instanceof NeutralMob neutralMob && animal.getClass() != entity.getClass() && animal.getTarget() == null)
+                        neutralMob.setTarget(entity);
+                }
             }
         }
     }

@@ -92,7 +92,7 @@ public class DisasterSword extends ItemBase implements Vanishable {
                 entity.hurt(entity.damageSources().mobAttack(blocker), 4.0F);
                 entity.invulnerableTime = 5;
             }
-            blocker.getCooldowns().addCooldown(useItem.getItem(), 24);
+            blocker.getCooldowns().addCooldown(useItem.getItem(), 22);
             SuperpositionHandler.setPersistentInteger(blocker, "DisasterCounterattack", 40);
         } else if (directEntity instanceof Projectile) {
             blocker.getCooldowns().addCooldown(useItem.getItem(), 8);
@@ -140,7 +140,7 @@ public class DisasterSword extends ItemBase implements Vanishable {
             player.swing(hand);
         } else {
             player.startUsingItem(hand);
-            player.getCooldowns().addCooldown(itemInHand.getItem(), 80);
+            player.getCooldowns().addCooldown(itemInHand.getItem(), 70);
         }
         return InteractionResultHolder.consume(itemInHand);
     }
@@ -176,7 +176,7 @@ public class DisasterSword extends ItemBase implements Vanishable {
     }
 
     public int getUseDuration(ItemStack stack) {
-        return 15;
+        return 20;
     }
 
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {

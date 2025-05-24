@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.helpers;
 
+import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.resources.ResourceLocation;
 
@@ -17,6 +18,7 @@ public class MixinOmniconfigHelper {
     private static final String[] defaultRandomDebuffs = new String[]{
             "minecraft:blindness", "minecraft:nausea", "minecraft:mining_fatigue", "minecraft:hunger", "minecraft:levitation", "minecraft:slowness", "minecraft:weakness", "minecraft:poison", "minecraft:wither"
     };
+    public static Omniconfig.IntParameter cubeDamageLimit;
 
     public static void MixConfig(OmniconfigWrapper builder) {
         cubeRandomBuffs.clear();
@@ -27,5 +29,6 @@ public class MixinOmniconfigHelper {
         String[] debuffList = builder.config.getStringList("TheCubeRandomDebuffs", category, defaultRandomDebuffs, "List of effects that will appear in The Cube's random debuffs. Examples: minecraft:blindness, minecraft:nausea. Changing this option required game restart to take effect.");
         Arrays.stream(debuffList).forEach((entry) -> cubeRandomDebuffs.add(new ResourceLocation(entry)));
         if (cubeRandomDebuffs.isEmpty()) cubeRandomDebuffs.add(new ResourceLocation("minecraft:weakness"));
+        cubeDamageLimit = builder.comment("The Damage Limit of the Cube.").min(50).getInt("CubeDamageLimit", 100);
     }
 }

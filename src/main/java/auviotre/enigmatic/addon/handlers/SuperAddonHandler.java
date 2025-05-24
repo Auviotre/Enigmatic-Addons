@@ -91,6 +91,18 @@ public class SuperAddonHandler {
         return ItemStack.EMPTY;
     }
 
+    public static List<ItemStack> getAllItem(Player player, Item item) {
+        List<ItemStack> outputs = new ArrayList<>();
+        for (NonNullList<ItemStack> stacks : player.getInventory().compartments) {
+            for (ItemStack itemstack : stacks) {
+                if (!itemstack.isEmpty() && itemstack.is(item)) {
+                    outputs.add(itemstack);
+                }
+            }
+        }
+        return outputs;
+    }
+
     public static DamageSource simpleSource(@NotNull Entity target, ResourceKey<DamageType> type) {
         return target.damageSources().source(type, null);
     }
@@ -117,6 +129,11 @@ public class SuperAddonHandler {
 
     public static boolean isPunishedOne(LivingEntity entity) {
         return entity instanceof Player player && hasBlessRing(player) && SuperpositionHandler.isTheCursedOne(player);
+    }
+
+    public static boolean isAbyssBoost(Player player) {
+        // The interface for Delicacy's Overwriting
+        return false;
     }
 
     public static ItemStack findBookInBag(Player player, Item book) {

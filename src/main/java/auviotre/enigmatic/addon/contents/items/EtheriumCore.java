@@ -50,7 +50,7 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
     public static Omniconfig.DoubleParameter damageConversionMax;
 
     public EtheriumCore() {
-        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.EPIC));
+        super(ItemSpellstoneCurio.getDefaultProperties().rarity(Rarity.EPIC).fireResistant());
         this.immunityList.add(DamageTypes.CACTUS);
         this.immunityList.add(DamageTypes.CRAMMING);
         this.immunityList.add(DamageTypes.IN_WALL);

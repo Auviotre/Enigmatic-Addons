@@ -10,13 +10,15 @@
   "tooltip.enigmaticaddons.magic_resistance": "§6%1$s§d 魔法抗性",
   "tooltip.enigmaticaddons.speed": "§6%1$s§d 速度",
   "tooltip.enigmaticaddons.luck": "§6%1$s§d 幸运值",
+  "tooltip.enigmaticaddons.heal": "§6%1$s§d 生命恢复",
+  "tooltip.enigmaticaddons.abyssBoost": "§d§n深渊强化：",
 
   "tooltip.enigmaticaddons.legacy_future1": "§5下个版本§d神秘遗物可能会",
   "tooltip.enigmaticaddons.legacy_future2": "§5实现的物品（猜测，来自扩展）",
 
   "enchantment.enigmaticaddons.redemption_curse": "救赎诅咒",
   "enchantment.enigmaticaddons.redemption_curse_alt": "救赎祝福",
-  "enchantment.enigmaticaddons.redemption_curse.desc": "增加收到的伤害（佩戴救赎之戒时变为减少）",
+  "enchantment.enigmaticaddons.redemption_curse.desc": "增加受到的伤害（佩戴救赎之戒时变为减少）",
   "enchantment.enigmaticaddons.frost_aspect": "霜冻附加",
   "enchantment.enigmaticaddons.frost_aspect.desc": "攻击目标逐渐冻结",
   "enchantment.enigmaticaddons.frost_protection": "霜冻保护",
@@ -47,7 +49,8 @@
   "tooltip.enigmaticaddons.livingOde4": "§d修正§6第二诅咒§d的方法：",
   "tooltip.enigmaticaddons.livingOde5": "§5- 中立动物不会主动攻击。",
   "tooltip.enigmaticaddons.livingOde6": "§5用该物品对目标攻击可使其暂时无法受到",
-  "tooltip.enigmaticaddons.livingOde7": "§5该物品保护并使周围中立动物以其为目标",
+  "tooltip.enigmaticaddons.livingOde7": "§5该物品保护",
+  "tooltip.enigmaticaddons.livingOde7_alt": "§5该物品保护并§6使周围中立动物以其为目标",
   "tooltip.enigmaticaddons.livingOde8": "§d对动物使用来安抚对方",
 
   "book.enigmaticaddons.entry.ode_to_living.name": "生灵颂词",
@@ -245,7 +248,7 @@
 
   "book.enigmaticaddons.entry.forger_gem.name": "锻造者的宝石",
   "book.enigmaticaddons.entry.forger_gem.page.1": "锻造工具与武器，是增强实力的过程中难以避免的一步，但在登峰造极的那一刻前，总会因为昂贵的造价或是濒临破裂的铁砧而担忧。<br2/>这个饰品则会直接将古老的锻造技巧注入你的双手，能够有效降低铁砧破裂的概率，并能够借助宝石的能量，将造价大幅降低，从而提高了锻造的上限。",
-  "book.enigmaticaddons.entry.forger_gem.page.2": "此外，精湛的手艺也允许你去打造一些不可破坏的造物，虽然这需要两把相同的崭新工具和大量的经验。<br2/>有时你也能在一些箱子里发现这些作物旧时代遗物的宝石。",
+  "book.enigmaticaddons.entry.forger_gem.page.2": "此外，七咒的魔力也允许你去打造一些不可破坏的造物，虽然这需要两把相同的崭新工具和大量的经验。<br2/>有时你也能在一些箱子里发现这些作物旧时代遗物的宝石。",
 
   "item.enigmaticaddons.adventure_charm": "冒险者之证",
   "item.enigmaticaddons.despair_insignia": "绝望者证章",
@@ -279,6 +282,38 @@
   "book.enigmaticaddons.entry.antique_bag.heading": "魔法书袋",
   "book.enigmaticaddons.entry.antique_bag.page.1": "这是另一个能在无名废墟中发掘出的神秘遗物。它黯淡的外表中散发着微弱的魔法光芒，就是这样的一个平平无奇的布袋，其内部却有着神秘的魔法空间。<br2/>但这个遗物似乎有着自己的脾气，只有当你放入的是书籍时，它才会勉强接受。",
   "book.enigmaticaddons.entry.antique_bag.page.2": "不过神奇的是，每当你存进一本书时，你的脑海中便马上浮现了一些本不属于你的知识。这能够极大的减少负担，还能让一些本身不起效的物品起点作用。",
+
+  "item.enigmaticaddons.artificial_flower": "魔法石英花",
+  "gui.enigmaticaddons.artificial_flower_attribute": "属性",
+  "gui.enigmaticaddons.artificial_flower_effect": "药水效果",
+  "gui.enigmaticaddons.artificial_flower_cost": "§5消耗 §6%1$s §5个青金石",
+  "gui.enigmaticaddons.artificial_flower_immunity": "§5免疫%1$s",
+  "gui.enigmaticaddons.artificial_flower_provide0": "§5提供%1$s",
+  "gui.enigmaticaddons.artificial_flower_provide1": "§5提供%1$s§5 II",
+
+  "tooltip.enigmaticaddons.artificialFlowerAttribute": "§d当前属性：",
+  "tooltip.enigmaticaddons.artificialFlowerEffect": "§d当前效果：",
+  "tooltip.enigmaticaddons.artificialFlowerNone": "§5无",
+
+  "book.enigmaticaddons.entry.artificial_flower.name": "人工花朵",
+  "book.enigmaticaddons.entry.artificial_flower.heading": "魔法花",
+  "book.enigmaticaddons.entry.artificial_flower.page.1": "在无名废墟之中，这朵亮丽的小花引起了你的注意。还当你未想明白为何如此美丽的花朵生长在箱子之中，它的触感就告诉你其实这是人工的造物。<br2/>富含魔力的人工花可以将材料转化为各种来路不明的效果，它如同刚刚入世的孩童一般难以辨别效果的好坏，只知一味的给予。",
+  "book.enigmaticaddons.entry.artificial_flower.page.2": "此外，如果身上有一些同类饰品的话，这朵可爱的花说不定会更开心。",
+
+  "item.enigmaticaddons.extradimensional_scepter": "超维权杖",
+
+  "tooltip.enigmaticaddons.extradimensionalScepter1": "§6右键§5生物可以储存/释放生物",
+  "tooltip.enigmaticaddons.extradimensionalScepter2": "§6右键§5发出射线累积超维值",
+  "tooltip.enigmaticaddons.extradimensionalScepter3": "§5足够后将一片生物封锁进§6超维之眼",
+  "tooltip.enigmaticaddons.extradimensionalScepterCooldown": "§5冷却：§6%1$s§5 秒",
+  "tooltip.enigmaticaddons.extradimensionalScepterModeS": "§5模式：§6运输",
+  "tooltip.enigmaticaddons.extradimensionalScepterModeC": "§5模式：§6战斗",
+  "tooltip.enigmaticaddons.extradimensionalScepterInfo": "§5当前保存生物：§6%1$s",
+  "tooltip.enigmaticaddons.extradimensionalScepterInfo_alt": "§5当前保存生物：§6%1$s§6（%2$s§6）",
+
+  "book.enigmaticaddons.entry.extradimensional_scepter.name": "超维权杖",
+  "book.enigmaticaddons.entry.extradimensional_scepter.page.1": "超维之眼虽说是良好的生物运输工具，但是作为一次性用品还是过于繁琐了，我们是否可以利用来自下界的材料来做一点新工具呢？一把崭新的权杖由此诞生！<br2/>我们现在可以通过权杖直接将生物传送到独属于权杖的超维度中，也可以在战斗之中将许多目标封锁在超维度中渐渐撕裂。",
+  "book.enigmaticaddons.entry.extradimensional_scepter.page.2": "当然，这些操作有一个缺点，需要目标相对于自己在生命力上足够虚弱。",
 
   "item.enigmaticaddons.astral_potion": "星辰之瓶",
 
@@ -394,9 +429,13 @@
   "tooltip.enigmaticaddons.blessRingLore2": "§5光泽，铭记着那些饱受",
   "tooltip.enigmaticaddons.blessRingLore3": "§5折磨的岁月，同时这也",
   "tooltip.enigmaticaddons.blessRingLore4": "§5是实力的证明……",
+  "tooltip.enigmaticaddons.blessRingDuration": "§5已经破损了 §6%1$s §5次",
 
-  "tooltip.enigmaticaddons.blessUse1": "该物品了解你昔日的经历",
-  "tooltip.enigmaticaddons.blessUse2": "它依旧认可你的资格",
+  "tooltip.enigmaticaddons.blessUse1": "救赎勉强允许你使用该物品",
+  "tooltip.enigmaticaddons.blessUse2": "但切莫贪心",
+  "tooltip.enigmaticaddons.blessTrueUse1": "该物品依旧认可往日的经历",
+  "tooltip.enigmaticaddons.blessTrueUse2": "你可以安心使用",
+  "message.enigmaticaddons.blessRingBreak": "你听到了救赎之戒破损的声音……",
 
   "item.enigmaticaddons.evil_dagger": "刻咒者",
 
@@ -438,6 +477,7 @@
   "tooltip.enigmaticaddons.chaosElytra1": "§5减少 §6%1$s §5来自背后的伤害。",
   "tooltip.enigmaticaddons.chaosElytra2": "§5加速垂直冲向地面时会产生范围伤害。",
   "tooltip.enigmaticaddons.chaosElytra3": "",
+  "tooltip.enigmaticaddons.chaosElytra4": "§6 +3 §d护甲值",
 
   "book.enigmaticaddons.entry.chaos_elytra.name": "混沌之傲",
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "既然深渊之心在手，为何不将目光置于天空之中？<br2/>基于壮丽鞘翅相同的制作工艺，用上更为邪恶、更有力量的材料，便可获得这更为强力的鞘翅。借助末影和星辰之力翱翔在天空之中，去傲视那些匍匐在大地的生灵。",
@@ -456,7 +496,7 @@
   "entity.enigmaticaddons.split_dragon_breath": "分裂龙息",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "终极末影龙火球",
 
-  "effect.enigmaticaddons.dragon_breath": "龙息",
+  "effect.enigmaticaddons.dragon_breath": "瞬时龙息",
   "effect.enigmaticaddons.frozen_heart": "冻结之心",
   "effect.enigmaticaddons.ichor_corrosion": "灵液腐蚀",
   "effect.enigmaticaddons.pure_resistance": "纯化抗性",
@@ -545,5 +585,11 @@
   "advancement.enigmaticaddons:falseJustice.desc": "利用邪恶精髓制造这本混沌之书",
 
   "advancement.enigmaticaddons:blessRing": "命运扭转",
-  "advancement.enigmaticaddons:blessRing.desc": "碎裂七咒之戒，获得救赎"
+  "advancement.enigmaticaddons:blessRing.desc": "碎裂七咒之戒，获得救赎",
+
+  "advancement.enigmaticaddons:maliceTotem": "生死不过嬉戏",
+  "advancement.enigmaticaddons:maliceTotem.desc": "",
+
+  "advancement.enigmaticaddons:ChaosElytra": "傲睨众生",
+  "advancement.enigmaticaddons:ChaosElytra.desc": "带上混沌之傲，于星穹俯视众生"
 }

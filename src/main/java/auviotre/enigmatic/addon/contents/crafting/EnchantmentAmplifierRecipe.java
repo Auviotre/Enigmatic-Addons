@@ -3,6 +3,7 @@ package auviotre.enigmatic.addon.contents.crafting;
 import auviotre.enigmatic.addon.contents.items.BlessAmplifier;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -71,8 +72,9 @@ public class EnchantmentAmplifierRecipe extends CustomRecipe {
     private ItemStack boost(ItemStack target) {
         Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(target);
         for (Enchantment enchantment : enchantments.keySet()) {
-            if (enchantment.getMaxLevel() > 1 && enchantment.getMaxLevel() + 1 > target.getEnchantmentLevel(enchantment)) {
-                enchantments.compute(enchantment, (enchant, integer) -> Math.min(integer * 2, enchantment.getMaxLevel() + 1));
+            int maxLevel = Mth.ceil(enchantment.getMaxLevel() * 1.5);
+            if (enchantment.getMaxLevel() > 1 && maxLevel > target.getEnchantmentLevel(enchantment)) {
+                enchantments.compute(enchantment, (enchant, integer) -> Math.min(integer * 2, maxLevel));
             }
         }
         ItemStack item = target.copy();
@@ -83,8 +85,7 @@ public class EnchantmentAmplifierRecipe extends CustomRecipe {
     private boolean canBoost(ItemStack amplifier, ItemStack target) {
         Stream<Enchantment> enchantments = EnchantmentHelper.getEnchantments(target).keySet().stream();
         Objects.requireNonNull(amplifier.getItem());
-
-        return enchantments.anyMatch(enchantment -> enchantment.getMaxLevel() > 1 && enchantment.getMaxLevel() + 1 > target.getEnchantmentLevel(enchantment));
+        return enchantments.anyMatch(enchantment -> enchantment.getMaxLevel() > 1 && Mth.ceil(enchantment.getMaxLevel() * 1.5) > target.getEnchantmentLevel(enchantment));
     }
 
 

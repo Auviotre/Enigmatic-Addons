@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "enigmaticaddons:chaos_elytra"
+    },
+    "title": {
+      "translate": "advancement.enigmaticaddons:ChaosElytra"
+    },
+    "description": {
+      "translate": "advancement.enigmaticaddons:ChaosElytra.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 160
+  },
+  "parent": "enigmaticlegacy:main/abyssal_heart",
+  "criteria": {
+    "twist": {
+      "trigger": "enigmaticaddons:using_chaos_elytra"
+    }
+  }
+}

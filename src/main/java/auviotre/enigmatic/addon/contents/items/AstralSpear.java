@@ -51,7 +51,7 @@ public class AstralSpear extends ItemBase implements Vanishable {
     private boolean soundPlayed3 = false;
 
     public AstralSpear() {
-        super(ItemBase.getDefaultProperties().rarity(Rarity.EPIC).stacksTo(1).durability(3000));
+        super(ItemBase.getDefaultProperties().rarity(Rarity.EPIC).stacksTo(1).durability(3000).fireResistant());
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 13.0, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -3.1F, AttributeModifier.Operation.ADDITION));

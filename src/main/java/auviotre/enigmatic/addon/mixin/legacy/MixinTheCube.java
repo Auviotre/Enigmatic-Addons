@@ -11,7 +11,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
@@ -35,5 +37,10 @@ public abstract class MixinTheCube implements ISpellstone {
             builder.add(ForgeRegistries.MOB_EFFECTS.getValue(buff));
         }
         return builder.build();
+    }
+
+    @Inject(method = "getDamageLimit(Z)F", at = @At("RETURN"), cancellable = true, remap = false)
+    public void getDamageLimitMix(boolean cursed, CallbackInfoReturnable<Float> cir) {
+        cir.setReturnValue((cursed ? 1.5F : 1.0F) * MixinOmniconfigHelper.cubeDamageLimit.getValue());
     }
 }

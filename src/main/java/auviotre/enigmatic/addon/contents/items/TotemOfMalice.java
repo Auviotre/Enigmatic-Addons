@@ -36,7 +36,7 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     public static Omniconfig.DoubleParameter raiderResistance;
 
     public TotemOfMalice() {
-        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));
+        super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).fireResistant());
     }
 
     @SubscribeConfig
@@ -53,7 +53,7 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     public static ItemStack getValidTotem(Player player) {
         for (NonNullList<ItemStack> stacks : player.getInventory().compartments) {
             for (ItemStack itemstack : stacks) {
-                if (!itemstack.isEmpty() && itemstack.is(EnigmaticAddonItems.TOTEM_OF_MALICE) && isNotBroken(itemstack)) {
+                if (!itemstack.isEmpty() && itemstack.is(EnigmaticAddonItems.TOTEM_OF_MALICE) && isPowerful(itemstack)) {
                     return itemstack;
                 }
             }
@@ -67,7 +67,7 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
         if (needUnbroken) {
             if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
                 totem = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.TOTEM_OF_MALICE);
-                return isNotBroken(totem);
+                return isPowerful(totem);
             } else return !getValidTotem(player).isEmpty();
         } else {
             if (SuperpositionHandler.hasItem(player, EnigmaticAddonItems.TOTEM_OF_MALICE)) {
@@ -78,28 +78,24 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
 
     public static void hurtAndBreak(ItemStack stack, LivingEntity entity) {
         if (!entity.level().isClientSide() && (!(entity instanceof Player) || !((Player) entity).getAbilities().instabuild)) {
-            int damage = getTotemDamage(stack);
-            int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-            damage = damage + 1;
             entity.invulnerableTime = 60;
-            setTotemDamage(stack, damage);
+            setTotemPower(stack, getTotemPower(stack) - 1);
         }
     }
 
-    public static boolean isNotBroken(ItemStack stack) {
+    public static boolean isPowerful(ItemStack stack) {
         if (stack.isEmpty()) return false;
-        int damage = getTotemDamage(stack);
-        int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        return damage < 3 + level;
+        int damage = getTotemPower(stack);
+        return damage > 0;
     }
 
-    public static int getTotemDamage(ItemStack stack) {
-        return !stack.hasTag() ? 0 : stack.getTag().getInt("TotemMDamage");
+    public static int getTotemPower(ItemStack stack) {
+        return !stack.hasTag() ? 0 : stack.getTag().getInt("MalicePower");
     }
 
-    public static void setTotemDamage(ItemStack stack, int damage) {
+    public static void setTotemPower(ItemStack stack, int damage) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        stack.getOrCreateTag().putInt("TotemMDamage", Mth.clamp(damage, 0, level + 3));
+        stack.getOrCreateTag().putInt("MalicePower", Mth.clamp(damage, 0, level + 3));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -109,7 +105,7 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice2", ChatFormatting.GOLD, String.format("%.0f", 100 * raiderBoost.getValue()) + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice3", ChatFormatting.GOLD, String.format("%.0f", 100 * raiderResistance.getValue()) + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-            if (isNotBroken(stack)) {
+            if (isPowerful(stack)) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice4");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.totemofMalice5");
             } else {
@@ -124,7 +120,7 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     }
 
     public boolean isFoil(ItemStack stack) {
-        return isNotBroken(stack);
+        return isPowerful(stack);
     }
 
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
@@ -132,18 +128,18 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     }
 
     public boolean isBarVisible(ItemStack stack) {
-        return getTotemDamage(stack) > 0;
+        return true;
     }
 
     public int getBarWidth(ItemStack stack) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        return Math.round(13.0F - (float) getTotemDamage(stack) * 13.0F / (3.0F + level));
+        return Math.round((float) getTotemPower(stack) * 13.0F / (3.0F + level));
     }
 
     public int getBarColor(ItemStack stack) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
         float stackMaxDamage = 3.0F + level;
-        float f = Math.max(0.0F, (stackMaxDamage - getTotemDamage(stack)) / stackMaxDamage);
-        return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
+        float f = Math.max(0.0F, getTotemPower(stack) / stackMaxDamage);
+        return Mth.hsvToRgb(f / 3.0F, 1.0F, 0.5F + f * 0.5F);
     }
 }

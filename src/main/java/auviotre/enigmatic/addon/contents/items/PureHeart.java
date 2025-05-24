@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
@@ -13,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class PureHeart extends ItemBase implements ICursed {
+public class PureHeart extends ItemBase implements ICursed, IBlessed {
     public PureHeart() {
         super(ItemBase.getDefaultProperties().rarity(Rarity.EPIC).stacksTo(1));
     }

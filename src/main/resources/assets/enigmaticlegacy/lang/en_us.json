@@ -1,5 +1,6 @@
 {
   "entity.enigmaticlegacy.permanent_item_entity": "Permanent Item",
   "entity.enigmaticlegacy.enigmatic_potion_entity": "Ultimate Potion",
-  "entity.enigmaticlegacy.ultimate_wither_skull_entity": "Ultimate Wither Skull"
+  "entity.enigmaticlegacy.ultimate_wither_skull_entity": "Ultimate Wither Skull",
+  "gui.jei.enigmaticlegacy.category.hidden_crafting": "Hidden Crafting"
 }

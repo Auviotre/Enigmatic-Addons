@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
@@ -30,7 +31,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScorchedCharm extends ItemBaseCurio implements ICursed {
+public class ScorchedCharm extends ItemBaseCurio implements ICursed, IBlessed {
     public static Omniconfig.DoubleParameter lavaHealAmount;
     public static Omniconfig.PerhapsParameter lifestealModifier;
     public static Omniconfig.PerhapsParameter resistanceProbability;
@@ -74,11 +75,12 @@ public class ScorchedCharm extends ItemBaseCurio implements ICursed {
         if (entity.isOnFire()) entity.clearFire();
         if (entity.isInLava()) {
             if (entity.tickCount % 20 == 0) entity.heal((float) lavaHealAmount.getValue());
+            if (entity instanceof Player player && !player.isAffectedByFluids()) return;
             CollisionContext collisionContext = CollisionContext.of(entity);
             if (collisionContext.isAbove(LiquidBlock.STABLE_SHAPE, entity.blockPosition(), true) && !entity.level().getFluidState(entity.blockPosition().above()).is(FluidTags.LAVA)) {
                 entity.setOnGround(true);
             } else {
-                entity.setDeltaMovement(entity.getDeltaMovement().add(0.0, 0.07, 0.0));
+                entity.setDeltaMovement(entity.getDeltaMovement().add(0.0, entity.isCrouching() ? -0.01 : 0.07, 0.0));
             }
         }
     }

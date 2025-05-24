@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.mixin.legacy;
 
+import auviotre.enigmatic.addon.contents.items.BlessRing;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.items.EnchanterPearl;
@@ -31,7 +32,7 @@ public class MixinEnchanterPearl extends ItemBaseCurio {
             if (super.canEquip(context, stack)) {
                 LivingEntity entity = context.entity();
                 if (entity instanceof Player player) {
-                    if (SuperAddonHandler.isTheBlessedOne(player)) {
+                    if (BlessRing.Helper.betrayalAvailable(player)) {
                         cir.setReturnValue(true);
                     }
                 }

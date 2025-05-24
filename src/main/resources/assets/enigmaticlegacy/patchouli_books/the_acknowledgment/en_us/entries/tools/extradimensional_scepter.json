@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.extradimensional_scepter.name",
+  "icon": "enigmaticaddons:extradimensional_scepter",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/extradimensional_scepter",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 50,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.extradimensional_scepter.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:extradimensional_scepter",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.extradimensional_scepter.page.2"
+    }
+  ]
+}

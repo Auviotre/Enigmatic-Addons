@@ -55,6 +55,9 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Ultimate Potions")
     @ObjectHolder(value = "enigmaticaddons:ultimate_potion_lingering", registryName = "item")
     public static final UltimatePotionAddon.Lingering ULTIMATE_POTION_LINGERING = null;
+    @ConfigurableItem("Scepter of Extradimensional")
+    @ObjectHolder(value = "enigmaticaddons:extradimensional_scepter", registryName = "item")
+    public static final ExtradimensionalScepter EXTRADIMENSIONAL_SCEPTER = null;
     @ConfigurableItem("False Justice")
     @ObjectHolder(value = "enigmaticaddons:false_justice", registryName = "item")
     public static final FalseJustice FALSE_JUSTICE = null;
@@ -82,6 +85,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Antique Book Bag")
     @ObjectHolder(value = "enigmaticaddons:antique_bag", registryName = "item")
     public static final AntiqueBag ANTIQUE_BAG = null;
+    @ObjectHolder(value = "enigmaticaddons:artificial_flower", registryName = "item")
+    public static final ArtificialFlower ARTIFICIAL_FLOWER = null;
     @ConfigurableItem("Emblem of Adventurer")
     @ObjectHolder(value = "enigmaticaddons:adventure_charm", registryName = "item")
     public static final AdventureCharm ADVENTURE_CHARM = null;
@@ -158,6 +163,7 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("adventure_charm", AdventureCharm::new);
         this.register("despair_insignia", DespairInsignia::new);
         this.register("antique_bag", AntiqueBag::new);
+        this.register("artificial_flower", ArtificialFlower::new);
         this.register("void_tome", VoidTome::new);
         this.register("earth_heart_fragment", EarthHeartFragment::new);
         this.register("ichor_droplet", IchorDroplet::new);
@@ -176,6 +182,7 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("totem_of_malice", TotemOfMalice::new);
         this.register("disaster_sword", DisasterSword::new);
         this.register("chaos_elytra", ChaosElytra::new);
+        this.register("extradimensional_scepter", ExtradimensionalScepter::new);
         this.register("common_potion", () -> new UltimatePotionAddon.Base(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_splash", () -> new UltimatePotionAddon.Splash(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_lingering", () -> new UltimatePotionAddon.Lingering(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));

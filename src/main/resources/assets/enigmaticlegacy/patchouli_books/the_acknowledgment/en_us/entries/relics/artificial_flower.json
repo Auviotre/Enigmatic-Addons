@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.artificial_flower.name",
+  "icon": "enigmaticaddons:artificial_flower",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/artificial_flower",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 20,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.artificial_flower.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:artificial_flower",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.artificial_flower.heading",
+      "text": "book.enigmaticaddons.entry.artificial_flower.page.2"
+    }
+  ]
+}

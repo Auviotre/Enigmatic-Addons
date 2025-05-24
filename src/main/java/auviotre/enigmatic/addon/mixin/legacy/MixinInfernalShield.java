@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.mixin.legacy;
 
+import auviotre.enigmatic.addon.contents.items.BlessRing;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.items.InfernalShield;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
@@ -21,9 +22,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(InfernalShield.class)
 public class MixinInfernalShield extends ItemBase {
     @Inject(method = "use", at = @At("RETURN"), cancellable = true)
-    public void canEatMix(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+    public void useMix(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (SuperAddonHandler.isTheBlessedOne(player)) {
             player.startUsingItem(hand);
+            BlessRing.Helper.addBetrayal(player, 1);
             cir.setReturnValue(InteractionResultHolder.consume(player.getItemInHand(hand)));
         }
     }

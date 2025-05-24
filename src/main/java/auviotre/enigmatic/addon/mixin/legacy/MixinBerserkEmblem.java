@@ -1,6 +1,6 @@
 package auviotre.enigmatic.addon.mixin.legacy;
 
-import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
+import auviotre.enigmatic.addon.contents.items.BlessRing;
 import com.aizistral.enigmaticlegacy.items.BerserkEmblem;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +23,7 @@ public class MixinBerserkEmblem extends ItemBaseCurio {
             if (super.canEquip(context, stack)) {
                 LivingEntity entity = context.entity();
                 if (entity instanceof Player player) {
-                    if (SuperAddonHandler.isTheBlessedOne(player)) {
+                    if (BlessRing.Helper.betrayalAvailable(player)) {
                         cir.setReturnValue(true);
                     }
                 }

@@ -10,6 +10,8 @@
   "tooltip.enigmaticaddons.magic_resistance": "§6%1$s§d Magic Resistance",
   "tooltip.enigmaticaddons.speed": "§6%1$s§d Speed",
   "tooltip.enigmaticaddons.luck": "§6%1$s§d Luck",
+  "tooltip.enigmaticaddons.heal": "§6%1$s§d Health Regeneration",
+  "tooltip.enigmaticaddons.abyssBoost": "§l§dAbyss Boost:",
 
   "tooltip.enigmaticaddons.legacy_future1": "§5Possible items that may be implemented in the next",
   "tooltip.enigmaticaddons.legacy_future2": "§5version of §dEnigmatic Legacy (I Guess from Addon)",
@@ -47,7 +49,8 @@
   "tooltip.enigmaticaddons.livingOde4": "§dAlteration of the §6Second Curse§d:",
   "tooltip.enigmaticaddons.livingOde5": "§5- Neutral animals will not actively attack.",
   "tooltip.enigmaticaddons.livingOde6": "§5Attack with this item to temporarily prevent the target from being",
-  "tooltip.enigmaticaddons.livingOde7": "§5protected by this and make neutral animals around it target it.",
+  "tooltip.enigmaticaddons.livingOde7": "§5protected by this item.",
+  "tooltip.enigmaticaddons.livingOde7_alt": "§5protected by this and §6make neutral animals around it target it§5.",
   "tooltip.enigmaticaddons.livingOde8": "§dUse to appease animals.",
 
   "book.enigmaticaddons.entry.ode_to_living.name": "Ode to the Living Beings",
@@ -245,7 +248,7 @@
 
   "book.enigmaticaddons.entry.forger_gem.name": "Forger's Gem",
   "book.enigmaticaddons.entry.forger_gem.page.1": "Forging items is an inevitable step to strength enhancement, but before reach the perfection, there will always be concerns due to expensive costs or anvil breakage.<br2/>This accessory will directly inject ancient forging techniques into your hands, effectively reducing the probability of anvil breakage, and utilizing the energy of",
-  "book.enigmaticaddons.entry.forger_gem.page.2": "the gem to reduce the cost, thereby increasing the upper limit of forging.<br2/>In addition, exquisite craft also allows you to create some Unbreakable creations with two identical new tools.",
+  "book.enigmaticaddons.entry.forger_gem.page.2": "the gem to reduce the cost, thereby increasing the upper limit of forging.<br2/>In addition, the magic of the Seven Curses also allows you to create some Unbreakable creations with two identical new tools.",
 
   "item.enigmaticaddons.adventure_charm": "Emblem of Adventurer",
   "item.enigmaticaddons.despair_insignia": "Insignia of Despair",
@@ -279,6 +282,38 @@
   "book.enigmaticaddons.entry.antique_bag.heading": "Magic Book Bag",
   "book.enigmaticaddons.entry.antique_bag.page.1": "This is another mysterious relic that can be found in the midst of nameless ruins. It emits a faint magical light in its dim appearance, just like this ordinary cloth bag, but inside it there is a mysterious magical space.<br2/>But this relic seems to have its own temper, only reluctantly accepting when you put in a book.",
   "book.enigmaticaddons.entry.antique_bag.page.2": "However, miraculously, every time you store a book, some knowledge that does not belong to you immediately comes to mind. This can greatly save storage space and allow some items that are not working on their own to take effect.",
+
+  "item.enigmaticaddons.artificial_flower": "Magic Quartz Flower",
+  "gui.enigmaticaddons.artificial_flower_attribute": "Attribute",
+  "gui.enigmaticaddons.artificial_flower_effect": "Potion Effect",
+  "gui.enigmaticaddons.artificial_flower_cost": "§5Consume §6%1$s §5lapis lazuli",
+  "gui.enigmaticaddons.artificial_flower_immunity": "§5Immune to %1$s",
+  "gui.enigmaticaddons.artificial_flower_provide0": "§5Providing %1$s",
+  "gui.enigmaticaddons.artificial_flower_provide1": "§5Providing %1$s§5 II",
+
+  "tooltip.enigmaticaddons.artificialFlowerAttribute": "§dCurrent Attributes:",
+  "tooltip.enigmaticaddons.artificialFlowerEffect": "§dCurrent Effects:",
+  "tooltip.enigmaticaddons.artificialFlowerNone": "§5None",
+
+  "book.enigmaticaddons.entry.artificial_flower.name": "The Artificial Flower",
+  "book.enigmaticaddons.entry.artificial_flower.heading": "Magic Flower",
+  "book.enigmaticaddons.entry.artificial_flower.page.1": "In the nameless ruins, this beautiful little flower caught your attention. When you haven't figured out why such a beautiful flower grows in the chest, its touch tells you that it is actually an artificial creation.<br2/>Artificial flowers rich in magic can transform materials into various effects of unknown origin.",
+  "book.enigmaticaddons.entry.artificial_flower.page.2": "They are like children who have just entered the world and find it difficult to distinguish the quality of the effects, only knowing to give them blindly.<br2/>In addition, if there are some similar accessories on the body, this cute flower may be even happier.",
+
+  "item.enigmaticaddons.extradimensional_scepter": "Scepter of Extradimension",
+
+  "tooltip.enigmaticaddons.extradimensionalScepter1": "§6Right-click§5 on a creature can store / release it",
+  "tooltip.enigmaticaddons.extradimensionalScepter2": "§6Right-click§5 to emit ray to accumulate extradimensional values",
+  "tooltip.enigmaticaddons.extradimensionalScepter3": "§5Once sufficient, block the creatures into the §6Eye of Extradimension",
+  "tooltip.enigmaticaddons.extradimensionalScepterCooldown": "§5Cooldown: §6%1$s§5s",
+  "tooltip.enigmaticaddons.extradimensionalScepterModeS": "§5Mode: §6Transport",
+  "tooltip.enigmaticaddons.extradimensionalScepterModeC": "§5Mode: §6Combat",
+  "tooltip.enigmaticaddons.extradimensionalScepterInfo": "§5Currently saving creature: §6%1$s",
+  "tooltip.enigmaticaddons.extradimensionalScepterInfo_alt": "§5CCurrently saving creature: §6%1$s§6(%2$s§6)",
+
+  "book.enigmaticaddons.entry.extradimensional_scepter.name": "Scepter of Extradimension",
+  "book.enigmaticaddons.entry.extradimensional_scepter.page.1": "Although Eye of Extradimension is a good transportation tool for entity, it is still too cumbersome as a disposable item. Can we use materials from the Nether to make new tools? A brand new scepter was born!<br2/>We can now directly teleport creatures into the extradimension exclusive to the scepter, or block many targets in the extradimension",
+  "book.enigmaticaddons.entry.extradimensional_scepter.page.2": "and gradually tear them apart during battles.<br2/>Of course, these operations have a drawback of requiring the target to be sufficiently weak in terms of vitality relative to oneself.",
 
   "item.enigmaticaddons.astral_potion": "Potion of Cosmic",
 
@@ -336,7 +371,7 @@
 
   "tooltip.enigmaticaddons.theBless1": "§5In the endless journey of suffering,",
   "tooltip.enigmaticaddons.theBless2": "§5using this to light up the way forward.",
-  "tooltip.enigmaticaddons.theBless3": "§5Causing more damage to the target §don fire §5and",
+  "tooltip.enigmaticaddons.theBless3": "§5Causing more damage to the target§d on fire §5and",
   "tooltip.enigmaticaddons.theBless4": "§5remove the §6beneficial§5 effects on it.",
   "tooltip.enigmaticaddons.theBless5": "§5The holder will not catch fire and",
   "tooltip.enigmaticaddons.theBless6": "§5has longer invulnerable time",
@@ -394,9 +429,13 @@
   "tooltip.enigmaticaddons.blessRingLore2": "§5luster, remembering those years",
   "tooltip.enigmaticaddons.blessRingLore3": "§5of torment, and also, it is a ",
   "tooltip.enigmaticaddons.blessRingLore4": "§5proof of power......",
+  "tooltip.enigmaticaddons.blessRingDuration": "§5This has been damaged §6%1$s §5times already.",
 
-  "tooltip.enigmaticaddons.blessUse1": "This item understands your past experiences,",
-  "tooltip.enigmaticaddons.blessUse2": "and it still recognizes your qualifications.",
+  "tooltip.enigmaticaddons.blessUse1": "Redemption reluctantly allows you to use",
+  "tooltip.enigmaticaddons.blessUse2": "this item but don't be too greedy.",
+  "tooltip.enigmaticaddons.blessTrueUse1": "This item still recognizes your past experiences,",
+  "tooltip.enigmaticaddons.blessTrueUse2": "you can use this with peace of mind.",
+  "message.enigmaticaddons.blessRingBreak": "You heard the sound of the Ring of Redemption breaking......",
 
   "item.enigmaticaddons.evil_dagger": "The Curse Carver",
 
@@ -438,6 +477,7 @@
   "tooltip.enigmaticaddons.chaosElytra1": "§5Reduce §6%1$s §5of damage from behind.",
   "tooltip.enigmaticaddons.chaosElytra2": "§5When accelerating vertically towards",
   "tooltip.enigmaticaddons.chaosElytra3": "§5the ground, it will cause range damage.",
+  "tooltip.enigmaticaddons.chaosElytra4": "§6 +3 §5Armor",
 
   "book.enigmaticaddons.entry.chaos_elytra.name": "The Arrogance of Chaos",
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "Since the Heart of Abyss is in hand, why not set your gaze on the sky?<br2/>Based on the same process as the Majestic Elytra, using more evil and powerful materials can obtain these stronger elytra. Soar in the sky with the power of the cosmic and the ender, to look down upon the creatures crawling on the ground.",
@@ -456,7 +496,7 @@
   "entity.enigmaticaddons.split_dragon_breath": "Split Dragon Breath",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "Ultimate Dragon Fireball",
 
-  "effect.enigmaticaddons.dragon_breath": "Dragon Breath",
+  "effect.enigmaticaddons.dragon_breath": "Instantly Dragon Breath",
   "effect.enigmaticaddons.frozen_heart": "Frozen Heart",
   "effect.enigmaticaddons.ichor_corrosion": "Ichor Corrosion",
   "effect.enigmaticaddons.pure_resistance": "Pure Resistance",
@@ -545,5 +585,11 @@
   "advancement.enigmaticaddons:falseJustice.desc": "Using the Evil Essence to craft this book of chaos",
 
   "advancement.enigmaticaddons:blessRing": "Fate Reverses",
-  "advancement.enigmaticaddons:blessRing.desc": "Break the Ring of Seven Curses to obtain redemption"
+  "advancement.enigmaticaddons:blessRing.desc": "Break the Ring of Seven Curses to obtain redemption",
+
+  "advancement.enigmaticaddons:maliceTotem": "",
+  "advancement.enigmaticaddons:maliceTotem.desc": "",
+
+  "advancement.enigmaticaddons:ChaosElytra": "Arrogance to all foolish beings",
+  "advancement.enigmaticaddons:ChaosElytra.desc": "Take the Arrogance of Chaos, overlooking sentient beings from the sky"
 }

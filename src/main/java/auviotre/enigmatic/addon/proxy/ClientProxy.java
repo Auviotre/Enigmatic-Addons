@@ -4,6 +4,7 @@ import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.client.renderers.*;
 import auviotre.enigmatic.addon.client.renderers.layers.ChaosElytraLayer;
 import auviotre.enigmatic.addon.client.screens.AntiqueBagScreen;
+import auviotre.enigmatic.addon.client.screens.ArtificialFlowerScreen;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonMenus;
@@ -29,6 +30,7 @@ public class ClientProxy extends CommonProxy {
         initEntityRenderers();
         initItemProperties();
         MenuScreens.register(EnigmaticAddonMenus.ANTIQUE_BAG_MENU, AntiqueBagScreen::new);
+        MenuScreens.register(EnigmaticAddonMenus.ARTIFICIAL_FLOWER_MENU, ArtificialFlowerScreen::new);
     }
 
     public void initItemProperties() {

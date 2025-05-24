@@ -47,7 +47,7 @@ import java.util.UUID;
 
 public class CursedXPScroll extends ItemBaseCurio implements ICursed {
     public static Omniconfig.DoubleParameter damageBoostLimit;
-    public static Omniconfig.DoubleParameter speedBoostLimit;
+    public static Omniconfig.DoubleParameter healBoostLimit;
     public static Omniconfig.DoubleParameter KRBoostLimit;
     public static Omniconfig.IntParameter XPLevelUpperLimit;
 
@@ -59,7 +59,7 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("ScrollofIgnoranceCurse");
         damageBoostLimit = builder.comment("Damage Amplification Limit of Scroll of Ignorance Curse. Defined as percentage.").max(1000.0).getDouble("DamageBoostLimit", 100.0);
-        speedBoostLimit = builder.comment("Speed Amplification Limit of Scroll of Ignorance Curse. Defined as percentage.").max(1000.0).getDouble("SpeedBoostLimit", 50.0);
+        healBoostLimit = builder.comment("Heal Amplification Limit of Scroll of Ignorance Curse. Defined as percentage.").max(1000.0).getDouble("HealBoostLimit", 50.0);
         KRBoostLimit = builder.comment("Knockback Resistance Limit Modifier of Scroll of Ignorance Curse. Defined as percentage.").max(1000.0).getDouble("KnockbackResistanceBoostLimit", 160.0);
         XPLevelUpperLimit = builder.comment("The Max Level of stored experience of Scroll of Ignorance Curse, which provides attribute amplification.").max(1000).getInt("XPLevelUpperLimit", 1000);
         builder.popPrefix();
@@ -124,7 +124,7 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.addLocalizedFormattedString(list, "curios.modifiers.scroll", ChatFormatting.GOLD);
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.damage", ChatFormatting.GOLD, "+" + String.format("%.1f", level * damageBoostLimit.getValue()) + "%");
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.speed", ChatFormatting.GOLD, "+" + String.format("%.1f", level * speedBoostLimit.getValue()) + "%");
+        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.heal", ChatFormatting.GOLD, "+" + String.format("%.1f", level * healBoostLimit.getValue()) + "%");
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.knockback_resistance", ChatFormatting.GOLD, "+" + String.format("%.1f", level * KRBoostLimit.getValue()) + "%");
     }
 
@@ -170,7 +170,6 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
         double level = getLevelModifier(stack);
         if (entity instanceof Player player && SuperAddonHandler.isOKOne(player) && level > 0) {
             Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
-            attributes.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("DC1A2466-36E9-A205-F278-1A8257934E09"), "Cursed XP Bonus", level / 100.0 * speedBoostLimit.getValue(), AttributeModifier.Operation.MULTIPLY_TOTAL));
             attributes.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.fromString("1413353D-4D00-953F-B40B-8A17AF92411F"), "Cursed XP Bonus", level / 100.0 * KRBoostLimit.getValue(), AttributeModifier.Operation.MULTIPLY_TOTAL));
             return attributes;
         }

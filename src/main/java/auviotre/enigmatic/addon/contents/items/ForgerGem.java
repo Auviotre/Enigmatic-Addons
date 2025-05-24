@@ -38,6 +38,7 @@ public class ForgerGem extends ItemBaseCurio {
     };
     public static Omniconfig.BooleanParameter strictUnbreakableForge;
     public static Omniconfig.BooleanParameter levelNotValue;
+    public static Omniconfig.IntParameter unbreakableRepairCost;
 
     public ForgerGem() {
         super(getDefaultProperties().rarity(Rarity.EPIC).fireResistant().stacksTo(1));
@@ -48,11 +49,10 @@ public class ForgerGem extends ItemBaseCurio {
         builder.pushPrefix("ForgerGem");
         strictUnbreakableForge = builder.comment("Whether to enable stricter detection for unbreakable forging when equipped the Forger's Gem. True for enable.").getBoolean("StrictUnbreakableForge", true);
         levelNotValue = builder.comment("Whether the halving experience by level or value. True for level.").getBoolean("EXPLevelNotValue", false);
+        unbreakableRepairCost = builder.comment("The extra repair cost after unbreakable forging when equipped the Forger's Gem.").min(2).getInt("UnbreakableRepairCost", 10);
         blackList.clear();
         String[] list = builder.config.getStringList("ForgerGemUnbreakableBlackList", "Balance Options", defaultBlackList, "List of items that will never be unbreakable. Examples: minecraft:iron_sword. Changing this option required game restart to take effect.");
-        Arrays.stream(list).forEach((entry) -> {
-            blackList.add(new ResourceLocation(entry));
-        });
+        Arrays.stream(list).forEach((entry) -> blackList.add(new ResourceLocation(entry)));
         builder.popPrefix();
     }
 

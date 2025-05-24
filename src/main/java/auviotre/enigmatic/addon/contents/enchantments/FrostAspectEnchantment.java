@@ -31,6 +31,6 @@ public class FrostAspectEnchantment extends Enchantment {
     }
 
     protected boolean checkCompatibility(Enchantment enchantment) {
-        return enchantment != Enchantments.FIRE_ASPECT;
+        return enchantment != Enchantments.FIRE_ASPECT && super.checkCompatibility(enchantment);
     }
 }

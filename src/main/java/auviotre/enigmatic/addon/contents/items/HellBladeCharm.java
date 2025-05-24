@@ -50,7 +50,7 @@ public class HellBladeCharm extends ItemBaseCurio {
         builder.pushPrefix("CharmofHellBlade");
         equipCooldown = builder.comment("The Cooldown to unequip this Charm. Defined as tick.").max(32768).getInt("EquipCooldown", 1200);
         damageMultiplier = builder.comment("The damage boost for who bear the charm. Measured as percentage.").max(200).min(10).getPerhaps("DamageModifier", 100);
-        armorDebuff = builder.comment("How much less effective armor will be for those who bear the charm. Measured as percentage.").max(100.0).min(50.0).getPerhaps("ArmorDebuff", 100);
+        armorDebuff = builder.comment("How much less effective armor will be for those who bear the charm. Measured as percentage.").max(100).min(50).getPerhaps("ArmorDebuff", 100);
         killThreshold = builder.comment("The kill threshold of Hell Blade Charm to active the skill.").max(100).getPerhaps("KillThreshold", 75);
         killCursedThreshold = builder.comment("The kill threshold of Hell Blade Charm to active the skill with Ring of Seven Curses.").max(100).getPerhaps("KillCursedThreshold", 50);
         healMultiplier = builder.comment("The Multiplier of healing when active the skill of Hell Blade Charm.").max(100).getDouble("HealMultiplier", 0.8);

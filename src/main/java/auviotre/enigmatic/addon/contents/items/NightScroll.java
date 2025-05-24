@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.api.items.IBetrayed;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
@@ -34,7 +35,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class NightScroll extends ItemBaseCurio implements ICursed {
+public class NightScroll extends ItemBaseCurio implements ICursed, IBetrayed {
     public static Omniconfig.PerhapsParameter abilityBoost;
     public static Omniconfig.IntParameter darkCondition;
 

@@ -6,6 +6,7 @@ import auviotre.enigmatic.addon.packets.clients.PacketDescendingChaos;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
+import auviotre.enigmatic.addon.triggers.ChaosElytraFlyingTrigger;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.IBindable;
@@ -102,15 +103,22 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.enigmaticElytra1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.enigmaticElytra2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.enigmaticElytra3");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra1", ChatFormatting.GOLD, damageResistance + "%");
+            int percentage = damageResistance.getValue().asPercentage();
+            if (Minecraft.getInstance().player != null && SuperAddonHandler.isAbyssBoost(Minecraft.getInstance().player))
+                percentage = (int) Math.min(percentage * 1.25, 100);
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra1", ChatFormatting.GOLD, percentage + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra3");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }
-
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         ItemLoreHelper.indicateWorthyOnesOnly(list);
+        if (Minecraft.getInstance().player != null && SuperAddonHandler.isAbyssBoost(Minecraft.getInstance().player)) {
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.abyssBoost");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra4");
+        }
     }
 
     public boolean canEquip(SlotContext context, ItemStack stack) {
@@ -174,6 +182,14 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         return HashMultimap.create();
+    }
+
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(Player player) {
+        Multimap<Attribute, AttributeModifier> map = HashMultimap.create();
+        if (SuperAddonHandler.isAbyssBoost(player)) {
+            map.put(Attributes.ARMOR, new AttributeModifier(UUID.fromString("5DB69C64-4F70-3886-108B-12CB7FBFA913"), "Chaos Elytra Modifier", 3, AttributeModifier.Operation.ADDITION));
+        }
+        return map;
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -241,8 +257,17 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                         if (nextFlightTick % 6 == 0) {
                             stack.hurtAndBreak(1, serverPlayer, (player) -> player.broadcastBreakEvent(EquipmentSlot.CHEST));
                         }
+                        if (lastMovement.length() > 2.02F) {
+                            ChaosElytraFlyingTrigger.INSTANCE.trigger(serverPlayer);
+                        }
                     }
                 }
+            }
+
+            if (event.side.isServer()) {
+                if (SuperAddonHandler.getChaosElytra(event.player) != null && SuperAddonHandler.isAbyssBoost(event.player))
+                    event.player.getAttributes().addTransientAttributeModifiers(getAttributeModifiers(event.player));
+                else event.player.getAttributes().removeAttributeModifiers(getAttributeModifiers(event.player));
             }
         }
     }
@@ -278,14 +303,16 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                 EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(), 64.0, player.level().dimension())),
                         new PacketDescendingChaos(player.getX(), player.getY(), player.getZ()));
             }
-            List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(3.5 + lastMovement.length()));
+            double range = 3.5 + lastMovement.length() * (SuperAddonHandler.isAbyssBoost(player) ? 1.25 : 1.0);
+            List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range));
             for (LivingEntity entity : entities) {
                 if (entity == player) continue;
                 Vec3 delta = entity.position().subtract(player.position()).normalize().scale(0.5);
                 float modifier = Math.min(1.0F, 1.2F / entity.distanceTo(player));
                 Vec3 vec = new Vec3(delta.x, 0, delta.z).normalize().scale(modifier);
                 entity.addDeltaMovement(new Vec3(vec.x, entity.onGround() ? 1.2F * modifier : 0.0F, vec.z));
-                entity.hurt(SuperAddonHandler.damageSource(entity, EnigmaticAddonDamageTypes.ABYSS, player), (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * Math.pow(descendingPowerModifier.getValue(), Math.abs(lastMovement.y))));
+                double pow = Math.pow(descendingPowerModifier.getValue(), Math.abs(lastMovement.y)) * (SuperAddonHandler.isAbyssBoost(player) ? 1.1 : 1.0);
+                entity.hurt(SuperAddonHandler.damageSource(entity, EnigmaticAddonDamageTypes.ABYSS, player), (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * pow));
             }
         }
     }
@@ -307,13 +334,17 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
         if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA)))
             return;
         DamageSource source = event.getSource();
+        float modifier = damageResistance.getValue().asModifier();
+        if (SuperAddonHandler.isAbyssBoost(player)) modifier = Math.min(1, modifier * 1.25F);
         if (!(source.is(DamageTypes.FALL) || source.is(DamageTypes.FLY_INTO_WALL))) {
             Entity directEntity = event.getSource().getDirectEntity();
             if (directEntity != null && directEntity.position().subtract(player.position()).dot(player.getForward()) < 0) {
-                event.setAmount(event.getAmount() * damageResistance.getValue().asModifierInverted());
+                if (modifier >= 1) event.setCanceled(true);
+                 else event.setAmount(event.getAmount() * (1 - modifier));
             }
         } else {
-            event.setAmount(event.getAmount() * damageResistance.getValue().asModifierInverted());
+            if (modifier >= 1) event.setCanceled(true);
+            else event.setAmount(event.getAmount() * (1 - modifier));
         }
     }
 

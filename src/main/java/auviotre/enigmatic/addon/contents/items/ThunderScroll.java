@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
@@ -20,7 +21,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ThunderScroll extends ItemBaseCurio implements ICursed {
+public class ThunderScroll extends ItemBaseCurio implements ICursed, IBlessed {
 
     public ThunderScroll() {
         super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));

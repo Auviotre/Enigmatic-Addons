@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
@@ -15,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlessAmplifier extends ItemBase implements ICursed {
+public class BlessAmplifier extends ItemBase implements ICursed, IBlessed {
     public BlessAmplifier() {
         super(getDefaultProperties().stacksTo(1).rarity(Rarity.EPIC));
     }

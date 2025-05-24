@@ -7,6 +7,8 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
+import java.util.List;
+
 public class EnigmaticAddonPotions {
     /**
      * For Developers:<br>
@@ -17,7 +19,8 @@ public class EnigmaticAddonPotions {
      *
      * @see EnigmaticPotions
      **/
-
+    public static final List<AdvancedPotion> ULTIMATE_POTIONS;
+    public static final List<AdvancedPotion> COMMON_POTIONS;
     public static final AdvancedPotion LUCK = new AdvancedPotion("luck", new MobEffectInstance(MobEffects.LUCK, 6000));
     public static final AdvancedPotion FROZEN_HEART = new AdvancedPotion("frozen_heart", new MobEffectInstance(EnigmaticAddonEffects.FROZEN_HEART_EFFECT, 3600));
     public static final AdvancedPotion LONG_FROZEN_HEART = new AdvancedPotion("long_frozen_heart", new MobEffectInstance(EnigmaticAddonEffects.FROZEN_HEART_EFFECT, 9600));
@@ -37,4 +40,32 @@ public class EnigmaticAddonPotions {
     public static final AdvancedPotion EXTREME_HASTE = new AdvancedPotion("extreme_haste", new MobEffectInstance(MobEffects.DIG_SPEED, 1800, 2));
     public static final AdvancedPotion EXTREME_MINING_FATIGUE = new AdvancedPotion("extreme_mining_fatigue", new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 1800, 2));
 
+    static {
+        ImmutableList.Builder<AdvancedPotion> ultimatePotions = ImmutableList.builder();
+        ImmutableList.Builder<AdvancedPotion> commonPotions = ImmutableList.builder();
+        commonPotions.add(
+                LUCK,
+                FROZEN_HEART,
+                LONG_FROZEN_HEART,
+                MINING_FATIGUE,
+                LONG_MINING_FATIGUE,
+                STRONG_MINING_FATIGUE
+        );
+        ultimatePotions.add(
+                ULTIMATE_FROZEN_HEART,
+                ULTIMATE_MINING_FATIGUE,
+                EXTREME_LEAPING,
+                EXTREME_SWIFTNESS,
+                EXTREME_SLOWNESS,
+                EXTREME_TURTLE_MASTER,
+                EXTREME_POISON,
+                EXTREME_REGENERATION,
+                EXTREME_STRENGTH,
+                EXTREME_WEAKNESS,
+                EXTREME_HASTE,
+                EXTREME_MINING_FATIGUE
+        );
+        ULTIMATE_POTIONS = ultimatePotions.build();
+        COMMON_POTIONS = commonPotions.build();
+    }
 }

@@ -10,6 +10,7 @@
   "effect.enigmaticlegacy.molten_heart": "熔火之心",
   "effect.enigmaticlegacy.growing_hunger": "无止饥饿",
   "effect.enigmaticlegacy.growing_bloodlust": "无止血欲",
+  "gui.jei.enigmaticlegacy.category.hidden_crafting": "隐藏合成",
 
   "message.enigmaticlegacy.eldritch_pan_buff": "品尝这崭新的灵魂后，饕餮之锅变得更加强大了。",
 
@@ -57,11 +58,23 @@
   "book.enigmaticlegacy.entry.sharpshooter_enchantment.page.1": "一个用于弩的最为有用的附魔。<br2/>它增加了由弩射出的箭矢的伤害，就像弓的力量附魔那样。更准确地说，每级魔咒会增加 <&l>+40%%$(clear) 的伤害。",
   "book.enigmaticlegacy.entry.sharpshooter_enchantment.page.2": "神射手只会影响箭矢，不会增加烟火的伤害。此外，它会与多重射击和穿透冲突。",
 
-
   "book.enigmaticlegacy.entry.eldritch_pan.name": "饕餮之锅",
   "book.enigmaticlegacy.entry.eldritch_pan.page.1": "宇宙中那些无论神性的或是骇人的的骨头，对你来说都已触手可及。然而，你仍然渴望更多…<br2/>幸运的是，深渊之心的不可思议的性质可以用于你的追求。但美中不足，另一种无法满足的渴望现在同样困扰着你的身心。",
   "book.enigmaticlegacy.entry.eldritch_pan.page.2": "这种无尽的饥饿迫使你继续寻找行走在这片土地和许多其他世界的各种生物。，你无法完全判断这种影响是否完全来自你的造物，",
   "book.enigmaticlegacy.entry.eldritch_pan.page.3": "或者它已经深深地铭刻在你的灵魂中，即使没有它，它也会继续困扰你。<br2/>饕餮之锅的胃永远敞开着，通向着一个你所认为的无法理解的巨大实体的胃。是深渊之心的缘故，还是仅仅是一个与你有着同样贪得无厌的欲望的实体？ 最好还是别知道了。",
   "book.enigmaticlegacy.entry.eldritch_pan.page.4": "禁忌之果承诺过能一劳永逸地消除饥饿，这比以往任何时候都更诱人，但你仍然要谨慎。对于像你这样被诅咒的人来说，事情从来没有这么简单，一旦你失去了饥饿的能力，其他灾难肯定会取而代之。<br2/>现在，已不再有人敢和你擦肩而过。那些目睹了肉体被撕裂、吞噬，心脏被搅碎、遗忘，静脉中血液也被渐渐抽干的人，都早已被你这无尽享宴所深深震撼。",
-  "book.enigmaticlegacy.entry.eldritch_pan.page.5": "那些被你击溃的人也没能回去讲述这一传说。<br2/>接下来会被端上餐桌的，会是什么呢？又或者说，会是谁呢？"
+  "book.enigmaticlegacy.entry.eldritch_pan.page.5": "那些被你击溃的人也没能回去讲述这一传说。<br2/>接下来会被端上餐桌的，会是什么呢？又或者说，会是谁呢？",
+
+  "tooltip.enigmaticlegacy.theCube11": "§5- 任何威力大于 §6%1$s§6 点§5的伤害都会被完全无效化",
+  "tooltip.enigmaticlegacy.theCube12": "§5- §d35% §6概率§5偏转来袭的弹射物",
+  "tooltip.enigmaticlegacy.theCube13": "§5- 受到近战伤害时，会对攻击者施加随机负面效果",
+  "tooltip.enigmaticlegacy.theCube14": "§5- 每当你杀死任何生物时，获得随机增益",
+  "tooltip.enigmaticlegacy.theCube15": "§5- 你不需要空气来呼吸",
+  "tooltip.enigmaticlegacy.theCube16": "§5- 免疫负面状态影响",
+  "tooltip.enigmaticlegacy.theCube17": "§5- 免疫挤压，摔落，碰撞，尖刺，传送伤害，火焰与熔岩伤害",
+  "tooltip.enigmaticlegacy.theCube18": "§5- 当你的生命值高于§61点§5时，你将能从任何致命伤害中存活下来",
+  "tooltip.enigmaticlegacy.theCube19": "§5  并保留 §61点§5生命值，而当你的生命值等于或少于§61点§5时，",
+  "tooltip.enigmaticlegacy.theCube20": "§5  其会尝试启动主动技能以躲避致命伤害，",
+  "tooltip.enigmaticlegacy.theCube21": "§5  如果成功你将会恢复§630%§5的生命值并获得强力增益。",
+  "tooltip.enigmaticlegacy.theCube22": "§5  "
 }

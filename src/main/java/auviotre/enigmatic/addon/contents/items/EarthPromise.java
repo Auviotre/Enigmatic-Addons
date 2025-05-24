@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
@@ -33,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class EarthPromise extends ItemBaseCurio implements ICursed {
+public class EarthPromise extends ItemBaseCurio implements ICursed, IBlessed {
     public static Omniconfig.IntParameter cooldown;
     public static Omniconfig.DoubleParameter defaultArmorBonus;
     public static Omniconfig.DoubleParameter defaultToughnessBonus;

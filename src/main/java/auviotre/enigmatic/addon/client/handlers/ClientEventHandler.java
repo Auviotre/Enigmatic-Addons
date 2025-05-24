@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.client.handlers;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
@@ -9,7 +10,6 @@ import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.gui.GUIUtils;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
-import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticEffects;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.etherium.items.EtheriumArmor;
@@ -19,6 +19,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -37,20 +38,22 @@ public class ClientEventHandler {
     public static final ResourceLocation MC_ICONS = new ResourceLocation("textures/gui/icons.png");
     public static final ResourceLocation ICONS_LOCATION = new ResourceLocation(EnigmaticAddons.MODID, "textures/gui/icons.png");
 
-
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onTooltipRendering(RenderTooltipEvent.@NotNull Color event) {
         ItemStack stack = event.getItemStack();
         if (!stack.isEmpty()) {
-            if (stack.getItem() instanceof ItemBase item && !ForgeRegistries.ITEMS.getKey(item).getNamespace().equals(EnigmaticLegacy.MODID)) {
+            Item item = stack.getItem();
+            if (!ForgeRegistries.ITEMS.getKey(item).getNamespace().equals(EnigmaticLegacy.MODID)) {
                 int background = GUIUtils.DEFAULT_BACKGROUND_COLOR;
                 int borderStart = GUIUtils.DEFAULT_BORDER_COLOR_START;
                 int borderEnd = GUIUtils.DEFAULT_BORDER_COLOR_END;
 
                 if (item instanceof ICursed || item instanceof CursedRing) {
+                    if (item instanceof IBlessed && Minecraft.getInstance().player != null && SuperAddonHandler.isTheBlessedOne(Minecraft.getInstance().player))
+                        borderStart = 0x80FFA632;
+                    else borderStart = 0x50FF0C00;
                     background = 0xF7101010;
-                    borderStart = 0x50FF0C00;
                     borderEnd = borderStart;
                 } else if (item == EnigmaticItems.COSMIC_SCROLL) {
                     background = 0xF0100010;
