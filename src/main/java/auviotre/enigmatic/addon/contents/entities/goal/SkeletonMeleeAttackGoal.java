@@ -34,7 +34,7 @@ public class SkeletonMeleeAttackGoal extends Goal {
                 this.mob.push(target);
                 target.push(this.mob);
                 target.knockback(this.mob.getAttributeValue(Attributes.ATTACK_KNOCKBACK) + 0.5, Mth.sin(this.mob.getYRot() * 0.017453292F), -Mth.cos(this.mob.getYRot() * 0.017453292F));
-                this.strike = !(this.mob.getRandom().nextInt(2) == 0);
+                this.strike = true;
             }
         }
     }

@@ -46,12 +46,12 @@ public class OmniconfigAddonHandler {
     }
 
     public static void initialize() {
-        OmniconfigWrapper configBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-common", true, "1.2.3.1");
+        OmniconfigWrapper configBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-common", true, "1.2.4");
         configBuilder.pushVersioningPolicy(Configuration.VersioningPolicy.AGGRESSIVE);
         configBuilder.pushTerminateNonInvokedKeys(true);
         loadCommon(configBuilder);
         configBuilder.setReloadable();
-        OmniconfigWrapper clientBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-client", true, "1.2.3.1");
+        OmniconfigWrapper clientBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-client", true, "1.2.4");
         clientBuilder.pushSidedType(Configuration.SidedConfigType.CLIENT);
         clientBuilder.pushVersioningPolicy(Configuration.VersioningPolicy.AGGRESSIVE);
         clientBuilder.pushTerminateNonInvokedKeys(true);
@@ -104,7 +104,7 @@ public class OmniconfigAddonHandler {
         builder.pushCategory("Else Options", "Various options that relates to secondary contents.");
         TabResorted = builder.comment("If true, the main creative tab of Enigmatic Legacy will be resorted.").getBoolean("TabResorted", true);
         FutureItemDisplay = builder.comment("If true, the main creative tab of Enigmatic Legacy will display some uncompleted item.").getBoolean("FutureItemDisplay", false);
-        HiddenRecipeJEIDisplay = builder.comment("If true, the Hidden Recipe will display in JEI.").getBoolean("HiddenRecipeJEIDisplay", false);
+        HiddenRecipeJEIDisplay = builder.comment("If true, the Hidden Recipe will display in JEI.").getBoolean("HiddenRecipeJEIDisplay", true);
         builder.popCategory();
         builder.build();
     }

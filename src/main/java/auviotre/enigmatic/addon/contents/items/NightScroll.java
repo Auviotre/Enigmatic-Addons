@@ -11,6 +11,7 @@ import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -36,8 +37,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class NightScroll extends ItemBaseCurio implements ICursed, IBetrayed {
-    public static Omniconfig.PerhapsParameter abilityBoost;
-    public static Omniconfig.IntParameter darkCondition;
+    public static Omniconfig.PerhapsParameter averageDamageBoost;
+    public static Omniconfig.PerhapsParameter averageDamageResistance;
+    public static Omniconfig.PerhapsParameter averageLifeSteal;
 
     public NightScroll() {
         super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC));
@@ -46,8 +48,9 @@ public class NightScroll extends ItemBaseCurio implements ICursed, IBetrayed {
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("PactofDarkNight");
-        abilityBoost = builder.comment("The boost modifier provided by Pact of Dark Night.").max(100).getPerhaps("AbilityBoost", 10);
-        darkCondition = builder.comment("The dark condition for Pact of Dark Night to trigger the ability.").max(14).getInt("DarkCondition", 5);
+        averageDamageBoost = builder.comment("The average damage boost modifier provided by Pact of Dark Night.").max(100).getPerhaps("AverageDamageBoost", 20);
+        averageDamageResistance = builder.comment("The average damage resistance modifier provided by Pact of Dark Night.").max(100).getPerhaps("AverageDamageResistance", 16);
+        averageLifeSteal = builder.comment("The average life stealing modifier provided by Pact of Dark Night.").max(100).getPerhaps("AverageLifeSteal", 8);
         builder.popPrefix();
     }
 
@@ -56,7 +59,16 @@ public class NightScroll extends ItemBaseCurio implements ICursed, IBetrayed {
         if (player.hasEffect(MobEffects.DARKNESS)) return true;
         LevelLightEngine lightEngine = player.level().getLightEngine();
         BlockPos blockPos = player.blockPosition();
-        return lightEngine.getRawBrightness(blockPos, 7) <= darkCondition.getValue();
+        return true;
+    }
+
+    public static float getDarkModifier(Player player) {
+        if (player == null || !SuperAddonHandler.isOKOne(player)) return 0.4F;
+        if (player.hasEffect(MobEffects.DARKNESS)) return 2.0F;
+        LevelLightEngine lightEngine = player.level().getLightEngine();
+        BlockPos blockPos = player.blockPosition();
+        int i = 16 - lightEngine.getRawBrightness(blockPos, 8);
+        return 0.4F + 0.1F * i;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -66,9 +78,10 @@ public class NightScroll extends ItemBaseCurio implements ICursed, IBetrayed {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll1");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll2");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll3", ChatFormatting.GOLD, abilityBoost + "%");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll4", ChatFormatting.GOLD, abilityBoost + "%");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll5", ChatFormatting.GOLD, abilityBoost + "%");
+            float darkModifier = getDarkModifier(Minecraft.getInstance().player);
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll3", ChatFormatting.GOLD, (int) (darkModifier * averageDamageBoost.getValue().asPercentage()) + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll4", ChatFormatting.GOLD, (int) (darkModifier * averageDamageResistance.getValue().asPercentage()) + "%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.nightScroll5", ChatFormatting.GOLD, (int) (darkModifier * averageLifeSteal.getValue().asPercentage()) + "%");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }
@@ -89,7 +102,7 @@ public class NightScroll extends ItemBaseCurio implements ICursed, IBetrayed {
         Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
         LivingEntity entity = slotContext.entity();
         if (entity instanceof Player player && isDark(player)) {
-            attributes.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("6F27C266-9DCD-22DC-E491-4AF7B6A8CCF9"), "Dark Bonus", NightScroll.abilityBoost.getValue().asModifier(false), AttributeModifier.Operation.MULTIPLY_TOTAL));
+            attributes.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("6F27C266-9DCD-22DC-E491-4AF7B6A8CCF9"), "Dark Bonus", averageDamageBoost.getValue().asModifier(false) * getDarkModifier(player), AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
         return attributes;
     }

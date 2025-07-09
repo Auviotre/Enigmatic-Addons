@@ -1,11 +1,14 @@
 package auviotre.enigmatic.addon.mixin;
 
 import auviotre.enigmatic.addon.contents.items.LostEngine;
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
@@ -37,14 +40,18 @@ public abstract class MixinNearestAttackableTargetGoal<T extends LivingEntity> e
     )
     public Predicate<LivingEntity> findTargetMix(Predicate<LivingEntity> selector) {
         if (this.targetType == Player.class || this.targetType == ServerPlayer.class) {
+            Predicate<Player> predicate = (player) -> !(SuperAddonHandler.isAbyssBoost(player) && SuperpositionHandler.hasCurio(player, EnigmaticItems.DESOLATION_RING)) && (selector == null || selector.test(player));
             if (this.mob instanceof Animal && this.mob instanceof NeutralMob) {
-                return (player) -> !SuperpositionHandler.hasItem((Player) player, EnigmaticAddonItems.LIVING_ODE) && (selector == null || selector.test(player));
+                return (player) -> !SuperpositionHandler.hasItem((Player) player, EnigmaticAddonItems.LIVING_ODE) && predicate.test((Player) player);
             }
             if (this.mob instanceof AbstractGolem) {
-                return (player) -> !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE) && (selector == null || selector.test(player));
+                return (player) -> !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE) && predicate.test((Player) player);
+            }
+            if (this.mob.getMobType().equals(MobType.UNDEAD)) {
+                return (player) -> !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ILLUSION_LANTERN) && predicate.test((Player) player);
             }
             if (LostEngine.golemList.contains(ForgeRegistries.ENTITY_TYPES.getKey(this.mob.getType()))) {
-                return (player) -> !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE) && (selector == null || selector.test(player));
+                return (player) -> !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE) && predicate.test((Player) player);
             }
         }
         return selector;

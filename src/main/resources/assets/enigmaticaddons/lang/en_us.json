@@ -60,7 +60,7 @@
   "item.enigmaticaddons.night_scroll": "Pact of Dark Night",
 
   "tooltip.enigmaticaddons.nightScroll1": "§6Phantoms §5will spawn less in your proximity.",
-  "tooltip.enigmaticaddons.nightScroll2": "§5In the dark, you will receive the following boosts:",
+  "tooltip.enigmaticaddons.nightScroll2": "§5When equipped:",
   "tooltip.enigmaticaddons.nightScroll3": "§6+%1$s §dAttack Damage",
   "tooltip.enigmaticaddons.nightScroll4": "§6+%1$s §dDamage Resistance",
   "tooltip.enigmaticaddons.nightScroll5": "§6+%1$s §dLifesteal",
@@ -74,6 +74,16 @@
   "book.enigmaticaddons.entry.quartz_ring.name": "Magic Quartz Ring",
   "book.enigmaticaddons.entry.quartz_ring.page.1": "When you discover quartz in the nether, you surprised by its widespread distribution in the nether. At the same time, when it comes to acquiring new materials, it seems that with your skills, you can create stronger defense rings.<br2/>However, simply exploring physical defense capabilities has already reached its limit for rings, so can we develop some other uses?",
   "book.enigmaticaddons.entry.quartz_ring.page.2": "Therefore, the addition of lapis lazuli as an enchanting material in the recipe enhances the magic performance of the ring, allowing you to increase your resistance slightly when facing magic attacks. A little is better than nothing.",
+
+  "item.enigmaticaddons.quartz_scepter": "Magic Quartz Scepter",
+
+  "tooltip.enigmaticaddons.quartzScepter1": "§5Right click to continuously shoot magic dagger.",
+  "tooltip.enigmaticaddons.quartzScepter2": "§5Daggers can help pick up nearby dropped items.",
+  "tooltip.enigmaticaddons.quartzScepter3": "§dLuck §5will increase the damage of the dagger.",
+
+  "book.enigmaticaddons.entry.quartz_scepter.name": "Magic Quartz Scepter",
+  "book.enigmaticaddons.entry.quartz_scepter.page.1": "The same material but different recipe gave birth to a brand new scepter. Using the magic of materials to transform into a dagger and thrust forward, although the power is not very strong, it is at least a non consumable means.<br2/>In addition, in the Nether, it is inevitable that objects will fall and burn, so this scepter, with its ability to absorb",
+  "book.enigmaticaddons.entry.quartz_scepter.page.2": "items, can show off its skills in certain situations.<br2/>Given the magical power of magic quartz, similar items can have a certain impact. Why not try wearing a Magic Quartz Ring and compare it.",
 
   "item.enigmaticaddons.earth_promise": "Promise of the Earth",
 
@@ -89,13 +99,13 @@
   "item.enigmaticaddons.forgotten_ice": "Forgotten Ice Crystal",
 
   "tooltip.enigmaticaddons.forgottenIce1": "§dActive ability:",
-  "tooltip.enigmaticaddons.forgottenIce2": "§6- Freeze the surrounding Mobs.",
+  "tooltip.enigmaticaddons.forgottenIce2": "§6- Freeze the surrounding Mobs and deal massive damage.",
   "tooltip.enigmaticaddons.forgottenIceCooldown": "§dСooldown: §6%1$s§6 seconds",
   "tooltip.enigmaticaddons.forgottenIce3": "§dPassive abilities:",
   "tooltip.enigmaticaddons.forgottenIce4": "§5- Freeze immunity and Frost Walker",
-  "tooltip.enigmaticaddons.forgottenIce5": "§5- The attack target is gradually freezing",
-  "tooltip.enigmaticaddons.forgottenIce6": "§5- Freezes those who attack you in melee",
-  "tooltip.enigmaticaddons.forgottenIce7": "§5- Deal more damage to frozen targets",
+  "tooltip.enigmaticaddons.forgottenIce5": "§5- Freeze those who come into contact with you",
+  "tooltip.enigmaticaddons.forgottenIce6": "§5- Deal more damage to§d frozen§5 targets",
+  "tooltip.enigmaticaddons.forgottenIce7": "§5- Once frozen to a certain degree, the target becomes§d difficult to move",
   "tooltip.enigmaticaddons.forgottenIce8": "§5- §6%1$s§d Projectile & Sonic Damage Resistance",
   "tooltip.enigmaticaddons.forgottenIce9": "§5- You are vulnerable to §dFire Damage§5 and §dFall Damage",
 
@@ -129,7 +139,7 @@
   "tooltip.enigmaticaddons.revivalLeafCooldown": "§dСooldown: §6%1$s§6 seconds",
   "tooltip.enigmaticaddons.revivalLeaf3": "§dPassive abilities:",
   "tooltip.enigmaticaddons.revivalLeaf4": "§5- Slow natural regeneration.",
-  "tooltip.enigmaticaddons.revivalLeaf5": "§5- The attack target will be poisoned.",
+  "tooltip.enigmaticaddons.revivalLeaf5": "§5- The attack target will be poisoned and reducing healing.",
   "tooltip.enigmaticaddons.revivalLeaf6": "§5- Immune to §dHunger§5, §dPoison§5 and §dWithering§5 effect.",
   "tooltip.enigmaticaddons.revivalLeaf7": "§5- The surrounding crops are growing faster",
   "tooltip.enigmaticaddons.revivalLeaf8": "§5- All effects last longer.",
@@ -158,6 +168,24 @@
   "book.enigmaticaddons.entry.etherium_core.page.2": "trigger the shield at any time through this spellstone, without being limited by your health condition. But not only that, the Heart of the Golem has also endowed the Shield with new abilities. It will record the damage you receive",
   "book.enigmaticaddons.entry.etherium_core.page.3": "each time, convert and accumulate it, and infuse all its power into this blow in the next attack, repaying it well.<br2/>In addition, unlike other ordinary spellstones, pure ether power seems to have no weaknesses and can be used with confidence.",
 
+  "item.enigmaticaddons.illusion_lantern": "Soul Lantern of Illusion",
+
+  "tooltip.enigmaticaddons.illusionLantern1": "§dActive ability:",
+  "tooltip.enigmaticaddons.illusionLantern2": "§4- Absent.",
+  "tooltip.enigmaticaddons.illusionLanternCooldown": "§dСooldown: §6%1$s§6 seconds",
+  "tooltip.enigmaticaddons.illusionLantern3": "§5- Generate§d soul fireball§5 to automatically attack surrounding creatures",
+  "tooltip.enigmaticaddons.illusionLantern4": "§5- The damage suffered will be shared among the surrounding creatures.",
+  "tooltip.enigmaticaddons.illusionLantern5": "§5- Ordinary §dUndead§5 will not target you actively.",
+  "tooltip.enigmaticaddons.illusionLantern6": "§5- Significantly reduced§d defence-bypassing§5 damage.",
+  "tooltip.enigmaticaddons.illusionLantern7": "§5- Surrounding plant blocks will automatically disappear.",
+  "tooltip.enigmaticaddons.illusionLantern8": "§5- When the brightness is too high, suffering§d curse damage§5.",
+  "tooltip.enigmaticaddons.illusionLantern9": "§5- Minor increase in§d non magical damage §5received.",
+
+  "book.enigmaticaddons.entry.illusion_lantern.name": "Soul Lantern of Illusion",
+  "book.enigmaticaddons.entry.illusion_lantern.heading.1": "The Spellstone",
+  "book.enigmaticaddons.entry.illusion_lantern.page.1": "In a corner of the Nether, this lamp flickers with a faint light, and you can feel countless vengeful souls lingering around.<br2/>Although there was soul fire burning, it never felt the temperature inside, and even felt a chill emanating from it. So this magic stone will allow you to blend into the environment of the undead,",
+  "book.enigmaticaddons.entry.illusion_lantern.page.2": "while also being more sensitive to brightness.<br2/>The overlapping of virtuality and reality also gives you higher resistance to penetrating damage, allowing you to divide the virtual shadow possession and share the damage. But does this soul lantern exist, perhaps all of this is just your imagination?",
+
   "item.enigmaticaddons.dragon_bow": "Dragon Breath Bow",
 
   "tooltip.enigmaticaddons.dragonBow": "§5You can combine this with potions.",
@@ -178,7 +206,7 @@
   "book.enigmaticaddons.entry.astral_spear.page.1": "Looking at all the etherium tools, it seems that none of them can reach the enemies hovering above your head, so it's time to think about how powerful astral dust really is.<br2/>Using the Etherium Sword as the base, extending the handle, sharpening the spearhead, and finally injecting the magic of astral dust, a special spear is born.",
   "book.enigmaticaddons.entry.astral_spear.page.2": "The power of astral dust converged at the spearhead, allowing the spear to interact with energy in space. Thus, it can perceive and track every target. And it also can store energy, quickly pierce through and pour out energy, producing",
   "book.enigmaticaddons.entry.astral_spear.page.3": "a astral explosion.<br2/>Astral dust has also alienated its enchanting ability, why not try some enchantments that do not belong to swords?",
-  "book.enigmaticaddons.entry.astral_spear.page.4": "<br/><&n><&8>Notes of enchantments:<clear/><&8><br/>Sharpness<br/> - Increase the damage of throwing spear.<br2/>Piercing<br/> - Increase piercing times and slightly improve tracking capability<br2/>Loyalty<br/> - Recall the spear automatically, faster than trident.",
+  "book.enigmaticaddons.entry.astral_spear.page.4": "<br/><&n><&8>Notes of enchantments:<clear/><&8><br/>Sharpness<br/> - Increase the damage of throwing spear.<br2/>Piercing<br/> - Increase piercing times and slightly improve tracking capability.",
 
   "item.enigmaticaddons.sanguinary_handbook": "Sanguinary Hunting Handbook",
 
@@ -350,6 +378,7 @@
   "item.enigmaticaddons.ichor_spear": "Ichor Spear",
 
   "tooltip.enigmaticaddons.ichorSpear": "§5A one-time corruption throwing spear",
+  "tooltip.enigmaticaddons.ichorSpearFull": "§5Not consuming",
 
   "book.enigmaticaddons.entry.ichor_spear.name": "Ichor Spear",
   "book.enigmaticaddons.entry.ichor_spear.page.1": "You should know that the noble ichor are always different from ordinary beings, especially when they drip onto armor and make a sizzling sound.<br2/>Carefully apply the ichor droplet onto the stable gold spearhead, along with other catalysts, and simply spear is completed. By piercing it into the enemy's armor, the danger",
@@ -477,11 +506,22 @@
   "tooltip.enigmaticaddons.chaosElytra1": "§5Reduce §6%1$s §5of damage from behind.",
   "tooltip.enigmaticaddons.chaosElytra2": "§5When accelerating vertically towards",
   "tooltip.enigmaticaddons.chaosElytra3": "§5the ground, it will cause range damage.",
-  "tooltip.enigmaticaddons.chaosElytra4": "§6 +3 §5Armor",
+  "tooltip.enigmaticaddons.chaosElytra4": "§5-§6 +3 §5Armor",
+  "tooltip.enigmaticaddons.chaosElytra5": "§5- Increase the range and damage when rushing towards the ground.",
 
   "book.enigmaticaddons.entry.chaos_elytra.name": "The Arrogance of Chaos",
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "Since the Heart of Abyss is in hand, why not set your gaze on the sky?<br2/>Based on the same process as the Majestic Elytra, using more evil and powerful materials can obtain these stronger elytra. Soar in the sky with the power of the cosmic and the ender, to look down upon the creatures crawling on the ground.",
   "book.enigmaticaddons.entry.chaos_elytra.page.2": "When we descend from the sky to the ground, chaos and evil will accompany us, bringing impact to the ground and putting everything in chaos.",
+
+  "tooltip.enigmaticaddons.violenceScroll1": "§5When attacking the same target, making an additional §6%1$s§5 of the last damage.",
+  "tooltip.enigmaticaddons.violenceScroll2": "§5",
+  "tooltip.enigmaticaddons.violenceScroll3": "§5Can be used as §dTome of Devoured Malignancy§5.",
+  "tooltip.enigmaticaddons.violenceScroll4": "§5",
+  "tooltip.enigmaticaddons.violenceScroll5": "§5- ",
+  "tooltip.enigmaticaddons.violenceScroll6": "§5- ",
+  "tooltip.enigmaticaddons.violenceScroll7": "§5- ",
+  "tooltip.enigmaticaddons.violenceScroll8": "§5- ",
+  "tooltip.enigmaticaddons.violenceScrollCount": "§dAbsorbed Curse Count: §6%1$s§",
 
   "death.attack.abyss": "%1$s fell into an endless abyss.",
   "death.attack.evil_curse": "%1$s was torn apart by curse.",
@@ -493,6 +533,8 @@
   "entity.enigmaticaddons.dragon_breath_arrow": "Dragon Breath Arrow",
   "entity.enigmaticaddons.evil_dagger": "Nefarious Dagger",
   "entity.enigmaticaddons.ichor_spear": "Ichor Spear",
+  "entity.enigmaticaddons.magic_quartz_dagger": "Magic Quartz Dagger",
+  "entity.enigmaticaddons.soul_flame_ball": "Illusion Soul Fireball",
   "entity.enigmaticaddons.split_dragon_breath": "Split Dragon Breath",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "Ultimate Dragon Fireball",
 
@@ -591,5 +633,8 @@
   "advancement.enigmaticaddons:maliceTotem.desc": "",
 
   "advancement.enigmaticaddons:ChaosElytra": "Arrogance to all foolish beings",
-  "advancement.enigmaticaddons:ChaosElytra.desc": "Take the Arrogance of Chaos, overlooking sentient beings from the sky"
+  "advancement.enigmaticaddons:ChaosElytra.desc": "Take the Arrogance of Chaos, overlooking sentient beings from the sky",
+
+  "advancement.enigmaticaddons:ChaosExplosionKill": "Descending Chaos",
+  "advancement.enigmaticaddons:ChaosExplosionKill.desc": "Strike the ground with Chaos Pride and kill 10 monsters at once"
 }

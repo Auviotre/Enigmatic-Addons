@@ -17,6 +17,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +40,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class SuperAddonHandler {
-    public static final UUID SCROLL_SLOT_UUID = UUID.fromString("6baf05e3-a59c-43d8-9154-613ff87073e2");
+    public static final UUID SCROLL_SLOT_UUID = UUID.fromString("36e2f84d-a453-467d-8836-41e2f42db78a");
 
     public static boolean isCurseBoosted(LivingEntity entity) {
         if (!OmniconfigAddonHandler.EnableCurseBoost.getValue()) return false;
@@ -53,8 +55,8 @@ public class SuperAddonHandler {
             entity.getPersistentData().putBoolean("CurseBoost", flag);
     }
 
-    @Nullable
-    public static <T> LazyOptional<T> getCapability(Player player, Capability<T> capability) {
+
+    public static @Nullable <T> LazyOptional<T> getCapability(Player player, Capability<T> capability) {
         return player == null ? null : player.getCapability(capability);
     }
 
@@ -74,8 +76,8 @@ public class SuperAddonHandler {
         }
     }
 
-    @Nullable
-    public static ItemStack getChaosElytra(LivingEntity living) {
+
+    public static @Nullable ItemStack getChaosElytra(LivingEntity living) {
         ItemStack stack = living.getItemBySlot(EquipmentSlot.CHEST);
         return stack.is(EnigmaticAddonItems.CHAOS_ELYTRA) ? stack : SuperpositionHandler.getCurioStack(living, EnigmaticAddonItems.CHAOS_ELYTRA);
     }
@@ -136,6 +138,16 @@ public class SuperAddonHandler {
         return false;
     }
 
+    public static int getEnderDragonBoostLevel(EnderDragon dragon) {
+        int level = 2;
+        List<Player> nearbyPlayers = dragon.level().getNearbyPlayers(TargetingConditions.DEFAULT, dragon, dragon.getBoundingBox().inflate(100));
+        for (Player nearbyPlayer : nearbyPlayers) {
+            int heartsGained = SuperpositionHandler.getPersistentInteger(nearbyPlayer, "AbyssalHeartsGained", 0);
+            level += heartsGained;
+        }
+        return Math.min(level, 20);
+    }
+
     public static ItemStack findBookInBag(Player player, Item book) {
         if (!SuperpositionHandler.hasItem(player, EnigmaticAddonItems.ANTIQUE_BAG) && !player.getEnderChestInventory().hasAnyOf(Set.of(EnigmaticAddonItems.ANTIQUE_BAG)))
             return ItemStack.EMPTY;
@@ -162,23 +174,22 @@ public class SuperAddonHandler {
         return totalCurses;
     }
 
-    @Nullable
-    public static LootPoolSingletonContainer.Builder<?> createOptionalLootEntry(Item item, int weight, float minCount, float maxCount) {
+    public static @Nullable LootPoolSingletonContainer.Builder<?> createOptionalLootEntry(Item item, int weight, float minCount, float maxCount) {
         return !OmniconfigAddonHandler.isItemEnabled(item) ? null : LootItem.lootTableItem(item).setWeight(weight).apply(SetItemCountFunction.setCount(UniformGenerator.between(minCount, maxCount)));
     }
 
-    @Nullable
-    public static LootPoolSingletonContainer.Builder<?> createOptionalLootEntry(Item item, int weight) {
+    public static @Nullable LootPoolSingletonContainer.Builder<?> createOptionalLootEntry(Item item, int weight) {
         return !OmniconfigAddonHandler.isItemEnabled(item) ? null : LootItem.lootTableItem(item).setWeight(weight);
     }
 
     public static List<ResourceLocation> getIceDungeons() {
         List<ResourceLocation> lootChestList = new ArrayList<>();
         lootChestList.add(BuiltInLootTables.IGLOO_CHEST);
+        lootChestList.add(BuiltInLootTables.ANCIENT_CITY_ICE_BOX);
         return lootChestList;
     }
 
-    public static List<ResourceLocation> getJungleDungeons() {
+    public static List<ResourceLocation> getLeafDungeons() {
         List<ResourceLocation> lootChestList = new ArrayList<>();
         lootChestList.add(BuiltInLootTables.JUNGLE_TEMPLE);
         return lootChestList;
@@ -194,13 +205,10 @@ public class SuperAddonHandler {
         return lootChestList;
     }
 
-    public static List<ResourceLocation> getNetherDungeons() {
+    public static List<ResourceLocation> getSoulDungeons() {
         List<ResourceLocation> lootChestList = new ArrayList<>();
-        lootChestList.add(BuiltInLootTables.NETHER_BRIDGE);
-        lootChestList.add(BuiltInLootTables.BASTION_TREASURE);
         lootChestList.add(BuiltInLootTables.BASTION_OTHER);
-        lootChestList.add(BuiltInLootTables.BASTION_BRIDGE);
-        lootChestList.add(BuiltInLootTables.BASTION_HOGLIN_STABLE);
+        lootChestList.add(BuiltInLootTables.BASTION_TREASURE);
         return lootChestList;
     }
 }

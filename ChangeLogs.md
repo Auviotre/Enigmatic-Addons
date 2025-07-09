@@ -1,11 +1,41 @@
 ***
 ## 1.2 ~ 1.3 Update: More Powerful
 ***
-## [Release 1.2.3.1] (2025/05/24)
-- About **Magic Quartz Flower**:
-  - Increased the consumption of Lapis Lazuli;
-  - Only one flower in player's inventory can take effect at the same time;
-  - The randomly selected effect must have its corresponding potion.
+## [Release 1.2.4] (2025/06/22)
+### Features:
+- 2 new Item (**Soul Lantern of Illusion**, **Magic Quartz Scepter**);
+- Added more cursed AI (e.g. Pillager, Ravager, Wither Skeleton).
+### Changes:
+- Improved the ability and effect of following items:
+1. **Ichor Spear**:
+   - Stack to: 64 → 24;
+   - When one stack is full, it will not be consumed.
+2. **Pact of Dark Night**:
+   - The bonus will vary smoothly based on brightness;
+   - Enhanced automatic damage to Phantom.
+3. **The Curse Carver**:
+   - The cooldown of throwing: 12s → 2s;
+   - The amount of thrown daggers: 3|5 → 1|3；
+   - Enhanced the curse amount applied by **The Curse Carver**.
+4. **Forgotten Ice Crystal**:
+    - Boosted the spellstone ability.
+5. **Magic Quartz Flower**:
+    - Only one flower in player's inventory can take effect at the same time, but there may be other method;
+    - The roll range of Effect exceeded.
+6. **Lost Engine**:
+    - Changed the effect of hurt by Lightning Blot;
+    - Adjusted loot probability.
+7. **Astral Spear**:
+    - Now the damage by powered spear will be increased by distance. 
+- Now **The Testament of Contempt** will not affect creatures owned by you;
+- Increased the looting probability of **Ichor Droplet**, **Forgotten Ice Crystal**;
+- Adjusted loot probability of **Magic Quartz Flower**, **Lost Engine**;
+- Added the config to control whether to trigger the ability of **The Cube** automatically.
+### Fixes:
+- Fixed the wrong appearance of the attribute provider of **Magic Quartz Flower**;
+- Fixed the potential dead loop caused by cursed AI of **Wither**;
+- Fixed the potential error when the source of the damage is null during the Etherium Shield Event;
+- Fixed the issue that sometimes The **Tome of Divination** will copy item.
 ***
 ## [Release 1.2.3] (2025/05/20)
 ### Features:
@@ -17,6 +47,10 @@
 - Updated the **Charm of Scorched Sun**:
   - The probability to resist damage will be doubled when in touch of lava;
   - Players can dive into lava by crouching;
+- About **Magic Quartz Flower**:
+  - Increased the consumption of Lapis Lazuli;
+  - Only one flower in player's inventory can take effect at the same time;
+  - The randomly selected effect must have its corresponding potion.
 ### Changes:
 - The **Hidden Recipes** now can show up in JEI (configurable, default: false);
 - Adjusted the description of the **Forger's Gem** in **The Acknowledgement**;

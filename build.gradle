@@ -127,12 +127,13 @@ dependencies {
 //    implementation fg.deobf("curse.maven:prism-lib-638111:4650325")
 //    implementation fg.deobf("curse.maven:farmers-delight-${farmersdelight_id}:${farmersdelight_version}")
     implementation fg.deobf("curse.maven:enigmaticlegacy-${enigmaticlegacy_id}:${enigmaticlegacy_version}")
-    implementation fg.deobf("curse.maven:create-328085:6323270")
-    implementation fg.deobf("curse.maven:selene-499980:6428221")
-    implementation fg.deobf("curse.maven:supplementaries-412082:6408423")
-    implementation fg.deobf("curse.maven:tameable-1110434:5979011")
+//    implementation fg.deobf("curse.maven:create-328085:6323270")
+//    implementation fg.deobf("curse.maven:selene-499980:6428221")
+//    implementation fg.deobf("curse.maven:supplementaries-412082:6408423")
+//    implementation fg.deobf("curse.maven:tameable-1110434:5979011")
 //    implementation fg.deobf("curse.maven:the-man-from-the-fog-890565:5947084")
 //    implementation fg.deobf("curse.maven:geckolib-388172:6333474")
+    implementation fg.deobf("curse.maven:mob-battle-mod-268746:6596542")
 }
 
 tasks.named('processResources', ProcessResources).configure {

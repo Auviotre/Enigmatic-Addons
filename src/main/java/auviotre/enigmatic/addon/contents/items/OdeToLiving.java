@@ -20,6 +20,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
@@ -102,14 +103,14 @@ public class OdeToLiving extends ItemBase implements Vanishable {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onPetHurt(@NotNull LivingHurtEvent event) {
-        if (event.getEntity() instanceof TamableAnimal pet) {
-            if (pet.isTame()) {
-                LivingEntity owner = pet.getOwner();
-                if (owner instanceof Player player && SuperpositionHandler.hasItem(player, EnigmaticItems.HUNTER_GUIDEBOOK) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LIVING_ODE)) {
-                    if (owner.level() == pet.level() && owner.distanceTo(pet) <= HunterGuidebook.effectiveDistance.getValue()) {
-                        event.setCanceled(true);
-                        owner.hurt(event.getSource(), event.getAmount() * synergyDamageReduction.getValue().asModifierInverted());
-                    }
+        LivingEntity entity = event.getEntity();
+        if (entity instanceof OwnableEntity own) {
+            if (entity instanceof TamableAnimal pet && !pet.isTame()) return;
+            LivingEntity owner = own.getOwner();
+            if (owner instanceof Player player && SuperpositionHandler.hasItem(player, EnigmaticItems.HUNTER_GUIDEBOOK) && SuperpositionHandler.hasItem(player, EnigmaticAddonItems.LIVING_ODE)) {
+                if (owner.level() == entity.level() && owner.distanceTo(entity) <= HunterGuidebook.effectiveDistance.getValue()) {
+                    event.setCanceled(true);
+                    owner.hurt(event.getSource(), event.getAmount() * synergyDamageReduction.getValue().asModifierInverted());
                 }
             }
         }

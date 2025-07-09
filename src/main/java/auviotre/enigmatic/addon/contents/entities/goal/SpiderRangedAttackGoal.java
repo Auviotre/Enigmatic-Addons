@@ -18,8 +18,7 @@ public class SpiderRangedAttackGoal extends Goal {
     private final int attackIntervalMax;
     private final float attackRadius;
     private final float attackRadiusSqr;
-    @Nullable
-    private LivingEntity target;
+    private @Nullable LivingEntity target;
     private int attackTime;
     private int seeTime;
     private boolean hasAmmo;

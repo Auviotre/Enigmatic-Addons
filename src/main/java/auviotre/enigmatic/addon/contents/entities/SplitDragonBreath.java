@@ -37,9 +37,9 @@ public class SplitDragonBreath extends AbstractHurtingProjectile {
             for (int i = 0; i < length; ++i) {
                 this.level().addParticle(ParticleTypes.DRAGON_BREATH, this.getRandomX(0.0F) + dx * (double) i / length, this.getRandomY() + dy * (double) i / length, this.getRandomZ(0.0F) + dz * (double) i / length, -dx * 0.1, -dy * 0.1, -dz * 0.1);
             }
-            if (!this.isNoGravity()) {
-                this.setDeltaMovement(this.getDeltaMovement().scale(0.98F).add(new Vec3(0.0D, -0.05D, 0.0D)));
-            }
+        }
+        if (!this.isNoGravity()) {
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.98F).add(new Vec3(0.0D, -0.05D, 0.0D)));
         }
     }
 

@@ -33,6 +33,8 @@ public abstract class MixinWitherBoss extends Monster {
 
     @Unique
     private boolean enigmaticAddons$lastPower = false;
+    @Unique
+    private int enigmaticAddons$lcount = 0;
 
     protected MixinWitherBoss(EntityType<? extends Monster> type, Level world) {
         super(type, world);
@@ -41,11 +43,16 @@ public abstract class MixinWitherBoss extends Monster {
     @Shadow
     public abstract boolean isPowered();
 
+    @Shadow
+    public abstract void setAlternativeTarget(int p_31455_, int p_31456_);
+
     @Inject(method = "customServerAiStep", at = @At(value = "HEAD"))
     public void customServerAiStep(CallbackInfo ci) {
         if (SuperAddonHandler.isCurseBoosted(this)) {
-            if (this.isPowered() && !this.enigmaticAddons$lastPower)
+            if (this.isPowered() && !this.enigmaticAddons$lastPower) {
                 enigmaticAddons$randomSkeleton(2 + this.random.nextInt(2));
+                this.enigmaticAddons$lastPower = this.isPowered();
+            }
             List<Entity> entities = this.level().getEntities(this, this.getBoundingBox().inflate(8.0F));
             for (Entity entity : entities) {
                 if (entity instanceof Monster living && living != this && living.getMobType().equals(MobType.UNDEAD)) {
@@ -54,7 +61,7 @@ public abstract class MixinWitherBoss extends Monster {
                     }
                 }
             }
-            this.enigmaticAddons$lastPower = this.isPowered();
+            if (this.tickCount % 40 == 0) this.enigmaticAddons$lastPower = this.isPowered();
         }
     }
 
@@ -62,13 +69,16 @@ public abstract class MixinWitherBoss extends Monster {
     public void hurtMix(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (SuperAddonHandler.isCurseBoosted(this) && this.isPowered() && cir.getReturnValue() && this.random.nextInt(10) == 0) {
             int temp = Math.max(1, Mth.ceil(amount / 7.5F));
-            enigmaticAddons$randomSkeleton(1 + this.random.nextInt(temp));
+            temp = this.random.nextInt(temp);
+            enigmaticAddons$lcount += temp;
+            if (enigmaticAddons$lcount > 10) return;
+            enigmaticAddons$randomSkeleton(temp);
         }
     }
 
     @Unique
     private void enigmaticAddons$randomSkeleton(int count) {
-        if (this.level().isClientSide()) return;
+        if (count <= 0 || this.level().isClientSide()) return;
         count = Math.min(count, 3);
         this.level().playSound(null, this.blockPosition(), SoundEvents.WITHER_SKELETON_STEP, SoundSource.NEUTRAL, 5.0F, 0.0F);
         for (int i = 0; i < count; i++) {
@@ -83,12 +93,15 @@ public abstract class MixinWitherBoss extends Monster {
             double dx;
             double dy;
             double dz;
+            int randomCount = 0;
             do {
+                if (randomCount++ > 12) return;
                 dx = skeleton.getX() + (this.random.nextDouble() - 0.5) * 8.0;
                 dy = skeleton.getY() + (double) (this.random.nextInt(16) - 8);
                 dz = skeleton.getZ() + (this.random.nextDouble() - 0.5) * 8.0;
             } while (!skeleton.randomTeleport(dx, dy, dz, true));
             ((ServerLevel) this.level()).sendParticles(ParticleTypes.SQUID_INK, skeleton.getX(), skeleton.getY(0.5F), skeleton.getZ(), 20, this.getBbWidth(), this.getBbHeight(), this.getBbWidth(), 0.0D);
+            if (this.getTarget() != null) skeleton.setTarget(this.getTarget());
             this.level().addFreshEntity(skeleton);
         }
     }

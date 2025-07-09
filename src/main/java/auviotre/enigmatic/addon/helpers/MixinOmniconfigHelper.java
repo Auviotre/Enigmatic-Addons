@@ -19,6 +19,7 @@ public class MixinOmniconfigHelper {
             "minecraft:blindness", "minecraft:nausea", "minecraft:mining_fatigue", "minecraft:hunger", "minecraft:levitation", "minecraft:slowness", "minecraft:weakness", "minecraft:poison", "minecraft:wither"
     };
     public static Omniconfig.IntParameter cubeDamageLimit;
+    public static Omniconfig.BooleanParameter cubeAutoSkill;
 
     public static void MixConfig(OmniconfigWrapper builder) {
         cubeRandomBuffs.clear();
@@ -30,5 +31,6 @@ public class MixinOmniconfigHelper {
         Arrays.stream(debuffList).forEach((entry) -> cubeRandomDebuffs.add(new ResourceLocation(entry)));
         if (cubeRandomDebuffs.isEmpty()) cubeRandomDebuffs.add(new ResourceLocation("minecraft:weakness"));
         cubeDamageLimit = builder.comment("The Damage Limit of the Cube.").min(50).getInt("CubeDamageLimit", 100);
+        cubeAutoSkill = builder.comment("Whether to trigger the ability of The Cube automatically.").getBoolean("CubeAutoSkillTriggering", true);
     }
 }

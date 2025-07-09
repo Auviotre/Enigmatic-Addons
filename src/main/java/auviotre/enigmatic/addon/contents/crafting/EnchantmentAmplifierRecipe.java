@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.contents.crafting;
 
 import auviotre.enigmatic.addon.contents.items.BlessAmplifier;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -67,6 +68,10 @@ public class EnchantmentAmplifierRecipe extends CustomRecipe {
             }
         }
         return amplifier != null && stackList.size() == 1 && stackList.get(0).isEnchanted() && this.canBoost(amplifier, stackList.get(0));
+    }
+
+    public NonNullList<ItemStack> getRemainingItems(CraftingContainer container) {
+        return NonNullList.withSize(container.getContainerSize(), ItemStack.EMPTY);
     }
 
     private ItemStack boost(ItemStack target) {

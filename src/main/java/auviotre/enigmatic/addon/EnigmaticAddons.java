@@ -10,11 +10,13 @@ import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
 import auviotre.enigmatic.addon.packets.clients.*;
 import auviotre.enigmatic.addon.packets.server.PacketCursedXPScrollKey;
 import auviotre.enigmatic.addon.packets.server.PacketEmptyLeftClick;
+import auviotre.enigmatic.addon.packets.server.PacketEtheriumShieldSync;
 import auviotre.enigmatic.addon.proxy.ClientProxy;
 import auviotre.enigmatic.addon.proxy.CommonProxy;
 import auviotre.enigmatic.addon.registries.*;
 import auviotre.enigmatic.addon.triggers.BlessRingEquippedTrigger;
 import auviotre.enigmatic.addon.triggers.ChaosElytraFlyingTrigger;
+import auviotre.enigmatic.addon.triggers.ChaosElytraKillTrigger;
 import com.aizistral.enigmaticlegacy.brewing.ValidationBrewingRecipe;
 import com.aizistral.enigmaticlegacy.config.OmniconfigHandler;
 import com.aizistral.enigmaticlegacy.objects.LoggerWrapper;
@@ -104,6 +106,8 @@ public class EnigmaticAddons {
         packetInstance.registerMessage(5, PacketMaliceTotem.class, PacketMaliceTotem::encode, PacketMaliceTotem::decode, PacketMaliceTotem::handle);
         packetInstance.registerMessage(6, PacketDescendingChaos.class, PacketDescendingChaos::encode, PacketDescendingChaos::decode, PacketDescendingChaos::handle);
         packetInstance.registerMessage(7, PacketExtradimensionParticles.class, PacketExtradimensionParticles::encode, PacketExtradimensionParticles::decode, PacketExtradimensionParticles::handle);
+        packetInstance.registerMessage(8, PacketEtheriumShieldSync.class, PacketEtheriumShieldSync::encode, PacketEtheriumShieldSync::decode, PacketEtheriumShieldSync::handle);
+        packetInstance.registerMessage(9, PacketForgottenIce.class, PacketForgottenIce::encode, PacketForgottenIce::decode, PacketForgottenIce::handle);
         LOGGER.info("Common setup phase finished successfully.");
     }
 
@@ -112,6 +116,7 @@ public class EnigmaticAddons {
         EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.FORGOTTEN_ICE);
         EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.REVIVAL_LEAF);
         EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.LOST_ENGINE);
+        EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.ILLUSION_LANTERN);
         EnigmaticItems.SPELLSTONES.add(EnigmaticAddonItems.ETHERIUM_CORE);
         LOGGER.info("Registering brewing recipes...");
         if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.COMMON_POTION) && OmniconfigHandler.isItemEnabled(EnigmaticItems.COMMON_POTION)) {
@@ -128,6 +133,7 @@ public class EnigmaticAddons {
         LOGGER.info("Registering triggers...");
         CriteriaTriggers.register(BlessRingEquippedTrigger.INSTANCE);
         CriteriaTriggers.register(ChaosElytraFlyingTrigger.INSTANCE);
+        CriteriaTriggers.register(ChaosElytraKillTrigger.INSTANCE);
         LOGGER.info("Load completion phase finished successfully");
     }
 
@@ -180,7 +186,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.ANGEL_BLESSING, EnigmaticAddonItems.FORGOTTEN_ICE);
             putAfter(entries, EnigmaticAddonItems.FORGOTTEN_ICE, EnigmaticAddonItems.REVIVAL_LEAF);
             putAfter(entries, EnigmaticAddonItems.REVIVAL_LEAF, EnigmaticAddonItems.LOST_ENGINE);
-            putAfter(entries, EnigmaticAddonItems.LOST_ENGINE, EnigmaticItems.LORE_INSCRIBER);
+            putAfter(entries, EnigmaticAddonItems.LOST_ENGINE, EnigmaticAddonItems.ILLUSION_LANTERN);
+            putAfter(entries, EnigmaticAddonItems.ILLUSION_LANTERN, EnigmaticItems.LORE_INSCRIBER);
             putAfter(entries, EnigmaticItems.LORE_INSCRIBER, EnigmaticItems.LORE_FRAGMENT);
             putAfter(entries, EnigmaticItems.LORE_FRAGMENT, EnigmaticItems.VOID_STONE);
             putAfter(entries, EnigmaticItems.VOID_STONE, EnigmaticItems.UNHOLY_GRAIL);
@@ -195,7 +202,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticAddonItems.DISASTER_SWORD, EnigmaticAddonItems.ICHOR_DROPLET);
             putAfter(entries, EnigmaticAddonItems.ICHOR_DROPLET, EnigmaticAddonItems.ICHOROOT);
             putAfter(entries, EnigmaticAddonItems.ICHOROOT, EnigmaticAddonItems.ICHOR_SPEAR);
-            putAfter(entries, EnigmaticAddonItems.ICHOR_SPEAR, EnigmaticAddonItems.EXTRADIMENSIONAL_SCEPTER);
+            putAfter(entries, EnigmaticAddonItems.ICHOR_SPEAR, EnigmaticAddonItems.QUARTZ_SCEPTER);
+            putAfter(entries, EnigmaticAddonItems.QUARTZ_SCEPTER, EnigmaticAddonItems.EXTRADIMENSIONAL_SCEPTER);
             putAfter(entries, EnigmaticAddonItems.EXTRADIMENSIONAL_SCEPTER, EnigmaticItems.ASTRAL_DUST);
             putAfter(entries, EnigmaticItems.ASTRAL_DUST, EnigmaticBlocks.ASTRAL_BLOCK);
             putAfter(entries, EnigmaticBlocks.ASTRAL_BLOCK, EnigmaticItems.ENDER_ROD);
@@ -261,7 +269,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.ABYSSAL_HEART, EnigmaticItems.THE_INFINITUM);
             putAfter(entries, EnigmaticItems.THE_INFINITUM, EnigmaticItems.DESOLATION_RING);
             putAfter(entries, EnigmaticItems.DESOLATION_RING, EnigmaticItems.ELDRITCH_AMULET);
-            putAfter(entries, EnigmaticItems.ELDRITCH_AMULET, EnigmaticAddonItems.CHAOS_ELYTRA);
+            putAfter(entries, EnigmaticItems.ELDRITCH_AMULET, EnigmaticAddonItems.VIOLENCE_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.VIOLENCE_SCROLL, EnigmaticAddonItems.CHAOS_ELYTRA);
             putAfter(entries, EnigmaticAddonItems.CHAOS_ELYTRA, EnigmaticItems.ELDRITCH_PAN);
             putAfter(entries, EnigmaticItems.ELDRITCH_PAN, EnigmaticItems.LOOT_GENERATOR);
             putAfter(entries, EnigmaticItems.LOOT_GENERATOR, EnigmaticItems.REDEMPTION_POTION);

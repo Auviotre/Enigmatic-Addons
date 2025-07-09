@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "enigmaticaddons:chaos_elytra"
+    },
+    "title": {
+      "translate": "advancement.enigmaticaddons:ChaosExplosionKill"
+    },
+    "description": {
+      "translate": "advancement.enigmaticaddons:ChaosExplosionKill.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "frame": "challenge"
+  },
+  "rewards": {
+    "experience": 400
+  },
+  "parent": "enigmaticaddons:main/chaos_elytra",
+  "criteria": {
+    "twist": {
+      "trigger": "enigmaticaddons:chaos_explosion_kill"
+    }
+  }
+}

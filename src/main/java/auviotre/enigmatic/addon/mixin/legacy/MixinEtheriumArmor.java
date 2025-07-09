@@ -15,7 +15,7 @@ public class MixinEtheriumArmor {
     @Inject(method = "hasShield", at = @At("RETURN"), cancellable = true, remap = false)
     private static void hasShieldMix(Player player, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue()) {
-            cir.setReturnValue(EtheriumCore.hasShield(player));
+            cir.setReturnValue(EtheriumCore.hasShield(player) || EtheriumCore.getShieldTick(player) > 0);
         }
     }
 }

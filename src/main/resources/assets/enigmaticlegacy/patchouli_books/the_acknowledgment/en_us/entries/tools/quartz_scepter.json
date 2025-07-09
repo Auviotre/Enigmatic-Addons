@@ -1,0 +1,22 @@
+{
+  "name": "book.enigmaticaddons.entry.quartz_scepter.name",
+  "icon": "enigmaticaddons:quartz_scepter",
+  "category": "enigmaticlegacy:tools",
+  "advancement": "enigmaticaddons:book/tools/quartz_scepter",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.quartz_scepter.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:quartz_scepter",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.quartz_scepter.page.2"
+    }
+  ]
+}

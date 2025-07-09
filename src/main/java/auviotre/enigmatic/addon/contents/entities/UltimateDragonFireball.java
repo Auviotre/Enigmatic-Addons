@@ -1,14 +1,17 @@
 package auviotre.enigmatic.addon.contents.entities;
 
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -33,13 +36,13 @@ public class UltimateDragonFireball extends AbstractHurtingProjectile {
             if (!this.level().isClientSide) {
                 List<LivingEntity> entities = this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4.0, 2.0, 4.0));
                 AreaEffectCloud effectCloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
-                if (this.getOwner() instanceof LivingEntity owner) {
+                if (this.getOwner() instanceof EnderDragon owner) {
                     effectCloud.setOwner(owner);
-                    for (int i = 0; i < 2 * this.level().getDifficulty().getId() + 2; i++) {
+                    for (int i = 0; i < 2 * this.level().getDifficulty().getId() + SuperAddonHandler.getEnderDragonBoostLevel(owner); i++) {
                         SplitDragonBreath split = new SplitDragonBreath(this.level(), owner);
                         split.setPos(this.position().add(0.0, -0.05, 0.0));
                         Vec3 movement = new Vec3(Math.random() - 0.5, Math.random() + 0.1, Math.random() - 0.5).normalize();
-                        split.setDeltaMovement(movement);
+                        split.setDeltaMovement(movement.scale(1.25));
                         this.level().addFreshEntity(split);
                     }
                 }
@@ -49,6 +52,7 @@ public class UltimateDragonFireball extends AbstractHurtingProjectile {
                 effectCloud.setDuration(640);
                 effectCloud.setRadiusPerTick((6.0F - effectCloud.getRadius()) / (float) effectCloud.getDuration());
                 effectCloud.addEffect(new MobEffectInstance(EnigmaticAddonEffects.DRAGON_BREATH_EFFECT, 1, 2));
+                effectCloud.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 1, 2));
                 if (!entities.isEmpty()) {
                     for (LivingEntity entity : entities) {
                         if (this.distanceToSqr(entity) < 16.0) {

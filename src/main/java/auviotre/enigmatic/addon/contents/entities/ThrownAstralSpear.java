@@ -18,7 +18,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -39,8 +39,7 @@ public class ThrownAstralSpear extends AbstractSpear {
     private static final double seekAngle = Math.PI / 12.0;
     private static final double seekThreshold = 0.9;
     private ItemStack spearItem;
-    @Nullable
-    private IntOpenHashSet ignoreEntityIds;
+    private @Nullable IntOpenHashSet ignoreEntityIds;
 
     public ThrownAstralSpear(EntityType<? extends AbstractArrow> type, Level world) {
         super(type, world, EnigmaticAddonItems.ASTRAL_SPEAR);
@@ -159,15 +158,19 @@ public class ThrownAstralSpear extends AbstractSpear {
     protected void areaAttack(Level level, HitResult result, DamageSource source, float damage) {
         damage = damage * (float) AstralSpear.poweredModifier.getValue();
         Vec3 location = result.getLocation();
+        if (this.getOwner() != null) {
+            float delta = (float) location.subtract(this.getOwner().position()).length();
+            delta = Math.min(delta, 100);
+            damage *= 1 + delta * 0.02F;
+        }
         if (result instanceof EntityHitResult hitResult)
             location.add(0, hitResult.getEntity().getBbHeight() * 0.75, 0);
         if (!level.isClientSide)
             EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(location.x, location.y, location.z, 64.0, level.dimension())),
                     new PacketStarParticles(location.x, location.y, location.z, 160, 0));
-        Entity owner = this.getOwner() == null ? this : this.getOwner();
         List<Entity> entities = level.getEntities(this, this.getBoundingBox().move(location.subtract(this.position())).inflate(5));
         for (Entity target : entities) {
-            if (target instanceof LivingEntity && target.isAlive() && target != owner && target != this) {
+            if (target instanceof LivingEntity && target.isAlive() && !this.ownedBy(target) && target != this) {
                 target.hurt(source, damage);
             }
         }
@@ -240,7 +243,7 @@ public class ThrownAstralSpear extends AbstractSpear {
             if (!monsters.isEmpty()) {
                 for (LivingEntity living : monsters) {
                     if (!living.hasLineOfSight(this)) continue;
-                    if (living == this.getOwner()) continue;
+                    if (this.ownedBy(living)) continue;
                     if (!this.canHitEntity(living))
                         continue;
                     Vec3 motionVec = this.getDeltaMovement().normalize();
@@ -255,8 +258,8 @@ public class ThrownAstralSpear extends AbstractSpear {
             } else {
                 for (LivingEntity living : entityList) {
                     if (!living.hasLineOfSight(this)) continue;
-                    if (living == this.getOwner()) continue;
-                    if (this.getOwner() != null && living instanceof TamableAnimal animal && animal.getOwner() == this.getOwner())
+                    if (this.ownedBy(living)) continue;
+                    if (this.getOwner() != null && living instanceof OwnableEntity ownableEntity && ownableEntity.getOwner() == this.getOwner())
                         continue;
                     if (!this.canHitEntity(living))
                         continue;
@@ -281,8 +284,7 @@ public class ThrownAstralSpear extends AbstractSpear {
         return new Vec3(target.getX() - this.getX(), target.getY(0.81F) - this.getY(), target.getZ() - this.getZ());
     }
 
-    @Nullable
-    private Entity getTarget() {
+    private @Nullable Entity getTarget() {
         return this.level().getEntity(this.getEntityData().get(ID_TARGET));
     }
 

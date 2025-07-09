@@ -138,27 +138,26 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
                     }
                 }
             }
-            BlockPos blockPos = player.blockPosition();
+
+            List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(5.0), living -> living.isAlive() && living.hasEffect(MobEffects.POISON));
+            for (LivingEntity poisoned : entities) entity.getPersistentData().putBoolean("RevivingPoisoned", true);
+
+            BlockPos pos = player.blockPosition();
             if (player.level() instanceof ServerLevel world) {
-                for (int i = -3; i < 3; i++) {
-                    for (int j = -3; j < 3; j++) {
-                        for (int k = -3; k < 3; k++) {
-                            BlockPos offset = blockPos.offset(i, j, k);
-                            BlockState state = world.getBlockState(offset);
-                            if (state.getBlock() instanceof CropBlock cropBlock) {
-                                if (cropBlock.getMaxAge() > cropBlock.getAge(state) && random.nextInt(16) == 0) {
-                                    cropBlock.randomTick(state, world, offset, player.getRandom());
-                                    Vec3 center = offset.getCenter();
-                                    if (random.nextInt(12) == 0)
-                                        world.sendParticles(ParticleTypes.HAPPY_VILLAGER, center.x, center.y, center.z, 1, 0.2, 0.2, 0.2, 0);
-                                }
-                            } else if (state.getBlock() instanceof StemBlock stemBlock) {
-                                stemBlock.randomTick(state, world, offset, player.getRandom());
-                                Vec3 center = offset.getCenter();
-                                if (random.nextInt(12) == 0)
-                                    world.sendParticles(ParticleTypes.HAPPY_VILLAGER, center.x, center.y, center.z, 1, 0.2, 0.2, 0.2, 0);
-                            }
+                for (BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-3, -1, -3), pos.offset(3, 1, 3))) {
+                    BlockState state = world.getBlockState(blockPos);
+                    if (state.getBlock() instanceof CropBlock cropBlock) {
+                        if (cropBlock.getMaxAge() > cropBlock.getAge(state) && random.nextInt(16) == 0) {
+                            cropBlock.randomTick(state, world, blockPos, player.getRandom());
+                            Vec3 center = blockPos.getCenter();
+                            if (random.nextInt(12) == 0)
+                                world.sendParticles(ParticleTypes.HAPPY_VILLAGER, center.x, center.y, center.z, 1, 0.2, 0.2, 0.2, 0);
                         }
+                    } else if (state.getBlock() instanceof StemBlock stemBlock) {
+                        stemBlock.randomTick(state, world, blockPos, player.getRandom());
+                        Vec3 center = blockPos.getCenter();
+                        if (random.nextInt(12) == 0)
+                            world.sendParticles(ParticleTypes.HAPPY_VILLAGER, center.x, center.y, center.z, 1, 0.2, 0.2, 0.2, 0);
                     }
                 }
             }

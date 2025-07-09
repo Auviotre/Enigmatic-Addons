@@ -74,7 +74,7 @@ public class ExtradimensionalScepter extends ItemBase {
 
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
-        builder.pushPrefix("EtheriumCore");
+        builder.pushPrefix("ScepterofExtradimensional");
         transportingCooldown = builder.comment("The cooldown of Transporting Mode. Measured in ticks.").min(200).getInt("TransportingCooldown", 280);
         overheatingCooldown = builder.comment("The cooldown of Combat Mode when using continuously to long. Measured in ticks.").min(100).getInt("OverheatCooldown", 150);
         maxCombatCount = builder.comment("The max count to transporting enemies of Combat Mode.").getInt("MaxCombatCount", 5);
@@ -258,6 +258,10 @@ public class ExtradimensionalScepter extends ItemBase {
         return stack.is(EnigmaticItems.EXTRADIMENSIONAL_EYE) || super.isValidRepairItem(self, stack);
     }
 
+    public int getEnchantmentValue(ItemStack stack) {
+        return 24;
+    }
+
     @SubscribeEvent
     public void onTick(LivingEvent.LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
@@ -304,13 +308,13 @@ public class ExtradimensionalScepter extends ItemBase {
         }
     }
 
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getAttributeModifiers(slot, stack);
     }
 
     public static class Helper {
         public static int getTransCooldown(Player player) {
-            return player.getAbilities().instabuild ? 20 : transportingCooldown.getValue();
+            return player.getAbilities().instabuild ? 5 : transportingCooldown.getValue();
         }
 
         public static int getOverheatCooldown(Player player) {
@@ -335,8 +339,7 @@ public class ExtradimensionalScepter extends ItemBase {
             player.level().playSound(null, player.blockPosition(), isCombatMode(stack) ? EnigmaticSounds.CHARGED_ON : EnigmaticSounds.CHARGED_OFF, SoundSource.PLAYERS);
         }
 
-        @Nullable
-        public static EntityType<?> getType(ItemStack stack) {
+        public static @Nullable EntityType<?> getType(ItemStack stack) {
             if (stack.hasTag()) {
                 String type = stack.getTag().getString("ExtradimensionalType");
                 EntityType<?> value = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(type));

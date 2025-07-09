@@ -20,10 +20,6 @@ public class RemainDragonBreath extends InstantenousMobEffect {
         this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "744bf4f9-0647-49a9-9f6c-be42d42faeee", -0.125F, AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.hurt(entity.damageSources().dragonBreath(), (float) (4 << amplifier));
-    }
-
     public void applyInstantenousEffect(@Nullable Entity undirected, @Nullable Entity owner, LivingEntity target, int amplifier, double multiplier) {
         float damage = (int) (multiplier * (double) (4 << amplifier) + 0.5);
         if (owner == target) {

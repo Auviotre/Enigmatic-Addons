@@ -1,15 +1,18 @@
 package auviotre.enigmatic.addon.contents.items;
 
-import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.client.screens.ArtificialFlowerScreen;
 import auviotre.enigmatic.addon.contents.gui.ArtificialFlowerMenu;
+import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
+import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
-import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonPotions;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticPotions;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
@@ -18,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
@@ -34,6 +38,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -45,15 +51,22 @@ import java.util.*;
 public class ArtificialFlower extends ItemBase {
     public static final List<ResourceLocation> attributeBlackList = new ArrayList<>();
     public static final List<ResourceLocation> effectBlackList = new ArrayList<>();
-    private static final String[] defaultAttributeBlackList = new String[] {
+    public static final Map<ServerPlayer, Map<ImmutableMultimap<Attribute, AttributeModifier>, Integer>> PLAYER_ATTRIBUTE_MAP = new HashMap<>();
+    private static final String[] defaultAttributeBlackList = new String[]{
             "caelus:fall_flying",
             "goety_revelation:resistance"
     };
-    private static final String[] defaultEffectBlackList = new String[] {
+    private static final String[] defaultEffectBlackList = new String[]{
             "alexscaves:darkness_incarnate",
             "alexsmobs:oiled",
             "aquamirae:crystallization",
+            "born_in_chaos_v1:light_rampage",
+            "born_in_chaos_v1:medium_rampage",
+            "born_in_chaos_v1:strong_rampage",
+            "born_in_chaos_v1:furious_rampage",
+            "born_in_chaos_v1:rampant_rampage",
             "cataclysm:ghost_form",
+            "cataclysm:ghost_sickness",
             "enigmaticdelicacy:fading",
             "enigmaticlegacy:blazing_strength",
             "goety:shadow_walk",
@@ -141,7 +154,16 @@ public class ArtificialFlower extends ItemBase {
                 }
             }
         }
-        if (tag.getBoolean("FlowerEnable")) {
+        boolean bagFlag = false;
+        LazyOptional<IAntiqueBagHandler> capability = SuperAddonHandler.getCapability(player, AntiqueBagCapability.INVENTORY);
+        if (capability != null && capability.isPresent()) {
+            IAntiqueBagHandler bagHandler = capability.orElseThrow(() -> new IllegalArgumentException("Lazy optional must not be empty"));
+            if (bagHandler.hasFlower()) {
+                ItemStack bagStack = bagHandler.getBook(stack.getOrCreateTag().getInt("FlowerBagEnable"));
+                bagFlag = Helper.getFlowerUUID(bagStack) != null && Helper.getFlowerUUID(bagStack).equals(Helper.getFlowerUUID(stack));
+            }
+        }
+        if (tag.getBoolean("FlowerEnable") || bagFlag) {
             for (int i = 1; i <= 3; i++) {
                 Pair<Attribute, AttributeModifier> attribute = Helper.getAttribute(stack, i);
                 if (attribute != null && attributeBlackList.contains(ForgeRegistries.ATTRIBUTES.getKey(attribute.getFirst())))
@@ -154,11 +176,20 @@ public class ArtificialFlower extends ItemBase {
             }
 
             ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-            for (int i = 1; i <= 3; i++) if (Helper.getAttribute(stack, i) != null) {
-                Pair<Attribute, AttributeModifier> attribute = Helper.getAttribute(stack, i);
-                builder.put(attribute.getFirst(), attribute.getSecond());
+            for (int i = 1; i <= 3; i++)
+                if (Helper.getAttribute(stack, i) != null) {
+                    Pair<Attribute, AttributeModifier> attribute = Helper.getAttribute(stack, i);
+                    builder.put(attribute.getFirst(), attribute.getSecond());
+                }
+            ImmutableMultimap<Attribute, AttributeModifier> attributeMap = builder.build();
+            if (player instanceof ServerPlayer server && !attributeMap.isEmpty()) {
+                Map<ImmutableMultimap<Attribute, AttributeModifier>, Integer> attributeTickMap;
+                if (PLAYER_ATTRIBUTE_MAP.containsKey(server)) attributeTickMap = PLAYER_ATTRIBUTE_MAP.get(player);
+                else attributeTickMap = new HashMap<>();
+                if (attributeTickMap.containsKey(attributeMap)) attributeTickMap.replace(attributeMap, 3);
+                else attributeTickMap.put(attributeMap, 3);
+                PLAYER_ATTRIBUTE_MAP.put(server, attributeTickMap);
             }
-            player.getAttributes().addTransientAttributeModifiers(builder.build());
             MobEffect effectImmuneTo = Helper.getEffect(stack, 1);
             if (effectImmuneTo != null && player.hasEffect(effectImmuneTo)) player.removeEffect(effectImmuneTo);
             MobEffect effectProvided = Helper.getEffect(stack, 0);
@@ -183,6 +214,7 @@ public class ArtificialFlower extends ItemBase {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         player.startUsingItem(hand);
         player.getCooldowns().addCooldown(this, 30);
+        player.getItemInHand(hand).getOrCreateTag().putBoolean("FlowerEnable", false);
         if (!world.isClientSide) player.openMenu(new ArtificialFlowerMenu.Provider());
         return InteractionResultHolder.success(player.getItemInHand(hand));
     }
@@ -202,7 +234,70 @@ public class ArtificialFlower extends ItemBase {
         }
     }
 
+    @SubscribeEvent
+    public void onTick(TickEvent.ServerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        ArtificialFlower.PLAYER_ATTRIBUTE_MAP.forEach((player, attributeTickMap) -> {
+            if (attributeTickMap.isEmpty()) return;
+            List<ImmutableMultimap<Attribute, AttributeModifier>> multiMapSet = attributeTickMap.keySet().stream().toList();
+            for (ImmutableMultimap<Attribute, AttributeModifier> attribute : multiMapSet) {
+                Integer tick = attributeTickMap.get(attribute);
+                if (tick <= 1) {
+                    player.getAttributes().removeAttributeModifiers(attribute);
+                    attributeTickMap.remove(attribute);
+                } else {
+                    player.getAttributes().addTransientAttributeModifiers(attribute);
+                    attributeTickMap.replace(attribute, tick - 1);
+                }
+            }
+        });
+    }
+
     public static class Helper {
+        public static List<Attribute> attributePool;
+        public static List<MobEffect> potionEffectPool;
+        public static List<MobEffect> allEffectPool;
+
+        public static void initRandomPool() {
+            ImmutableList.Builder<Attribute> attributeBuilder = new ImmutableList.Builder<>();
+            ForgeRegistries.ATTRIBUTES.getValues().forEach(attribute -> {
+                if (!attributeBlackList.contains(ForgeRegistries.ATTRIBUTES.getKey(attribute))) {
+                    attributeBuilder.add(attribute);
+                }
+            });
+            attributePool = attributeBuilder.build();
+
+            ImmutableList.Builder<MobEffect> effectImmuneBuilder = new ImmutableList.Builder<>();
+            ForgeRegistries.MOB_EFFECTS.getValues().forEach(effect -> {
+                if (effectBlackList.contains(ForgeRegistries.MOB_EFFECTS.getKey(effect))) return;
+                if (ForgeRegistries.MOB_EFFECTS.getKey(effect).toString().contains("flight")) return;
+                if (ForgeRegistries.MOB_EFFECTS.getKey(effect).toString().contains("fly")) return;
+                effectImmuneBuilder.add(effect);
+            });
+            allEffectPool = effectImmuneBuilder.build();
+
+            ImmutableList.Builder<MobEffect> effectProvidingBuilder = new ImmutableList.Builder<>();
+            List<MobEffect> effects = new ArrayList<>();
+            for (Potion potion : ForgeRegistries.POTIONS.getValues()) {
+                for (MobEffectInstance instance : potion.getEffects()) {
+                    if (!effects.contains(instance.getEffect())) effects.add(instance.getEffect());
+                }
+            }
+            EnigmaticAddonPotions.COMMON_POTIONS.forEach(potion -> potion.getEffects().forEach(effect -> {
+                if (!effects.contains(effect.getEffect())) effects.add(effect.getEffect());
+            }));
+            EnigmaticPotions.COMMON_POTIONS.forEach(potion -> potion.getEffects().forEach(effect -> {
+                if (!effects.contains(effect.getEffect())) effects.add(effect.getEffect());
+            }));
+            effects.forEach(effect -> {
+                if (effectBlackList.contains(ForgeRegistries.MOB_EFFECTS.getKey(effect))) return;
+                if (ForgeRegistries.MOB_EFFECTS.getKey(effect).toString().contains("flight")) return;
+                if (ForgeRegistries.MOB_EFFECTS.getKey(effect).toString().contains("fly")) return;
+                effectProvidingBuilder.add(effect);
+            });
+            potionEffectPool = effectProvidingBuilder.build();
+        }
+
         public static void setAttribute(ItemStack stack, int index, Attribute attribute, AttributeModifier attributeModifier) {
             String id = "AttributeId" + index;
             String modifier = "AttributeModifier" + index;
@@ -225,8 +320,7 @@ public class ArtificialFlower extends ItemBase {
             stack.getOrCreateTag().remove("PotionEffect" + index);
         }
 
-        @Nullable
-        public static Pair<Attribute, AttributeModifier> getAttribute(ItemStack stack, int index) {
+        public static @Nullable Pair<Attribute, AttributeModifier> getAttribute(ItemStack stack, int index) {
             String id = "AttributeId" + index;
             if (!stack.hasTag() || !stack.getTag().contains(id, 8)) return null;
             String modifier = "AttributeModifier" + index;
@@ -240,8 +334,7 @@ public class ArtificialFlower extends ItemBase {
             return Pair.of(attribute, attributeModifier);
         }
 
-        @Nullable
-        public static MobEffect getEffect(ItemStack stack, int index) {
+        public static @Nullable MobEffect getEffect(ItemStack stack, int index) {
             String id = "PotionEffect" + index;
             if (!stack.hasTag() || !stack.getTag().contains(id, 8)) return null;
             MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(stack.getTag().getString(id)));
@@ -253,9 +346,7 @@ public class ArtificialFlower extends ItemBase {
         }
 
         public static void randomAttribute(Player player, ItemStack stack, int index, int cost, boolean boost) {
-            List<Attribute> attributes = new ArrayList<>(ForgeRegistries.ATTRIBUTES.getValues());
-            attributes.removeIf(attribute -> attributeBlackList.contains(ForgeRegistries.ATTRIBUTES.getKey(attribute)));
-            Attribute attribute = attributes.get(player.getRandom().nextInt(attributes.size()));
+            Attribute attribute = attributePool.get(player.getRandom().nextInt(attributePool.size()));
             double defaultValue = attribute.getDefaultValue();
             AttributeModifier.Operation operation;
             double offset = (cost == 0 ? 0 : cost == 1 ? 0.3 : 0.6) - (boost ? 0 : 0.125);
@@ -272,25 +363,15 @@ public class ArtificialFlower extends ItemBase {
         }
 
         public static void randomEffect(Player player, ItemStack stack, int index) {
-            List<MobEffect> effects = new ArrayList<>();
-            Collection<Potion> potions = ForgeRegistries.POTIONS.getValues();
-            for (Potion potion : potions) {
-                for (MobEffectInstance instance : potion.getEffects()) {
-                    if (!effects.contains(instance.getEffect())) effects.add(instance.getEffect());
-                }
-            }
-            Collection<MobEffect> effectValues = ForgeRegistries.MOB_EFFECTS.getValues();
-            for (MobEffect effect : effectValues) {
-                String namespace = ForgeRegistries.MOB_EFFECTS.getKey(effect).getNamespace();
-                if (namespace.equals(EnigmaticLegacy.MODID) || namespace.equals(EnigmaticAddons.MODID)) effects.add(effect);
-                if (namespace.equals("enigmaticdelicacy")) effects.add(effect);
-            }
-            effects.removeIf(effect -> attributeBlackList.contains(ForgeRegistries.MOB_EFFECTS.getKey(effect)));
-            effects.removeIf(effect -> ForgeRegistries.MOB_EFFECTS.getKey(effect).toString().contains("flight"));
-            effects.removeIf(effect -> ForgeRegistries.MOB_EFFECTS.getKey(effect).toString().contains("fly"));
             MobEffect effect;
+            int count = stack.getOrCreateTag().contains("AllEffectCount") ? stack.getOrCreateTag().getInt("AllEffectCount") : 1;
+            RandomSource playerRandom = player.getRandom();
             do {
-                effect = effects.get(player.getRandom().nextInt(effects.size()));
+                if (index == 1 || playerRandom.nextInt((count + 1) / 2) == 0) {
+                    effect = allEffectPool.get(playerRandom.nextInt(allEffectPool.size()));
+                    System.out.print("FlowerCount: " + count + "\n");
+                    stack.getOrCreateTag().putInt("AllEffectCount", count + 1);
+                } else effect = potionEffectPool.get(playerRandom.nextInt(potionEffectPool.size()));
             } while (effect == getEffect(stack, 1 - index));
             MobEffect oldEffect = getEffect(stack, index);
             if (oldEffect != null && player.hasEffect(oldEffect)) player.removeEffect(oldEffect);
@@ -305,14 +386,12 @@ public class ArtificialFlower extends ItemBase {
             return copy ? flower.copy() : flower;
         }
 
-        @Nullable
-        public static UUID getFlowerUUID(ItemStack stack) {
+        public static @Nullable UUID getFlowerUUID(ItemStack stack) {
             CompoundTag tag = stack.getOrCreateTag();
             return tag.hasUUID("FlowerUUID") ? tag.getUUID("FlowerUUID") : null;
         }
 
-        @Nullable
-        public static UUID getPlayerEnableUUID(Player player) {
+        public static @Nullable UUID getPlayerEnableUUID(Player player) {
             CompoundTag tag = player.getPersistentData();
             return tag.hasUUID("FlowerEnableUUID") ? tag.getUUID("FlowerEnableUUID") : null;
         }

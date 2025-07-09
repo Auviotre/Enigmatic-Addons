@@ -155,8 +155,11 @@ public class ArtificialFlowerScreen extends AbstractContainerScreen<ArtificialFl
         graphics.drawString(this.font, Component.translatable("gui.enigmaticaddons.artificial_flower_effect").withStyle(ChatFormatting.WHITE), x0 + 100, y0 + 5, 10);
         if (this.menu.valid(0)) graphics.blit(INVENTORY, x0 + 36, y0 + 15, 192, 0, 16, 48);
         if (this.menu.valid(1)) {
-            graphics.blit(INVENTORY, x0 + 112, y0 + 22, 176, 48, 5 + 20, 8);
-            graphics.blit(INVENTORY, x0 + 112, y0 + 49, 176, 56, 5 + 20, 8);
+            graphics.blit(INVENTORY, x0 + 112, y0 + 22, 176, 48, 25, 8);
+            graphics.blit(INVENTORY, x0 + 112, y0 + 49, 176, 56, 25, 8);
+        }
+        if (this.menu.hasRing()) {
+            graphics.blit(INVENTORY, x0 + 68, y0 + 19, 176, 64, 37, 32);
         }
 
         graphics.blit(INVENTORY, x0 + 17 + this.menu.costMode * 6, y0 + 49, 176, 32, 4, 7);

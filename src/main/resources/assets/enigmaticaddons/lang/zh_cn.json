@@ -60,7 +60,7 @@
   "item.enigmaticaddons.night_scroll": "暗夜契约卷轴",
 
   "tooltip.enigmaticaddons.nightScroll1": "§6幻翼§5更少地在身边生成。",
-  "tooltip.enigmaticaddons.nightScroll2": "§5在暗处将会得到以下加成：",
+  "tooltip.enigmaticaddons.nightScroll2": "§5装备后：",
   "tooltip.enigmaticaddons.nightScroll3": "§6+%1$s §d攻击伤害",
   "tooltip.enigmaticaddons.nightScroll4": "§6+%1$s §d伤害减免",
   "tooltip.enigmaticaddons.nightScroll5": "§6+%1$s §d生命窃取",
@@ -74,6 +74,16 @@
   "book.enigmaticaddons.entry.quartz_ring.name": "魔法石英戒指",
   "book.enigmaticaddons.entry.quartz_ring.page.1": "在地狱之中发现石英这一材料时，你望着那些奔腾的热浪与熔岩，摸着石英坚硬的质地，你对于它在地狱的广泛分布感到诧异。同时对于新材料的入手，你觉得凭着你的手艺似乎可以做出更强大的防御戒指。<br2/>但是单纯地发掘的物理防御能力，对于戒指来说早已达到了极限，所以能否开发一点其他用途？",
   "book.enigmaticaddons.entry.quartz_ring.page.2": "因此，配方之中加入了青金石这一附魔材料，加强了戒指的魔法性能，使你在面临魔法侵袭时，增加了一点点反抗的能力。聊胜于无吧。",
+
+  "item.enigmaticaddons.quartz_scepter": "魔法石英权杖",
+
+  "tooltip.enigmaticaddons.quartzScepter1": "§5右键持续发射魔法匕首",
+  "tooltip.enigmaticaddons.quartzScepter2": "§5匕首能帮助捡起附近的掉落物",
+  "tooltip.enigmaticaddons.quartzScepter3": "§d幸运值§5会提高匕首的伤害",
+
+  "book.enigmaticaddons.entry.quartz_scepter.name": "魔法石英权杖",
+  "book.enigmaticaddons.entry.quartz_scepter.page.1": "相同的材料但是不同的配方，崭新的权杖由此诞生。利用材料的魔力幻化成匕首向前突进，虽说威力不算很强，但好歹是个不消耗的手段。<br2/>另外在下界之中，总不免会发生物品掉落烧毁的现象，于是这把权杖外加了吸收物品的能力，能在某些情景下大显身手了。",
+  "book.enigmaticaddons.entry.quartz_scepter.page.2": "鉴于魔法石英的魔力贯通性，相似的物品能够产生一定的影响，不妨尝试佩戴魔法石英戒指，对比一下手感吧。",
 
   "item.enigmaticaddons.earth_promise": "地灵之诺",
 
@@ -89,13 +99,13 @@
   "item.enigmaticaddons.forgotten_ice": "忘却冰晶",
 
   "tooltip.enigmaticaddons.forgottenIce1": "§d主动技能:",
-  "tooltip.enigmaticaddons.forgottenIce2": "§6- 将周围的生物冻结",
+  "tooltip.enigmaticaddons.forgottenIce2": "§6- 将周围的生物冻结并造成大量伤害",
   "tooltip.enigmaticaddons.forgottenIceCooldown": "§d冷却：§6%1$s§6秒",
   "tooltip.enigmaticaddons.forgottenIce3": "§d被动技能:",
   "tooltip.enigmaticaddons.forgottenIce4": "§5- 冻结免疫与冰霜行者",
-  "tooltip.enigmaticaddons.forgottenIce5": "§5- 攻击目标逐渐冻结",
-  "tooltip.enigmaticaddons.forgottenIce6": "§5- 冻结攻击你的敌人",
-  "tooltip.enigmaticaddons.forgottenIce7": "§5- 对冻结的敌人造成更多伤害",
+  "tooltip.enigmaticaddons.forgottenIce5": "§5- 冻结与你接触的生物",
+  "tooltip.enigmaticaddons.forgottenIce6": "§5- 对§d冻结§5的目标造成更多伤害",
+  "tooltip.enigmaticaddons.forgottenIce7": "§5- 冻结达到一定程度后目标§d难以行动",
   "tooltip.enigmaticaddons.forgottenIce8": "§5- 增加 §6%1$s§d 弹射物与音爆抗性",
   "tooltip.enigmaticaddons.forgottenIce9": "§5- 增加受到的§d火焰伤害§5和§d摔落伤害",
 
@@ -129,7 +139,7 @@
   "tooltip.enigmaticaddons.revivalLeafCooldown": "§d冷却：§6%1$s§6秒",
   "tooltip.enigmaticaddons.revivalLeaf3": "§d被动技能:",
   "tooltip.enigmaticaddons.revivalLeaf4": "§5- 缓慢自然生命恢复",
-  "tooltip.enigmaticaddons.revivalLeaf5": "§5- 攻击附带中毒效果",
+  "tooltip.enigmaticaddons.revivalLeaf5": "§5- 攻击附带中毒效果并减少目标回血",
   "tooltip.enigmaticaddons.revivalLeaf6": "§5- 免疫§d凋零§5、§d中毒§5和§d饥饿§5效果",
   "tooltip.enigmaticaddons.revivalLeaf7": "§5- 周围的作物生长加快",
   "tooltip.enigmaticaddons.revivalLeaf8": "§5- 药水效果持续时间加长",
@@ -158,6 +168,24 @@
   "book.enigmaticaddons.entry.etherium_core.page.2": "你每次收到的伤害，折算、累加，并在下一次攻击时，将所有力量灌注这一击之中，好好偿还回去。<br2/>此外，不同于其他的术石，纯净的以太力量似乎并没有什么弱点，请放心使用。",
   "book.enigmaticaddons.entry.etherium_core.page.3": "",
 
+  "item.enigmaticaddons.illusion_lantern": "虚幻冥灯",
+
+  "tooltip.enigmaticaddons.illusionLantern1": "§d主动技能:",
+  "tooltip.enigmaticaddons.illusionLantern2": "§4- 无",
+  "tooltip.enigmaticaddons.illusionLanternCooldown": "§d冷却：§6%1$s§6秒",
+  "tooltip.enigmaticaddons.illusionLantern3": "§5- 生成§d灵魂火团§5自动攻击周围生物",
+  "tooltip.enigmaticaddons.illusionLantern4": "§5- 受到的伤害将分摊到周围的生物上",
+  "tooltip.enigmaticaddons.illusionLantern5": "§5- 一般§d亡灵生物§5不会主动以你为目标",
+  "tooltip.enigmaticaddons.illusionLantern6": "§5- 受到§d穿透防御§5的伤害大大减少",
+  "tooltip.enigmaticaddons.illusionLantern7": "§5- 周围植被方块会自动消逝",
+  "tooltip.enigmaticaddons.illusionLantern8": "§5- 亮度过高时会受到§d诅咒伤害",
+  "tooltip.enigmaticaddons.illusionLantern9": "§5- 受到§d非魔法伤害§5小幅提升",
+
+  "book.enigmaticaddons.entry.illusion_lantern.name": "虚幻冥灯",
+  "book.enigmaticaddons.entry.illusion_lantern.heading.1": "术石",
+  "book.enigmaticaddons.entry.illusion_lantern.page.1": "在下界的某个角落，这盏灯闪烁着微弱的光芒，你能感受到无数的怨魂萦绕周围，驱使着你提起这盏冥灯。<br2/>明明有魂火燃烧，却不曾感受到其中的温度，甚至有些寒意在其中，散发着亡灵的气息。所以这枚术石，会让你融入亡灵的环境之中，同时也对亮度更加敏感。",
+  "book.enigmaticaddons.entry.illusion_lantern.page.2": "虚虚实实的交叠同时也让你对穿透型伤害有更高的抗性，分出虚影附身分摊伤害。但这盏冥灯是否存在，或许这一切只是你的幻想？",
+
   "item.enigmaticaddons.astral_spear": "星光穿刺者",
 
   "tooltip.enigmaticaddons.astralSpear1": "§5具有追踪能力的投矛",
@@ -168,7 +196,7 @@
   "book.enigmaticaddons.entry.astral_spear.page.1": "纵观所有以太武器工具，似乎没有一件能够让你够到那些悬浮在头顶的敌人，所以也是时候想想，星尘的能力究竟有多大。<br2/>把以太剑作为基底，加长柄部，削尖矛头，最后注入星尘的魔力，一把远近兼顾的投矛就此诞生。星尘的力量汇聚在了矛头，使得投矛能够去与空间中得能量交互。由此，它便能够感知物体，",
   "book.enigmaticaddons.entry.astral_spear.page.2": "追踪每一个目标，同时也能够将空间中的能量积蓄起来，快速穿刺而出，并将能量倾泻，产生一次星尘爆炸。<br2/>星尘也异化了这把武器的附魔能力，何不去尝试一些本",
   "book.enigmaticaddons.entry.astral_spear.page.3": "不属于剑的魔咒？",
-  "book.enigmaticaddons.entry.astral_spear.page.4": "<br/><&n><&8>关于特化附魔的记录：<clear/><&8><br/>锋利<br/> - 可以增加投矛的伤害。<br2/>穿透<br/> - 增加穿透次数并略微提高追踪能力。<br2/>忠诚<br/> - 自动召回投矛，相较于三叉戟更快。",
+  "book.enigmaticaddons.entry.astral_spear.page.4": "<br/><&n><&8>关于特化附魔的记录：<clear/><&8><br/>锋利<br/> - 可以增加投矛的伤害。<br2/>穿透<br/> - 增加穿透次数并略微提高追踪能力。",
 
   "item.enigmaticaddons.dragon_bow" : "龙息弓",
 
@@ -350,6 +378,7 @@
   "item.enigmaticaddons.ichor_spear": "灵液标枪",
 
   "tooltip.enigmaticaddons.ichorSpear": "§5一次性的腐化投矛",
+  "tooltip.enigmaticaddons.ichorSpearFull": "§5不消耗",
 
   "book.enigmaticaddons.entry.ichor_spear.name": "灵液标枪",
   "book.enigmaticaddons.entry.ichor_spear.page.1": "你应该明白，高贵的灵液始终是不同于一般的存在，特别是当它滴落在盔甲上滋滋作响时。<br2/>小心地将灵液涂抹在性质稳定的金质矛头上，外加其他作为催化剂的物件，简单的投矛就制作完成了。将它刺入敌人的盔甲之中，刺激的灵液便会将他们的护甲腐蚀，弱化他们的防御。",
@@ -474,14 +503,25 @@
 
   "item.enigmaticaddons.chaos_elytra": "混沌之傲",
 
-  "tooltip.enigmaticaddons.chaosElytra1": "§5减少 §6%1$s §5来自背后的伤害。",
-  "tooltip.enigmaticaddons.chaosElytra2": "§5加速垂直冲向地面时会产生范围伤害。",
+  "tooltip.enigmaticaddons.chaosElytra1": "§5减少 §6%1$s §5来自背后的伤害",
+  "tooltip.enigmaticaddons.chaosElytra2": "§5加速垂直冲向地面时会产生范围伤害",
   "tooltip.enigmaticaddons.chaosElytra3": "",
-  "tooltip.enigmaticaddons.chaosElytra4": "§6 +3 §d护甲值",
+  "tooltip.enigmaticaddons.chaosElytra4": "§5- §6+3 §d护甲值",
+  "tooltip.enigmaticaddons.chaosElytra5": "§5- 增加冲向地面时的范围和伤害",
 
   "book.enigmaticaddons.entry.chaos_elytra.name": "混沌之傲",
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "既然深渊之心在手，为何不将目光置于天空之中？<br2/>基于壮丽鞘翅相同的制作工艺，用上更为邪恶、更有力量的材料，便可获得这更为强力的鞘翅。借助末影和星辰之力翱翔在天空之中，去傲视那些匍匐在大地的生灵。",
   "book.enigmaticaddons.entry.chaos_elytra.page.2": "当从空中去向地面，伴随我们的降临必是混乱邪恶，带给地面以冲击，将一切置以混沌。",
+
+  "tooltip.enigmaticaddons.violenceScroll1": "§5攻击同一目标时，额外造成上次伤害的 §6%1$s",
+  "tooltip.enigmaticaddons.violenceScroll2": "§5若攻击时处于§d受击无敌状态§5：",
+  "tooltip.enigmaticaddons.violenceScroll3": "§5- 造成的伤害 §6+200%",
+  "tooltip.enigmaticaddons.violenceScroll4": "§5- 恢复受伤的§6 40% §5生命值",
+  "tooltip.enigmaticaddons.violenceScroll5": "§5- 使自身受击无敌时间§d归零",
+  "tooltip.enigmaticaddons.violenceScroll6": "§5可以当作§d噬咒之书§5来使用",
+  "tooltip.enigmaticaddons.violenceScroll7": "§5- §6%1$s §d攻击速度",
+  "tooltip.enigmaticaddons.violenceScroll8": "§5- §6%1$s §d实体范围",
+  "tooltip.enigmaticaddons.violenceScrollCount": "§d吸收诅咒数：§6%1$s",
 
   "death.attack.abyss": "%1$s陷入了无底深渊",
   "death.attack.evil_curse": "%1$s被诅咒撕裂",
@@ -493,6 +533,8 @@
   "entity.enigmaticaddons.dragon_breath_arrow": "龙息箭",
   "entity.enigmaticaddons.evil_dagger": "极恶匕首",
   "entity.enigmaticaddons.ichor_spear": "灵液标枪",
+  "entity.enigmaticaddons.magic_quartz_dagger": "魔法石英匕首",
+  "entity.enigmaticaddons.soul_flame_ball": "幻魂火球",
   "entity.enigmaticaddons.split_dragon_breath": "分裂龙息",
   "entity.enigmaticaddons.ultimate_dragon_fireball": "终极末影龙火球",
 
@@ -591,5 +633,8 @@
   "advancement.enigmaticaddons:maliceTotem.desc": "",
 
   "advancement.enigmaticaddons:ChaosElytra": "傲睨众生",
-  "advancement.enigmaticaddons:ChaosElytra.desc": "带上混沌之傲，于星穹俯视众生"
+  "advancement.enigmaticaddons:ChaosElytra.desc": "带上混沌之傲，于星穹俯视众生",
+
+  "advancement.enigmaticaddons:ChaosExplosionKill": "凶星自渊宇而来",
+  "advancement.enigmaticaddons:ChaosExplosionKill.desc": "用混沌之傲冲击地面，一次击杀10个怪物"
 }

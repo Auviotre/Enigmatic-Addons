@@ -7,6 +7,7 @@ import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
 import auviotre.enigmatic.addon.triggers.ChaosElytraFlyingTrigger;
+import auviotre.enigmatic.addon.triggers.ChaosElytraKillTrigger;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.IBindable;
@@ -41,6 +42,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -53,6 +55,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -109,15 +112,20 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra1", ChatFormatting.GOLD, percentage + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra3");
+
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+            ItemLoreHelper.indicateWorthyOnesOnly(list);
+            if (Minecraft.getInstance().player != null && SuperAddonHandler.isAbyssBoost(Minecraft.getInstance().player)) {
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.abyssBoost");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra4");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra5");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+            }
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
-        }
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-        ItemLoreHelper.indicateWorthyOnesOnly(list);
-        if (Minecraft.getInstance().player != null && SuperAddonHandler.isAbyssBoost(Minecraft.getInstance().player)) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.abyssBoost");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.chaosElytra4");
+            ItemLoreHelper.indicateCursedOnesOnly(list);
         }
     }
 
@@ -304,6 +312,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                         new PacketDescendingChaos(player.getX(), player.getY(), player.getZ()));
             }
             double range = 3.5 + lastMovement.length() * (SuperAddonHandler.isAbyssBoost(player) ? 1.25 : 1.0);
+            SuperpositionHandler.setPersistentBoolean(player, "ChaoAchievementCheck", true);
             List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range));
             for (LivingEntity entity : entities) {
                 if (entity == player) continue;
@@ -314,6 +323,23 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                 double pow = Math.pow(descendingPowerModifier.getValue(), Math.abs(lastMovement.y)) * (SuperAddonHandler.isAbyssBoost(player) ? 1.1 : 1.0);
                 entity.hurt(SuperAddonHandler.damageSource(entity, EnigmaticAddonDamageTypes.ABYSS, player), (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * pow));
             }
+            SuperpositionHandler.removePersistentTag(player, "ChaoAchievementCheck");
+            if (player instanceof ServerPlayer serverPlayer && SuperpositionHandler.getPersistentInteger(player, "ChaoExplosionKillCount", 0) >= 10)
+                ChaosElytraKillTrigger.INSTANCE.trigger(serverPlayer);
+            SuperpositionHandler.removePersistentTag(player, "ChaoExplosionKillCount");
+        }
+    }
+
+    @SubscribeEvent
+    public void onDeath(LivingDeathEvent event) {
+        Entity attacker = event.getSource().getEntity();
+        if (!(event.getEntity() instanceof Monster)) return;
+        if (attacker instanceof Player player && SuperpositionHandler.getPersistentBoolean(player, "ChaoAchievementCheck", false)) {
+            if (event.getEntity().getMaxHealth() < player.getMaxHealth() / 2) return;
+            if (SuperpositionHandler.getFullEquipment(player).stream().noneMatch((itemStack) -> itemStack.is(EnigmaticAddonItems.CHAOS_ELYTRA)))
+                return;
+            int count = SuperpositionHandler.getPersistentInteger(player, "ChaoExplosionKillCount", 0);
+            SuperpositionHandler.setPersistentInteger(player, "ChaoExplosionKillCount", count + 1);
         }
     }
 
@@ -340,7 +366,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
             Entity directEntity = event.getSource().getDirectEntity();
             if (directEntity != null && directEntity.position().subtract(player.position()).dot(player.getForward()) < 0) {
                 if (modifier >= 1) event.setCanceled(true);
-                 else event.setAmount(event.getAmount() * (1 - modifier));
+                else event.setAmount(event.getAmount() * (1 - modifier));
             }
         } else {
             if (modifier >= 1) event.setCanceled(true);

@@ -23,14 +23,19 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -45,36 +50,30 @@ import java.util.List;
 import java.util.UUID;
 
 public class EvilDagger extends ItemBase implements Vanishable, ICursed {
-    private static final Multimap<Attribute, AttributeModifier> EVIL_CURSE_MODIFIER = ImmutableMultimap.of(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("637f51eb-218e-46aa-bcd3-10380acfd2d6"), "Evil Curse Modifier", -0.25, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    private static final AttributeModifier EVIL_CURSE_MODIFIER = new AttributeModifier(UUID.fromString("637f51eb-218e-46aa-bcd3-10380acfd2d6"), "Evil Curse Modifier", -0.25, AttributeModifier.Operation.MULTIPLY_TOTAL);
     public static Omniconfig.IntParameter cooldown;
     public static Omniconfig.IntParameter curseHurtInterval;
     public static Omniconfig.DoubleParameter curseHurtAmount;
     public static Omniconfig.PerhapsParameter curseDamageRatio;
-    public static Omniconfig.PerhapsParameter curseModifierRatio;
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
     public EvilDagger() {
         super(ItemBase.getDefaultProperties().fireResistant().rarity(Rarity.EPIC).durability(640));
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 5.0, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -1.6F, AttributeModifier.Operation.ADDITION));
-        this.defaultModifiers = builder.build();
     }
 
     @SubscribeConfig
     public static void onConfig(@NotNull OmniconfigWrapper builder) {
         builder.pushPrefix("TheCurseCarver");
-        cooldown = builder.comment("The cooldown of usage. Measured as tick.").max(32768).min(20).getInt("Cooldown", 240);
-        curseHurtInterval = builder.comment("The hurt interval time of cursed target. Measured as ticks.").max(40).min(1).getInt("CurseHurtInterval", 4);
-        curseHurtAmount = builder.comment("The hurt damage amount of cursed target.").max(32768).min(0).getDouble("CurseHurtAmount", 2.0);
-        curseDamageRatio = builder.comment("The hurt damage amount of cursed target.").max(100).min(10).getPerhaps("CurseDamageRatio", 20);
-        curseModifierRatio = builder.comment("The hurt damage amount of cursed target.").max(100).min(10).getPerhaps("CurseModifierRatio", 20);
+        cooldown = builder.comment("The cooldown of usage. Measured as tick.").max(32768).min(20).getInt("Cooldown", 40);
+        curseHurtInterval = builder.comment("The hurt interval time of cursed target. Measured as ticks.").max(40).min(1).getInt("CurseHurtInterval", 12);
+        curseHurtAmount = builder.comment("The hurt damage amount of cursed target.").max(32768).min(0).getDouble("CurseHurtAmount", 2.5);
+        curseDamageRatio = builder.comment("The initial health percentage the curse will totally damaged.").max(100).min(10).getPerhaps("CurseDamageRatio", 20);
         builder.popPrefix();
     }
 
     public static void EvilCursing(LivingEntity entity) {
         if (entity.getPersistentData().getBoolean("EvilCrashed")) {
-            entity.getAttributes().addTransientAttributeModifiers(EVIL_CURSE_MODIFIER);
+            if (!entity.getAttribute(Attributes.ATTACK_DAMAGE).hasModifier(EVIL_CURSE_MODIFIER))
+                entity.getAttribute(Attributes.ATTACK_DAMAGE).addPermanentModifier(EVIL_CURSE_MODIFIER);
             entity.getPersistentData().remove("EvilCurseThreshold");
             return;
         }
@@ -89,6 +88,7 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
                 entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, null), (float) EvilDagger.curseHurtAmount.getValue());
                 entity.setDeltaMovement(Vec3.ZERO);
                 entity.hasImpulse = true;
+                entity.invulnerableTime = 1;
             }
         } else if (percent <= threshold) {
             entity.getPersistentData().putBoolean("EvilCrashed", true);
@@ -96,6 +96,15 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
             float damage = entity.getMaxHealth() * EvilDagger.curseDamageRatio.getValue().asModifier() / 5.0F;
             ((ServerLevel) entity.level()).sendParticles(ParticleTypes.EXPLOSION, location.x, location.y, location.z, 5, width, entity.getBbHeight(), width, 0.0);
             entity.hurt(entity.damageSources().source(EnigmaticAddonDamageTypes.EVIL_CURSE, null), (float) Math.max(damage, EvilDagger.curseHurtAmount.getValue() * 2));
+        }
+    }
+
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int id, boolean selected) {
+        super.inventoryTick(stack, level, entity, id, selected);
+        if (entity.getPersistentData().getBoolean("EvilCrashed")) {
+            entity.getPersistentData().remove("EvilCrashed");
+            if (entity instanceof LivingEntity living)
+                living.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(EVIL_CURSE_MODIFIER);
         }
     }
 
@@ -117,23 +126,25 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
         ItemStack stack = player.getItemInHand(hand);
         if (SuperpositionHandler.isTheCursedOne(player) && stack.getMaxDamage() > stack.getDamageValue() + 80) {
             player.getCooldowns().addCooldown(this, player.getAbilities().instabuild ? 15 : EvilDagger.cooldown.getValue());
-            stack.hurtAndBreak(80, player, (consumer) -> consumer.broadcastBreakEvent(player.getUsedItemHand()));
+            stack.hurtAndBreak(10, player, (consumer) -> consumer.broadcastBreakEvent(player.getUsedItemHand()));
             int curseAmount = SuperpositionHandler.getCurseAmount(stack);
             if (!level.isClientSide) {
                 ThrownEvilDagger dagger = new ThrownEvilDagger(player, level);
-                double damage = dagger.getBaseDamage() + stack.getEnchantmentLevel(Enchantments.SHARPNESS) * 0.1;
+                double damage = dagger.getBaseDamage() + stack.getEnchantmentLevel(Enchantments.SHARPNESS) * 0.2 + curseAmount * 0.25;
                 dagger.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3.25F, 0.0F);
                 dagger.setNoGravity(true);
                 dagger.setCurseAmount(curseAmount);
                 dagger.setBaseDamage(damage);
                 level.addFreshEntity(dagger);
-                for (int i = 0; i < (stack.getEnchantmentLevel(Enchantments.MULTISHOT) > 0 ? 4 : 2); i++) {
-                    dagger = new ThrownEvilDagger(player, level);
-                    dagger.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3F, 9.6F);
-                    dagger.setNoGravity(true);
-                    dagger.setCurseAmount(curseAmount);
-                    dagger.setBaseDamage(damage);
-                    level.addFreshEntity(dagger);
+                if (stack.getEnchantmentLevel(Enchantments.MULTISHOT) > 0) {
+                    for (int i = 0; i < 2; i++) {
+                        dagger = new ThrownEvilDagger(player, level);
+                        dagger.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3F, 9.6F);
+                        dagger.setNoGravity(true);
+                        dagger.setCurseAmount(curseAmount);
+                        dagger.setBaseDamage(damage);
+                        level.addFreshEntity(dagger);
+                    }
                 }
             }
             player.swing(hand);
@@ -148,7 +159,7 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
             int curseAmount = SuperpositionHandler.getCurseAmount(stack);
             int threshold = entity.getPersistentData().getInt("EvilCurseThreshold");
             if (threshold > 0) {
-                entity.getPersistentData().putInt("EvilCurseThreshold", Math.max(threshold - 1 - curseAmount, 1));
+                entity.getPersistentData().putInt("EvilCurseThreshold", Math.max(threshold - 3 - curseAmount, 1));
             }
         }
         return true;
@@ -169,11 +180,19 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
         return stack.is(EnigmaticItems.EVIL_INGOT) || super.isValidRepairItem(self, stack);
     }
 
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        int curseAmount = SuperpositionHandler.getCurseAmount(stack);
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 5.0 + curseAmount * 0.5, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -1.6F, AttributeModifier.Operation.ADDITION));
+        return slot == EquipmentSlot.MAINHAND ? builder.build() : super.getAttributeModifiers(slot, stack);
     }
 
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return (super.canApplyAtEnchantingTable(Items.IRON_SWORD.getDefaultInstance(), enchantment) || enchantment == Enchantments.MULTISHOT) && enchantment != Enchantments.SWEEPING_EDGE;
+        return enchantment.isCurse() || (enchantment.category.equals(EnchantmentCategory.WEAPON) || enchantment == Enchantments.MULTISHOT) && enchantment != Enchantments.SWEEPING_EDGE;
+    }
+
+    public int getEnchantmentValue(ItemStack stack) {
+        return 28;
     }
 }

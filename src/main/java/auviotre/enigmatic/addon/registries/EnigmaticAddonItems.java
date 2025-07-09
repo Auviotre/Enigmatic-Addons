@@ -19,6 +19,9 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Magic Quartz Ring")
     @ObjectHolder(value = "enigmaticaddons:quartz_ring", registryName = "item")
     public static final QuartzRing QUARTZ_RING = null;
+    @ConfigurableItem("Magic Quartz Scepter")
+    @ObjectHolder(value = "enigmaticaddons:quartz_scepter", registryName = "item")
+    public static final QuartzScepter QUARTZ_SCEPTER = null;
     @ConfigurableItem("Dragon Breath Bow")
     @ObjectHolder(value = "enigmaticaddons:dragon_bow", registryName = "item")
     public static final DragonBow DRAGON_BOW = null;
@@ -37,6 +40,9 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Revival Leaf")
     @ObjectHolder(value = "enigmaticaddons:revival_leaf", registryName = "item")
     public static final RevivalLeaf REVIVAL_LEAF = null;
+    @ConfigurableItem("Soul Lantern of Illusion")
+    @ObjectHolder(value = "enigmaticaddons:illusion_lantern", registryName = "item")
+    public static final IllusionLantern ILLUSION_LANTERN = null;
     @ConfigurableItem("Common Potions")
     @ObjectHolder(value = "enigmaticaddons:common_potion", registryName = "item")
     public static final UltimatePotionAddon.Base COMMON_POTION = null;
@@ -85,6 +91,7 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Antique Book Bag")
     @ObjectHolder(value = "enigmaticaddons:antique_bag", registryName = "item")
     public static final AntiqueBag ANTIQUE_BAG = null;
+    @ConfigurableItem("Magic Quartz Flower")
     @ObjectHolder(value = "enigmaticaddons:artificial_flower", registryName = "item")
     public static final ArtificialFlower ARTIFICIAL_FLOWER = null;
     @ConfigurableItem("Emblem of Adventurer")
@@ -132,6 +139,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("The Curse Carver")
     @ObjectHolder(value = "enigmaticaddons:evil_dagger", registryName = "item")
     public static final EvilDagger EVIL_DAGGER = null;
+    @ObjectHolder(value = "enigmaticaddons:quartz_dagger", registryName = "item")
+    public static final Item QUARTZ_DAGGER = null;
     @ConfigurableItem("Totem of Malice")
     @ObjectHolder(value = "enigmaticaddons:totem_of_malice", registryName = "item")
     public static final TotemOfMalice TOTEM_OF_MALICE = null;
@@ -141,19 +150,33 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("The Arrogance of Chaos")
     @ObjectHolder(value = "enigmaticaddons:chaos_elytra", registryName = "item")
     public static final ChaosElytra CHAOS_ELYTRA = null;
+    @ObjectHolder(value = "enigmaticaddons:annihilating_sword", registryName = "item")
+    public static final Item ANNIHILATING_SWORD = null;
+    @ObjectHolder(value = "enigmaticaddons:violence_scroll", registryName = "item")
+    public static final ViolenceScroll VIOLENCE_SCROLL = null;
+    @ConfigurableItem("Enigmatic Pearl")
+    @ObjectHolder(value = "enigmaticaddons:enigmatic_pearl", registryName = "item")
+    public static final Item ENIGMATIC_PEARL = null;
+    @ObjectHolder(value = "enigmaticaddons:soul_flame_ball", registryName = "item")
+    public static final Item SOUL_FLAME_BALL = null;
     private static final EnigmaticAddonItems INSTANCE = new EnigmaticAddonItems();
 
     private EnigmaticAddonItems() {
         super(ForgeRegistries.ITEMS);
+        this.register("enigmatic_pearl", EnigmaticPearl::new);
+        this.register("soul_flame_ball", () -> new Item(new Item.Properties().stacksTo(1)));
         this.register("ode_to_living", OdeToLiving::new);
         this.register("night_scroll", NightScroll::new);
         this.register("quartz_ring", QuartzRing::new);
+        this.register("quartz_scepter", QuartzScepter::new);
+        this.register("quartz_dagger", () -> new Item(new Item.Properties().stacksTo(1)));
         this.register("dragon_bow", DragonBow::new);
         this.register("astral_spear", AstralSpear::new);
         this.register("earth_promise", EarthPromise::new);
         this.register("forgotten_ice", ForgottenIce::new);
         this.register("lost_engine", LostEngine::new);
         this.register("revival_leaf", RevivalLeaf::new);
+        this.register("illusion_lantern", IllusionLantern::new);
         this.register("false_justice", FalseJustice::new);
         this.register("sanguinary_handbook", SanguinaryHandbook::new);
         this.register("cursed_xp_scroll", CursedXPScroll::new);
@@ -182,6 +205,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("totem_of_malice", TotemOfMalice::new);
         this.register("disaster_sword", DisasterSword::new);
         this.register("chaos_elytra", ChaosElytra::new);
+        this.register("annihilating_sword", AnnihilatingSword::new);
+        this.register("violence_scroll", ViolenceScroll::new);
         this.register("extradimensional_scepter", ExtradimensionalScepter::new);
         this.register("common_potion", () -> new UltimatePotionAddon.Base(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));
         this.register("common_potion_splash", () -> new UltimatePotionAddon.Splash(Rarity.RARE, IAdvancedPotionItem.PotionType.COMMON));

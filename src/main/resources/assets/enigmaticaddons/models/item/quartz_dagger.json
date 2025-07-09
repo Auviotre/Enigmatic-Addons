@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "enigmaticaddons:item/3d/magic_quartz_dagger"
+  }
+}

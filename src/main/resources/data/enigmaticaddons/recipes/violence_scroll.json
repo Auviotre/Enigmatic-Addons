@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:violence_scroll"
+    }
+  ],
+  "pattern": [
+    "nen",
+    "aXa",
+    "qbq"
+  ],
+  "key": {
+    "X": {
+      "item": "enigmaticlegacy:cursed_scroll"
+    },
+    "n": {
+      "item": "enigmaticlegacy:cosmic_heart"
+    },
+    "q": {
+      "item": "enigmaticlegacy:twisted_heart"
+    },
+    "b": {
+      "item": "enigmaticlegacy:curse_transposer"
+    },
+    "a": {
+      "item": "enigmaticlegacy:evil_essence"
+    },
+    "e": {
+      "item": "enigmaticlegacy:abyssal_heart"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:violence_scroll"
+  }
+}

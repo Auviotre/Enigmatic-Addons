@@ -110,13 +110,13 @@ public class AstralSpear extends ItemBase implements Vanishable {
                         spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F + strength, 1.0F);
                     }
                     level.addFreshEntity(spear);
-                    this.soundPlayed1 = this.soundPlayed2 = this.soundPlayed3 = false;
                 }
                 level.playSound(null, entity, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, 1.5F);
                 player.awardStat(Stats.ITEM_USED.get(this));
                 player.swing(player.getUsedItemHand());
             }
         }
+        this.soundPlayed1 = this.soundPlayed2 = this.soundPlayed3 = false;
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -145,8 +145,8 @@ public class AstralSpear extends ItemBase implements Vanishable {
         return !player.isCreative();
     }
 
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getAttributeModifiers(slot, stack);
     }
 
     public boolean isValidRepairItem(ItemStack stack, ItemStack material) {
@@ -164,11 +164,11 @@ public class AstralSpear extends ItemBase implements Vanishable {
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         boolean base = enchantment == Enchantments.UNBREAKING || enchantment == Enchantments.MENDING;
         boolean curse = base || enchantment == Enchantments.VANISHING_CURSE || enchantment == EnigmaticEnchantments.NEMESIS;
-        return enchantment == Enchantments.PIERCING || enchantment == Enchantments.SHARPNESS || curse;
+        return enchantment == Enchantments.PIERCING || enchantment == Enchantments.SHARPNESS || curse || super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
-    public int getEnchantmentValue() {
-        return 16;
+    public int getEnchantmentValue(ItemStack stack) {
+        return 20;
     }
 
     public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {

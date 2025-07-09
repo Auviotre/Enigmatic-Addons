@@ -1,5 +1,8 @@
 package auviotre.enigmatic.addon.contents.items;
 
+import auviotre.enigmatic.addon.contents.objects.etheriumSheild.EtheriumShieldCapability;
+import auviotre.enigmatic.addon.contents.objects.etheriumSheild.IEtheriumShieldData;
+import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ISpellstone;
@@ -26,13 +29,13 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.LazyOptional;
 import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
@@ -64,7 +67,7 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
     @SubscribeConfig
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("EtheriumCore");
-        spellstoneCooldown = builder.comment("Active ability cooldown for Etherium Core. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 1800);
+        spellstoneCooldown = builder.comment("Active ability cooldown for Etherium Core. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 800);
         armorBonus = builder.comment("Default amount of armor points provided by Etherium Core.").max(256.0).getDouble("Armor", 12.0);
         armorMultiplier = builder.comment("The multiplier of armor points of Etherium Core.").max(100).getPerhaps("ArmorMultiplier", 20);
         armorToughnessBonus = builder.comment("The amount of armor toughness provided by Etherium Core when it's bearer has no armor equipped.").max(256.0).getDouble("ArmorToughness", 10.0);
@@ -76,8 +79,12 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
     }
 
     public static boolean hasShield(Player player) {
-        Item item = EnigmaticAddonItems.ETHERIUM_CORE;
-        return player != null && SuperpositionHandler.hasCurio(player, item) && (player.getCooldowns().getCooldownPercent(item, 0.0F) > 0.4F || (double) (player.getHealth() / player.getMaxHealth()) <= EtheriumConfigHandler.instance().getShieldThreshold(player).asMultiplier() * 1.5F);
+        return player != null && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE) && (double) (player.getHealth() / player.getMaxHealth()) <= EtheriumConfigHandler.instance().getShieldThreshold(player).asMultiplier() * 1.5F;
+    }
+
+    public static int getShieldTick(Player player) {
+        LazyOptional<IEtheriumShieldData> shieldData = SuperAddonHandler.getCapability(player, EtheriumShieldCapability.ETHERIUM_SHIELD_DATA);
+        return shieldData.isPresent() ? shieldData.orElse(null).getTick() : -1;
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
@@ -142,6 +149,8 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
     public void triggerActiveAbility(Level world, ServerPlayer player, ItemStack stack) {
         if (!SuperpositionHandler.hasSpellstoneCooldown(player)) {
             SuperpositionHandler.setSpellstoneCooldown(player, spellstoneCooldown.getValue());
+            LazyOptional<IEtheriumShieldData> shieldData = SuperAddonHandler.getCapability(player, EtheriumShieldCapability.ETHERIUM_SHIELD_DATA);
+            shieldData.ifPresent(cap -> cap.setTick(spellstoneCooldown.getValue() / 2));
         }
     }
 

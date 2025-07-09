@@ -95,13 +95,12 @@ public abstract class MixinItemEntity extends Entity implements TraceableEntity 
                             EnigmaticItems.ANGEL_BLESSING,
                             EnigmaticAddonItems.FORGOTTEN_ICE,
                             EnigmaticAddonItems.REVIVAL_LEAF,
-                            EnigmaticAddonItems.LOST_ENGINE
+                            EnigmaticAddonItems.LOST_ENGINE,
+                            EnigmaticAddonItems.ILLUSION_LANTERN
                     );
                     ItemStack stack;
                     do {
                         stack = new ItemStack(spellstones.get(this.random.nextInt(spellstones.size())));
-                        if (this.random.nextInt(9) == 0) stack = new ItemStack(EnigmaticItems.ANGEL_BLESSING);
-                        else if (this.random.nextInt(9) == 0) stack = new ItemStack(EnigmaticItems.VOID_PEARL);
                     } while (ItemNBTHelper.getBoolean(this.getItem(), stack.getDescriptionId(), false) && this.random.nextBoolean());
                     PermanentItemEntity itemEntity = new PermanentItemEntity(world, this.getX(), this.getY(), this.getZ(), stack);
                     itemEntity.setGlowingTag(true);

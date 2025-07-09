@@ -5,6 +5,7 @@ import auviotre.enigmatic.addon.contents.items.AntiqueBag;
 import auviotre.enigmatic.addon.contents.objects.bookbag.AntiqueBagCapability;
 import auviotre.enigmatic.addon.contents.objects.bookbag.IAntiqueBagHandler;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonMenus;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.network.FriendlyByteBuf;
@@ -121,12 +122,16 @@ public class AntiqueBagContainerMenu extends AbstractContainerMenu {
     }
 
     public static class BookSlot extends SlotItemHandler {
+        private final int index;
+
         public BookSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
+            this.index = index;
         }
 
         public boolean mayPlace(@NotNull ItemStack stack) {
-            return AntiqueBag.isBook(stack) && super.mayPlace(stack);
+            boolean firstTwoFlowerSlot = stack.is(EnigmaticAddonItems.ARTIFICIAL_FLOWER) && this.index < 2;
+            return (AntiqueBag.isBook(stack) || firstTwoFlowerSlot) && super.mayPlace(stack);
         }
 
         @Nullable

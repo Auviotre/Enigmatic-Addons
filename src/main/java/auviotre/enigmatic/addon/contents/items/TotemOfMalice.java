@@ -95,7 +95,7 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
 
     public static void setTotemPower(ItemStack stack, int damage) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        stack.getOrCreateTag().putInt("MalicePower", Mth.clamp(damage, 0, level + 3));
+        stack.getOrCreateTag().putInt("MalicePower", Mth.clamp(damage, 0, Math.min(3 + level, 10)));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -133,12 +133,12 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
 
     public int getBarWidth(ItemStack stack) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        return Math.round((float) getTotemPower(stack) * 13.0F / (3.0F + level));
+        return Math.round((float) getTotemPower(stack) * 13.0F / Math.min(3.0F + level, 10.0F));
     }
 
     public int getBarColor(ItemStack stack) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        float stackMaxDamage = 3.0F + level;
+        float stackMaxDamage = Math.min(3.0F + level, 10.0F);
         float f = Math.max(0.0F, getTotemPower(stack) / stackMaxDamage);
         return Mth.hsvToRgb(f / 3.0F, 1.0F, 0.5F + f * 0.5F);
     }

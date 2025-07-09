@@ -1,9 +1,6 @@
 package auviotre.enigmatic.addon.registries;
 
-import auviotre.enigmatic.addon.contents.crafting.DragonBowBrewingRecipe;
-import auviotre.enigmatic.addon.contents.crafting.EnabledCondition;
-import auviotre.enigmatic.addon.contents.crafting.EnchantmentAmplifierRecipe;
-import auviotre.enigmatic.addon.contents.crafting.PrimevalCubeRecipe;
+import auviotre.enigmatic.addon.contents.crafting.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,6 +14,8 @@ public class EnigmaticAddonRecipes extends AbstractRegistry<RecipeSerializer<?>>
     public static final RecipeSerializer<EnchantmentAmplifierRecipe> ENCHANTMENT_AMPLIFIER_RECIPE = null;
     @ObjectHolder(value = "enigmaticaddons:dragon_bow_brewing", registryName = "recipe_serializer")
     public static final RecipeSerializer<DragonBowBrewingRecipe> DRAGON_BOW_BREWING_RECIPE = null;
+    @ObjectHolder(value = "enigmaticaddons:violence_scroll_absorbing", registryName = "recipe_serializer")
+    public static final RecipeSerializer<ViolenceScrollAbsorbingRecipe> VIOLENCE_SCROLL_ABSORB_RECIPE = null;
     private static final EnigmaticAddonRecipes INSTANCE = new EnigmaticAddonRecipes();
 
     private EnigmaticAddonRecipes() {
@@ -24,6 +23,7 @@ public class EnigmaticAddonRecipes extends AbstractRegistry<RecipeSerializer<?>>
         this.register("primeval_cube", () -> PrimevalCubeRecipe.SERIALIZER);
         this.register("enchantment_amplifying", () -> EnchantmentAmplifierRecipe.SERIALIZER);
         this.register("dragon_bow_brewing", () -> DragonBowBrewingRecipe.SERIALIZER);
+        this.register("violence_scroll_absorbing", () -> ViolenceScrollAbsorbingRecipe.SERIALIZER);
     }
 
     protected void onRegister(RegisterEvent event) {

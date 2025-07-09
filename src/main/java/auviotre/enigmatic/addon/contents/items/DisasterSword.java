@@ -167,8 +167,12 @@ public class DisasterSword extends ItemBase implements Vanishable {
         return stack.is(Items.NETHERITE_INGOT) || super.isValidRepairItem(self, stack);
     }
 
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getAttributeModifiers(slot, stack);
+    }
+
+    public int getEnchantmentValue(ItemStack stack) {
+        return 12;
     }
 
     public UseAnim getUseAnimation(ItemStack stack) {

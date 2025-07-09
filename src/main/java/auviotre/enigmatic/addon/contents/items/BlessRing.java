@@ -51,6 +51,7 @@ public class BlessRing extends ItemBaseCurio {
     public static final List<String> blessBetrayalList = new ArrayList<>();
     public static final String CURSED_SPAWN = "CursedNextSpawn";
     public static final String BLESS_SPAWN = "BlessNextSpawn";
+    public static final String WORTHY_SPAWN = "WorthyNextSpawn";
     public static final String BETRAYAL = "BlessBetrayal";
     public static final String BLESS_DURATION = "BlessDuration";
     public static final String CURSE_TIME_LEVEL = "SavedSevenCurseLevel";
@@ -99,7 +100,8 @@ public class BlessRing extends ItemBaseCurio {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             if (Helper.getBlessAttribute(stack, BLESS_DURATION) > 0)
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRingDuration", ChatFormatting.GOLD, Helper.getBlessAttribute(stack, BLESS_DURATION));
-            list.add(Component.literal(" [ " + Helper.getBlessAttribute(stack, BETRAYAL) +" / " + Helper.getMaxBetrayal(stack) + " ]").withStyle(ChatFormatting.GOLD));
+            if (level > 4 && flagIn.isAdvanced())
+                list.add(Component.literal(" [ " + Helper.getBlessAttribute(stack, BETRAYAL) + " / " + Helper.getMaxBetrayal(stack) + " ]").withStyle(ChatFormatting.GOLD));
         } else {
             if (CursedRing.enableLore.getValue()) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRingLore1");
@@ -202,7 +204,7 @@ public class BlessRing extends ItemBaseCurio {
             Helper.setBlessAttribute(stack, BETRAYAL, Math.max(0, betrayal.get()));
         }
         // Break
-        if (entity instanceof Player player && Helper.getBlessAttribute(stack, BLESS_DURATION) == MAX_DURATION) {
+        if (entity instanceof Player player && Helper.getBlessAttribute(stack, BLESS_DURATION) >= MAX_DURATION) {
             player.playSound(SoundEvents.TOTEM_USE, 0.6F, 0.0F);
             SuperpositionHandler.destroyCurio(player, EnigmaticAddonItems.BLESS_RING);
         }
@@ -247,7 +249,7 @@ public class BlessRing extends ItemBaseCurio {
 
     public int getBarWidth(ItemStack stack) {
         int max = Helper.getMaxBetrayal(stack);
-        return Math.round((float) (max - Helper.getBlessAttribute(stack, BETRAYAL)) * 13.0F / max);
+        return Math.round(Math.max((max - Helper.getBlessAttribute(stack, BETRAYAL)) * 13.0F / max, 0.0F));
     }
 
     public int getBarColor(ItemStack stack) {
@@ -277,8 +279,8 @@ public class BlessRing extends ItemBaseCurio {
 
         public static int getMaxBetrayal(ItemStack stack) {
             int extra = 0;
-            if (getBlessAttribute(stack, CURSE_TIME_LEVEL) == 6) extra += 300;
-            return 1200 - getBlessAttribute(stack, BLESS_DURATION) * 100 + extra;
+            if (getBlessAttribute(stack, CURSE_TIME_LEVEL) == 6) extra += 350;
+            return 1250 - getBlessAttribute(stack, BLESS_DURATION) * 100 + extra;
         }
 
         public static int getBlessAttribute(ItemStack stack, String id) {

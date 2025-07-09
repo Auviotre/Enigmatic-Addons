@@ -3,6 +3,7 @@ package auviotre.enigmatic.addon.mixin.legacy;
 import auviotre.enigmatic.addon.api.items.IBlessed;
 import auviotre.enigmatic.addon.contents.items.BlessRing;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
+import auviotre.enigmatic.addon.helpers.MixinOmniconfigHelper;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.EnigmaticEventHandler;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
@@ -12,6 +13,7 @@ import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
@@ -51,5 +53,10 @@ public class MixinEventHandler {
                 ci.cancel();
             }
         }
+    }
+
+    @Inject(method = "onDeathLow", at = @At("HEAD"), remap = false, cancellable = true)
+    public void onDeathLowMix(LivingDeathEvent event, CallbackInfo ci) {
+        if (!MixinOmniconfigHelper.cubeAutoSkill.getValue()) ci.cancel();
     }
 }

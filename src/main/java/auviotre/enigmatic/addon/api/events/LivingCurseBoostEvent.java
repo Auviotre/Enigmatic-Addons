@@ -11,8 +11,8 @@ public class LivingCurseBoostEvent extends LivingEvent {
      * This Event is fired when a {@link LivingEntity} interacts with a player
      * which has worn the Ring of Seven Curses for enough time. (the Worthy One)
      **/
-    @Nullable
-    private final Player worthyCursed;
+
+    private final @Nullable Player worthyCursed;
 
     public LivingCurseBoostEvent(LivingEntity entity, Player player) {
         super(entity);

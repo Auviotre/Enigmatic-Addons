@@ -51,7 +51,7 @@ public class IchorSpear extends ItemBase implements Vanishable {
     public static Omniconfig.IntParameter amplifier;
 
     public IchorSpear() {
-        super(ItemBase.getDefaultProperties().rarity(Rarity.RARE));
+        super(ItemBase.getDefaultProperties().rarity(Rarity.RARE).stacksTo(24));
     }
 
     @SubscribeConfig
@@ -67,6 +67,8 @@ public class IchorSpear extends ItemBase implements Vanishable {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.ichorSpear");
+            if (stack.getCount() == stack.getMaxStackSize())
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.ichorSpearFull");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }
@@ -75,11 +77,12 @@ public class IchorSpear extends ItemBase implements Vanishable {
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int tickCount) {
         if (entity instanceof Player player) {
             int duration = this.getUseDuration(stack) - tickCount;
-            if (duration >= 5) {
+            if (duration >= 8) {
                 if (!level.isClientSide) {
                     stack.hurtAndBreak(1, player, (consumer) -> consumer.broadcastBreakEvent(entity.getUsedItemHand()));
                     ThrownIchorSpear spear = new ThrownIchorSpear(player, level);
-                    if (player.getAbilities().instabuild) spear.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
+                    if (stack.getCount() == stack.getMaxStackSize() || player.getAbilities().instabuild)
+                        spear.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                     float strength = Math.min(3.5F, duration * 0.1F + 0.6F);
                     float pitch = Math.min(0.65F + duration * 0.02F, 1.1F);
                     spear.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, strength, 1.0F);
@@ -88,7 +91,7 @@ public class IchorSpear extends ItemBase implements Vanishable {
                     level.playSound(null, spear, SoundEvents.TRIDENT_THROW, SoundSource.PLAYERS, 1.0F, pitch);
                 }
 
-                if (!player.getAbilities().instabuild) {
+                if (!player.getAbilities().instabuild && stack.getCount() != stack.getMaxStackSize()) {
                     stack.shrink(1);
                     if (stack.isEmpty()) player.getInventory().removeItem(stack);
                 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "enigmaticaddons:item/illusion_lantern",
+    "layer1": "enigmaticaddons:item/illusion_lantern_overlay"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:quartz_scepter"
+    }
+  ],
+  "pattern": [
+    " QQ",
+    "IRQ",
+    "SI "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:ghast_tear"
+    },
+    "I": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:quartz_scepter"
+  }
+}

@@ -37,9 +37,11 @@ public class RedemptionCurseEnchantment extends Enchantment {
         for (ItemStack armor : entity.getArmorSlots()) {
             amount += SuperAddonHandler.getRedemptionCurseAmount(armor);
         }
+
         if (amount > 0) {
-            if (entity instanceof Player player && SuperAddonHandler.isTheBlessedOne(player)) amount = -amount;
-            return resistanceModifier.getValue().asModifier() * amount;
+            float modifier = Math.min(resistanceModifier.getValue().asModifier() * amount, 90);
+            if (entity instanceof Player player && SuperAddonHandler.isTheBlessedOne(player)) modifier = -modifier;
+            return modifier;
         }
         return 0;
     }

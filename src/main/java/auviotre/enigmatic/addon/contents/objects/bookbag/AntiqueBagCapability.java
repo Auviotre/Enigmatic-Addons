@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.contents.objects.bookbag;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -57,9 +58,28 @@ public class AntiqueBagCapability {
         public ItemStack findBook(Item book) {
             for (int i = 0; i < this.inventory.getSlots(); i++) {
                 ItemStack stack = this.inventory.getStackInSlot(i);
-                if (stack.getItem() == book) return stack;
+                if (stack.is(book)) return stack;
             }
             return ItemStack.EMPTY;
+        }
+
+        public boolean hasFlower() {
+            for (int i = 0; i < this.inventory.getSlots(); i++) {
+                ItemStack stack = this.inventory.getStackInSlot(i);
+                if (stack.is(EnigmaticAddonItems.ARTIFICIAL_FLOWER)) return true;
+            }
+            return false;
+        }
+
+        public void tickFlowers() {
+            for (int i = 0; i < this.inventory.getSlots(); i++) {
+                ItemStack stack = this.inventory.getStackInSlot(i);
+                if (stack.is(EnigmaticAddonItems.ARTIFICIAL_FLOWER)) {
+                    stack.inventoryTick(owner.level(), owner, i, false);
+                    stack.getOrCreateTag().putBoolean("FlowerEnable", false);
+                    stack.getOrCreateTag().putInt("FlowerBagEnable", i);
+                }
+            }
         }
 
         public LivingEntity getOwner() {

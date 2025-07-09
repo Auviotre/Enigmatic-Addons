@@ -21,8 +21,12 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     public static final EntityType<ThrownAstralSpear> ASTRAL_SPEAR = null;
     @ObjectHolder(value = "enigmaticaddons:evil_dagger", registryName = "entity_type")
     public static final EntityType<ThrownEvilDagger> EVIL_DAGGER = null;
+    @ObjectHolder(value = "enigmaticaddons:magic_quartz_dagger", registryName = "entity_type")
+    public static final EntityType<ThrownQuartzDagger> QUARTZ_DAGGER = null;
     @ObjectHolder(value = "enigmaticaddons:disaster_chaos", registryName = "entity_type")
     public static final EntityType<DisasterChaos> DISASTER_CHAOS = null;
+    @ObjectHolder(value = "enigmaticaddons:soul_flame_ball", registryName = "entity_type")
+    public static final EntityType<SoulFlameBall> SOUL_FLAME_BALL = null;
     private static final EnigmaticAddonEntities INSTANCE = new EnigmaticAddonEntities();
 
     private EnigmaticAddonEntities() {
@@ -41,7 +45,7 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:ultimate_dragon_fireball"));
         this.register("split_dragon_breath",
                 () -> EntityType.Builder.<SplitDragonBreath>of(SplitDragonBreath::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(4)
-                        .setCustomClientFactory((spawnEntity, world) -> new SplitDragonBreath(SPLIT_DRAGON_BREATH, world)).setUpdateInterval(10).fireImmune()
+                        .setCustomClientFactory((spawnEntity, world) -> new SplitDragonBreath(SPLIT_DRAGON_BREATH, world)).setUpdateInterval(4).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:split_dragon_breath"));
         this.register("ichor_spear",
                 () -> EntityType.Builder.<ThrownIchorSpear>of(ThrownIchorSpear::new, MobCategory.MISC).sized(0.35F, 0.35F).clientTrackingRange(4)
@@ -55,10 +59,18 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                 () -> EntityType.Builder.<ThrownEvilDagger>of(ThrownEvilDagger::new, MobCategory.MISC).sized(0.3F, 0.3F).clientTrackingRange(8)
                         .setCustomClientFactory((spawnEntity, world) -> new ThrownEvilDagger(EVIL_DAGGER, world)).setUpdateInterval(20).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:evil_dagger"));
+        this.register("magic_quartz_dagger",
+                () -> EntityType.Builder.<ThrownQuartzDagger>of(ThrownQuartzDagger::new, MobCategory.MISC).sized(0.3F, 0.3F).clientTrackingRange(8)
+                        .setCustomClientFactory((spawnEntity, world) -> new ThrownQuartzDagger(QUARTZ_DAGGER, world)).setUpdateInterval(20).fireImmune()
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:magic_quartz_dagger"));
         this.register("disaster_chaos",
                 () -> EntityType.Builder.<DisasterChaos>of(DisasterChaos::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(4)
                         .setCustomClientFactory((spawnEntity, world) -> new DisasterChaos(DISASTER_CHAOS, world)).setUpdateInterval(10).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:disaster_chaos"));
+        this.register("soul_flame_ball",
+                () -> EntityType.Builder.<SoulFlameBall>of(SoulFlameBall::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(12)
+                        .setCustomClientFactory((spawnEntity, world) -> new SoulFlameBall(SOUL_FLAME_BALL, world)).setUpdateInterval(1).fireImmune()
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:soul_flame_ball"));
 
     }
 }

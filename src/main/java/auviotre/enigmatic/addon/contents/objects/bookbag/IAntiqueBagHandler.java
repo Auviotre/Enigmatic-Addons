@@ -17,6 +17,10 @@ public interface IAntiqueBagHandler {
 
     ItemStack findBook(Item book);
 
+    boolean hasFlower();
+
+    void tickFlowers();
+
     LivingEntity getOwner();
 
     IItemHandlerModifiable getInventory();

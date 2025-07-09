@@ -1,0 +1,23 @@
+{
+  "name": "book.enigmaticaddons.entry.illusion_lantern.name",
+  "icon": "enigmaticaddons:illusion_lantern",
+  "category": "enigmaticlegacy:relics",
+  "advancement": "enigmaticaddons:book/relics/illusion_lantern",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 90,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.illusion_lantern.page.1"
+    },
+    {
+      "type": "spotlight",
+      "item": "enigmaticaddons:illusion_lantern",
+      "link_recipe": true,
+      "title": "book.enigmaticaddons.entry.illusion_lantern.heading.1",
+      "text": "book.enigmaticaddons.entry.illusion_lantern.page.2"
+    }
+  ]
+}
