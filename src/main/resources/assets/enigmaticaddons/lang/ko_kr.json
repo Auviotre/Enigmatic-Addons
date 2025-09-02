@@ -1,6 +1,9 @@
 ﻿{
   "__contributor": "기여자",
+<<<<<<< HEAD
 
+=======
+>>>>>>> 733ac0ff11ffe3e05d5cc0a668988ff6b2dd5486
   "tooltip.enigmaticaddons.wip": "§4오류가 발생했습니다. 주의해서 사용하세요.",
   "tooltip.enigmaticaddons.armor": "§6%1$s§d 방어력",
   "tooltip.enigmaticaddons.armor_toughness": "§6%1$s§d 방어 강도",
