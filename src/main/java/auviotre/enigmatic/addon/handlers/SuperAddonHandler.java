@@ -38,6 +38,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class SuperAddonHandler {
     public static final UUID SCROLL_SLOT_UUID = UUID.fromString("36e2f84d-a453-467d-8836-41e2f42db78a");
@@ -172,6 +173,12 @@ public class SuperAddonHandler {
             }
         }
         return totalCurses;
+    }
+
+    public static long encodeUUID(UUID uuid) {
+        AtomicLong code = new AtomicLong();
+        uuid.toString().chars().forEach(c -> code.set(code.get() * 3 + c));
+        return code.get();
     }
 
     public static @Nullable LootPoolSingletonContainer.Builder<?> createOptionalLootEntry(Item item, int weight, float minCount, float maxCount) {

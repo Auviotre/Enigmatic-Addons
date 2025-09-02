@@ -48,10 +48,10 @@
   "tooltip.enigmaticaddons.livingOde3": "§5Most animals around you are rendered passive.",
   "tooltip.enigmaticaddons.livingOde4": "§dAlteration of the §6Second Curse§d:",
   "tooltip.enigmaticaddons.livingOde5": "§5- Neutral animals will not actively attack.",
-  "tooltip.enigmaticaddons.livingOde6": "§5Attack with this item to temporarily prevent the target from being",
-  "tooltip.enigmaticaddons.livingOde7": "§5protected by this item.",
+  "tooltip.enigmaticaddons.livingOde6": "§5Attack with this item to prevent this kind of animal",
+  "tooltip.enigmaticaddons.livingOde7": "§5from being protected by this item.",
   "tooltip.enigmaticaddons.livingOde7_alt": "§5protected by this and §6make neutral animals around it target it§5.",
-  "tooltip.enigmaticaddons.livingOde8": "§dUse to appease animals.",
+  "tooltip.enigmaticaddons.livingOde8": "§dUse to appease animals and restore protective effects.",
 
   "book.enigmaticaddons.entry.ode_to_living.name": "Ode to the Living Beings",
   "book.enigmaticaddons.entry.ode_to_living.page.1": "The previous guidebook seemed unable to make all animal friends recognize you, but this hymn can soothe the emotions of some animal friends. It also inherits the functionality of the previous version of the guidebook.",
@@ -87,8 +87,8 @@
 
   "item.enigmaticaddons.earth_promise": "Promise of the Earth",
 
-  "tooltip.enigmaticaddons.earthPromise1": "§5When dealing damage equal to§6 %1$s §5of current",
-  "tooltip.enigmaticaddons.earthPromise2": "§5health, block this attack and then cooldown",
+  "tooltip.enigmaticaddons.earthPromise1": "§5When receiving* damage worth §6 %1$s §5of your",
+  "tooltip.enigmaticaddons.earthPromise2": "§5health, block the attack and cooldown for§6 %1$s §5sec.",
   "tooltip.enigmaticaddons.earthPromise3": "§dAlteration of the §6First Curse§d:",
   "tooltip.enigmaticaddons.earthPromise4": "§5- Reduce the effect of the §6First Curse §5by %1$s",
 
@@ -121,11 +121,12 @@
   "tooltip.enigmaticaddons.lostEngineCooldown": "§dСooldown: §6%1$s§6 seconds",
   "tooltip.enigmaticaddons.lostEngine3": "§dPassive abilities:",
   "tooltip.enigmaticaddons.lostEngine4": "§5- Enhance mobility and toughness.",
-  "tooltip.enigmaticaddons.lostEngine5": "§5- Reduce item cooldowns by §633%§5.",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- Reduce item cooldowns by §625%§5.",
   "tooltip.enigmaticaddons.lostEngine6": "§5- Immune to §dFall §5& §dExplosion §5damage.",
   "tooltip.enigmaticaddons.lostEngine7": "§5- Add §6%1$s§d Crit damage§5.",
   "tooltip.enigmaticaddons.lostEngine8": "§5- Golems will not target you actively.",
-  "tooltip.enigmaticaddons.lostEngine9": "§5- You are vulnerable to §dMagic Damage§5 and §dLightning Damage§5.",
+  "tooltip.enigmaticaddons.lostEngine9": "§5- You are vulnerable to §dMagic Damage§5.",
+  "tooltip.enigmaticaddons.lostEngine10": "§5- The§d Lightning Damage§5 received will become fatal.",
 
   "book.enigmaticaddons.entry.lost_engine.name": "Lost Engine",
   "book.enigmaticaddons.entry.lost_engine.heading.1": "The Spellstone",
@@ -141,9 +142,10 @@
   "tooltip.enigmaticaddons.revivalLeaf4": "§5- Slow natural regeneration.",
   "tooltip.enigmaticaddons.revivalLeaf5": "§5- The attack target will be poisoned and reducing healing.",
   "tooltip.enigmaticaddons.revivalLeaf6": "§5- Immune to §dHunger§5, §dPoison§5 and §dWithering§5 effect.",
-  "tooltip.enigmaticaddons.revivalLeaf7": "§5- The surrounding crops are growing faster",
+  "tooltip.enigmaticaddons.revivalLeaf7": "§5- The surrounding crops are growing faster.",
   "tooltip.enigmaticaddons.revivalLeaf8": "§5- All effects last longer.",
-  "tooltip.enigmaticaddons.revivalLeaf9": "§5- You are vulnerable to §dFire Damage§5 and §dProjectile Damage§5.",
+  "tooltip.enigmaticaddons.revivalLeaf9": "§5- You can§d fly §5when there are plant blocks around.",
+  "tooltip.enigmaticaddons.revivalLeaf10": "§5- You are vulnerable to §dFire Damage§5 and §dProjectile Damage§5.",
 
   "book.enigmaticaddons.entry.revival_leaf.name": "Revival Leaves",
   "book.enigmaticaddons.entry.revival_leaf.heading.1": "The Spellstone",
@@ -247,7 +249,8 @@
   "tooltip.enigmaticaddons.thunderScroll2": "§5Deal more damage to§d armored §5targets.",
   "tooltip.enigmaticaddons.thunderScroll3": "§5After being hit much times,the target",
   "tooltip.enigmaticaddons.thunderScroll4": "§5will be struck by §6lightning bolt§5.",
-  "tooltip.enigmaticaddons.thunderScroll5": "§5Reduce lightning damage by half.",
+  "tooltip.enigmaticaddons.thunderScroll5": "§5Reduce§d Lightning damage by half",
+  "tooltip.enigmaticaddons.thunderScroll6": "§5and bypass almost any other influence.",
 
   "book.enigmaticaddons.entry.thunder_scroll.name": "Scroll of Thunder",
   "book.enigmaticaddons.entry.thunder_scroll.page.1": "Although the Will of Ocean can partly control the lightning, this is ultimately only indirect control and not fast enough.<br2/>We use the divine power to write spells that resonate with lightning onto scrolls, using spellstone as the foundation and swords as the medium to release the power. During the battle, this scroll will drive you to use sweeping attacks",
@@ -397,6 +400,7 @@
   "book.enigmaticaddons.entry.scorched_charm.page.2": "In addition, with the power of ichor, this charm has awakened some blessings from ancient times, which can turn the heat in lava into the driving force of life. And the blessing itself seems to be called the 'Seven Suns'.",
 
   "item.enigmaticaddons.the_bless": "The Bless",
+  "item.enigmaticaddons.the_repentance": "The Repentance",
 
   "tooltip.enigmaticaddons.theBless1": "§5In the endless journey of suffering,",
   "tooltip.enigmaticaddons.theBless2": "§5using this to light up the way forward.",
@@ -444,6 +448,7 @@
   "book.enigmaticaddons.entry.bless_stone.page.4": "accompanied you are no longer usable, there are still some things that bear witness to your past filled with suffering, which is constantly approaching death. They still recognize your qualifications, are willing to break the shackles of the curse for you. <br2/>May you enjoy life to the fullest on days away from the curses. But you cannot truly understand this ring, please do not make the choice easily.",
 
   "item.enigmaticaddons.bless_ring": "Ring of Redemption",
+  "item.enigmaticaddons.broken_ring": "The Broken Ring",
 
   "tooltip.enigmaticaddons.blessRing1": "§dFor those who have experienced torment,",
   "tooltip.enigmaticaddons.blessRing2": "§dremaining blessings are still effective:",
@@ -501,6 +506,16 @@
   "book.enigmaticaddons.entry.disaster_sword.page.1": "With a sturdy blade and a soul poised to take off, this sword showcases the skills of defense and counterattack.<br2/>Holding this broadsword, you can use its wide blade to block almost all attacks. Given its heaviness, any attack becomes indistinguishable, but you can only lift the sword for a moment.",
   "book.enigmaticaddons.entry.disaster_sword.page.2": "Whenever successfully blocked, the energy absorbed will linger on the sword, waiting for the perfect release in the next attack.<br2/>The rhythm of disaster gradually emerged in this crisp sound.",
 
+  "item.enigmaticaddons.avarice_ring": "Ring of Ultimate Luxury",
+
+  "tooltip.enigmaticaddons.avariceRing1": "§5Villagers no longer§d raise prices§5 or§d run out of stock§5.",
+  "tooltip.enigmaticaddons.avariceRing2": "§6Merchants§5 other than Piglin will not target you actively.",
+  "tooltip.enigmaticaddons.avariceRing3": "§6Raiders§5 prioritize you as target of attack.",
+  "tooltip.enigmaticaddons.avariceRing4": "§5Upon death, the carried§6 Emerald related items§5 will be cleared.",
+  "tooltip.enigmaticaddons.avariceRing4_alt": "§5§mUpon death, the carried§6§m Emerald related items§5§m will be cleared.",
+  "tooltip.enigmaticaddons.avariceRing5": "§5The damage caused boost based on the amount of§6 Gems§5 carried.",
+  "tooltip.enigmaticaddons.avariceRing6": "§5Current damage boost: §6%1$s",
+
   "item.enigmaticaddons.chaos_elytra": "The Arrogance of Chaos",
 
   "tooltip.enigmaticaddons.chaosElytra1": "§5Reduce §6%1$s §5of damage from behind.",
@@ -513,20 +528,47 @@
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "Since the Heart of Abyss is in hand, why not set your gaze on the sky?<br2/>Based on the same process as the Majestic Elytra, using more evil and powerful materials can obtain these stronger elytra. Soar in the sky with the power of the cosmic and the ender, to look down upon the creatures crawling on the ground.",
   "book.enigmaticaddons.entry.chaos_elytra.page.2": "When we descend from the sky to the ground, chaos and evil will accompany us, bringing impact to the ground and putting everything in chaos.",
 
+  "item.enigmaticaddons.violence_scroll": "The Curse of Violence",
+
   "tooltip.enigmaticaddons.violenceScroll1": "§5When attacking the same target, making an additional §6%1$s§5 of the last damage.",
-  "tooltip.enigmaticaddons.violenceScroll2": "§5",
-  "tooltip.enigmaticaddons.violenceScroll3": "§5Can be used as §dTome of Devoured Malignancy§5.",
-  "tooltip.enigmaticaddons.violenceScroll4": "§5",
-  "tooltip.enigmaticaddons.violenceScroll5": "§5- ",
-  "tooltip.enigmaticaddons.violenceScroll6": "§5- ",
-  "tooltip.enigmaticaddons.violenceScroll7": "§5- ",
-  "tooltip.enigmaticaddons.violenceScroll8": "§5- ",
+  "tooltip.enigmaticaddons.violenceScroll2": "§5If in an invulnerable state when attacking:",
+  "tooltip.enigmaticaddons.violenceScroll3": "§5- The damage caused §6%1$s§5.",
+  "tooltip.enigmaticaddons.violenceScroll4": "§5- Restore health equivalent to§6 %1$s §5of the original damage caused.",
+  "tooltip.enigmaticaddons.violenceScroll5": "§5- Reset the invulnerable time.",
+  "tooltip.enigmaticaddons.violenceScroll6": "§6Right-click§5 on other items in the inventory to absorb their curse enchantments.",
+  "tooltip.enigmaticaddons.violenceScroll7": "§5- §6%1$s §dAttack Speed",
+  "tooltip.enigmaticaddons.violenceScroll8": "§5- §6%1$s §dEntity Reach",
+  "tooltip.enigmaticaddons.violenceScroll9": "§5- §6%1$s §dKnockback Resistance",
+  "tooltip.enigmaticaddons.violenceScroll10": "§5- The target of the attack will be apply with weakened§6 First§5 to§6 Fourth§5 curses.",
+  "tooltip.enigmaticaddons.violenceScroll11": "§5- Alteration of the §6Fourth Curse§d, Reduce its effect by§d half§5.",
   "tooltip.enigmaticaddons.violenceScrollCount": "§dAbsorbed Curse Count: §6%1$s§",
+
+  "book.enigmaticaddons.entry.violence_scroll.name": "Curse of Violence",
+  "book.enigmaticaddons.entry.violence_scroll.page.1": "In the endless slaughter, the pleasure brought by violence makes you linger. And the Scroll of Thousand Curses has extended an invitation to you, allowing you to carry the power of the curse and reach the peak together with the abyss.<br2/>Faced with the thirst for violence, the more we fight, the braver and crazier we",
+  "book.enigmaticaddons.entry.violence_scroll.page.2": "become, constantly counterattacking in the midst of injury, and unleashing the accumulated anger.",
+  "book.enigmaticaddons.entry.violence_scroll.page.3": "As an upgrade of the Thousand Curses and the Devoured Malignancy, this object still holds a thirst for the curse. Please satisfy it, it will not mistreat you.",
+
+  "item.enigmaticaddons.unknown_sword": "§k?????§r of §k??????§r",
+  "item.enigmaticaddons.annihilating_sword": "Decision of Annihilation",
+
+  "tooltip.enigmaticaddons.annihilatingSword1": "§5",
+  "tooltip.enigmaticaddons.annihilatingSword2": "§5",
+  "tooltip.enigmaticaddons.annihilatingSword3": "§5",
+  "tooltip.enigmaticaddons.annihilatingSword4": "§5",
+  "tooltip.enigmaticaddons.annihilatingSword5Main": "§5- ",
+  "tooltip.enigmaticaddons.annihilatingSword5Off": "§5- ",
+  "tooltip.enigmaticaddons.annihilatingSword6Main": "§5- ",
+  "tooltip.enigmaticaddons.annihilatingSword6Off": "§5- ",
+  "tooltip.enigmaticaddons.annihilatingSword7": "§5",
+  "tooltip.enigmaticaddons.annihilatingSword8": "§5",
+  "tooltip.enigmaticaddons.annihilatingSword9": "§5",
+  "tooltip.enigmaticaddons.annihilatingSwordOwner": "This Sword Can Only Belong To You.",
 
   "death.attack.abyss": "%1$s fell into an endless abyss.",
   "death.attack.evil_curse": "%1$s was torn apart by curse.",
   "death.attack.false_justice": "%1$s disappeared into the void of judgement.",
 
+  "entity.enigmaticaddons.abyss_projectile": "Shadow of Abyss",
   "entity.enigmaticaddons.astral_spear": "Astral Spear",
   "entity.enigmaticaddons.cobweb_ball": "Spider Web Ball",
   "entity.enigmaticaddons.disaster_chaos": "Disaster Fireball",

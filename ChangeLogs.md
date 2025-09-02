@@ -1,6 +1,24 @@
 ***
 ## 1.2 ~ 1.3 Update: More Powerful
 ***
+## [Release 1.2.5] (2025/08/03)
+### Features:
+- New Items (**Curse of Violence**, **Ring of Ultimate Luxury** and else);
+### Changes:
+- Adjusted some functions of **The Curse Carver** , **Scroll of Thunder Embrace**, **Ode to Living Beings** and **Revival Leaves**;
+- Adjusted the effect of the **Spider Web Ball**, it will only apply effect when successfully damaged target;
+- Adjusted the interaction priority of **Scepter of Extradimension**;
+- Adjusted the durability function of **Totem of Malice**;
+- Added the config of the **Tome of Divination**;
+- Added more Cursed Mob AI;
+- Slightly optimized code performance (no relation to the game performance).
+### Fixes:
+- Fixed the issue that the curse time will not copy when player cloning;
+- Fixed the issue that the **Scroll of Ignorance Curse** didn't reduce the EXP gained;
+- Fixed the issue that the **Heart of the Earth** can't be taint by **Ring of Redemption**;
+- Fixed the issue that the **Magic Quartz Scepter** will causes crash when the player's luck is negative;
+- Fixed the error in the Cursed Mob AI;
+- Fixed the error in the Unbreakable forging of the **Forger's Gem**.
 ## [Release 1.2.4] (2025/06/22)
 ### Features:
 - 2 new Item (**Soul Lantern of Illusion**, **Magic Quartz Scepter**);

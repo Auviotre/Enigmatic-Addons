@@ -5,7 +5,6 @@ import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
-import com.aizistral.enigmaticlegacy.helpers.ItemNBTHelper;
 import com.aizistral.enigmaticlegacy.items.HunterGuidebook;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
@@ -14,6 +13,8 @@ import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -60,21 +61,48 @@ public class OdeToLiving extends ItemBase implements Vanishable {
     public static boolean isProtectedAnimal(Player player, Animal animal) {
         ItemStack book = SuperAddonHandler.getItem(player, EnigmaticAddonItems.LIVING_ODE);
         if (book.isEmpty()) book = SuperAddonHandler.findBookInBag(player, EnigmaticAddonItems.LIVING_ODE);
-        return !ItemNBTHelper.getUUID(book, "odeTarget", player.getUUID()).equals(animal.getUUID()) && EnigmaticItems.ANIMAL_GUIDEBOOK.isProtectedAnimal(animal);
+        return !containInList(book, animal) && EnigmaticItems.ANIMAL_GUIDEBOOK.isProtectedAnimal(animal);
     }
 
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-        if (target instanceof NeutralMob neutral && neutral.isAngry() && !player.getCooldowns().isOnCooldown(this)) {
-            if (!player.level().isClientSide) {
-                boolean flag = target instanceof Animal && neutral.getTarget() == player;
-                if (flag) neutral.stopBeingAngry();
-                ((ServerLevel) player.level()).sendParticles(ParticleTypes.HEART, target.getX(), target.getEyeY(), target.getZ(), 5, target.getBbWidth(), 0.1D, target.getBbWidth(), 0.1D);
+        if (!player.getCooldowns().isOnCooldown(this)) {
+            boolean noAction = true;
+            if (containInList(stack, target)) {
+                removeFromList(stack, target);
+                noAction = false;
+            } if (target instanceof NeutralMob neutral && neutral.isAngry()) {
+                if (target instanceof Animal && neutral.getTarget() == player) neutral.stopBeingAngry();
+                noAction = false;
             }
+            if (noAction) return InteractionResult.PASS;
+            if (player.level() instanceof ServerLevel server)
+                server.sendParticles(ParticleTypes.HEART, target.getX(), target.getEyeY(), target.getZ(), 5, target.getBbWidth(), 0.1D, target.getBbWidth(), 0.1D);
             if (!player.getAbilities().instabuild) player.getCooldowns().addCooldown(this, cooldown.getValue());
             return InteractionResult.SUCCESS;
-        } else {
-            return InteractionResult.PASS;
-        }
+        } else return InteractionResult.PASS;
+    }
+
+    public static boolean containInList(ItemStack stack, LivingEntity entity) {
+        ListTag tag = stack.getOrCreateTag().getList("BannedMobList", 10);
+        CompoundTag compoundtag = new CompoundTag();
+        compoundtag.putString("id", entity.getType().getDescriptionId());
+        return tag.contains(compoundtag);
+    }
+
+    public static void addBlackList(ItemStack stack, LivingEntity entity) {
+        ListTag tag = stack.getOrCreateTag().getList("BannedMobList", 10);
+        CompoundTag compoundtag = new CompoundTag();
+        compoundtag.putString("id", entity.getType().getDescriptionId());
+        if (!tag.contains(compoundtag)) tag.add(compoundtag);
+        stack.addTagElement("BannedMobList", tag);
+    }
+
+    public static void removeFromList(ItemStack stack, LivingEntity entity) {
+        ListTag tag = stack.getOrCreateTag().getList("BannedMobList", 10);
+        CompoundTag compoundtag = new CompoundTag();
+        compoundtag.putString("id", entity.getType().getDescriptionId());
+        tag.remove(compoundtag);
+        stack.addTagElement("BannedMobList", tag);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -122,7 +150,7 @@ public class OdeToLiving extends ItemBase implements Vanishable {
         LivingEntity entity = event.getEntity();
         if (event.getSource().getEntity() instanceof Player player && player.getMainHandItem().is(EnigmaticAddonItems.LIVING_ODE)) {
             ItemStack livingOde = player.getMainHandItem();
-            ItemNBTHelper.setUUID(livingOde, "odeTarget", entity.getUUID());
+            if (entity instanceof Animal animal && isProtectedAnimal(player, animal)) addBlackList(livingOde, entity);
             if (SuperAddonHandler.isTheBlessedOne(player)) {
                 List<Animal> animals = player.level().getEntitiesOfClass(Animal.class, entity.getBoundingBox().inflate(10.0D));
                 for (Animal animal : animals) {

@@ -23,6 +23,7 @@ import com.aizistral.enigmaticlegacy.objects.LoggerWrapper;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticBlocks;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticTabs;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +54,9 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.UUID;
+
 import static auviotre.enigmatic.addon.registries.AbstractRegistry.loadClass;
 
 
@@ -62,6 +66,36 @@ public class EnigmaticAddons {
     public static final LoggerWrapper LOGGER = new LoggerWrapper("Enigmatic Addons");
     public static final CommonProxy PROXY = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     public static SimpleChannel packetInstance;
+    public static final List<UUID> Acceptors;
+
+    static {
+        ImmutableList.Builder<UUID> builder = ImmutableList.builder();
+        builder.add(UUID.fromString("7aba0098-0702-4e02-a218-f767877d96b6"));
+        builder.add(UUID.fromString("dcd88045-2e14-4571-acfe-f2093ab530b8"));
+        builder.add(UUID.fromString("fd3e50f0-73e1-475a-8181-d652be327727"));
+        builder.add(UUID.fromString("0bb94502-d887-472e-ab32-d36b9b2facd6"));
+        builder.add(UUID.fromString("514354df-6166-4bd7-9382-7757d3c008a6"));
+        builder.add(UUID.fromString("6fb0af7c-e14e-4886-ad6e-822a62469a01"));
+        builder.add(UUID.fromString("a728efde-306c-4cb6-baa4-4e99ac7b4772"));
+        builder.add(UUID.fromString("85f1b302-9b3b-4a55-a4d2-cfffec87061a"));
+        builder.add(UUID.fromString("7069da76-dfc2-3678-8426-140174c85f4d"));
+        builder.add(UUID.fromString("3f54b1a8-32b8-4c7d-85c7-087f28128050"));
+        builder.add(UUID.fromString("302757d3-f8e0-467c-8650-29686c60eb5a"));
+        builder.add(UUID.fromString("f1e0ee28-401d-4664-a928-486479a9cb36"));
+        builder.add(UUID.fromString("01bdeeaa-cca4-4e63-b38f-ab7feaf7a63a"));
+        builder.add(UUID.fromString("52d022e0-4060-4dde-9f68-03d454e47150"));
+        builder.add(UUID.fromString("6f71473c-c302-4b95-937d-b24ac9c2cf5e"));
+        builder.add(UUID.fromString("5ea0428f-50fc-4f89-9ff1-aa622686cf72"));
+        builder.add(UUID.fromString("0088c328-bbc2-4b70-bd66-5e0f512f5eee"));
+        builder.add(UUID.fromString("34c34773-ab90-4a5d-aab9-b2e03cb05165"));
+        builder.add(UUID.fromString("d4f43c07-280f-4502-952e-4dc31ceec9e4"));
+        builder.add(UUID.fromString("837141f7-cf97-4bb9-b64a-019c53592431"));
+        builder.add(UUID.fromString("2301982f-ef0d-446a-a31c-1ea53339a151"));
+        builder.add(UUID.fromString("7c621bf8-a19d-4f3a-8e5b-8a75e6d81cfd"));
+        builder.add(UUID.fromString("4be196b1-dec6-4e70-a8a6-85f5eb23b500"));
+        builder.add(UUID.fromString("fbe90440-c786-4510-bc0f-7cb4e9e94956"));
+        Acceptors = builder.build();
+    }
 
     public EnigmaticAddons() {
         LOGGER.info("Constructing mod instance...");
@@ -108,6 +142,7 @@ public class EnigmaticAddons {
         packetInstance.registerMessage(7, PacketExtradimensionParticles.class, PacketExtradimensionParticles::encode, PacketExtradimensionParticles::decode, PacketExtradimensionParticles::handle);
         packetInstance.registerMessage(8, PacketEtheriumShieldSync.class, PacketEtheriumShieldSync::encode, PacketEtheriumShieldSync::decode, PacketEtheriumShieldSync::handle);
         packetInstance.registerMessage(9, PacketForgottenIce.class, PacketForgottenIce::encode, PacketForgottenIce::decode, PacketForgottenIce::handle);
+        packetInstance.registerMessage(10, PacketPlaySound.class, PacketPlaySound::encode, PacketPlaySound::decode, PacketPlaySound::handle);
         LOGGER.info("Common setup phase finished successfully.");
     }
 
@@ -248,7 +283,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticAddonItems.EVIL_DAGGER, EnigmaticItems.THE_TWIST);
             putAfter(entries, EnigmaticItems.THE_TWIST, EnigmaticItems.ENDER_SLAYER);
             putAfter(entries, EnigmaticItems.ENDER_SLAYER, EnigmaticAddonItems.TOTEM_OF_MALICE);
-            putAfter(entries, EnigmaticAddonItems.TOTEM_OF_MALICE, EnigmaticItems.CURSE_TRANSPOSER);
+            putAfter(entries, EnigmaticAddonItems.TOTEM_OF_MALICE, EnigmaticAddonItems.AVARICE_RING);
+            putAfter(entries, EnigmaticAddonItems.AVARICE_RING, EnigmaticItems.CURSE_TRANSPOSER);
             putAfter(entries, EnigmaticItems.CURSE_TRANSPOSER, EnigmaticAddonItems.SANGUINARY_HANDBOOK);
             putAfter(entries, EnigmaticAddonItems.SANGUINARY_HANDBOOK, EnigmaticAddonItems.FALSE_JUSTICE);
             putAfter(entries, EnigmaticAddonItems.FALSE_JUSTICE, EnigmaticItems.CURSED_STONE);

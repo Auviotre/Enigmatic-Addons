@@ -46,12 +46,12 @@ public class OmniconfigAddonHandler {
     }
 
     public static void initialize() {
-        OmniconfigWrapper configBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-common", true, "1.2.4");
+        OmniconfigWrapper configBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-common", true, "1.2.5.2");
         configBuilder.pushVersioningPolicy(Configuration.VersioningPolicy.AGGRESSIVE);
         configBuilder.pushTerminateNonInvokedKeys(true);
         loadCommon(configBuilder);
         configBuilder.setReloadable();
-        OmniconfigWrapper clientBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-client", true, "1.2.4");
+        OmniconfigWrapper clientBuilder = OmniconfigWrapper.setupBuilder("enigmaticaddons-client", true, "1.2.5.2");
         clientBuilder.pushSidedType(Configuration.SidedConfigType.CLIENT);
         clientBuilder.pushVersioningPolicy(Configuration.VersioningPolicy.AGGRESSIVE);
         clientBuilder.pushTerminateNonInvokedKeys(true);

@@ -3,10 +3,16 @@ package auviotre.enigmatic.addon.contents.items;
 import auviotre.enigmatic.addon.api.items.IBlessed;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
+import com.aizistral.enigmaticlegacy.entities.PermanentItemEntity;
+import com.aizistral.enigmaticlegacy.handlers.SoulArchive;
+import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
+import com.aizistral.enigmaticlegacy.items.SoulCrystal;
 import com.aizistral.enigmaticlegacy.items.TheAcknowledgment;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.client.Minecraft;
@@ -23,6 +29,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -85,7 +92,22 @@ public class TheBless extends TheAcknowledgment implements ICursed, IBlessed {
     }
 
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        if (!SuperAddonHandler.isOKOne(player)) {
+        if (SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BROKEN_RING)) {
+            List<PermanentItemEntity> entities = world.getEntitiesOfClass(PermanentItemEntity.class, player.getBoundingBox().inflate(4));
+            if (entities.isEmpty()) return InteractionResultHolder.pass(player.getItemInHand(hand));
+            for (PermanentItemEntity entity : entities) {
+                ItemStack stack = entity.getItem();
+                if (stack.getItem() instanceof SoulCrystal && player.getUUID().equals(entity.getOwnerId())) {
+                    if (!player.addItem(EnigmaticItems.SOUL_CRYSTAL.getDefaultInstance())) {
+                        Block.popResource(world, player.blockPosition(), EnigmaticItems.SOUL_CRYSTAL.getDefaultInstance());
+                    }
+                    SoulArchive.getInstance().removeItem(entity);
+                    entity.discard();
+                    stack.setCount(0);
+                }
+            }
+            return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), world.isClientSide);
+        } else if (!SuperAddonHandler.isOKOne(player)) {
             return InteractionResultHolder.pass(player.getItemInHand(hand));
         } else {
             if (hand == InteractionHand.MAIN_HAND) {

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:avarice_ring"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "enigmaticlegacy:avarice_scroll"
+    },
+    {
+      "item": "enigmaticlegacy:golden_ring"
+    }
+  ],
+  "result": {
+    "item": "enigmaticaddons:avarice_ring"
+  }
+}

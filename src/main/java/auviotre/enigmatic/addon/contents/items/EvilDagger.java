@@ -189,7 +189,7 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
     }
 
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment.isCurse() || (enchantment.category.equals(EnchantmentCategory.WEAPON) || enchantment == Enchantments.MULTISHOT) && enchantment != Enchantments.SWEEPING_EDGE;
+        return enchantment.isCurse() || (enchantment.category.equals(EnchantmentCategory.WEAPON) || enchantment.category.equals(EnchantmentCategory.BREAKABLE) || enchantment == Enchantments.MULTISHOT) && enchantment != Enchantments.SWEEPING_EDGE;
     }
 
     public int getEnchantmentValue(ItemStack stack) {

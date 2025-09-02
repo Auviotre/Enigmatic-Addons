@@ -158,14 +158,14 @@ public class CrossbowBlazeAttackGoal<T extends Monster & RangedAttackMob & Cross
         CompoundTag explosion = star.getOrCreateTagElement("Explosion");
         explosion.putByte("Type", (byte) FireworkRocketItem.Shape.BURST.getId());
         explosion.putBoolean("Flicker", true);
-        explosion.putBoolean("Trail", true);
+//        explosion.putBoolean("Trail", true);
         List<Integer> colorList = Lists.newArrayList();
         List<Item> dyes = List.of(Items.BLACK_DYE, Items.WHITE_DYE, Items.GRAY_DYE, Items.LIGHT_GRAY_DYE, Items.BROWN_DYE);
         for (Item dye : dyes) colorList.add(((DyeItem) dye).getDyeColor().getFireworkColor());
         explosion.putIntArray("Colors", colorList);
 
         CompoundTag starTag = star.getTagElement("Explosion");
-        for (int i = 0; i < 5; i++) listTag.add(starTag);
+        for (int i = 0; i < 2; i++) listTag.add(starTag);
         tag.putByte("Flight", (byte) 1);
         tag.put("Explosions", listTag);
         return firework;

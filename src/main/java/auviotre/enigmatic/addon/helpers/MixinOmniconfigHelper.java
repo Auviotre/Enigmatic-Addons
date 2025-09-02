@@ -23,6 +23,7 @@ public class MixinOmniconfigHelper {
 
     public static void MixConfig(OmniconfigWrapper builder) {
         cubeRandomBuffs.clear();
+        builder.forceSynchronized(true);
         String[] buffList = builder.config.getStringList("TheCubeRandomBuffs", category, defaultRandomBuffs, "List of effects that will appear in The Cube's random buffs. Examples: minecraft:absorption, minecraft:strength. Changing this option required game restart to take effect.");
         Arrays.stream(buffList).forEach((entry) -> cubeRandomBuffs.add(new ResourceLocation(entry)));
         if (cubeRandomBuffs.isEmpty()) cubeRandomBuffs.add(new ResourceLocation("minecraft:strength"));

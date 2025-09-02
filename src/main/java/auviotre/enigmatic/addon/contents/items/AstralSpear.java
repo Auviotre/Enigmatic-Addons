@@ -162,9 +162,8 @@ public class AstralSpear extends ItemBase implements Vanishable {
     }
 
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        boolean base = enchantment == Enchantments.UNBREAKING || enchantment == Enchantments.MENDING;
-        boolean curse = base || enchantment == Enchantments.VANISHING_CURSE || enchantment == EnigmaticEnchantments.NEMESIS;
-        return enchantment == Enchantments.PIERCING || enchantment == Enchantments.SHARPNESS || curse || super.canApplyAtEnchantingTable(stack, enchantment);
+        boolean curse = enchantment == Enchantments.VANISHING_CURSE || enchantment == EnigmaticEnchantments.NEMESIS;
+        return enchantment == Enchantments.PIERCING || curse || super.canApplyAtEnchantingTable(Items.IRON_SWORD.getDefaultInstance(), enchantment);
     }
 
     public int getEnchantmentValue(ItemStack stack) {

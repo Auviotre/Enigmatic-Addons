@@ -111,6 +111,11 @@ public class ExtradimensionalScepter extends ItemBase {
         if (stack.isEnchanted()) ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
     }
 
+    public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity user) {
+        stack.hurtAndBreak(2, user, consumer -> consumer.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+        return true;
+    }
+
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
         if (Helper.validScepter(player, itemInHand)) {
@@ -186,7 +191,7 @@ public class ExtradimensionalScepter extends ItemBase {
 
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
-        if (Helper.validTarget(player, entity, 2.0) && Helper.validScepter(player, itemInHand)) {
+        if (Helper.validTarget(player, entity, 2.5) && Helper.validScepter(player, itemInHand)) {
             if (Helper.isCombatMode(stack) || player.isCrouching()) return InteractionResult.PASS;
             Level level = player.level();
             EntityType<?> type = Helper.getType(itemInHand);
@@ -271,7 +276,7 @@ public class ExtradimensionalScepter extends ItemBase {
         int counter = entity.getPersistentData().getInt("ExtradimensionCounter");
         if (counter > 0) {
             if (counter > threshold) {
-                List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(10), living -> entity.canAttack(living) && Helper.validTarget(entity, living, 1.25) && !(living instanceof Player));
+                List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(10), living -> entity.canAttack(living) && Helper.validTarget(entity, living, 1.4) && !(living instanceof Player));
                 entities.sort((living1, living2) -> Float.compare(living2.getHealth(), living1.getHealth()));
                 List<LivingEntity> subList = entities.subList(0, Math.min(maxCombatCount.getValue(), entities.size()));
                 if (!subList.contains(entity)) subList.add(entity);
@@ -327,7 +332,7 @@ public class ExtradimensionalScepter extends ItemBase {
 
         public static boolean validTarget(LivingEntity from, LivingEntity to, double threshold) {
             boolean creative = from instanceof Player player && player.getAbilities().instabuild;
-            return !(to instanceof Player) && to.isAlive() && (creative || from.getHealth() * threshold > to.getHealth());
+            return !(to instanceof Player) && (creative || from.getHealth() * threshold > to.getHealth());
         }
 
         public static boolean isCombatMode(ItemStack stack) {

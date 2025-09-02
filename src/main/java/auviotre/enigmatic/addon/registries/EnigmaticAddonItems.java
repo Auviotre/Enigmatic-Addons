@@ -115,6 +115,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("The Bless")
     @ObjectHolder(value = "enigmaticaddons:the_bless", registryName = "item")
     public static final TheBless THE_BLESS = null;
+    @ObjectHolder(value = "enigmaticaddons:the_repentance", registryName = "item")
+    public static final TheRepentance THE_REPENTANCE = null;
     @ConfigurableItem("Tome of Divination")
     @ObjectHolder(value = "enigmaticaddons:bless_amplifier", registryName = "item")
     public static final BlessAmplifier BLESS_AMPLIFIER = null;
@@ -127,6 +129,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Ring of Redemption")
     @ObjectHolder(value = "enigmaticaddons:bless_ring", registryName = "item")
     public static final BlessRing BLESS_RING = null;
+    @ObjectHolder(value = "enigmaticaddons:broken_ring", registryName = "item")
+    public static final BlessRing.Broken BROKEN_RING = null;
     @ConfigurableItem("Etherium Core")
     @ObjectHolder(value = "enigmaticaddons:etherium_core", registryName = "item")
     public static final EtheriumCore ETHERIUM_CORE = null;
@@ -147,11 +151,16 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Disaster Broadsword")
     @ObjectHolder(value = "enigmaticaddons:disaster_sword", registryName = "item")
     public static final DisasterSword DISASTER_SWORD = null;
+    @ConfigurableItem("Ring of Ultimate Luxury")
+    @ObjectHolder(value = "enigmaticaddons:avarice_ring", registryName = "item")
+    public static final AvariceRing AVARICE_RING = null;
     @ConfigurableItem("The Arrogance of Chaos")
     @ObjectHolder(value = "enigmaticaddons:chaos_elytra", registryName = "item")
     public static final ChaosElytra CHAOS_ELYTRA = null;
+    @ObjectHolder(value = "enigmaticaddons:unknown_sword", registryName = "item")
+    public static final Item UNKNOWN_SWORD = null;
     @ObjectHolder(value = "enigmaticaddons:annihilating_sword", registryName = "item")
-    public static final Item ANNIHILATING_SWORD = null;
+    public static final AnnihilatingSword ANNIHILATING_SWORD = null;
     @ObjectHolder(value = "enigmaticaddons:violence_scroll", registryName = "item")
     public static final ViolenceScroll VIOLENCE_SCROLL = null;
     @ConfigurableItem("Enigmatic Pearl")
@@ -193,18 +202,22 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("ichoroot", Ichoroot::new);
         this.register("ichor_spear", IchorSpear::new);
         this.register("pure_heart", PureHeart::new);
-        this.register("the_bless", TheBless::new);
+        this.register("the_bless", TheBless::new);;
+        this.register("the_repentance", TheRepentance::new);
         this.register("bless_amplifier", BlessAmplifier::new);
         this.register("thunder_scroll", ThunderScroll::new);
         this.register("bless_stone", BlessStone::new);
         this.register("bless_ring", BlessRing::new);
+        this.register("broken_ring", BlessRing.Broken::new);
         this.register("etherium_core", EtheriumCore::new);
         this.register("forger_gem", ForgerGem::new);
         this.register("scorched_charm", ScorchedCharm::new);
         this.register("evil_dagger", EvilDagger::new);
         this.register("totem_of_malice", TotemOfMalice::new);
         this.register("disaster_sword", DisasterSword::new);
+        this.register("avarice_ring", AvariceRing::new);
         this.register("chaos_elytra", ChaosElytra::new);
+        this.register("unknown_sword", AnnihilatingSword.Unknown::new);
         this.register("annihilating_sword", AnnihilatingSword::new);
         this.register("violence_scroll", ViolenceScroll::new);
         this.register("extradimensional_scepter", ExtradimensionalScepter::new);

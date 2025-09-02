@@ -1,4 +1,6 @@
 package auviotre.enigmatic.addon.api.items;
 
-public interface IBetrayed {
+import com.aizistral.enigmaticlegacy.api.items.ICursed;
+
+public interface IBetrayed extends ICursed {
 }

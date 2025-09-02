@@ -13,6 +13,7 @@ import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -63,11 +64,13 @@ public class EarthPromise extends ItemBaseCurio implements ICursed, IBlessed {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
         if (Screen.hasShiftDown()) {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise1", ChatFormatting.GOLD, abilityTriggerPercent + "%");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise2");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise2", ChatFormatting.GOLD, String.format("%d", cooldown.getValue() / 20));
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise3");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise4", ChatFormatting.GOLD, totalResistance + "%");
-            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+            if (Minecraft.getInstance().player != null && SuperpositionHandler.isTheCursedOne(Minecraft.getInstance().player)) {
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise3");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.earthPromise4", ChatFormatting.GOLD, totalResistance + "%");
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+            }
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");

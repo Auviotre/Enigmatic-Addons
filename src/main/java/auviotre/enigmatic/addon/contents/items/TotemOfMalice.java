@@ -10,7 +10,6 @@ import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -51,12 +50,16 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     }
 
     public static ItemStack getValidTotem(Player player) {
-        for (NonNullList<ItemStack> stacks : player.getInventory().compartments) {
-            for (ItemStack itemstack : stacks) {
-                if (!itemstack.isEmpty() && itemstack.is(EnigmaticAddonItems.TOTEM_OF_MALICE) && isPowerful(itemstack)) {
-                    return itemstack;
-                }
-            }
+//        for (NonNullList<ItemStack> stacks : player.getInventory().compartments) {
+//            for (ItemStack itemstack : stacks) {
+//                if (!itemstack.isEmpty() && itemstack.is(EnigmaticAddonItems.TOTEM_OF_MALICE) && isPowerful(itemstack)) {
+//                    return itemstack;
+//                }
+//            }
+//        }
+        for (ItemStack stack : player.getHandSlots()) {
+            if (!stack.isEmpty() && stack.is(EnigmaticAddonItems.TOTEM_OF_MALICE) && isPowerful(stack))
+                return stack;
         }
         return ItemStack.EMPTY;
     }
@@ -80,6 +83,10 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
         if (!entity.level().isClientSide() && (!(entity instanceof Player) || !((Player) entity).getAbilities().instabuild)) {
             entity.invulnerableTime = 60;
             setTotemPower(stack, getTotemPower(stack) - 1);
+            setSpecialCost(stack, getSpecialCost(stack) + 1);
+            if (getTotemPower(stack) == 0 && entity.getRandom().nextInt(100) < getSpecialCost(stack) / 2) {
+                stack.shrink(1);
+            }
         }
     }
 
@@ -90,12 +97,26 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
     }
 
     public static int getTotemPower(ItemStack stack) {
-        return !stack.hasTag() ? 0 : stack.getTag().getInt("MalicePower");
+        if (!stack.hasTag()) return 0;
+        int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+        int energy = stack.getTag().getInt("MalicePower");
+        energy = Mth.clamp(energy, 0, Math.min(2 + level, 8));
+        stack.getOrCreateTag().putInt("MalicePower", energy);
+        return energy;
     }
 
     public static void setTotemPower(ItemStack stack, int damage) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        stack.getOrCreateTag().putInt("MalicePower", Mth.clamp(damage, 0, Math.min(3 + level, 10)));
+        stack.getOrCreateTag().putInt("MalicePower", Mth.clamp(damage, 0, Math.min(2 + level, 8)));
+    }
+
+    public static int getSpecialCost(ItemStack stack) {
+        if (!stack.hasTag()) return 0;
+        return stack.getTag().getInt("MaliceCost");
+    }
+
+    public static void setSpecialCost(ItemStack stack, int damage) {
+        stack.getOrCreateTag().putInt("MaliceCost", damage);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -133,12 +154,12 @@ public class TotemOfMalice extends ItemBaseCurio implements ICursed {
 
     public int getBarWidth(ItemStack stack) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        return Math.round((float) getTotemPower(stack) * 13.0F / Math.min(3.0F + level, 10.0F));
+        return Math.round((float) getTotemPower(stack) * 13.0F / Math.min(2.0F + level, 8.0F));
     }
 
     public int getBarColor(ItemStack stack) {
         int level = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        float stackMaxDamage = Math.min(3.0F + level, 10.0F);
+        float stackMaxDamage = Math.min(2.0F + level, 8.0F);
         float f = Math.max(0.0F, getTotemPower(stack) / stackMaxDamage);
         return Mth.hsvToRgb(f / 3.0F, 1.0F, 0.5F + f * 0.5F);
     }

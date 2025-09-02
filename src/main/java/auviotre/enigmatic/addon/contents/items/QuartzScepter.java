@@ -59,6 +59,11 @@ public class QuartzScepter extends ItemBase {
         if (stack.isEnchanted()) ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
     }
 
+    public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity user) {
+        stack.hurtAndBreak(2, user, consumer -> consumer.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+        return true;
+    }
+
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
         player.startUsingItem(hand);
@@ -98,7 +103,8 @@ public class QuartzScepter extends ItemBase {
             double z = player.getZ() + (random.nextFloat() - 0.5F) * 0.6F;
             dagger.setPos(x, y, z);
             dagger.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, SuperpositionHandler.hasCurio(user, EnigmaticAddonItems.QUARTZ_RING) ? 1.6F : 1.2F, 1F);
-            int luck = (int) (player.getAttribute(Attributes.LUCK).getValue() * 0.8F + 0.5F);
+            double value = player.getAttribute(Attributes.LUCK).getValue();
+            int luck = (int) Math.max(Math.floor(value * 0.8F + 0.5F), 0);
             dagger.setBaseDamage(dagger.getBaseDamage() + luck);
             dagger.setNoGravity(true);
             level.addFreshEntity(dagger);

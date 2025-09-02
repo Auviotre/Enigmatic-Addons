@@ -67,7 +67,10 @@ public class ArtificialFlower extends ItemBase {
             "born_in_chaos_v1:rampant_rampage",
             "cataclysm:ghost_form",
             "cataclysm:ghost_sickness",
+            "enigmaticdelicacy:astral_drunkenness",
+            "enigmaticdelicacy:abyss_corruption",
             "enigmaticdelicacy:fading",
+            "enigmaticdelicacy:health_curse",
             "enigmaticlegacy:blazing_strength",
             "goety:shadow_walk",
             "irons_spellbooks:abyssal_shroud",
@@ -97,6 +100,7 @@ public class ArtificialFlower extends ItemBase {
         randomAttributeMaxModifier = builder.comment("The max modifier of the Magic Quartz Flower. Measures in percentage.").max(100).getPerhaps("RandomAttributeMaxModifier", 16);
         randomInstantaneousEffectModifier = builder.comment("The modifier of the instantaneous effect provided by Magic Quartz Flower. Measures in percentage.").max(100).getPerhaps("RandomInstantaneousEffectModifier", 80);
         attributeBlackList.clear();
+        builder.forceSynchronized(true);
         String[] list = builder.config.getStringList("ArtificialFlowerAttributeBlackList", "Balance Options", defaultAttributeBlackList, "List of Attributes that will never appear in Magic Quartz Flower. Changing this option required game restart to take effect.");
         Arrays.stream(list).forEach((entry) -> attributeBlackList.add(new ResourceLocation(entry)));
         effectBlackList.clear();

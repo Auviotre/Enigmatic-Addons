@@ -11,7 +11,10 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -89,7 +92,7 @@ public class SoulFlameBall extends Projectile implements ItemSupplier {
             if (this.isFired()) {
                 Vec3 movement = this.getDeltaMovement();
                 Entity cachedTarget = this.getCachedTarget();
-                if (cachedTarget != null) {
+                if (cachedTarget != null && cachedTarget.isAlive()) {
                     Vec3 target = new Vec3(cachedTarget.getX(), cachedTarget.getY(0.5F), cachedTarget.getZ());
                     Vec3 delta = target.subtract(this.position());
                     if (delta.length() < 16F) {

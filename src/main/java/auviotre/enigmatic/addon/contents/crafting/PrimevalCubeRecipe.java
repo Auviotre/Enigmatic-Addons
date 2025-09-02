@@ -27,7 +27,7 @@ public class PrimevalCubeRecipe extends CustomRecipe {
         int spellstoneCount = 0;
         int goldCount = 0;
         int heartCount = 0;
-        ItemStack cube = new ItemStack(EnigmaticAddonItems.PRIMEVAL_CUBE);
+        ItemStack cube = EnigmaticAddonItems.PRIMEVAL_CUBE.getDefaultInstance();
         for (int i = 0; i < inventory.getContainerSize(); ++i) {
             ItemStack slotStack = inventory.getItem(i);
             if (!slotStack.isEmpty()) {

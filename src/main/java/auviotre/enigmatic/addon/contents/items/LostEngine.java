@@ -61,13 +61,14 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
     public static void onConfig(OmniconfigWrapper builder) {
         builder.pushPrefix("LostEngine");
         spellstoneCooldown = builder.comment("Active ability cooldown for Lost Engine. Measured in ticks. 20 ticks equal to 1 second.").getInt("Cooldown", 0);
-        critModifier = builder.comment("The crit damage modifier of the Lost Engine.").max(256.0).min(0.0).getPerhaps("CritDamageModifier", 60);
+        critModifier = builder.comment("The crit damage modifier of the Lost Engine.").max(256.0).min(0.0).getPerhaps("CritDamageModifier", 35);
         toughnessModifier = builder.comment("The Armor Toughness modifier of the Lost Engine.").max(256.0).min(0.0).getDouble("ToughnessModifier", 4.0);
         KRModifier = builder.comment("The Knockback resistance modifier of the Lost Engine.").max(256.0).min(0.0).getDouble("KnockbackResistanceModifier", 0.2);
         speedModifier = builder.comment("The speed multiplier of the Lost Engine.").max(1.0).min(0.0).getDouble("SpeedModifier", 0.1);
         gravityModifier = builder.comment("The gravity multiplier of the Lost Engine.").max(1.0).min(0.0).getDouble("GravityModifier", 0.4);
         vulnerabilityModifier = builder.comment("Modifier for Magic Damage vulnerability applied by Lost Engine. Default value of 2.0 means that player will receive twice as much damage from magic.").min(1.0).max(256.0).getDouble("VulnerabilityModifier", 2.5);
         golemList.clear();
+        builder.forceSynchronized(true);
         String[] list = builder.config.getStringList("LostEngineExtraGolemList", "Balance Options", new String[0], "List of entities that will be affected as Golem by the Lost Engine. Examples: minecraft:iron_golem. Changing this option required game restart to take effect.");
         Arrays.stream(list).forEach((entry) -> golemList.add(new ResourceLocation(entry)));
         builder.popPrefix();
@@ -89,6 +90,7 @@ public class LostEngine extends ItemSpellstoneCurio implements ISpellstone {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine7", ChatFormatting.GOLD, critModifier + "%");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine8");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine9");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.lostEngine10");
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }

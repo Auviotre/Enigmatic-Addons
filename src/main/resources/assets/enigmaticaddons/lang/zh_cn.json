@@ -48,10 +48,10 @@
   "tooltip.enigmaticaddons.livingOde3": "§5在你周围的大部分动物变得被动。",
   "tooltip.enigmaticaddons.livingOde4": "§d修正§6第二诅咒§d的方法：",
   "tooltip.enigmaticaddons.livingOde5": "§5- 中立动物不会主动攻击。",
-  "tooltip.enigmaticaddons.livingOde6": "§5用该物品对目标攻击可使其暂时无法受到",
-  "tooltip.enigmaticaddons.livingOde7": "§5该物品保护",
+  "tooltip.enigmaticaddons.livingOde6": "§5用该物品对目标攻击可使该类动物",
+  "tooltip.enigmaticaddons.livingOde7": "§5无法受到该物品保护",
   "tooltip.enigmaticaddons.livingOde7_alt": "§5该物品保护并§6使周围中立动物以其为目标",
-  "tooltip.enigmaticaddons.livingOde8": "§d对动物使用来安抚对方",
+  "tooltip.enigmaticaddons.livingOde8": "§d对动物使用来安抚对方，并恢复保护效果",
 
   "book.enigmaticaddons.entry.ode_to_living.name": "生灵颂词",
   "book.enigmaticaddons.entry.ode_to_living.page.1": "之前的指南似乎无法让所有的动物朋友去认可你，这本颂词能够安抚一些动物朋友的情绪。它也继承了前一版指南的功能。<br2/>颂词的内容对你来说还是过于晦涩，因此只能随身携带，以便随时需要。",
@@ -87,8 +87,8 @@
 
   "item.enigmaticaddons.earth_promise": "地灵之诺",
 
-  "tooltip.enigmaticaddons.earthPromise1": "§5当受到当前生命值§6 %1$s §5以上伤害",
-  "tooltip.enigmaticaddons.earthPromise2": "§5时，挡下此次攻击，随即进入冷却。",
+  "tooltip.enigmaticaddons.earthPromise1": "§5当受到当前生命值§6 %1$s §5以上的伤害时",
+  "tooltip.enigmaticaddons.earthPromise2": "§5挡下此次攻击，随即进入§6 %1$s §5秒冷却",
   "tooltip.enigmaticaddons.earthPromise3": "§d修正§6第一诅咒§d的方法：",
   "tooltip.enigmaticaddons.earthPromise4": "§5- 使§6第一诅咒§5的影响减少 %1$s",
 
@@ -121,11 +121,12 @@
   "tooltip.enigmaticaddons.lostEngineCooldown": "§d冷却: §6%1$s§6秒",
   "tooltip.enigmaticaddons.lostEngine3": "§d被动技能:",
   "tooltip.enigmaticaddons.lostEngine4": "§5- 提升机动能力和韧性",
-  "tooltip.enigmaticaddons.lostEngine5": "§5- 减少 §633%§5 物品冷却时间",
+  "tooltip.enigmaticaddons.lostEngine5": "§5- 减少 §625%§5 物品冷却时间",
   "tooltip.enigmaticaddons.lostEngine6": "§5- 免疫§d掉落§5，§d爆炸§5伤害",
   "tooltip.enigmaticaddons.lostEngine7": "§5- 增加 §6%1$s§d 暴击伤害",
   "tooltip.enigmaticaddons.lostEngine8": "§5- 傀儡类生物不会主动以你为目标",
-  "tooltip.enigmaticaddons.lostEngine9": "§5- 增加受到的§d魔法伤害§5和§d闪电伤害",
+  "tooltip.enigmaticaddons.lostEngine9": "§5- 增加受到的§d魔法伤害",
+  "tooltip.enigmaticaddons.lostEngine10": "§5- 受到的§d闪电伤害§5将变得十分致命",
 
   "book.enigmaticaddons.entry.lost_engine.name": "失落引擎",
   "book.enigmaticaddons.entry.lost_engine.heading.1": "术石",
@@ -139,11 +140,12 @@
   "tooltip.enigmaticaddons.revivalLeafCooldown": "§d冷却：§6%1$s§6秒",
   "tooltip.enigmaticaddons.revivalLeaf3": "§d被动技能:",
   "tooltip.enigmaticaddons.revivalLeaf4": "§5- 缓慢自然生命恢复",
-  "tooltip.enigmaticaddons.revivalLeaf5": "§5- 攻击附带中毒效果并减少目标回血",
+  "tooltip.enigmaticaddons.revivalLeaf5": "§5- 攻击附带中毒效果并减少目标生命恢复",
   "tooltip.enigmaticaddons.revivalLeaf6": "§5- 免疫§d凋零§5、§d中毒§5和§d饥饿§5效果",
   "tooltip.enigmaticaddons.revivalLeaf7": "§5- 周围的作物生长加快",
   "tooltip.enigmaticaddons.revivalLeaf8": "§5- 药水效果持续时间加长",
-  "tooltip.enigmaticaddons.revivalLeaf9": "§5- 增加受到的§d火焰伤害§5和§d弹射物伤害",
+  "tooltip.enigmaticaddons.revivalLeaf9": "§5- 周围存在植被方块时可以§d飞行",
+  "tooltip.enigmaticaddons.revivalLeaf10": "§5- 增加受到的§d火焰伤害§5和§d弹射物伤害",
 
   "book.enigmaticaddons.entry.revival_leaf.name": "复苏之叶",
   "book.enigmaticaddons.entry.revival_leaf.heading.1": "术石",
@@ -247,7 +249,8 @@
   "tooltip.enigmaticaddons.thunderScroll2": "§5对有§d护甲§5目标造成更多伤害",
   "tooltip.enigmaticaddons.thunderScroll3": "§5目标在受击一定次数后",
   "tooltip.enigmaticaddons.thunderScroll4": "§5会受到§6落雷§5打击",
-  "tooltip.enigmaticaddons.thunderScroll5": "§5受到闪电伤害减半",
+  "tooltip.enigmaticaddons.thunderScroll5": "§5受到§d闪电伤害§5减半",
+  "tooltip.enigmaticaddons.thunderScroll6": "§5并不受其他大多数效果影响",
 
   "book.enigmaticaddons.entry.thunder_scroll.name": "万钧之护卷轴",
   "book.enigmaticaddons.entry.thunder_scroll.page.1": "虽说海洋意志术石能够一定程度上控制雷电的产生，但这终究只是间接控制，不够迅速。<br2/>我们利用神圣之力将共鸣闪电的咒语书写与卷轴之上，以术石为基底，以剑为媒介去释放来自天穹的力量。在战斗的过程中，这个卷轴会驱使你施展横扫攻击，来尽可能地去将闪电的目标扩大，同时",
@@ -403,6 +406,7 @@
   "book.enigmaticaddons.entry.pure_heart.page.2": "但虽说是充满神性的造物，却需要依附在诅咒的力量之上，实在是过于讽刺。所以在利用这些物品时，也请你同样去注意隐藏在背后的隐患。",
 
   "item.enigmaticaddons.the_bless": "恩惠之典",
+  "item.enigmaticaddons.the_repentance": "忏悔之音",
 
   "tooltip.enigmaticaddons.theBless1": "§5在无边的苦痛旅途之中",
   "tooltip.enigmaticaddons.theBless2": "§5借此无垢的篇章来点亮前路",
@@ -444,6 +448,7 @@
   "book.enigmaticaddons.entry.bless_stone.page.4": "近于死亡的过去。它们依旧认可着你的资格，愿意为你破除诅咒的束缚，依旧陪伴着你。<br2/>愿你在远离诅咒的日子里，尽情的享受生活。但你也无法真正了解这枚戒指，请不要轻易做下选择。",
 
   "item.enigmaticaddons.bless_ring": "救赎之戒",
+  "item.enigmaticaddons.broken_ring": "破损之戒",
 
   "tooltip.enigmaticaddons.blessRing1": "§d对经历过痛苦折磨之人，",
   "tooltip.enigmaticaddons.blessRing2": "§d遗留下部分祝福依旧起效：",
@@ -501,6 +506,15 @@
   "book.enigmaticaddons.entry.disaster_sword.page.1": "坚固的刃体加上其中蓄势待发的灵魂，这把剑向你展示了防守反击的技巧。<br2/>手持这把阔剑，你可以用它宽厚的刃体去格挡近乎所有的攻击，鉴于它厚重的特性，任何攻击都变得没有差别，但是你也只能举起一瞬间。",
   "book.enigmaticaddons.entry.disaster_sword.page.2": "每当成功格挡，承受的能量便会萦绕在剑身，等待下一次攻击时的完美释放。<br2/>在这清脆的碰撞声中，灾难的韵律逐渐浮现。",
 
+  "item.enigmaticaddons.avarice_ring": "极尽奢华之戒",
+  "tooltip.enigmaticaddons.avariceRing1": "§5村民不再§d涨价§5和§d断货",
+  "tooltip.enigmaticaddons.avariceRing2": "§5猪灵以外的§6可交易单位§5不会主动以你为目标",
+  "tooltip.enigmaticaddons.avariceRing3": "§d袭击者§5将以你为首要攻击目标",
+  "tooltip.enigmaticaddons.avariceRing4": "§5死亡时会清除携带的§6绿宝石相关物品",
+  "tooltip.enigmaticaddons.avariceRing4_alt": "§5§m死亡时会清除携带的§6§m绿宝石相关物品",
+  "tooltip.enigmaticaddons.avariceRing5": "§5造成的伤害会依据身上的§6宝石§5数量提升",
+  "tooltip.enigmaticaddons.avariceRing6": "§5当前增伤：§6%1$s",
+
   "item.enigmaticaddons.chaos_elytra": "混沌之傲",
 
   "tooltip.enigmaticaddons.chaosElytra1": "§5减少 §6%1$s §5来自背后的伤害",
@@ -513,20 +527,47 @@
   "book.enigmaticaddons.entry.chaos_elytra.page.1": "既然深渊之心在手，为何不将目光置于天空之中？<br2/>基于壮丽鞘翅相同的制作工艺，用上更为邪恶、更有力量的材料，便可获得这更为强力的鞘翅。借助末影和星辰之力翱翔在天空之中，去傲视那些匍匐在大地的生灵。",
   "book.enigmaticaddons.entry.chaos_elytra.page.2": "当从空中去向地面，伴随我们的降临必是混乱邪恶，带给地面以冲击，将一切置以混沌。",
 
+  "item.enigmaticaddons.violence_scroll": "暴戾之咒",
+
   "tooltip.enigmaticaddons.violenceScroll1": "§5攻击同一目标时，额外造成上次伤害的 §6%1$s",
   "tooltip.enigmaticaddons.violenceScroll2": "§5若攻击时处于§d受击无敌状态§5：",
-  "tooltip.enigmaticaddons.violenceScroll3": "§5- 造成的伤害 §6+200%",
-  "tooltip.enigmaticaddons.violenceScroll4": "§5- 恢复受伤的§6 40% §5生命值",
+  "tooltip.enigmaticaddons.violenceScroll3": "§5- 造成的伤害 §6%1$s",
+  "tooltip.enigmaticaddons.violenceScroll4": "§5- 恢复造成与原伤害§6 %1$s §5等量的生命值",
   "tooltip.enigmaticaddons.violenceScroll5": "§5- 使自身受击无敌时间§d归零",
-  "tooltip.enigmaticaddons.violenceScroll6": "§5可以当作§d噬咒之书§5来使用",
+  "tooltip.enigmaticaddons.violenceScroll6": "§5可以在物品栏§6右键§5其他物品吸收其诅咒附魔",
   "tooltip.enigmaticaddons.violenceScroll7": "§5- §6%1$s §d攻击速度",
   "tooltip.enigmaticaddons.violenceScroll8": "§5- §6%1$s §d实体范围",
+  "tooltip.enigmaticaddons.violenceScroll9": "§5- §6%1$s §d击退抗性",
+  "tooltip.enigmaticaddons.violenceScroll10": "§5- 攻击目标将被施加弱化的§6第一§5至§6第四诅咒",
+  "tooltip.enigmaticaddons.violenceScroll11": "§5- 修正§6第四诅咒§5，使其影响§d减半",
   "tooltip.enigmaticaddons.violenceScrollCount": "§d吸收诅咒数：§6%1$s",
+
+  "book.enigmaticaddons.entry.violence_scroll.name": "暴戾之咒",
+  "book.enigmaticaddons.entry.violence_scroll.page.1": "在无尽的屠戮之中，暴力带来的快感使你流连忘返。而千咒卷轴向你递出了邀请，让你携带着诅咒之力，与深渊一并走向巅峰。<br2/>面对对暴戾的渴求，在战斗中愈战愈勇，愈战愈狂，在受伤中不断反击，将积累的怒意不断释放。",
+  "book.enigmaticaddons.entry.violence_scroll.page.2": "而作为千咒与噬咒的升级，此物依旧抱有对诅咒的渴求，请满足它，它是不会亏待你的。",
+  "book.enigmaticaddons.entry.violence_scroll.page.3": "",
+
+  "item.enigmaticaddons.unknown_sword": "§k██§r之§k?§r",
+  "item.enigmaticaddons.annihilating_sword": "寂灭之决",
+
+  "tooltip.enigmaticaddons.annihilatingSword1": "§5攻击目标时累积§d寂灭值",
+  "tooltip.enigmaticaddons.annihilatingSword2": "§5累积量由§d造成伤害§5与§d目标生命值§5决定",
+  "tooltip.enigmaticaddons.annihilatingSword3": "§5寂灭值累积到一定时有概率造成§d大量§5伤害",
+  "tooltip.enigmaticaddons.annihilatingSword4": "§5另一只手为空时：",
+  "tooltip.enigmaticaddons.annihilatingSword5Main": "§5- 造成的伤害 §6%1$s",
+  "tooltip.enigmaticaddons.annihilatingSword5Off": "§5- 可以进行格挡",
+  "tooltip.enigmaticaddons.annihilatingSword6Main": "§5- 可以右键消耗§d充能§5蓄力造成更多伤害",
+  "tooltip.enigmaticaddons.annihilatingSword6Off": "§5- 并在时机恰当时获得§d充能",
+  "tooltip.enigmaticaddons.annihilatingSword7": "§5当前充能等级：§6%1$s",
+  "tooltip.enigmaticaddons.annihilatingSword8": "§5- §d充能§5增伤倍率 §6%1$s",
+  "tooltip.enigmaticaddons.annihilatingSword9": "§5",
+  "tooltip.enigmaticaddons.annihilatingSwordOwner": "此剑只能为你所有",
 
   "death.attack.abyss": "%1$s陷入了无底深渊",
   "death.attack.evil_curse": "%1$s被诅咒撕裂",
   "death.attack.false_justice": "%1$s消失在虚无的审判中。",
 
+  "entity.enigmaticaddons.abyss_projectile": "深渊流影",
   "entity.enigmaticaddons.astral_spear": "星光穿刺者",
   "entity.enigmaticaddons.cobweb_ball": "蛛网球",
   "entity.enigmaticaddons.disaster_chaos": "灾厄弹",

@@ -19,7 +19,7 @@ public class SkeletonMeleeAttackGoal extends Goal {
     public boolean canUse() {
         LivingEntity target = this.mob.getTarget();
         if (target == null || !SuperAddonHandler.isCurseBoosted(mob)) return false;
-        return this.strike && target.distanceToSqr(this.mob) <= 1.25D && this.mob.getRandom().nextInt(reducedTickDelay(3)) == 0;
+        return this.strike && target.distanceToSqr(this.mob) <= 1.4D && this.mob.getRandom().nextInt(reducedTickDelay(3)) == 0;
     }
 
     public void start() {
@@ -35,11 +35,13 @@ public class SkeletonMeleeAttackGoal extends Goal {
                 target.push(this.mob);
                 target.knockback(this.mob.getAttributeValue(Attributes.ATTACK_KNOCKBACK) + 0.5, Mth.sin(this.mob.getYRot() * 0.017453292F), -Mth.cos(this.mob.getYRot() * 0.017453292F));
                 this.strike = true;
+//                int difficulty = this.mob.level().getDifficulty().getId();
+//                if (this.mob.getRandom().nextInt(difficulty + 3) > 0) this.strike = false;
             }
         }
     }
 
     protected double getAttackReachSqr(LivingEntity target) {
-        return this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + target.getBbWidth();
+        return this.mob.getBbWidth() * 3.0F + target.getBbWidth();
     }
 }

@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "enigmaticaddons:item/unknown_sword"
+  },
+  "display": {
+    "head": {
+      "rotation": [ 0, 180, 225 ],
+      "translation": [ -0.5, 7, 0 ],
+      "scale":[ 1, 1, 1 ]
+    }
+  }
+}

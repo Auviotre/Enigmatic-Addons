@@ -17,5 +17,19 @@
     "thirdperson_lefthand": {
       "parent": "enigmaticaddons:item/3d/annihilating_sword"
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "block": 1
+      },
+      "model": "enigmaticaddons:item/annihilating_sword_blocking"
+    },
+    {
+      "predicate": {
+        "power": 1
+      },
+      "model": "enigmaticaddons:item/annihilating_sword_powering"
+    }
+  ]
 }

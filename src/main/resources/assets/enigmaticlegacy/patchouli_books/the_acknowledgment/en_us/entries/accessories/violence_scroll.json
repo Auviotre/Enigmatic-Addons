@@ -1,0 +1,26 @@
+{
+  "name": "book.enigmaticaddons.entry.violence_scroll.name",
+  "icon": "enigmaticaddons:violence_scroll",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/violence_scroll",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 185,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.violence_scroll.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:violence_scroll",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.violence_scroll.page.2"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.violence_scroll.page.3"
+    }
+  ]
+}

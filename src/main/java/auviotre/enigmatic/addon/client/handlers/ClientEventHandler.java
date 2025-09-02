@@ -7,9 +7,7 @@ import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.EnigmaticLegacy;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
-import com.aizistral.enigmaticlegacy.gui.GUIUtils;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
-import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticEffects;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.etherium.items.EtheriumArmor;
@@ -45,24 +43,27 @@ public class ClientEventHandler {
         if (!stack.isEmpty()) {
             Item item = stack.getItem();
             if (!ForgeRegistries.ITEMS.getKey(item).getNamespace().equals(EnigmaticLegacy.MODID)) {
-                int background = GUIUtils.DEFAULT_BACKGROUND_COLOR;
-                int borderStart = GUIUtils.DEFAULT_BORDER_COLOR_START;
-                int borderEnd = GUIUtils.DEFAULT_BORDER_COLOR_END;
+                int background;
+                int borderStart;
+                int borderEnd;
 
-                if (item instanceof ICursed || item instanceof CursedRing) {
+                if (item instanceof ICursed) {
                     if (item instanceof IBlessed && Minecraft.getInstance().player != null && SuperAddonHandler.isTheBlessedOne(Minecraft.getInstance().player))
                         borderStart = 0x80FFA632;
                     else borderStart = 0x50FF0C00;
                     background = 0xF7101010;
                     borderEnd = borderStart;
+                    event.setBackground(background);
+                    event.setBorderStart(borderStart);
+                    event.setBorderEnd(borderEnd);
                 } else if (item == EnigmaticItems.COSMIC_SCROLL) {
                     background = 0xF0100010;
                     borderStart = 0xB0A800A8;
                     borderEnd = (borderStart & 0x3E3E3E) >> 1 | borderStart & 0xFF000000;
+                    event.setBackground(background);
+                    event.setBorderStart(borderStart);
+                    event.setBorderEnd(borderEnd);
                 }
-                event.setBackground(background);
-                event.setBorderStart(borderStart);
-                event.setBorderEnd(borderEnd);
             }
         }
     }

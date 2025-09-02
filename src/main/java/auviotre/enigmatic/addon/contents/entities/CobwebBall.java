@@ -81,14 +81,15 @@ public class CobwebBall extends Projectile {
         Entity entity = this.getOwner();
         if (entity instanceof Spider spider) {
             Entity target = hitResult.getEntity();
-            target.hurt(this.damageSources().mobProjectile(this, spider), 0.1F);
-            if (target == spider.getTarget() && target instanceof LivingEntity living) {
-                entity.level().playSound(null, target.blockPosition(), SoundEvents.HONEY_BLOCK_PLACE, SoundSource.BLOCKS);
-                int difficulty = this.level().getDifficulty().getId();
-                if (this.random.nextInt(5) > difficulty || !entity.level().getBlockState(target.blockPosition()).isAir()) {
-                    living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 75, 3), spider);
-                } else {
-                    entity.level().setBlock(target.blockPosition(), Blocks.COBWEB.defaultBlockState(), Block.UPDATE_ALL);
+            if (target.hurt(this.damageSources().mobProjectile(this, spider), 0.1F)) {
+                if (target == spider.getTarget() && target instanceof LivingEntity living) {
+                    entity.level().playSound(null, target.blockPosition(), SoundEvents.HONEY_BLOCK_PLACE, SoundSource.BLOCKS);
+                    int difficulty = this.level().getDifficulty().getId();
+                    if (this.random.nextInt(5) > difficulty || !entity.level().getBlockState(target.blockPosition()).isAir()) {
+                        living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 75, 3), spider);
+                    } else {
+                        entity.level().setBlock(target.blockPosition(), Blocks.COBWEB.defaultBlockState(), Block.UPDATE_ALL);
+                    }
                 }
             }
         }

@@ -2,7 +2,6 @@ package auviotre.enigmatic.addon.contents.items;
 
 import auviotre.enigmatic.addon.api.items.IBetrayed;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
-import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.BerserkEmblem;
@@ -28,7 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 import java.util.UUID;
 
-public class SanguinaryHandbook extends ItemBase implements ICursed, IBetrayed {
+public class SanguinaryHandbook extends ItemBase implements IBetrayed {
     public static Omniconfig.DoubleParameter DamageMultiplier;
 
     public SanguinaryHandbook() {

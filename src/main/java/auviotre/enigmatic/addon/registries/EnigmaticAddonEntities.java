@@ -27,6 +27,8 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     public static final EntityType<DisasterChaos> DISASTER_CHAOS = null;
     @ObjectHolder(value = "enigmaticaddons:soul_flame_ball", registryName = "entity_type")
     public static final EntityType<SoulFlameBall> SOUL_FLAME_BALL = null;
+    @ObjectHolder(value = "enigmaticaddons:abyss_projectile", registryName = "entity_type")
+    public static final EntityType<AbyssProjectile> ABYSS_PROJECTILE = null;
     private static final EnigmaticAddonEntities INSTANCE = new EnigmaticAddonEntities();
 
     private EnigmaticAddonEntities() {
@@ -71,6 +73,10 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                 () -> EntityType.Builder.<SoulFlameBall>of(SoulFlameBall::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(12)
                         .setCustomClientFactory((spawnEntity, world) -> new SoulFlameBall(SOUL_FLAME_BALL, world)).setUpdateInterval(1).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:soul_flame_ball"));
+        this.register("abyss_projectile",
+                () -> EntityType.Builder.<AbyssProjectile>of(AbyssProjectile::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(12)
+                        .setCustomClientFactory((spawnEntity, world) -> new AbyssProjectile(ABYSS_PROJECTILE, world)).setUpdateInterval(1).fireImmune()
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:abyss_projectile"));
 
     }
 }

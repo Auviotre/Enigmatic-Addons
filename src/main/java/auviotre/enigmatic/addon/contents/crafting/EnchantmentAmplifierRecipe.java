@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,7 @@ public class EnchantmentAmplifierRecipe extends CustomRecipe {
     private ItemStack boost(ItemStack target) {
         Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(target);
         for (Enchantment enchantment : enchantments.keySet()) {
-            int maxLevel = Mth.ceil(enchantment.getMaxLevel() * 1.5);
+            int maxLevel = BlessAmplifier.amplifyMode.getValue() ? Mth.ceil(enchantment.getMaxLevel() * 1.5) : enchantment.getMaxLevel() + 1;
             if (enchantment.getMaxLevel() > 1 && maxLevel > target.getEnchantmentLevel(enchantment)) {
                 enchantments.compute(enchantment, (enchant, integer) -> Math.min(integer * 2, maxLevel));
             }
@@ -90,7 +91,7 @@ public class EnchantmentAmplifierRecipe extends CustomRecipe {
     private boolean canBoost(ItemStack amplifier, ItemStack target) {
         Stream<Enchantment> enchantments = EnchantmentHelper.getEnchantments(target).keySet().stream();
         Objects.requireNonNull(amplifier.getItem());
-        return enchantments.anyMatch(enchantment -> enchantment.getMaxLevel() > 1 && Mth.ceil(enchantment.getMaxLevel() * 1.5) > target.getEnchantmentLevel(enchantment));
+        return enchantments.anyMatch(enchantment -> !BlessAmplifier.blacklist.contains(ForgeRegistries.ENCHANTMENTS.getKey(enchantment)) && enchantment.getMaxLevel() > 1 && Mth.ceil(enchantment.getMaxLevel() * 1.5) > target.getEnchantmentLevel(enchantment));
     }
 
 

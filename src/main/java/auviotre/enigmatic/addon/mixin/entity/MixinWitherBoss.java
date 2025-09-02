@@ -34,7 +34,7 @@ public abstract class MixinWitherBoss extends Monster {
     @Unique
     private boolean enigmaticAddons$lastPower = false;
     @Unique
-    private int enigmaticAddons$lcount = 0;
+    private int enigmaticAddons$count = 0;
 
     protected MixinWitherBoss(EntityType<? extends Monster> type, Level world) {
         super(type, world);
@@ -70,8 +70,8 @@ public abstract class MixinWitherBoss extends Monster {
         if (SuperAddonHandler.isCurseBoosted(this) && this.isPowered() && cir.getReturnValue() && this.random.nextInt(10) == 0) {
             int temp = Math.max(1, Mth.ceil(amount / 7.5F));
             temp = this.random.nextInt(temp);
-            enigmaticAddons$lcount += temp;
-            if (enigmaticAddons$lcount > 10) return;
+            enigmaticAddons$count += temp;
+            if (enigmaticAddons$count > 10) return;
             enigmaticAddons$randomSkeleton(temp);
         }
     }

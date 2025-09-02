@@ -48,7 +48,7 @@ public class ClientProxy extends CommonProxy {
             ItemProperties.register(EnigmaticAddonItems.ASTRAL_SPEAR, new ResourceLocation("using"), (stack, world, living, j) -> living != null && living.getUseItem() == stack ? 1.0F : 0.0F);
             ItemProperties.register(EnigmaticAddonItems.ICHOR_SPEAR, new ResourceLocation("using"), (stack, world, living, j) -> living != null && living.getUseItem() == stack ? 1.0F : 0.0F);
             ItemProperties.register(EnigmaticAddonItems.DRAGON_BOW, new ResourceLocation("pulling"), (stack, world, living, j) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
-            ItemProperties.register(EnigmaticAddonItems.DRAGON_BOW, new ResourceLocation("pull"), (stack, level, living, i) -> living == null ? 0.0F : living.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - living.getUseItemRemainingTicks()) / 20.0F);
+            ItemProperties.register(EnigmaticAddonItems.DRAGON_BOW, new ResourceLocation("pull"), (stack, level, living, i) -> living == null || living.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - living.getUseItemRemainingTicks()) / 20.0F);
             ItemProperties.register(EnigmaticAddonItems.ANTIQUE_BAG, new ResourceLocation("has_flower"), (stack, level, living, i) -> {
                 if (living instanceof Player player) {
                     LazyOptional<IAntiqueBagHandler> capability = SuperAddonHandler.getCapability(player, AntiqueBagCapability.INVENTORY);
@@ -57,6 +57,16 @@ public class ClientProxy extends CommonProxy {
                         return bagHandler.hasFlower() ? 1.0F : 0.0F;
                     }
                 }
+                return 0.0F;
+            });
+            ItemProperties.register(EnigmaticAddonItems.ANNIHILATING_SWORD, new ResourceLocation("block"), (stack, level, living, i) -> {
+                if (living == null) return 0.0F;
+                if (living.getUseItem().equals(stack)) return living.getOffhandItem().equals(stack) ? 1.0F : 0.0F;
+                return 0.0F;
+            });
+            ItemProperties.register(EnigmaticAddonItems.ANNIHILATING_SWORD, new ResourceLocation("power"), (stack, level, living, i) -> {
+                if (living == null) return 0.0F;
+                if (living.getUseItem().equals(stack)) return living.getMainHandItem().equals(stack) ? 1.0F : 0.0F;
                 return 0.0F;
             });
         } catch (Exception exception) {
@@ -74,6 +84,7 @@ public class ClientProxy extends CommonProxy {
         EntityRenderers.register(EnigmaticAddonEntities.EVIL_DAGGER, ThrownEvilDaggerRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.QUARTZ_DAGGER, ThrownQuartzDaggerRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.DISASTER_CHAOS, EmptyRenderer::new);
+        EntityRenderers.register(EnigmaticAddonEntities.ABYSS_PROJECTILE, EmptyRenderer::new);
         EntityRenderers.register(EnigmaticAddonEntities.SOUL_FLAME_BALL, ThrownItemRenderer::new);
     }
 

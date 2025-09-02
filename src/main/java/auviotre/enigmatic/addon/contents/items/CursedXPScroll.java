@@ -226,7 +226,7 @@ public class CursedXPScroll extends ItemBaseCurio implements ICursed {
         int level = ExperienceHelper.getPlayerXPLevel(player);
         int levelXP = ExperienceHelper.getExperienceForLevel(level + 1) - ExperienceHelper.getExperienceForLevel(level);
         int portion = levelXP / 5;
-        if (level > 100)  portion *= 1 + level / 100;
+        if (level > 100) portion *= 1 + level / 100;
         if (portion > 0) return portion;
         else return 5;
     }

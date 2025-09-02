@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon.mixin.legacy;
 
 import auviotre.enigmatic.addon.contents.items.AntiqueBag;
 import auviotre.enigmatic.addon.contents.items.BlessRing;
+import auviotre.enigmatic.addon.contents.items.ViolenceScroll;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
@@ -27,8 +28,10 @@ public abstract class MixinSuperpositionHandler {
 
     @Inject(method = "getCurseAmount(Lnet/minecraft/world/item/ItemStack;)I", at = @At("RETURN"), cancellable = true, remap = false)
     private static void getCurseAmountMix(@NotNull ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        if (stack.getItem() == EnigmaticAddonItems.HELL_BLADE_CHARM) {
+        if (stack.is(EnigmaticAddonItems.HELL_BLADE_CHARM)) {
             cir.setReturnValue(cir.getReturnValue() + 2);
+        } else if (stack.is(EnigmaticAddonItems.VIOLENCE_SCROLL)) {
+            cir.setReturnValue(cir.getReturnValue() + ViolenceScroll.Helper.getCurseCount(stack));
         }
     }
 

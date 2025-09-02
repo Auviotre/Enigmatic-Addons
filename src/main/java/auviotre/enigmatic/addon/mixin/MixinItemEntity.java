@@ -1,5 +1,6 @@
 package auviotre.enigmatic.addon.mixin;
 
+import auviotre.enigmatic.addon.contents.items.AnnihilatingSword;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
 import com.aizistral.enigmaticlegacy.entities.PermanentItemEntity;
@@ -8,6 +9,7 @@ import com.aizistral.enigmaticlegacy.registries.EnigmaticBlocks;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -21,6 +23,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -30,6 +35,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
+import java.util.UUID;
 
 @Mixin(ItemEntity.class)
 public abstract class MixinItemEntity extends Entity implements TraceableEntity {
@@ -46,6 +52,12 @@ public abstract class MixinItemEntity extends Entity implements TraceableEntity 
 
     @Shadow
     public abstract ItemStack getItem();
+
+    @Shadow public abstract void setThrower(@Nullable UUID p_32053_);
+
+    @Shadow public abstract void setTarget(@Nullable UUID p_266724_);
+
+    @Shadow private int age;
 
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     public void hurtMix(DamageSource source, float value, CallbackInfoReturnable<Boolean> cir) {
@@ -116,6 +128,44 @@ public abstract class MixinItemEntity extends Entity implements TraceableEntity 
             ServerLevel server = (ServerLevel) world;
             if (this.random.nextInt(3) == 0)
                 server.sendParticles(EnigmaticAddonParticles.ICHOR, this.getX(), this.getY(0.5), this.getZ(), 1, 0.2, 0.2, 0.2, 0.02D);
+        } else if (this.getItem().is(EnigmaticItems.ABYSSAL_HEART) && !world.isClientSide()) {
+            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, this.getBoundingBox().inflate(0.1));
+            boolean allIngredient = true;
+            for (ResourceLocation location : AnnihilatingSword.IngredientList) {
+                if (itemEntities.stream().noneMatch(item -> item.getItem().is(ForgeRegistries.ITEMS.getValue(location)))) {
+                    allIngredient = false;
+                    break;
+                }
+            }
+            if (allIngredient) {
+                enigmaticAddons$primeCubeTick++;
+                if (enigmaticAddons$primeCubeTick > 50 && this.getPersistentData().getBoolean("Anni")) {
+                    discard();
+                    List<ItemEntity> list = itemEntities.stream().toList();
+                    for (ResourceLocation location : AnnihilatingSword.IngredientList) {
+                        itemEntities.forEach(item -> {
+                            if (item.getItem().is(ForgeRegistries.ITEMS.getValue(location)))
+                                item.discard();
+                        });
+                    }
+                    ItemStack sword = EnigmaticAddonItems.UNKNOWN_SWORD.getDefaultInstance();
+                    sword.getOrCreateTag().putBoolean("AnniAvailable", true);
+                    ItemEntity itemEntity = new ItemEntity(world, this.getX(), this.getY(), this.getZ(), sword);
+                    itemEntity.setGlowingTag(true);
+                    itemEntity.addDeltaMovement(new Vec3(0, 0.1, 0));
+                    world.addFreshEntity(itemEntity);
+                    ((ServerLevel) world).sendParticles(EnigmaticAddonParticles.ABYSS_CHAOS, this.getX(), this.getY(0.5), this.getZ(), 32, 0.2, 0.2, 0.2, 0.02D);
+                    ((ServerLevel) world).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(0.5), this.getZ(), 1, 0, 0, 0, 0.0);
+                }
+            }
+        } else if (this.getItem().is(EnigmaticAddonItems.ANNIHILATING_SWORD) && !world.isClientSide()) {
+            if (this.getItem().getOrCreateTag().hasUUID("AnniOwner")) {
+                PermanentItemEntity itemEntity = new PermanentItemEntity(world, this.getX(), this.getY(), this.getZ(), this.getItem());
+                itemEntity.setOwnerId(getItem().getOrCreateTag().getUUID("AnniOwner"));
+                itemEntity.setThrowerId(getItem().getOrCreateTag().getUUID("AnniOwner"));
+                world.addFreshEntity(itemEntity);
+                this.discard();
+            }
         }
     }
 }

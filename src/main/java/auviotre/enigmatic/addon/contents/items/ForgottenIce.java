@@ -135,7 +135,8 @@ public class ForgottenIce extends ItemSpellstoneCurio implements ISpellstone {
                 if (entity.is(player)) continue;
                 int tick = entity.getPersistentData().getInt("ForgottenFrozenTick");
                 float extra = 0;
-                if (entity.isFullyFrozen()) extra = (float) (spellstoneDamagePerFrozenSec.getValue() * Math.min(tick, 400) / 2);
+                if (entity.isFullyFrozen())
+                    extra = (float) (spellstoneDamagePerFrozenSec.getValue() * Math.min(tick, 400) / 2);
                 if (entity.canFreeze()) entity.setTicksFrozen(entity.getTicksFrozen() + 500);
                 entity.hurt(player.damageSources().source(DamageTypes.FREEZE, player), damage * (1 + extra));
                 if (tick <= 400) entity.getPersistentData().remove("ForgottenFrozenTick");

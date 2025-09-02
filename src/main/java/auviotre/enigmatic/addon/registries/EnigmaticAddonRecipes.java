@@ -14,8 +14,8 @@ public class EnigmaticAddonRecipes extends AbstractRegistry<RecipeSerializer<?>>
     public static final RecipeSerializer<EnchantmentAmplifierRecipe> ENCHANTMENT_AMPLIFIER_RECIPE = null;
     @ObjectHolder(value = "enigmaticaddons:dragon_bow_brewing", registryName = "recipe_serializer")
     public static final RecipeSerializer<DragonBowBrewingRecipe> DRAGON_BOW_BREWING_RECIPE = null;
-    @ObjectHolder(value = "enigmaticaddons:violence_scroll_absorbing", registryName = "recipe_serializer")
-    public static final RecipeSerializer<ViolenceScrollAbsorbingRecipe> VIOLENCE_SCROLL_ABSORB_RECIPE = null;
+    @ObjectHolder(value = "enigmaticaddons:the_repentance", registryName = "recipe_serializer")
+    public static final RecipeSerializer<TheRepentanceRecipe> THE_REPENTANCE_RECIPE = null;
     private static final EnigmaticAddonRecipes INSTANCE = new EnigmaticAddonRecipes();
 
     private EnigmaticAddonRecipes() {
@@ -23,7 +23,7 @@ public class EnigmaticAddonRecipes extends AbstractRegistry<RecipeSerializer<?>>
         this.register("primeval_cube", () -> PrimevalCubeRecipe.SERIALIZER);
         this.register("enchantment_amplifying", () -> EnchantmentAmplifierRecipe.SERIALIZER);
         this.register("dragon_bow_brewing", () -> DragonBowBrewingRecipe.SERIALIZER);
-        this.register("violence_scroll_absorbing", () -> ViolenceScrollAbsorbingRecipe.SERIALIZER);
+        this.register("the_repentance", () -> TheRepentanceRecipe.SERIALIZER);
     }
 
     protected void onRegister(RegisterEvent event) {

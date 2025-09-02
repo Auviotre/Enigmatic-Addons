@@ -2,13 +2,16 @@ package auviotre.enigmatic.addon.contents.items;
 
 import auviotre.enigmatic.addon.api.items.IBetrayed;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.triggers.BlessRingEquippedTrigger;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
+import com.aizistral.enigmaticlegacy.entities.PermanentItemEntity;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.ChatFormatting;
@@ -24,12 +27,14 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.Vec3;
@@ -149,8 +154,11 @@ public class BlessRing extends ItemBaseCurio {
             if (entity instanceof Player player) Helper.setBlessLevel(player, stack);
             Helper.setBlessAttribute(stack, CURSE_TIME_LEVEL, Math.min(6, Helper.getBlessAttribute(stack, CURSE_TIME_LEVEL) + 1));
         }
+
+        boolean punish = entity instanceof Player player && SuperpositionHandler.hasCurio(player, this) && SuperpositionHandler.hasCurio(player, EnigmaticItems.CURSED_RING);
+
         // Punishment
-        if (entity instanceof Player player && SuperAddonHandler.isPunishedOne(player)) {
+        if (entity instanceof Player player && (SuperAddonHandler.isPunishedOne(player) || punish)) {
             SuperpositionHandler.setPersistentInteger(player, "Punishment", 1 +
                     SuperpositionHandler.getPersistentInteger(player, "Punishment", 0));
             if (SuperpositionHandler.getPersistentInteger(player, "Punishment", 0) % 20 == 0) {
@@ -159,21 +167,50 @@ public class BlessRing extends ItemBaseCurio {
                 if (!level.isClientSide()) {
                     LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(player.level());
                     lightningBolt.moveTo(Vec3.atBottomCenterOf(player.blockPosition()));
+                    lightningBolt.setDamage(1.0F);
                     lightningBolt.setCause(player instanceof ServerPlayer serverPlayer ? serverPlayer : null);
                     player.level().addFreshEntity(lightningBolt);
+                    player.level().explode(player, SuperAddonHandler.simpleSource(player, EnigmaticAddonDamageTypes.FALSE_JUSTICE), new ExplosionDamageCalculator(), player.position(), 2.0F, true, Level.ExplosionInteraction.BLOCK);
                 }
+
+                player.setHealth(player.getMaxHealth());
+
+                ItemStack soulCrystal = EnigmaticItems.SOUL_CRYSTAL.createCrystalFrom(player);
+                PermanentItemEntity droppedSoulCrystal = new PermanentItemEntity(player.level(), player.getRandomX(10), player.getY() + 1.5, player.getRandomZ(10), soulCrystal);
+                droppedSoulCrystal.setOwnerId(player.getUUID());
+                player.level().addFreshEntity(droppedSoulCrystal);
+
+                player.getInventory().clearContent();
+                CuriosApi.getCuriosInventory(entity).ifPresent(curiosItemHandler -> {
+                    IItemHandlerModifiable equippedCurios = curiosItemHandler.getEquippedCurios();
+                    for (int i = 0; i < equippedCurios.getSlots(); i++) {
+                        if (equippedCurios.getStackInSlot(i).is(this)) continue;
+                        if (equippedCurios.getStackInSlot(i).is(EnigmaticItems.CURSED_RING)) continue;
+                        equippedCurios.setStackInSlot(i, ItemStack.EMPTY);
+                    }
+                });
             }
             if (SuperpositionHandler.getPersistentInteger(player, "Punishment", 0) > 100) {
                 SuperpositionHandler.removePersistentTag(player, "Punishment");
                 CuriosApi.getCuriosInventory(entity).ifPresent(curiosItemHandler -> {
                     IItemHandlerModifiable equippedCurios = curiosItemHandler.getEquippedCurios();
-                    for (int i = 0; i < equippedCurios.getSlots(); i++)
+                    for (int i = 0; i < equippedCurios.getSlots(); i++) {
+                        if (equippedCurios.getStackInSlot(i).is(EnigmaticItems.CURSED_RING)) continue;
                         equippedCurios.setStackInSlot(i, ItemStack.EMPTY);
+                    }
                 });
-                player.hurt(player.damageSources().fellOutOfWorld(), player.getMaxHealth() * 1000F);
                 player.getInventory().clearContent();
                 player.experienceProgress = 0;
                 player.experienceLevel = 0;
+                int loss = EnigmaticItems.SOUL_CRYSTAL.getLostCrystals(player);
+                for (int i = 0; i < 9 - loss; i++) {
+                    ItemStack soulCrystal = EnigmaticItems.SOUL_CRYSTAL.createCrystalFrom(player);
+                    PermanentItemEntity droppedSoulCrystal = new PermanentItemEntity(player.level(), player.getRandomX(10), player.getY() + 1.5, player.getRandomZ(10), soulCrystal);
+                    droppedSoulCrystal.setOwnerId(player.getUUID());
+                    player.level().addFreshEntity(droppedSoulCrystal);
+                }
+                player.hurt(player.damageSources().fellOutOfWorld(), player.getMaxHealth() * 1000F);
+                player.level().explode(player, SuperAddonHandler.simpleSource(player, EnigmaticAddonDamageTypes.FALSE_JUSTICE), new ExplosionDamageCalculator(), player.position(), 32.0F, true, Level.ExplosionInteraction.BLOCK);
                 player.kill();
             }
         }
@@ -188,8 +225,8 @@ public class BlessRing extends ItemBaseCurio {
                     betrayal.set(0);
                 } else {
                     if (Helper.getBlessAttribute(stack, CURSE_TIME_LEVEL) == 6)
-                        betrayal.addAndGet(-player.getRandom().nextInt(2) - 1);
-                    betrayal.addAndGet(-player.getRandom().nextInt(3) - 1);
+                        betrayal.addAndGet(-player.getRandom().nextInt(2) - 2);
+                    betrayal.addAndGet(-player.getRandom().nextInt(3) - 2);
                 }
             }
             if (Helper.isBetrayedItem(player.getMainHandItem())) betrayal.addAndGet(1);
@@ -206,6 +243,14 @@ public class BlessRing extends ItemBaseCurio {
         // Break
         if (entity instanceof Player player && Helper.getBlessAttribute(stack, BLESS_DURATION) >= MAX_DURATION) {
             player.playSound(SoundEvents.TOTEM_USE, 0.6F, 0.0F);
+            CuriosApi.getCuriosInventory(player).ifPresent((handler) -> {
+                IItemHandlerModifiable curios = handler.getEquippedCurios();
+                for(int i = 0; i < handler.getSlots() - 1; ++i) {
+                    if (curios.getStackInSlot(i) != null && curios.getStackInSlot(i).is(this)) {
+                        curios.setStackInSlot(i, EnigmaticAddonItems.BROKEN_RING.getDefaultInstance());
+                    }
+                }
+            });
             SuperpositionHandler.destroyCurio(player, EnigmaticAddonItems.BLESS_RING);
         }
         // Regeneration
@@ -217,7 +262,7 @@ public class BlessRing extends ItemBaseCurio {
 
     public boolean canEquip(SlotContext context, ItemStack stack) {
         if (super.canEquip(context, stack)) {
-            return context.entity() instanceof Player player && !SuperpositionHandler.isTheCursedOne(player);
+            return context.entity() instanceof Player player && !SuperpositionHandler.isTheCursedOne(player) && !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.BROKEN_RING);
         }
         return false;
     }
@@ -254,6 +299,49 @@ public class BlessRing extends ItemBaseCurio {
 
     public int getBarColor(ItemStack stack) {
         return ChatFormatting.GOLD.getColor();
+    }
+
+    public static class Broken extends ItemBaseCurio {
+        public Broken() {
+            super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.RARE).fireResistant());
+        }
+
+        @OnlyIn(Dist.CLIENT)
+        public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+            ItemLoreHelper.addLocalizedFormattedString(list, "curios.modifiers.ring", ChatFormatting.GOLD);
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.blessRing3", ChatFormatting.GOLD, "90%");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing9");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.eternallyBound1");
+            if (Minecraft.getInstance().player != null && SuperpositionHandler.canUnequipBoundRelics(Minecraft.getInstance().player))
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.eternallyBound2_creative");
+            else ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.eternallyBound2");
+        }
+
+        public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+            Map<Enchantment, Integer> list = EnchantmentHelper.getEnchantments(book);
+            return !list.containsKey(Enchantments.VANISHING_CURSE) && super.isBookEnchantable(stack, book);
+        }
+
+        public boolean canUnequip(SlotContext context, ItemStack stack) {
+            if (context.entity() instanceof Player player) {
+                if (SuperpositionHandler.canUnequipBoundRelics(player)) {
+                    return super.canUnequip(context, stack);
+                }
+            }
+            return false;
+        }
+
+        public boolean canEquip(SlotContext context, ItemStack stack) {
+            if (super.canEquip(context, stack)) {
+                return context.entity() instanceof Player player && !SuperAddonHandler.isTheBlessedOne(player);
+            }
+            return false;
+        }
+        public CreativeModeTab getCreativeTab() {
+            return null;
+        }
     }
 
     public static class Helper {
