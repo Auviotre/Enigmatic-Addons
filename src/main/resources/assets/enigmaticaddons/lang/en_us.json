@@ -87,7 +87,7 @@
 
   "item.enigmaticaddons.earth_promise": "Promise of the Earth",
 
-  "tooltip.enigmaticaddons.earthPromise1": "§5When receiving* damage worth §6 %1$s §5of your",
+  "tooltip.enigmaticaddons.earthPromise1": "§5When receiving damage worth §6%1$s §5of your",
   "tooltip.enigmaticaddons.earthPromise2": "§5health, block the attack and cooldown for§6 %1$s §5sec.",
   "tooltip.enigmaticaddons.earthPromise3": "§dAlteration of the §6First Curse§d:",
   "tooltip.enigmaticaddons.earthPromise4": "§5- Reduce the effect of the §6First Curse §5by %1$s",
@@ -156,7 +156,6 @@
 
   "tooltip.enigmaticaddons.etheriumCore1": "§dActive ability:",
   "tooltip.enigmaticaddons.etheriumCore2": "§6- Activate Etherium Shield for §6%1$s§6 second.",
-  "tooltip.enigmaticaddons.etheriumCoreCooldown": "§dСooldown: §6%1$s§6 seconds",
   "tooltip.enigmaticaddons.etheriumCore3": "§5- §6%1$s§5 Armor，§6%2$s§5 Toughness",
   "tooltip.enigmaticaddons.etheriumCore5": "§5- Make your Armor invisible.",
   "tooltip.enigmaticaddons.etheriumCore5_alt": "§4- Make your Armor invisible.",
@@ -530,18 +529,22 @@
 
   "item.enigmaticaddons.violence_scroll": "The Curse of Violence",
 
-  "tooltip.enigmaticaddons.violenceScroll1": "§5When attacking the same target, making an additional §6%1$s§5 of the last damage.",
+  "tooltip.enigmaticaddons.violenceScrollLore1": "§5An accursed being is one rarely worth creating an enemy of.",
+  "tooltip.enigmaticaddons.violenceScrollLore2": "§5Whether their curse be one of luck, of pain, of destitution -",
+  "tooltip.enigmaticaddons.violenceScrollLore3": "§5they have lost much of what they had attained, and easily",
+  "tooltip.enigmaticaddons.violenceScrollLore4": "§5fight without care toward their own wellbeing.",
+  "tooltip.enigmaticaddons.violenceScroll1": "§5Consecutive attacks on the same target deal an additional §6%1$s§5 of the last damage.",
   "tooltip.enigmaticaddons.violenceScroll2": "§5If in an invulnerable state when attacking:",
-  "tooltip.enigmaticaddons.violenceScroll3": "§5- The damage caused §6%1$s§5.",
-  "tooltip.enigmaticaddons.violenceScroll4": "§5- Restore health equivalent to§6 %1$s §5of the original damage caused.",
-  "tooltip.enigmaticaddons.violenceScroll5": "§5- Reset the invulnerable time.",
+  "tooltip.enigmaticaddons.violenceScroll3": "§5- Damage dealt is increased by §6%1$s§5.",
+  "tooltip.enigmaticaddons.violenceScroll4": "§5- Restore health equal to§6 %1$s §5of damage dealt before affected.",
+  "tooltip.enigmaticaddons.violenceScroll5": "§5- Reset the time you are invulnerable for.",
   "tooltip.enigmaticaddons.violenceScroll6": "§6Right-click§5 on other items in the inventory to absorb their curse enchantments.",
   "tooltip.enigmaticaddons.violenceScroll7": "§5- §6%1$s §dAttack Speed",
   "tooltip.enigmaticaddons.violenceScroll8": "§5- §6%1$s §dEntity Reach",
   "tooltip.enigmaticaddons.violenceScroll9": "§5- §6%1$s §dKnockback Resistance",
   "tooltip.enigmaticaddons.violenceScroll10": "§5- The target of the attack will be apply with weakened§6 First§5 to§6 Fourth§5 curses.",
   "tooltip.enigmaticaddons.violenceScroll11": "§5- Alteration of the §6Fourth Curse§d, Reduce its effect by§d half§5.",
-  "tooltip.enigmaticaddons.violenceScrollCount": "§dAbsorbed Curse Count: §6%1$s§",
+  "tooltip.enigmaticaddons.violenceScrollCount": "§dUnique Curses Absorbed: §6%1$s§",
 
   "book.enigmaticaddons.entry.violence_scroll.name": "Curse of Violence",
   "book.enigmaticaddons.entry.violence_scroll.page.1": "In the endless slaughter, the pleasure brought by violence makes you linger. And the Scroll of Thousand Curses has extended an invitation to you, allowing you to carry the power of the curse and reach the peak together with the abyss.<br2/>Faced with the thirst for violence, the more we fight, the braver and crazier we",

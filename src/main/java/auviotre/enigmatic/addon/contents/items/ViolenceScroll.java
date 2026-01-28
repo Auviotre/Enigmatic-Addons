@@ -96,9 +96,9 @@ public class ViolenceScroll extends ItemBaseCurio implements IEldritch {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> list, TooltipFlag flagIn) {
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-        ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScroll1", ChatFormatting.GOLD, String.format("%.01f%%", Helper.getStoreModifier(stack)));
         int curseCount = Helper.getCurseCount(stack);
         if (Screen.hasShiftDown()) {
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScroll1", ChatFormatting.GOLD, String.format("%.01f%%", Helper.getStoreModifier(stack)));
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScroll2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScroll3", ChatFormatting.GOLD, "+" + invulnerableModifier + "%");
@@ -123,6 +123,11 @@ public class ViolenceScroll extends ItemBaseCurio implements IEldritch {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             }
         } else {
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScrollLore1");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScrollLore2");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScrollLore3");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScrollLore4");
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.violenceScrollCount", ChatFormatting.GOLD, curseCount);
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
@@ -320,7 +325,7 @@ public class ViolenceScroll extends ItemBaseCurio implements IEldritch {
     public static class Helper {
         public static void addDurability(ItemStack stack, int d) {
             int durability = getDurability(stack);
-            stack.getOrCreateTag().putInt("Durability", Mth.clamp(durability + d, 0, 200));
+            stack.getOrCreateTag().putInt("Durability", Mth.clamp(durability + d, 0, maxDurability.getValue()));
         }
 
         public static int getDurability(ItemStack stack) {

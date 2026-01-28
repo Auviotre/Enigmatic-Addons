@@ -303,6 +303,16 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
         }
     }
 
+    private boolean spaceCheck(BlockPos pos, Level level) {
+        Iterable<BlockPos> iterable = BlockPos.betweenClosed(pos.offset(2, 2, 2), pos.offset(-2, -2, -2));
+        int space = 0;
+        for (BlockPos blockPos : iterable) {
+            if (level.getBlockState(blockPos).isAir()) space += 3;
+            else space -= 1;
+        }
+        return space > 0;
+    }
+
     private void chaosDescending(Player player) {
         if (player.getViewVector(0.0F).y < -0.95 && !player.getCooldowns().isOnCooldown(this) && this.spaceCheck(player.blockPosition(), player.level()) && this.flyingTick > 36) {
             if (!player.getAbilities().instabuild)
@@ -311,6 +321,7 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
                 EnigmaticAddons.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(), 64.0, player.level().dimension())),
                         new PacketDescendingChaos(player.getX(), player.getY(), player.getZ()));
             }
+            if (lastMovement == null) lastMovement = Vec3.ZERO;
             double range = 3.5 + lastMovement.length() * (SuperAddonHandler.isAbyssBoost(player) ? 1.25 : 1.0);
             SuperpositionHandler.setPersistentBoolean(player, "ChaoAchievementCheck", true);
             List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range));
@@ -341,16 +352,6 @@ public class ChaosElytra extends ItemBaseCurio implements IBindable, IEldritch {
             int count = SuperpositionHandler.getPersistentInteger(player, "ChaoExplosionKillCount", 0);
             SuperpositionHandler.setPersistentInteger(player, "ChaoExplosionKillCount", count + 1);
         }
-    }
-
-    private boolean spaceCheck(BlockPos pos, Level level) {
-        Iterable<BlockPos> iterable = BlockPos.betweenClosed(pos.offset(2, 2, 2), pos.offset(-2, -2, -2));
-        int space = 0;
-        for (BlockPos blockPos : iterable) {
-            if (level.getBlockState(blockPos).isAir()) space += 3;
-            else space -= 1;
-        }
-        return space > 0;
     }
 
     @SubscribeEvent

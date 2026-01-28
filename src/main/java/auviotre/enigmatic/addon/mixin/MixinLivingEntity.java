@@ -11,6 +11,7 @@ import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEnchantments;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -80,7 +81,10 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
 
     @Inject(method = "canFreeze", at = @At("RETURN"), cancellable = true)
     public void canFreezeMix(CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(cir.getReturnValue() && !this.self().hasEffect(EnigmaticAddonEffects.FROZEN_HEART_EFFECT) && !SuperpositionHandler.hasCurio(this.self(), EnigmaticAddonItems.FORGOTTEN_ICE) && EnchantmentHelper.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_PROTECTION, this.self()) < 16);
+        cir.setReturnValue(cir.getReturnValue() && !this.self().hasEffect(EnigmaticAddonEffects.FROZEN_HEART_EFFECT)
+                && !SuperpositionHandler.hasCurio(this.self(), EnigmaticAddonItems.FORGOTTEN_ICE)
+                && !SuperpositionHandler.hasCurio(this.self(), EnigmaticItems.THE_CUBE)
+                && EnchantmentHelper.getEnchantmentLevel(EnigmaticAddonEnchantments.FROST_PROTECTION, this.self()) < 16);
     }
 
     @Inject(method = "onChangedBlock", at = @At("HEAD"))

@@ -93,7 +93,9 @@ public class EnigmaticAddons {
         builder.add(UUID.fromString("2301982f-ef0d-446a-a31c-1ea53339a151"));
         builder.add(UUID.fromString("7c621bf8-a19d-4f3a-8e5b-8a75e6d81cfd"));
         builder.add(UUID.fromString("4be196b1-dec6-4e70-a8a6-85f5eb23b500"));
-        builder.add(UUID.fromString("fbe90440-c786-4510-bc0f-7cb4e9e94956"));
+        builder.add(UUID.fromString("19a3eab1-3501-490e-b26e-3ef1d405a68e"));
+        builder.add(UUID.fromString("7d8715c1-9224-4e2d-a516-46229b769297"));
+        builder.add(UUID.fromString("4c8508c0-4601-4e17-96d1-2e30fa5747b6"));
         Acceptors = builder.build();
     }
 

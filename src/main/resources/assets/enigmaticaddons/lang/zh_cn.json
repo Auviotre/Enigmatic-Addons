@@ -529,6 +529,10 @@
 
   "item.enigmaticaddons.violence_scroll": "暴戾之咒",
 
+  "tooltip.enigmaticaddons.violenceScrollLore1": "§5这是一个不可直面的诅咒存在",
+  "tooltip.enigmaticaddons.violenceScrollLore2": "§5无论那些诅咒带来的是幸运、痛苦还是贫困",
+  "tooltip.enigmaticaddons.violenceScrollLore3": "§5他们已经失去太多原本属于他们的事物",
+  "tooltip.enigmaticaddons.violenceScrollLore4": "§5以至对于战斗——将变得义无反顾",
   "tooltip.enigmaticaddons.violenceScroll1": "§5攻击同一目标时，额外造成上次伤害的 §6%1$s",
   "tooltip.enigmaticaddons.violenceScroll2": "§5若攻击时处于§d受击无敌状态§5：",
   "tooltip.enigmaticaddons.violenceScroll3": "§5- 造成的伤害 §6%1$s",

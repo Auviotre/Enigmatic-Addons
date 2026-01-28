@@ -11,6 +11,7 @@
 - Adjusted the durability function of **Totem of Malice**;
 - Added the config of the **Tome of Divination**;
 - Added more Cursed Mob AI;
+- Adjusted the description of **Curse of Violence**;
 - Slightly optimized code performance (no relation to the game performance).
 ### Fixes:
 - Fixed the issue that the curse time will not copy when player cloning;

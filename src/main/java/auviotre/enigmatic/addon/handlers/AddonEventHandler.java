@@ -59,6 +59,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -777,10 +778,6 @@ public class AddonEventHandler {
                 victim.setSecondsOnFire(4);
             }
 
-            if (attacker instanceof WitherSkeleton && SuperAddonHandler.isCurseBoosted(attacker)) {
-                victim.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 2), attacker);
-            }
-
             if (attacker instanceof Phantom && SuperAddonHandler.isCurseBoosted(attacker)) {
                 victim.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 1), attacker);
             }
@@ -1160,8 +1157,7 @@ public class AddonEventHandler {
         String boost = "CurseAttributeBoost";
 
         if (entity instanceof Zombie absZombie) {
-            AttributeInstance attribute = absZombie.getAttribute(Attributes.ARMOR);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR, boost, 5.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(absZombie, Attributes.ARMOR, new AttributeModifier(UUID_ARMOR, boost, 5.0, AttributeModifier.Operation.ADDITION));
         }
         if (entity.getClass() == Zombie.class) {
             if (entity.getMainHandItem().isEmpty() && entity.getRandom().nextInt(5) == 0) {
@@ -1195,8 +1191,7 @@ public class AddonEventHandler {
 
         if (entity instanceof Evoker evoker) {
             evoker.setItemInHand(InteractionHand.MAIN_HAND, Items.TOTEM_OF_UNDYING.getDefaultInstance());
-            AttributeInstance attribute = evoker.getAttribute(Attributes.ARMOR_TOUGHNESS);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR_TH, boost, 8.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(evoker, Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID_ARMOR_TH, boost, 8.0, AttributeModifier.Operation.ADDITION));
         }
 
         if (entity instanceof Vindicator vindicator) {
@@ -1204,17 +1199,13 @@ public class AddonEventHandler {
         }
 
         if (entity instanceof EnderDragon dragon) {
-            AttributeInstance attribute = dragon.getAttribute(Attributes.ATTACK_KNOCKBACK);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ATTACK_KB, boost, 0.5, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            attribute = dragon.getAttribute(Attributes.ARMOR);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR, boost, 10.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(dragon, Attributes.ATTACK_KNOCKBACK, new AttributeModifier(UUID_ATTACK_KB, boost, 0.5, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            addCursedModifier(dragon, Attributes.ARMOR, new AttributeModifier(UUID_ARMOR, boost, 10.0, AttributeModifier.Operation.ADDITION));
         }
 
         if (entity instanceof Ravager ravager) {
-            AttributeInstance attribute = ravager.getAttribute(Attributes.ARMOR);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR, boost, 10.0, AttributeModifier.Operation.ADDITION));
-            attribute = ravager.getAttribute(Attributes.ARMOR_TOUGHNESS);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR_TH, boost, 10.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(ravager, Attributes.ARMOR, new AttributeModifier(UUID_ARMOR, boost, 10.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(ravager, Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID_ARMOR_TH, boost, 10.0, AttributeModifier.Operation.ADDITION));
         }
 
         if (entity instanceof Vex vex && vex.getClass() == Vex.class) {
@@ -1226,35 +1217,34 @@ public class AddonEventHandler {
             vex.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 40));
         }
         if (entity instanceof Blaze blaze) {
-            AttributeInstance attribute = blaze.getAttribute(Attributes.ATTACK_DAMAGE);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
-            attribute = blaze.getAttribute(Attributes.ATTACK_KNOCKBACK);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ATTACK_KB, boost, 1.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(blaze, Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(blaze, Attributes.ATTACK_KNOCKBACK, new AttributeModifier(UUID_ATTACK_KB, boost, 1.0, AttributeModifier.Operation.ADDITION));
         }
         if (entity instanceof AbstractPiglin piglin) {
-            AttributeInstance attribute = piglin.getAttribute(Attributes.ATTACK_DAMAGE);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
-            attribute = piglin.getAttribute(Attributes.ARMOR);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR, boost, 8.0, AttributeModifier.Operation.ADDITION));
-            attribute = piglin.getAttribute(Attributes.ARMOR_TOUGHNESS);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR_TH, boost, 4.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(piglin, Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(piglin, Attributes.ARMOR, new AttributeModifier(UUID_ARMOR, boost, 8.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(piglin, Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID_ARMOR_TH, boost, 4.0, AttributeModifier.Operation.ADDITION));
         }
         if (entity instanceof Slime slime) {
-            AttributeInstance attribute = slime.getAttribute(Attributes.ATTACK_KNOCKBACK);
             int size = slime.getSize();
             if (size > 2) slime.setSize(Mth.ceil(size * 1.2), true);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ATTACK_KB, boost, 1.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(slime, Attributes.ATTACK_KNOCKBACK, new AttributeModifier(UUID_ATTACK_KB, boost, 1.0, AttributeModifier.Operation.ADDITION));
         }
         if (entity instanceof MagmaCube magma) {
-            AttributeInstance attribute = magma.getAttribute(Attributes.ARMOR);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR, boost, 3.0, AttributeModifier.Operation.ADDITION));
-            attribute = magma.getAttribute(Attributes.ARMOR_TOUGHNESS);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ARMOR_TH, boost, 4.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(magma, Attributes.ARMOR, new AttributeModifier(UUID_ARMOR, boost, 3.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(magma, Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID_ARMOR_TH, boost, 4.0, AttributeModifier.Operation.ADDITION));
         }
         if (entity instanceof Phantom phantom) {
             phantom.setPhantomSize(phantom.getPhantomSize() + 2);
-            AttributeInstance attribute = phantom.getAttribute(Attributes.ATTACK_DAMAGE);
-            if (attribute != null) attribute.addPermanentModifier(new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
+            addCursedModifier(phantom, Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID_ATTACK, boost, 2.0, AttributeModifier.Operation.ADDITION));
+        }
+    }
+
+    private void addCursedModifier(LivingEntity entity, Attribute attribute, AttributeModifier modifier) {
+        AttributeInstance instance = entity.getAttribute(attribute);
+        if (instance != null) {
+            instance.removePermanentModifier(modifier.getId());
+            instance.addPermanentModifier(modifier);
         }
     }
 

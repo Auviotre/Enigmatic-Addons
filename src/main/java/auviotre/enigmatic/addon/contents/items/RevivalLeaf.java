@@ -236,7 +236,7 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
             } else if (this.flyMap.get(player) > 1) {
                 this.flyMap.put(player, this.flyMap.get(player) - 1);
             } else if (this.flyMap.get(player) == 1) {
-                if (!player.isCreative()) {
+                if (!player.isCreative() && !player.isSpectator()) {
                     player.getAbilities().mayfly = false;
                     player.getAbilities().flying = false;
                     player.onUpdateAbilities();
