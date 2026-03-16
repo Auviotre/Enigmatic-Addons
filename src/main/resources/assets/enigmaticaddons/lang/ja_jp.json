@@ -50,7 +50,7 @@
     "tooltip.enigmaticaddons.livingOde5": "§5- 中立的な動物は積極的に攻撃してこなくなる。",
     "tooltip.enigmaticaddons.livingOde6": "§5このアイテムで攻撃することで、この種の動物が",
     "tooltip.enigmaticaddons.livingOde7": "§5このアイテムによって守護されるのを防ぐことができる。",
-    "tooltip.enigmaticaddons.livingOde7_alt": "§5このアイテムによって守護され、§6周囲の中立的な動物にその動物を標的にさせる§5。",
+    "tooltip.enigmaticaddons.livingOde7_alt": "§5このアイテムによって守護され、§6周囲の中立的な動物にその動物を標的にさせる§5",
     "tooltip.enigmaticaddons.livingOde8": "§d使用して動物を鎮め、守護効果を回復させよ。",
 
     "book.enigmaticaddons.entry.ode_to_living.name": "生命への賛歌",
@@ -233,6 +233,7 @@
     "book.enigmaticaddons.entry.false_justice.page.2": "今や、あなたに関連するすべての攻撃は元の規則を超越する。防御？ 免疫？ 真の混沌の前では、それらは幻影に過ぎない。あなたが為すべきは、攻撃を避け、対象に抵抗不能な一撃を与えることのみである。",
 
     "item.enigmaticaddons.cursed_xp_scroll": "無知の呪いの古文書",
+
 
     "tooltip.enigmaticaddons.xpTome2": "§5この古文書の相互作用は悠久の叡智と同じである。",
     "tooltip.enigmaticaddons.xpTome3": "§5経験レベルに基づいてあなたの能力を向上させるが、",
