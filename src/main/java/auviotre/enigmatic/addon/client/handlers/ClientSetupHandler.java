@@ -4,16 +4,21 @@ import auviotre.enigmatic.addon.EnigmaticAddons;
 import auviotre.enigmatic.addon.client.particles.ChaosParticle;
 import auviotre.enigmatic.addon.client.particles.IchorParticle;
 import auviotre.enigmatic.addon.client.particles.StarDustParticle;
+import auviotre.enigmatic.addon.client.renderers.ExplorerMarkerRender;
+import auviotre.enigmatic.addon.client.renderers.models.ExplorerMarkerModel;
 import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
 import com.aizistral.enigmaticlegacy.helpers.PotionHelper;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(
         modid = EnigmaticAddons.MODID,
@@ -30,6 +35,16 @@ public class ClientSetupHandler {
             else return color > 0 ? -1 : PotionUtils.getColor(stack);
         }, EnigmaticAddonItems.ULTIMATE_POTION, EnigmaticAddonItems.COMMON_POTION, EnigmaticAddonItems.ULTIMATE_POTION_SPLASH, EnigmaticAddonItems.COMMON_POTION_SPLASH, EnigmaticAddonItems.ULTIMATE_POTION_LINGERING, EnigmaticAddonItems.COMMON_POTION_LINGERING);
         EnigmaticAddons.LOGGER.info("Colors registered successfully.");
+    }
+
+    @SubscribeEvent
+    public static void registerEntityRenderers(EntityRenderersEvent.@NotNull RegisterRenderers event) {
+        event.registerEntityRenderer(EnigmaticAddonEntities.EXPLORER_MARKER, ExplorerMarkerRender::new);
+    }
+
+    @SubscribeEvent
+    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(ExplorerMarkerModel.LAYER, ExplorerMarkerModel::createLayer);
     }
 
     @SubscribeEvent

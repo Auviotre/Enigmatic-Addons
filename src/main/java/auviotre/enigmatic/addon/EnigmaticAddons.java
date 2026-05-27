@@ -96,6 +96,11 @@ public class EnigmaticAddons {
         builder.add(UUID.fromString("19a3eab1-3501-490e-b26e-3ef1d405a68e"));
         builder.add(UUID.fromString("7d8715c1-9224-4e2d-a516-46229b769297"));
         builder.add(UUID.fromString("4c8508c0-4601-4e17-96d1-2e30fa5747b6"));
+
+        builder.add(UUID.fromString("4c8508c0-4601-4e17-96d1-2e30fa5747b6"));
+        builder.add(UUID.fromString("40f094c1-c795-415b-9bba-127e9cdb64d5"));
+        builder.add(UUID.fromString("03190dde-5929-4743-b877-f30558deac41"));
+        builder.add(UUID.fromString("120f1c6d-25a7-4a37-9fa8-c8913b7af0c7"));
         Acceptors = builder.build();
     }
 
@@ -207,7 +212,10 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.TATTERED_TOME, EnigmaticItems.WITHERED_TOME);
             putAfter(entries, EnigmaticItems.WITHERED_TOME, EnigmaticItems.CORRUPTED_TOME);
             putAfter(entries, EnigmaticItems.CORRUPTED_TOME, EnigmaticItems.THICC_SCROLL);
-            putAfter(entries, EnigmaticItems.THICC_SCROLL, EnigmaticItems.XP_SCROLL);
+            putAfter(entries, EnigmaticItems.THICC_SCROLL, EnigmaticAddonItems.SURVIVOR_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.SURVIVOR_SCROLL, EnigmaticAddonItems.EXPLORER_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.EXPLORER_SCROLL, EnigmaticAddonItems.HUNTER_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.HUNTER_SCROLL, EnigmaticItems.XP_SCROLL);
             putAfter(entries, EnigmaticItems.XP_SCROLL, EnigmaticItems.ESCAPE_SCROLL);
             putAfter(entries, EnigmaticItems.ESCAPE_SCROLL, EnigmaticItems.HEAVEN_SCROLL);
             putAfter(entries, EnigmaticItems.HEAVEN_SCROLL, EnigmaticItems.FABULOUS_SCROLL);

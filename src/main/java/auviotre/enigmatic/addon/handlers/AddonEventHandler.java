@@ -1243,6 +1243,7 @@ public class AddonEventHandler {
     private void addCursedModifier(LivingEntity entity, Attribute attribute, AttributeModifier modifier) {
         AttributeInstance instance = entity.getAttribute(attribute);
         if (instance != null) {
+            instance.removeModifier(modifier.getId());
             instance.removePermanentModifier(modifier.getId());
             instance.addPermanentModifier(modifier);
         }
@@ -1263,6 +1264,10 @@ public class AddonEventHandler {
         float miningModifier = 0.0F;
         if (SuperpositionHandler.hasCurio(player, EARTH_PROMISE)) {
             miningModifier += EarthPromise.breakSpeedBonus.getValue().asModifier();
+        }
+
+        if (SuperpositionHandler.hasCurio(player, SURVIVOR_SCROLL)) {
+            miningModifier += 0.1F;
         }
 
         event.setNewSpeed(event.getOriginalSpeed() * miningModifier + event.getNewSpeed());

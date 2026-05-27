@@ -1,6 +1,16 @@
 ***
 ## 1.2 ~ 1.3 Update: More Powerful
 ***
+## [Release 1.2.6] (2026/5/27)
+### Features:
+- New Items (**Scroll of Survivor**, **Scroll of Explorer** and **Scroll of Hunter**);
+- Updated the texture of **Charm of Scorched Sun**;
+### Changes:
+- Adjusted the effect of **Curse of Violence**, **Soul Lantern of Illusion**;
+- Changed Cursed AI of **Pillager**;
+### Fixes:
+- Fixed some issues;
+***
 ## [Release 1.2.5] (2025/08/03)
 ### Features:
 - New Items (**Curse of Violence**, **Ring of Ultimate Luxury** and else);

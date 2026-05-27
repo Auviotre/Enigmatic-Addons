@@ -119,10 +119,8 @@ public class IllusionLantern extends ItemSpellstoneCurio implements ISpellstone 
             if (player.tickCount % 20 == 0 && !(player.isCreative() || player.isSpectator())) {
                 Level level = player.level();
                 BlockPos blockPos = player.blockPosition();
-                boolean seeSky = level.canSeeSkyFromBelowWater(blockPos);
-                int rawBrightness = level.getLightEngine().getRawBrightness(blockPos, 8);
-                if (seeSky && rawBrightness > 9) {
-                    player.hurt(SuperAddonHandler.simpleSource(player, EnigmaticAddonDamageTypes.EVIL_CURSE), player.getMaxHealth() / 5.0F);
+                if (SurvivorScroll.getBrightness(level, blockPos) > 12) {
+                    player.hurt(SuperAddonHandler.simpleSource(player, EnigmaticAddonDamageTypes.EVIL_CURSE), player.getMaxHealth() / 8.0F);
                 }
 
                 Iterable<BlockPos> posSet = BlockPos.betweenClosed(blockPos.offset(-5, -5, -5), blockPos.offset(5, 5, 5));

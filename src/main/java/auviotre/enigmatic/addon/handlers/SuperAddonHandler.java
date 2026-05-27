@@ -177,7 +177,7 @@ public class SuperAddonHandler {
 
     public static long encodeUUID(UUID uuid) {
         AtomicLong code = new AtomicLong();
-        uuid.toString().chars().forEach(c -> code.set(code.get() * 3 + c));
+        uuid.toString().chars().forEach(c -> code.set(code.get() * 4 + c));
         return code.get();
     }
 

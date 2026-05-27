@@ -33,6 +33,10 @@ public class PacketCursedXPScrollKey {
                 ItemStack scroll = SuperpositionHandler.getCurioStack(playerServ, EnigmaticAddonItems.CURSED_XP_SCROLL);
                 EnigmaticAddonItems.CURSED_XP_SCROLL.trigger(playerServ.level(), scroll, playerServ, InteractionHand.MAIN_HAND, false);
             }
+            if (SuperpositionHandler.hasCurio(playerServ, EnigmaticAddonItems.EXPLORER_SCROLL)) {
+                ItemStack scroll = SuperpositionHandler.getCurioStack(playerServ, EnigmaticAddonItems.EXPLORER_SCROLL);
+                EnigmaticAddonItems.EXPLORER_SCROLL.trigger(playerServ.level(), playerServ);
+            }
         });
         context.get().setPacketHandled(true);
     }

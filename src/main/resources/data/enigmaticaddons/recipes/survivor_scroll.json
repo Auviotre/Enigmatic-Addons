@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:survivor_scroll"
+    }
+  ],
+  "pattern": [
+    "WLW",
+    "BXI",
+    "EME"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:ink_sac"
+    },
+    "E": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "minecraft:feather"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "M": {
+      "item": "minecraft:campfire"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    },
+    "X": {
+      "item": "enigmaticlegacy:thicc_scroll"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:survivor_scroll"
+  }
+}

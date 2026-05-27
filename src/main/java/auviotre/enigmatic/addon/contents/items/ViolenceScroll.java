@@ -341,11 +341,9 @@ public class ViolenceScroll extends ItemBaseCurio implements IEldritch {
 
         public static double getStoreModifier(ItemStack stack) {
             int curseCount = getCurseCount(stack);
-            int minus = 0;
-            float apply = curseCount * boostPerCurseModifier.getValue().asPercentage();
+            float apply = (float) Math.pow(curseCount * boostPerCurseModifier.getValue().asPercentage(), 0.725);
             apply *= (float) getDurability(stack) / maxDurability.getValue();
-            for (int i = 5; i <= curseCount; i += 5) minus += curseCount / i;
-            return apply + baseCurseModifier.getValue().asPercentage() - minus;
+            return Math.min(apply + baseCurseModifier.getValue().asPercentage(), 95);
         }
 
         public static float getStoreDamage(ItemStack stack) {

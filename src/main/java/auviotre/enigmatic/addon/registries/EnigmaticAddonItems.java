@@ -22,6 +22,12 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Magic Quartz Scepter")
     @ObjectHolder(value = "enigmaticaddons:quartz_scepter", registryName = "item")
     public static final QuartzScepter QUARTZ_SCEPTER = null;
+    @ObjectHolder(value = "enigmaticaddons:survivor_scroll", registryName = "item")
+    public static final SurvivorScroll SURVIVOR_SCROLL = null;
+    @ObjectHolder(value = "enigmaticaddons:explorer_scroll", registryName = "item")
+    public static final ExplorerScroll EXPLORER_SCROLL = null;
+    @ObjectHolder(value = "enigmaticaddons:hunter_scroll", registryName = "item")
+    public static final HunterScroll HUNTER_SCROLL = null;
     @ConfigurableItem("Dragon Breath Bow")
     @ObjectHolder(value = "enigmaticaddons:dragon_bow", registryName = "item")
     public static final DragonBow DRAGON_BOW = null;
@@ -178,6 +184,9 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("night_scroll", NightScroll::new);
         this.register("quartz_ring", QuartzRing::new);
         this.register("quartz_scepter", QuartzScepter::new);
+        this.register("survivor_scroll", SurvivorScroll::new);
+        this.register("explorer_scroll", ExplorerScroll::new);
+        this.register("hunter_scroll", HunterScroll::new);
         this.register("quartz_dagger", () -> new Item(new Item.Properties().stacksTo(1)));
         this.register("dragon_bow", DragonBow::new);
         this.register("astral_spear", AstralSpear::new);

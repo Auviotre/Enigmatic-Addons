@@ -85,6 +85,26 @@
   "book.enigmaticaddons.entry.quartz_scepter.page.1": "相同的材料但是不同的配方，崭新的权杖由此诞生。利用材料的魔力幻化成匕首向前突进，虽说威力不算很强，但好歹是个不消耗的手段。<br2/>另外在下界之中，总不免会发生物品掉落烧毁的现象，于是这把权杖外加了吸收物品的能力，能在某些情景下大显身手了。",
   "book.enigmaticaddons.entry.quartz_scepter.page.2": "鉴于魔法石英的魔力贯通性，相似的物品能够产生一定的影响，不妨尝试佩戴魔法石英戒指，对比一下手感吧。",
 
+  "item.enigmaticaddons.survivor_scroll": "生存者卷轴",
+
+  "tooltip.enigmaticaddons.suvivalScroll1": "§5在较高亮度下缓慢恢复生命",
+  "tooltip.enigmaticaddons.suvivalScroll2": "§5当生命值较低时：",
+  "tooltip.enigmaticaddons.suvivalScroll3": "§5获得一定的属性提升",
+  "tooltip.enigmaticaddons.suvivalScroll4": "§5并加快进食速度",
+  "tooltip.enigmaticaddons.suvivalScrollAttr": "挖掘速度",
+
+  "item.enigmaticaddons.explorer_scroll": "探索者卷轴",
+
+  "tooltip.enigmaticaddons.explorerScroll": "§5可暂时高亮附近的宝藏",
+  "tooltip.enigmaticaddons.explorerScrollAttr1": "潜行速度",
+  "tooltip.enigmaticaddons.explorerScrollAttr2": "摔落高度",
+
+  "item.enigmaticaddons.hunter_scroll": "寻猎者卷轴",
+
+  "tooltip.enigmaticaddons.hunterScroll1": "§5根据击杀怪物的数量",
+  "tooltip.enigmaticaddons.hunterScroll2": "§5和种类提供减伤",
+  "tooltip.enigmaticaddons.hunterScrollAttribute": "伤害减免",
+
   "item.enigmaticaddons.earth_promise": "地灵之诺",
 
   "tooltip.enigmaticaddons.earthPromise1": "§5当受到当前生命值§6 %1$s §5以上的伤害时",

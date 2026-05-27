@@ -36,7 +36,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -62,9 +65,9 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 
@@ -455,7 +458,6 @@ public class AnnihilatingSword extends SwordItem implements IEldritch {
     }
 
     public static class Unknown extends SwordItem implements IEldritch {
-        private static final List<EntityType<?>> list = new ArrayList<>();
         public Unknown() {
             super(TIER, 11, -2.2F, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
             MinecraftForge.EVENT_BUS.register(this);
@@ -464,26 +466,12 @@ public class AnnihilatingSword extends SwordItem implements IEldritch {
         private int getCount(ItemStack stack, Level world, @Nullable Player player) {
             CompoundTag tag = stack.getOrCreateTag();
             if (player != null && EnigmaticAddons.Acceptors.contains(player.getUUID())) {
-                tag.putInt("AnniCacheDemand", 20);
-                return 20;
+                tag.putInt("AnniCacheDemand", 10);
+                return 10;
             }
-            if (list.isEmpty()) {
-                list.addAll(ForgeRegistries.ENTITY_TYPES.getValues());
-                tag.remove("AnniCacheIndex");
-            }
-            if (player != null && player.tickCount % 10 == 0) {
-                int index = tag.getInt("AnniCacheIndex");
-                if (index < list.size()) {
-                    try {
-                        EntityType<?> entityType = list.get(index);
-                        if (entityType.create(world) instanceof LivingEntity)
-                            tag.putInt("AnniCacheIndex", index + 1);
-                        else list.remove(index);
-                    } catch (Exception exception) {
-                        list.remove(index);
-                    }
-                } else tag.remove("AnniCacheIndex");
-                int i = 20 + Mth.floor(Math.pow(list.size(), 0.875F) * 0.8974862513F);
+            int size = ModList.get().size() + 50;
+            if (player != null && player.tickCount % 100 == 0) {
+                int i = 20 + Mth.floor(Math.pow(size, 0.875F) * 0.8974862513F);
                 tag.putInt("AnniCacheDemand", i);
                 return i;
             }

@@ -85,6 +85,26 @@
   "book.enigmaticaddons.entry.quartz_scepter.page.1": "The same material but different recipe gave birth to a brand new scepter. Using the magic of materials to transform into a dagger and thrust forward, although the power is not very strong, it is at least a non consumable means.<br2/>In addition, in the Nether, it is inevitable that objects will fall and burn, so this scepter, with its ability to absorb",
   "book.enigmaticaddons.entry.quartz_scepter.page.2": "items, can show off its skills in certain situations.<br2/>Given the magical power of magic quartz, similar items can have a certain impact. Why not try wearing a Magic Quartz Ring and compare it.",
 
+  "item.enigmaticaddons.survivor_scroll": "Scroll of Survivor",
+
+  "tooltip.enigmaticaddons.suvivalScroll1": "§5Slowly recover health under higher brightness.",
+  "tooltip.enigmaticaddons.suvivalScroll2": "§5When the health is low:",
+  "tooltip.enigmaticaddons.suvivalScroll3": "§5Gain certain attribute improvements",
+  "tooltip.enigmaticaddons.suvivalScroll4": "§5and accelerate eating speed.",
+  "tooltip.enigmaticaddons.suvivalScrollAttr": "Mining Speed",
+
+  "item.enigmaticaddons.explorer_scroll": "Scroll of Explorer",
+
+  "tooltip.enigmaticaddons.explorerScroll": "§5Can temporarily highlight nearby treasures.",
+  "tooltip.enigmaticaddons.explorerScrollAttr1": "Sneaking Speed",
+  "tooltip.enigmaticaddons.explorerScrollAttr2": "Fall Distance",
+
+  "item.enigmaticaddons.hunter_scroll": "Scroll of Hunter",
+
+  "tooltip.enigmaticaddons.hunterScroll1": "§5Provide damage reduction based on the",
+  "tooltip.enigmaticaddons.hunterScroll2": "§5number and type of monsters killed.",
+  "tooltip.enigmaticaddons.hunterScrollAttribute": "Damage Resistance",
+
   "item.enigmaticaddons.earth_promise": "Promise of the Earth",
 
   "tooltip.enigmaticaddons.earthPromise1": "§5When receiving damage worth §6%1$s §5of your",
@@ -677,7 +697,7 @@
   "advancement.enigmaticaddons:maliceTotem": "",
   "advancement.enigmaticaddons:maliceTotem.desc": "",
 
-  "advancement.enigmaticaddons:ChaosElytra": "Arrogance to all foolish beings",
+  "advancement.enigmaticaddons:ChaosElytra": "Arrogance to all beings",
   "advancement.enigmaticaddons:ChaosElytra.desc": "Take the Arrogance of Chaos, overlooking sentient beings from the sky",
 
   "advancement.enigmaticaddons:ChaosExplosionKill": "Descending Chaos",

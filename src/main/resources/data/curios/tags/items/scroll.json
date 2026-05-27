@@ -1,7 +1,10 @@
 {
   "values": [
     "enigmaticaddons:cursed_xp_scroll",
+    "enigmaticaddons:explorer_scroll",
+    "enigmaticaddons:hunter_scroll",
     "enigmaticaddons:night_scroll",
+    "enigmaticaddons:survivor_scroll",
     "enigmaticaddons:thunder_scroll",
     "enigmaticaddons:violence_scroll"
   ]
