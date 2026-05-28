@@ -85,6 +85,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Potion of Cosmic")
     @ObjectHolder(value = "enigmaticaddons:astral_potion", registryName = "item")
     public static final AstralPotion ASTRAL_POTION = null;
+    @ObjectHolder(value = "enigmaticaddons:bless_potion", registryName = "item")
+    public static final BlessPotion BLESS_POTION = null;
     @ConfigurableItem("Primeval Cube")
     @ObjectHolder(value = "enigmaticaddons:primeval_cube", registryName = "item")
     public static final PrimevalCube PRIMEVAL_CUBE = null;
@@ -200,6 +202,7 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("cursed_xp_scroll", CursedXPScroll::new);
         this.register("hell_blade_charm", HellBladeCharm::new);
         this.register("astral_potion", AstralPotion::new);
+        this.register("bless_potion", BlessPotion::new);
         this.register("primeval_cube", PrimevalCube::new);
         this.register("adventure_charm", AdventureCharm::new);
         this.register("despair_insignia", DespairInsignia::new);

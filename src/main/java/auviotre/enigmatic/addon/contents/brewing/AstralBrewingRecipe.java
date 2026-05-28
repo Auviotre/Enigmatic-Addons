@@ -1,8 +1,6 @@
 package auviotre.enigmatic.addon.contents.brewing;
 
-import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.brewing.AbstractBrewingRecipe;
-import com.aizistral.enigmaticlegacy.registries.EnigmaticBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -13,12 +11,14 @@ import javax.annotation.Nonnull;
 
 public class AstralBrewingRecipe extends AbstractBrewingRecipe {
     private final Ingredient input = Ingredient.of(Items.HONEY_BOTTLE);
-    private final Ingredient ingredient = Ingredient.of(EnigmaticBlocks.ASTRAL_BLOCK);
-    private final ItemStack output = new ItemStack(EnigmaticAddonItems.ASTRAL_POTION);
+    private final Ingredient ingredient;
+    private final ItemStack output;
 
 
-    public AstralBrewingRecipe(ResourceLocation name) {
+    public AstralBrewingRecipe(Ingredient ingredient, ItemStack output, ResourceLocation name) {
         super(name);
+        this.ingredient = ingredient;
+        this.output = output;
     }
 
     public boolean isInput(@Nonnull ItemStack stack) {

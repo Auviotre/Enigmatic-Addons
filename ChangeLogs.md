@@ -1,9 +1,9 @@
 ***
 ## 1.2 ~ 1.3 Update: More Powerful
 ***
-## [Release 1.2.6] (2026/5/27)
+## [Release 1.2.6] (2026/5/28)
 ### Features:
-- New Items (**Scroll of Survivor**, **Scroll of Explorer** and **Scroll of Hunter**);
+- New Items (**Potion of Purification**, **Scroll of Survivor**, **Scroll of Explorer** and **Scroll of Hunter**);
 - Updated the texture of **Charm of Scorched Sun**;
 ### Changes:
 - Adjusted the effect of **Curse of Violence**, **Soul Lantern of Illusion**;

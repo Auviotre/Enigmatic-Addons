@@ -438,6 +438,11 @@
   "book.enigmaticaddons.entry.pure_heart.page.1": "With different materials, you may be able to try a production different from Twisted Heart. The combination of hidden dark pollution and faint divinity gave birth to this eerie creation with bright appearance.<br2/>Unlike another type of item, the Pure Heart and its creations typically provide protection and assistance,",
   "book.enigmaticaddons.entry.pure_heart.page.2": "rather than aggressive power.<br2/>But although it is a divine creation, it needs to rely on the power of curses, which is too ironic. So when using these items, please also pay attention to the hidden dangers.",
 
+  "item.enigmaticaddons.bless_potion": "Potion of Purification",
+
+  "tooltip.enigmaticaddons.blessPotion1": "§5Remove all negative effects and",
+  "tooltip.enigmaticaddons.blessPotion2": "§5provide§6 Pure Resistance§5 effect based on the amount removed.",
+
   "item.enigmaticaddons.bless_amplifier": "Tome of Divination",
 
   "tooltip.enigmaticaddons.blessAmplifier1": "§5Combine with any enchanted item in a crafting grid",

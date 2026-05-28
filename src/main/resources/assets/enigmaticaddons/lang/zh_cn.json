@@ -425,6 +425,11 @@
   "book.enigmaticaddons.entry.pure_heart.page.1": "有了不同的材料，你或许能够尝试一下不同于扭曲之心的制作途径。隐藏的暗黑污染和微弱的神性所结合，诞生了这表面鲜亮的诡异造物。<br2/>不同于另一类物品，纯净之心及其造物通常会给予保护和帮助，而非侵略性的力量。所以，比较是毫无意义的，你更应该将注意力放在如何去利用它们。",
   "book.enigmaticaddons.entry.pure_heart.page.2": "但虽说是充满神性的造物，却需要依附在诅咒的力量之上，实在是过于讽刺。所以在利用这些物品时，也请你同样去注意隐藏在背后的隐患。",
 
+  "item.enigmaticaddons.bless_potion": "纯化药水",
+
+  "tooltip.enigmaticaddons.blessPotion1": "§5消除所有负面效果",
+  "tooltip.enigmaticaddons.blessPotion2": "§5并依据消除数量给予§6纯化抗性§5效果",
+
   "item.enigmaticaddons.the_bless": "恩惠之典",
   "item.enigmaticaddons.the_repentance": "忏悔之音",
 
