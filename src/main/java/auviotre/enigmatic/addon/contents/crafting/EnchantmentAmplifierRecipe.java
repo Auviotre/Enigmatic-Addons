@@ -79,7 +79,7 @@ public class EnchantmentAmplifierRecipe extends CustomRecipe {
         Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(target);
         for (Enchantment enchantment : enchantments.keySet()) {
             int maxLevel = BlessAmplifier.amplifyMode.getValue() ? Mth.ceil(enchantment.getMaxLevel() * 1.5) : enchantment.getMaxLevel() + 1;
-            if (enchantment.getMaxLevel() > 1 && maxLevel > target.getEnchantmentLevel(enchantment)) {
+            if (!BlessAmplifier.blacklist.contains(ForgeRegistries.ENCHANTMENTS.getKey(enchantment)) && enchantment.getMaxLevel() > 1 && maxLevel > target.getEnchantmentLevel(enchantment)) {
                 enchantments.compute(enchantment, (enchant, integer) -> Math.min(integer * 2, maxLevel));
             }
         }
