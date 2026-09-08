@@ -132,7 +132,7 @@ public class CrossbowBlazeAttackGoal<T extends Monster & RangedAttackMob & Cross
                     this.crossbowState = CrossbowBlazeAttackGoal.CrossbowState.READY_TO_ATTACK;
                 }
             } else if (this.crossbowState == CrossbowBlazeAttackGoal.CrossbowState.READY_TO_ATTACK && sighted) {
-                if (this.mob.getRandom().nextInt(5) == 0) {
+                if (this.mob.getRandom().nextInt(5) == 0 && !this.mob.getItemInHand(InteractionHand.OFF_HAND).is(Items.FIREWORK_ROCKET)) {
                     this.attackDelay = 10 + this.mob.getRandom().nextInt(4);
                     this.crossbowState = CrossbowBlazeAttackGoal.CrossbowState.CHARGED;
 
@@ -158,7 +158,7 @@ public class CrossbowBlazeAttackGoal<T extends Monster & RangedAttackMob & Cross
         CompoundTag explosion = star.getOrCreateTagElement("Explosion");
         explosion.putByte("Type", (byte) FireworkRocketItem.Shape.BURST.getId());
         explosion.putBoolean("Flicker", true);
-//        explosion.putBoolean("Trail", true);
+
         List<Integer> colorList = Lists.newArrayList();
         List<Item> dyes = List.of(Items.BLACK_DYE, Items.WHITE_DYE, Items.GRAY_DYE, Items.LIGHT_GRAY_DYE, Items.BROWN_DYE);
         for (Item dye : dyes) colorList.add(((DyeItem) dye).getDyeColor().getFireworkColor());

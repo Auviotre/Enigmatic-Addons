@@ -85,6 +85,26 @@
   "book.enigmaticaddons.entry.quartz_scepter.page.1": "相同的材料但是不同的配方，崭新的权杖由此诞生。利用材料的魔力幻化成匕首向前突进，虽说威力不算很强，但好歹是个不消耗的手段。<br2/>另外在下界之中，总不免会发生物品掉落烧毁的现象，于是这把权杖外加了吸收物品的能力，能在某些情景下大显身手了。",
   "book.enigmaticaddons.entry.quartz_scepter.page.2": "鉴于魔法石英的魔力贯通性，相似的物品能够产生一定的影响，不妨尝试佩戴魔法石英戒指，对比一下手感吧。",
 
+  "item.enigmaticaddons.survivor_scroll": "生存者卷轴",
+
+  "tooltip.enigmaticaddons.suvivalScroll1": "§5在较高亮度下缓慢恢复生命",
+  "tooltip.enigmaticaddons.suvivalScroll2": "§5当生命值较低时：",
+  "tooltip.enigmaticaddons.suvivalScroll3": "§5获得一定的属性提升",
+  "tooltip.enigmaticaddons.suvivalScroll4": "§5并加快进食速度",
+  "tooltip.enigmaticaddons.suvivalScrollAttr": "挖掘速度",
+
+  "item.enigmaticaddons.explorer_scroll": "探索者卷轴",
+
+  "tooltip.enigmaticaddons.explorerScroll": "§5可暂时高亮附近的宝藏",
+  "tooltip.enigmaticaddons.explorerScrollAttr1": "潜行速度",
+  "tooltip.enigmaticaddons.explorerScrollAttr2": "摔落高度",
+
+  "item.enigmaticaddons.hunter_scroll": "寻猎者卷轴",
+
+  "tooltip.enigmaticaddons.hunterScroll1": "§5根据击杀怪物的数量",
+  "tooltip.enigmaticaddons.hunterScroll2": "§5和种类提供减伤",
+  "tooltip.enigmaticaddons.hunterScrollAttribute": "伤害减免",
+
   "item.enigmaticaddons.earth_promise": "地灵之诺",
 
   "tooltip.enigmaticaddons.earthPromise1": "§5当受到当前生命值§6 %1$s §5以上的伤害时",
@@ -405,6 +425,11 @@
   "book.enigmaticaddons.entry.pure_heart.page.1": "有了不同的材料，你或许能够尝试一下不同于扭曲之心的制作途径。隐藏的暗黑污染和微弱的神性所结合，诞生了这表面鲜亮的诡异造物。<br2/>不同于另一类物品，纯净之心及其造物通常会给予保护和帮助，而非侵略性的力量。所以，比较是毫无意义的，你更应该将注意力放在如何去利用它们。",
   "book.enigmaticaddons.entry.pure_heart.page.2": "但虽说是充满神性的造物，却需要依附在诅咒的力量之上，实在是过于讽刺。所以在利用这些物品时，也请你同样去注意隐藏在背后的隐患。",
 
+  "item.enigmaticaddons.bless_potion": "纯化药水",
+
+  "tooltip.enigmaticaddons.blessPotion1": "§5消除所有负面效果",
+  "tooltip.enigmaticaddons.blessPotion2": "§5并依据消除数量给予§6纯化抗性§5效果",
+
   "item.enigmaticaddons.the_bless": "恩惠之典",
   "item.enigmaticaddons.the_repentance": "忏悔之音",
 
@@ -529,6 +554,10 @@
 
   "item.enigmaticaddons.violence_scroll": "暴戾之咒",
 
+  "tooltip.enigmaticaddons.violenceScrollLore1": "§5这是一个不可直面的诅咒存在",
+  "tooltip.enigmaticaddons.violenceScrollLore2": "§5无论那些诅咒带来的是幸运、痛苦还是贫困",
+  "tooltip.enigmaticaddons.violenceScrollLore3": "§5他们已经失去太多原本属于他们的事物",
+  "tooltip.enigmaticaddons.violenceScrollLore4": "§5以至对于战斗——将变得义无反顾",
   "tooltip.enigmaticaddons.violenceScroll1": "§5攻击同一目标时，额外造成上次伤害的 §6%1$s",
   "tooltip.enigmaticaddons.violenceScroll2": "§5若攻击时处于§d受击无敌状态§5：",
   "tooltip.enigmaticaddons.violenceScroll3": "§5- 造成的伤害 §6%1$s",

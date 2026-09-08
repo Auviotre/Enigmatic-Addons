@@ -31,7 +31,7 @@ public class MixinHumanoidArmorLayer {
     private void getArmorTextureMix(Entity entity, ItemStack stack, EquipmentSlot slot, String type, CallbackInfoReturnable<ResourceLocation> cir) {
         if (entity instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ETHERIUM_CORE)) {
             ItemStack curioStack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.ETHERIUM_CORE);
-            if (ItemNBTHelper.getBoolean(curioStack, "ArmorInvisibility", false)) {
+            if (!curioStack.isEmpty() && curioStack.hasTag() && ItemNBTHelper.getBoolean(curioStack, "ArmorInvisibility", false)) {
                 String armor = "enigmaticlegacy:textures/models/armor/unseen_armor.png";
                 ResourceLocation resourcelocation = ARMOR_LOCATION_CACHE.get(armor);
                 if (resourcelocation == null) {

@@ -49,7 +49,7 @@ public abstract class MixinNearestAttackableTargetGoal<T extends LivingEntity> e
             if (this.mob instanceof AbstractGolem || LostEngine.golemList.contains(ForgeRegistries.ENTITY_TYPES.getKey(this.mob.getType()))) {
                 return (player) -> player instanceof Player && !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.LOST_ENGINE) && predicate.test((Player) player);
             }
-            if (this.mob.getMobType().equals(MobType.UNDEAD)) {
+            if (MobType.UNDEAD.equals(this.mob.getMobType())) {
                 return (player) -> player instanceof Player && !SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.ILLUSION_LANTERN) && predicate.test((Player) player);
             }
             if (this.mob instanceof Merchant || AvariceRing.merchantList.contains(ForgeRegistries.ENTITY_TYPES.getKey(this.mob.getType()))) {

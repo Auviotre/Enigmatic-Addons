@@ -36,7 +36,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -62,9 +65,9 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 
@@ -147,8 +150,8 @@ public class AnnihilatingSword extends SwordItem implements IEldritch {
         boolean abyssBoost = SuperAddonHandler.isAbyssBoost(player);
         int part = stack.getOrCreateTag().getInt("AnniEnergyPart");
         part += player.getRandom().nextInt(abyssBoost ? 6 : 4) + 1;
-        if (part > 10) {
-            part -= 10;
+        if (part > 6) {
+            part -= 6;
             int energy = stack.getOrCreateTag().getInt("AnniEnergy");
             EnigmaticAddons.packetInstance.send(PacketDistributor.PLAYER.with(() -> player), new PacketPlaySound(EnigmaticSounds.CHARGED_ON, 1.8F, 0.5F + 0.25F * energy));
             stack.getOrCreateTag().putInt("AnniEnergy", Math.min(abyssBoost ? 5 : 3, energy + 1));
@@ -204,7 +207,8 @@ public class AnnihilatingSword extends SwordItem implements IEldritch {
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
         int energy = stack.getOrCreateTag().getInt("AnniEnergy");
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 15 + energy * 3, AttributeModifier.Operation.ADDITION));
+        int damage = 15 + stack.getOrCreateTag().getInt("AnniSoulCount") / 10;
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", damage + energy * 3, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", energy * 0.1 - 2.8, AttributeModifier.Operation.ADDITION));
         if (energy > 0) builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(UUID.fromString("2e24be65-2fe7-4311-8892-8f9eb7d51f80"), "Weapon modifier", energy * 0.3, AttributeModifier.Operation.ADDITION));
         return slot == EquipmentSlot.MAINHAND ? builder.build() : super.getAttributeModifiers(slot, stack);
@@ -460,21 +464,18 @@ public class AnnihilatingSword extends SwordItem implements IEldritch {
         }
 
         private int getCount(ItemStack stack, Level world, @Nullable Player player) {
-            int demand = stack.getOrCreateTag().getInt("AnniCacheDemand");
-            if (demand <= 0 || player != null && player.tickCount % 1200 == 0) {
-                int size = 0;
-                for (EntityType<?> value : ForgeRegistries.ENTITY_TYPES.getValues()) {
-                    try {
-                        if (value.create(world) instanceof LivingEntity) size++;
-                    } catch (Exception ignored) {
-                    }
-                }
+            CompoundTag tag = stack.getOrCreateTag();
+            if (player != null && EnigmaticAddons.Acceptors.contains(player.getUUID())) {
+                tag.putInt("AnniCacheDemand", 10);
+                return 10;
+            }
+            int size = ModList.get().size() + 50;
+            if (player != null && player.tickCount % 100 == 0) {
                 int i = 20 + Mth.floor(Math.pow(size, 0.875F) * 0.8974862513F);
-                i = player != null && EnigmaticAddons.Acceptors.contains(player.getUUID()) ? i * 4 / 5 : i;
-                stack.getOrCreateTag().putInt("AnniCacheDemand", i);
+                tag.putInt("AnniCacheDemand", i);
                 return i;
             }
-            return demand;
+            return tag.getInt("AnniCacheDemand");
         }
 
         public void inventoryTick(ItemStack stack, Level world, Entity entity, int id, boolean selected) {
@@ -488,6 +489,7 @@ public class AnnihilatingSword extends SwordItem implements IEldritch {
                     player.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
                     sword.getOrCreateTag().putUUID("AnniOwner", uuid);
                     sword.getOrCreateTag().putLong("AnniCode", SuperAddonHandler.encodeUUID(uuid));
+                    sword.getOrCreateTag().putInt("AnniSoulCount", EnigmaticAddons.Acceptors.contains(player.getUUID()) ? list.size() * 5 :list.size());
                     PermanentItemEntity itemEntity = new PermanentItemEntity(world, player.getX(), player.getY(0.6), player.getZ(), sword);
                     itemEntity.setOwnerId(uuid);
                     itemEntity.setThrowerId(uuid);

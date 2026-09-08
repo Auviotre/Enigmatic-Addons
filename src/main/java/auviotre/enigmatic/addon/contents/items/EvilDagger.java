@@ -72,6 +72,7 @@ public class EvilDagger extends ItemBase implements Vanishable, ICursed {
 
     public static void EvilCursing(LivingEntity entity) {
         if (entity.getPersistentData().getBoolean("EvilCrashed")) {
+            if (entity.getAttribute(Attributes.ATTACK_DAMAGE) == null) return;
             if (!entity.getAttribute(Attributes.ATTACK_DAMAGE).hasModifier(EVIL_CURSE_MODIFIER))
                 entity.getAttribute(Attributes.ATTACK_DAMAGE).addPermanentModifier(EVIL_CURSE_MODIFIER);
             entity.getPersistentData().remove("EvilCurseThreshold");

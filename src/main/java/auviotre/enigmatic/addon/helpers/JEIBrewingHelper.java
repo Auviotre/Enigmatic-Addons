@@ -39,8 +39,12 @@ public class JEIBrewingHelper {
         Objects.requireNonNull(AbstractBrewingRecipe.class);
         Set<IJeiBrewingRecipe> recipes = new HashSet<>();
         if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.ASTRAL_POTION)) {
-            AstralRecipe astralRecipe = new AstralRecipe(null);
-            recipes.add(astralRecipe);
+            AstralRecipe recipe = new AstralRecipe(Ingredient.of(EnigmaticBlocks.ASTRAL_BLOCK), new ItemStack(EnigmaticAddonItems.ASTRAL_POTION), null);
+            recipes.add(recipe);
+        }
+        if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.BLESS_POTION)) {
+            AstralRecipe recipe = new AstralRecipe(Ingredient.of(EnigmaticAddonItems.PURE_HEART), new ItemStack(EnigmaticAddonItems.BLESS_POTION), null);
+            recipes.add(recipe);
         }
         for (IBrewingRecipe iBrewingRecipe : brewingRecipes) {
             if (iBrewingRecipe instanceof AbstractBrewingRecipe brewingRecipe) {
@@ -218,13 +222,17 @@ public class JEIBrewingHelper {
     public static class AstralRecipe implements IJeiBrewingRecipe {
         private final int hashCode;
         private final ResourceLocation uid;
+        private final Ingredient ingredient;
+        private final ItemStack output;
 
-        public AstralRecipe(ResourceLocation uid) {
+        public AstralRecipe(Ingredient ingredient, ItemStack output, ResourceLocation uid) {
             this.uid = uid;
+            this.ingredient = ingredient;
+            this.output = output;
             if (uid != null) {
                 this.hashCode = uid.hashCode();
             } else {
-                this.hashCode = Objects.hash(List.of(EnigmaticBlocks.ASTRAL_BLOCK), List.of(Items.HONEY_BOTTLE), EnigmaticAddonItems.ASTRAL_POTION);
+                this.hashCode = Objects.hash(List.of(ingredient.getItems()), List.of(Items.HONEY_BOTTLE), output.getItem());
             }
         }
 
@@ -233,11 +241,11 @@ public class JEIBrewingHelper {
         }
 
         public List<ItemStack> getIngredients() {
-            return List.of(new ItemStack(EnigmaticBlocks.ASTRAL_BLOCK));
+            return List.of(ingredient.getItems());
         }
 
         public ItemStack getPotionOutput() {
-            return new ItemStack(EnigmaticAddonItems.ASTRAL_POTION);
+            return output;
         }
 
         public int hashCode() {

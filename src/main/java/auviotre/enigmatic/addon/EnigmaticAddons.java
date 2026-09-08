@@ -32,6 +32,7 @@ import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
@@ -93,7 +94,14 @@ public class EnigmaticAddons {
         builder.add(UUID.fromString("2301982f-ef0d-446a-a31c-1ea53339a151"));
         builder.add(UUID.fromString("7c621bf8-a19d-4f3a-8e5b-8a75e6d81cfd"));
         builder.add(UUID.fromString("4be196b1-dec6-4e70-a8a6-85f5eb23b500"));
-        builder.add(UUID.fromString("fbe90440-c786-4510-bc0f-7cb4e9e94956"));
+        builder.add(UUID.fromString("19a3eab1-3501-490e-b26e-3ef1d405a68e"));
+        builder.add(UUID.fromString("7d8715c1-9224-4e2d-a516-46229b769297"));
+        builder.add(UUID.fromString("4c8508c0-4601-4e17-96d1-2e30fa5747b6"));
+
+        builder.add(UUID.fromString("4c8508c0-4601-4e17-96d1-2e30fa5747b6"));
+        builder.add(UUID.fromString("40f094c1-c795-415b-9bba-127e9cdb64d5"));
+        builder.add(UUID.fromString("03190dde-5929-4743-b877-f30558deac41"));
+        builder.add(UUID.fromString("120f1c6d-25a7-4a37-9fa8-c8913b7af0c7"));
         Acceptors = builder.build();
     }
 
@@ -161,7 +169,10 @@ public class EnigmaticAddons {
             PotionAddonHelper.registerUltimatePotions();
         }
         if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.ASTRAL_POTION)) {
-            BrewingRecipeRegistry.addRecipe(new AstralBrewingRecipe(new ResourceLocation(MODID, "astral_potion")));
+            BrewingRecipeRegistry.addRecipe(new AstralBrewingRecipe(Ingredient.of(EnigmaticBlocks.ASTRAL_BLOCK), new ItemStack(EnigmaticAddonItems.ASTRAL_POTION), new ResourceLocation(MODID, "astral_potion")));
+        }
+        if (OmniconfigAddonHandler.isItemEnabled(EnigmaticAddonItems.BLESS_POTION)) {
+            BrewingRecipeRegistry.addRecipe(new AstralBrewingRecipe(Ingredient.of(EnigmaticAddonItems.PURE_HEART), new ItemStack(EnigmaticAddonItems.BLESS_POTION), new ResourceLocation(MODID, "bless_potion")));
         }
         PotionAddonHelper.registerDispenserBehavior();
         BrewingRecipeRegistry.addRecipe(new ValidationBrewingRecipe(PotionAddonHelper.SPECIAL_POTIONS, null));
@@ -205,7 +216,10 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticItems.TATTERED_TOME, EnigmaticItems.WITHERED_TOME);
             putAfter(entries, EnigmaticItems.WITHERED_TOME, EnigmaticItems.CORRUPTED_TOME);
             putAfter(entries, EnigmaticItems.CORRUPTED_TOME, EnigmaticItems.THICC_SCROLL);
-            putAfter(entries, EnigmaticItems.THICC_SCROLL, EnigmaticItems.XP_SCROLL);
+            putAfter(entries, EnigmaticItems.THICC_SCROLL, EnigmaticAddonItems.SURVIVOR_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.SURVIVOR_SCROLL, EnigmaticAddonItems.EXPLORER_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.EXPLORER_SCROLL, EnigmaticAddonItems.HUNTER_SCROLL);
+            putAfter(entries, EnigmaticAddonItems.HUNTER_SCROLL, EnigmaticItems.XP_SCROLL);
             putAfter(entries, EnigmaticItems.XP_SCROLL, EnigmaticItems.ESCAPE_SCROLL);
             putAfter(entries, EnigmaticItems.ESCAPE_SCROLL, EnigmaticItems.HEAVEN_SCROLL);
             putAfter(entries, EnigmaticItems.HEAVEN_SCROLL, EnigmaticItems.FABULOUS_SCROLL);
@@ -289,7 +303,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticAddonItems.SANGUINARY_HANDBOOK, EnigmaticAddonItems.FALSE_JUSTICE);
             putAfter(entries, EnigmaticAddonItems.FALSE_JUSTICE, EnigmaticItems.CURSED_STONE);
             putAfter(entries, EnigmaticItems.CURSED_STONE, EnigmaticAddonItems.PURE_HEART);
-            putAfter(entries, EnigmaticAddonItems.PURE_HEART, EnigmaticAddonItems.THE_BLESS);
+            putAfter(entries, EnigmaticAddonItems.PURE_HEART, EnigmaticAddonItems.BLESS_POTION);
+            putAfter(entries, EnigmaticAddonItems.BLESS_POTION, EnigmaticAddonItems.THE_BLESS);
             putAfter(entries, EnigmaticAddonItems.THE_BLESS, EnigmaticAddonItems.BLESS_AMPLIFIER);
             putAfter(entries, EnigmaticAddonItems.BLESS_AMPLIFIER, EnigmaticAddonItems.SCORCHED_CHARM);
             putAfter(entries, EnigmaticAddonItems.SCORCHED_CHARM, EnigmaticAddonItems.EARTH_PROMISE);

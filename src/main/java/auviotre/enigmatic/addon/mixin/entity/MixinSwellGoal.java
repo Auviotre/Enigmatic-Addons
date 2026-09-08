@@ -12,18 +12,11 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(SwellGoal.class)
 public abstract class MixinSwellGoal extends Goal {
-
-    @Shadow
-    @Final
-    private Creeper creeper;
-
-    @ModifyArg(
-            method = "tick",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Creeper;setSwellDir(I)V")
-    )
+    @Shadow @Final private Creeper creeper;
+    @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Creeper;setSwellDir(I)V"))
     public int setSwellDirMix(int rate) {
         if (SuperAddonHandler.isCurseBoosted(this.creeper)) {
-            return rate * (1 + this.creeper.getRandom().nextInt(2));
+            return rate * (1 + this.creeper.getRandom().nextInt(1));
         }
         return rate;
     }

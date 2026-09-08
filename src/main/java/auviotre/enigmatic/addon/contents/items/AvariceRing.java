@@ -59,7 +59,7 @@ public class AvariceRing extends ItemBaseCurio implements ICursed {
         damageBoostMultiplier = builder.comment("The damage boost multiplier of the Ring of Ultimate Luxury .").max(2).min(0.0).getDouble("DamageBoostMultiplier", 0.5);
         merchantList.clear();
         builder.forceSynchronized(true);
-        String[] list = builder.config.getStringList("RingofUltimateLuxuryExtraMerchantList", "Balance Options", new String[0], "List of entities that will be affected as Golem by the Ring of Ultimate Luxury. Examples: minecraft:iron_golem. Changing this option required game restart to take effect.");
+        String[] list = builder.config.getStringList("RingofUltimateLuxuryExtraMerchantList", "Balance Options", new String[0], "List of entities that will be affected as Merchant by the Ring of Ultimate Luxury. Changing this option required game restart to take effect.");
         Arrays.stream(list).forEach((entry) -> merchantList.add(new ResourceLocation(entry)));
         builder.popPrefix();
     }

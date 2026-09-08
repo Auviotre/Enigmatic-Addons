@@ -209,13 +209,13 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
             long data = player.getPersistentData().getLong("RevivalFlightLazyPos");
             BlockPos lazyPos = BlockPos.of(data);
             BlockState blockState = player.level().getBlockState(lazyPos);
-            if (PLANT_SET.stream().anyMatch(blockState::is)) {
+            if (!blockState.is(Blocks.WATER) && PLANT_SET.stream().anyMatch(blockState::is)) {
                 if (lazyPos.distToCenterSqr(player.position()) < Math.pow(player.getEntityReach() + 1, 2)) return true;
             }
         }
         for (BlockPos pos : posSet) {
             BlockState blockState = player.level().getBlockState(pos);
-            if (PLANT_SET.stream().anyMatch(blockState::is)) {
+            if (!blockState.is(Blocks.WATER) && PLANT_SET.stream().anyMatch(blockState::is)) {
                 if (pos.distToCenterSqr(player.position()) < Math.pow(player.getEntityReach() + 1, 2)) {
                     player.getPersistentData().putLong("RevivalFlightLazyPos", pos.asLong());
                     return true;
@@ -236,7 +236,7 @@ public class RevivalLeaf extends ItemSpellstoneCurio implements ISpellstone {
             } else if (this.flyMap.get(player) > 1) {
                 this.flyMap.put(player, this.flyMap.get(player) - 1);
             } else if (this.flyMap.get(player) == 1) {
-                if (!player.isCreative()) {
+                if (!player.isCreative() && !player.isSpectator()) {
                     player.getAbilities().mayfly = false;
                     player.getAbilities().flying = false;
                     player.onUpdateAbilities();

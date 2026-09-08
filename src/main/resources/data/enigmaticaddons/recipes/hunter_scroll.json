@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:hunter_scroll"
+    }
+  ],
+  "pattern": [
+    "EME",
+    "BXI",
+    "LCL"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:ink_sac"
+    },
+    "C": {
+      "item": "minecraft:crossbow"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "I": {
+      "item": "minecraft:feather"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "M": {
+      "item": "minecraft:redstone"
+    },
+    "X": {
+      "item": "enigmaticlegacy:thicc_scroll"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:hunter_scroll"
+  }
+}

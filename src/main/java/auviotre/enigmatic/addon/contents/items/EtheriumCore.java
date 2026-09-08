@@ -133,7 +133,7 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
 
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand handIn) {
         ItemStack stack = player.getItemInHand(handIn);
-        if (player.isCrouching()) {
+        if (player.isShiftKeyDown()) {
             if (ItemNBTHelper.getBoolean(stack, "ArmorInvisibility", false)) {
                 ItemNBTHelper.setBoolean(stack, "ArmorInvisibility", false);
                 world.playSound(null, player.blockPosition(), EnigmaticSounds.CHARGED_OFF, SoundSource.PLAYERS, (float) (0.8 + Math.random() * 0.2), (float) (0.8 + Math.random() * 0.2));
@@ -155,7 +155,7 @@ public class EtheriumCore extends ItemSpellstoneCurio implements ISpellstone {
     }
 
     public boolean canEquipFromUse(SlotContext context, ItemStack stack) {
-        return !context.entity().isCrouching();
+        return !context.entity().isShiftKeyDown();
     }
 
     public List<Component> getAttributesTooltip(List<Component> tooltips, ItemStack stack) {

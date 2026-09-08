@@ -29,6 +29,8 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     public static final EntityType<SoulFlameBall> SOUL_FLAME_BALL = null;
     @ObjectHolder(value = "enigmaticaddons:abyss_projectile", registryName = "entity_type")
     public static final EntityType<AbyssProjectile> ABYSS_PROJECTILE = null;
+    @ObjectHolder(value = "enigmaticaddons:explorer_marker", registryName = "entity_type")
+    public static final EntityType<ExplorerMarker> EXPLORER_MARKER = null;
     private static final EnigmaticAddonEntities INSTANCE = new EnigmaticAddonEntities();
 
     private EnigmaticAddonEntities() {
@@ -77,6 +79,10 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                 () -> EntityType.Builder.<AbyssProjectile>of(AbyssProjectile::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(12)
                         .setCustomClientFactory((spawnEntity, world) -> new AbyssProjectile(ABYSS_PROJECTILE, world)).setUpdateInterval(1).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:abyss_projectile"));
+        this.register("explorer_marker",
+                () -> EntityType.Builder.<ExplorerMarker>of(ExplorerMarker::new, MobCategory.MISC).sized(1.0F, 1.0F).clientTrackingRange(64)
+                        .setCustomClientFactory((spawnEntity, world) -> new ExplorerMarker(EXPLORER_MARKER, world)).fireImmune()
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:explorer_marker"));
 
     }
 }

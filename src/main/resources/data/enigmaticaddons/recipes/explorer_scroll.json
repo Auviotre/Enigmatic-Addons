@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:explorer_scroll"
+    }
+  ],
+  "pattern": [
+    "WLW",
+    "BXI",
+    "EME"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:ink_sac"
+    },
+    "E": {
+      "item": "minecraft:sugar_cane"
+    },
+    "I": {
+      "item": "minecraft:feather"
+    },
+    "L": {
+      "item": "minecraft:sugar"
+    },
+    "M": {
+      "item": "minecraft:rabbit_foot"
+    },
+    "W": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "X": {
+      "item": "enigmaticlegacy:thicc_scroll"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:explorer_scroll"
+  }
+}
