@@ -7,16 +7,16 @@
     }
   ],
   "pattern": [
-    "n n",
-    "aXa",
+    "a a",
+    "sXs",
     "qbq"
   ],
   "key": {
     "X": {
       "item": "enigmaticlegacy:blazing_core"
     },
-    "n": {
-      "item": "minecraft:blaze_powder"
+    "s": {
+      "item": "enigmaticaddons:sacred_crystal"
     },
     "q": {
       "item": "minecraft:basalt"

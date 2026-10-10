@@ -2,6 +2,7 @@ package auviotre.enigmatic.addon;
 
 import auviotre.enigmatic.addon.client.handlers.ClientEventHandler;
 import auviotre.enigmatic.addon.contents.brewing.AstralBrewingRecipe;
+import auviotre.enigmatic.addon.contents.entities.IchorSprite;
 import auviotre.enigmatic.addon.contents.objects.FilePackResources;
 import auviotre.enigmatic.addon.handlers.AddonEventHandler;
 import auviotre.enigmatic.addon.handlers.AddonKeybindHandler;
@@ -39,6 +40,7 @@ import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.util.MutableHashedLinkedMap;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -114,6 +116,7 @@ public class EnigmaticAddons {
         loadClass(EnigmaticAddonEffects.class);
         loadClass(EnigmaticAddonRecipes.class);
         loadClass(EnigmaticAddonEntities.class);
+        loadClass(EnigmaticAddonMemories.class);
         loadClass(EnigmaticAddonParticles.class);
         loadClass(EnigmaticAddonEnchantments.class);
         loadClass(EnigmaticAddonLootModifier.class);
@@ -304,7 +307,9 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticAddonItems.FALSE_JUSTICE, EnigmaticItems.CURSED_STONE);
             putAfter(entries, EnigmaticItems.CURSED_STONE, EnigmaticAddonItems.PURE_HEART);
             putAfter(entries, EnigmaticAddonItems.PURE_HEART, EnigmaticAddonItems.BLESS_POTION);
-            putAfter(entries, EnigmaticAddonItems.BLESS_POTION, EnigmaticAddonItems.THE_BLESS);
+            putAfter(entries, EnigmaticAddonItems.BLESS_POTION, EnigmaticAddonItems.ICHOR_CURSE_BOTTLE);
+            putAfter(entries, EnigmaticAddonItems.ICHOR_CURSE_BOTTLE, EnigmaticAddonItems.SACRED_CRYSTAL);
+            putAfter(entries, EnigmaticAddonItems.SACRED_CRYSTAL, EnigmaticAddonItems.THE_BLESS);
             putAfter(entries, EnigmaticAddonItems.THE_BLESS, EnigmaticAddonItems.BLESS_AMPLIFIER);
             putAfter(entries, EnigmaticAddonItems.BLESS_AMPLIFIER, EnigmaticAddonItems.SCORCHED_CHARM);
             putAfter(entries, EnigmaticAddonItems.SCORCHED_CHARM, EnigmaticAddonItems.EARTH_PROMISE);
@@ -349,9 +354,13 @@ public class EnigmaticAddons {
         entries.putAfter(new ItemStack(after), new ItemStack(item), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
+    @SubscribeEvent
+    public void attributeCreation(@NotNull EntityAttributeCreationEvent event) {
+        event.put(EnigmaticAddonEntities.ICHOR_SPRITE, IchorSprite.createAttributes().build());
+    }
 
     @SubscribeEvent
-    public void addPackFinders(AddPackFindersEvent event) {
+    public void addPackFinders(@NotNull AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             IModFileInfo modFileInfo = ModList.get().getModFileById(MODID);
             if (modFileInfo == null) return;

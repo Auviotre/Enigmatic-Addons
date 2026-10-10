@@ -5,12 +5,15 @@ import auviotre.enigmatic.addon.client.particles.ChaosParticle;
 import auviotre.enigmatic.addon.client.particles.IchorParticle;
 import auviotre.enigmatic.addon.client.particles.StarDustParticle;
 import auviotre.enigmatic.addon.client.renderers.ExplorerMarkerRender;
+import auviotre.enigmatic.addon.client.renderers.IchorSpriteRenderer;
 import auviotre.enigmatic.addon.client.renderers.models.ExplorerMarkerModel;
+import auviotre.enigmatic.addon.client.renderers.models.IchorSpriteModel;
 import auviotre.enigmatic.addon.helpers.PotionAddonHelper;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEntities;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonParticles;
 import com.aizistral.enigmaticlegacy.helpers.PotionHelper;
+import net.minecraft.client.particle.SpellParticle;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -40,11 +43,13 @@ public class ClientSetupHandler {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.@NotNull RegisterRenderers event) {
         event.registerEntityRenderer(EnigmaticAddonEntities.EXPLORER_MARKER, ExplorerMarkerRender::new);
+        event.registerEntityRenderer(EnigmaticAddonEntities.ICHOR_SPRITE, IchorSpriteRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ExplorerMarkerModel.LAYER, ExplorerMarkerModel::createLayer);
+        event.registerLayerDefinition(IchorSpriteModel.LAYER, IchorSpriteModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -54,5 +59,6 @@ public class ClientSetupHandler {
         event.registerSpriteSet(EnigmaticAddonParticles.PURPLE_STAR_DUST, StarDustParticle.Provider::new);
         event.registerSpriteSet(EnigmaticAddonParticles.ICHOR, IchorParticle.Provider::new);
         event.registerSpriteSet(EnigmaticAddonParticles.ABYSS_CHAOS, ChaosParticle.Provider::new);
+        event.registerSpriteSet(EnigmaticAddonParticles.ICHOR_CURSE, SpellParticle.Provider::new);
     }
 }

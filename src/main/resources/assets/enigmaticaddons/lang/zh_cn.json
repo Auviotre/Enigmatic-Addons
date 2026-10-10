@@ -430,6 +430,10 @@
   "tooltip.enigmaticaddons.blessPotion1": "§5消除所有负面效果",
   "tooltip.enigmaticaddons.blessPotion2": "§5并依据消除数量给予§6纯化抗性§5效果",
 
+  "item.enigmaticaddons.ichor_curse_bottle": "悔孽之瓶",
+
+  "item.enigmaticaddons.sacred_crystal": "神圣灵晶",
+
   "item.enigmaticaddons.the_bless": "恩惠之典",
   "item.enigmaticaddons.the_repentance": "忏悔之音",
 
@@ -603,6 +607,7 @@
   "entity.enigmaticaddons.dragon_breath_arrow": "龙息箭",
   "entity.enigmaticaddons.evil_dagger": "极恶匕首",
   "entity.enigmaticaddons.ichor_spear": "灵液标枪",
+  "entity.enigmaticaddons.ichor_sprite": "纯化晶灵",
   "entity.enigmaticaddons.magic_quartz_dagger": "魔法石英匕首",
   "entity.enigmaticaddons.soul_flame_ball": "幻魂火球",
   "entity.enigmaticaddons.split_dragon_breath": "分裂龙息",
@@ -611,6 +616,7 @@
   "effect.enigmaticaddons.dragon_breath": "瞬时龙息",
   "effect.enigmaticaddons.frozen_heart": "冻结之心",
   "effect.enigmaticaddons.ichor_corrosion": "灵液腐蚀",
+  "effect.enigmaticaddons.ichor_curse": "赎罪之咒",
   "effect.enigmaticaddons.pure_resistance": "纯化抗性",
 
   "item.enigmaticaddons.common_potion.effect.luck": "幸运药水",

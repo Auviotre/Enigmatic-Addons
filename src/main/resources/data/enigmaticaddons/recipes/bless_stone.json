@@ -7,16 +7,19 @@
     }
   ],
   "pattern": [
-    "ILI",
-    "PXP",
-    "IPI"
+    "ISI",
+    "SXS",
+    "GPG"
   ],
   "key": {
     "I": {
-      "item": "enigmaticlegacy:astral_dust"
+      "item": "enigmaticaddons:ichor_droplet"
     },
-    "L": {
-      "item": "enigmaticlegacy:cosmic_heart"
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "S": {
+      "item": "enigmaticaddons:sacred_crystal"
     },
     "X": {
       "item": "enigmaticlegacy:cursed_stone"

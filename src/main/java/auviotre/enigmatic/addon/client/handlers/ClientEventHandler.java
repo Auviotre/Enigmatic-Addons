@@ -93,22 +93,24 @@ public class ClientEventHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent(receiveCanceled = true)
     public void onOverlayRender(RenderGuiOverlayEvent.Pre event) {
-        Minecraft mc = Minecraft.getInstance();
-        Player player = mc.player;
+        Minecraft minecraft = Minecraft.getInstance();
+        Player player = minecraft.player;
         if (event.getOverlay().equals(VanillaGuiOverlay.PLAYER_HEALTH.type()) && OmniconfigAddonHandler.etheriumShieldIcon.getValue() && EtheriumArmor.hasShield(player)) {
-            if (player.isCreative() || player.isSpectator()) return;
-            GuiGraphics graphics = event.getGuiGraphics();
-            PoseStack pose = graphics.pose();
-            int x = event.getWindow().getGuiScaledWidth() / 2 - 92;
+            if (minecraft.gameMode != null && minecraft.gameMode.canHurtPlayer()) {
+                if (player.isCreative() || player.isSpectator()) return;
+                GuiGraphics graphics = event.getGuiGraphics();
+                PoseStack pose = graphics.pose();
+                int x = event.getWindow().getGuiScaledWidth() / 2 - 101;
 
-            int xCorrection = 0;
-            int yCorrection = 0;
-            RenderSystem.enableBlend();
-            RenderSystem.setShaderTexture(0, ICONS_LOCATION);
-            int l = event.getWindow().getGuiScaledHeight() - 32 - 8;
-            graphics.blit(ICONS_LOCATION, x + xCorrection, l + yCorrection, 0, 16, 83, 11, 256, 256);
-            RenderSystem.disableBlend();
-            RenderSystem.setShaderTexture(0, MC_ICONS);
+                int xCorrection = 0;
+                int yCorrection = 0;
+                RenderSystem.enableBlend();
+                RenderSystem.setShaderTexture(0, ICONS_LOCATION);
+                int l = event.getWindow().getGuiScaledHeight() - 32 - 8;
+                graphics.blit(ICONS_LOCATION, x + xCorrection, l + yCorrection, 9, 0, 9, 9, 256, 256);
+                RenderSystem.disableBlend();
+                RenderSystem.setShaderTexture(0, MC_ICONS);
+            }
         }
     }
 }

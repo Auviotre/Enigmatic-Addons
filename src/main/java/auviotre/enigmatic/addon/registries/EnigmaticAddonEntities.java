@@ -31,6 +31,8 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
     public static final EntityType<AbyssProjectile> ABYSS_PROJECTILE = null;
     @ObjectHolder(value = "enigmaticaddons:explorer_marker", registryName = "entity_type")
     public static final EntityType<ExplorerMarker> EXPLORER_MARKER = null;
+    @ObjectHolder(value = "enigmaticaddons:ichor_sprite", registryName = "entity_type")
+    public static final EntityType<IchorSprite> ICHOR_SPRITE = null;
     private static final EnigmaticAddonEntities INSTANCE = new EnigmaticAddonEntities();
 
     private EnigmaticAddonEntities() {
@@ -83,6 +85,9 @@ public class EnigmaticAddonEntities extends AbstractRegistry<EntityType<?>> {
                 () -> EntityType.Builder.<ExplorerMarker>of(ExplorerMarker::new, MobCategory.MISC).sized(1.0F, 1.0F).clientTrackingRange(64)
                         .setCustomClientFactory((spawnEntity, world) -> new ExplorerMarker(EXPLORER_MARKER, world)).fireImmune()
                         .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:explorer_marker"));
-
+        this.register("ichor_sprite",
+                () -> EntityType.Builder.<IchorSprite>of(IchorSprite::new, MobCategory.CREATURE).sized(0.35F, 0.6F).clientTrackingRange(8)
+                        .setCustomClientFactory((spawnEntity, world) -> new IchorSprite(ICHOR_SPRITE, world)).fireImmune().updateInterval(2)
+                        .setShouldReceiveVelocityUpdates(true).build("enigmaticaddons:ichor_sprite"));
     }
 }

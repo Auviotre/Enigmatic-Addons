@@ -22,10 +22,10 @@
       "item": "enigmaticaddons:pure_heart"
     },
     "e": {
-      "item": "minecraft:gold_block"
+      "item": "enigmaticaddons:sacred_crystal"
     },
     "a": {
-      "item": "enigmaticlegacy:evil_essence"
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

@@ -120,6 +120,12 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Pure Heart")
     @ObjectHolder(value = "enigmaticaddons:pure_heart", registryName = "item")
     public static final PureHeart PURE_HEART = null;
+    @ConfigurableItem("Bottle of Penance")
+    @ObjectHolder(value = "enigmaticaddons:ichor_curse_bottle", registryName = "item")
+    public static final IchorCurseBottle ICHOR_CURSE_BOTTLE = null;
+    @ConfigurableItem("Sacred Crystal")
+    @ObjectHolder(value = "enigmaticaddons:sacred_crystal", registryName = "item")
+    public static final SacredCrystal SACRED_CRYSTAL = null;
     @ConfigurableItem("The Bless")
     @ObjectHolder(value = "enigmaticaddons:the_bless", registryName = "item")
     public static final TheBless THE_BLESS = null;
@@ -214,6 +220,8 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("ichoroot", Ichoroot::new);
         this.register("ichor_spear", IchorSpear::new);
         this.register("pure_heart", PureHeart::new);
+        this.register("ichor_curse_bottle", IchorCurseBottle::new);
+        this.register("sacred_crystal", SacredCrystal::new);
         this.register("the_bless", TheBless::new);;
         this.register("the_repentance", TheRepentance::new);
         this.register("bless_amplifier", BlessAmplifier::new);

@@ -1,0 +1,29 @@
+{
+  "type": "enigmaticlegacy:shapeless_no_return_craft",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:ichor_curse_bottle"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    {
+      "item": "enigmaticaddons:ichor_droplet"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+	{
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "result": {
+    "item": "enigmaticaddons:ichor_curse_bottle"
+  }
+}

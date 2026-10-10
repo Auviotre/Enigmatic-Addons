@@ -418,6 +418,10 @@
   "book.enigmaticaddons.entry.scorched_charm.page.1": "To purify the power of flames, in addition to protection, we also need more auxiliary abilities.<br2/>Unlike Frost Walker, this charm allows you to walk directly on lava without the need to transform it into other strange objects, making it easier for you to travel in the Nether.",
   "book.enigmaticaddons.entry.scorched_charm.page.2": "In addition, with the power of ichor, this charm has awakened some blessings from ancient times, which can turn the heat in lava into the driving force of life. And the blessing itself seems to be called the 'Seven Suns'.",
 
+  "item.enigmaticaddons.ichor_curse_bottle": "Bottle of Penance",
+
+  "item.enigmaticaddons.sacred_crystal": "Sacred Crystal",
+
   "item.enigmaticaddons.the_bless": "The Bless",
   "item.enigmaticaddons.the_repentance": "The Repentance",
 
@@ -603,6 +607,7 @@
   "entity.enigmaticaddons.dragon_breath_arrow": "Dragon Breath Arrow",
   "entity.enigmaticaddons.evil_dagger": "Nefarious Dagger",
   "entity.enigmaticaddons.ichor_spear": "Ichor Spear",
+  "entity.enigmaticaddons.ichor_sprite": "Pure Ichor Sprite",
   "entity.enigmaticaddons.magic_quartz_dagger": "Magic Quartz Dagger",
   "entity.enigmaticaddons.soul_flame_ball": "Illusion Soul Fireball",
   "entity.enigmaticaddons.split_dragon_breath": "Split Dragon Breath",
@@ -611,6 +616,7 @@
   "effect.enigmaticaddons.dragon_breath": "Instantly Dragon Breath",
   "effect.enigmaticaddons.frozen_heart": "Frozen Heart",
   "effect.enigmaticaddons.ichor_corrosion": "Ichor Corrosion",
+  "effect.enigmaticaddons.ichor_curse": "Curse of Penance",
   "effect.enigmaticaddons.pure_resistance": "Pure Resistance",
 
   "item.enigmaticaddons.common_potion.effect.luck": "Potion of Luck",

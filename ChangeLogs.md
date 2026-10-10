@@ -1,6 +1,15 @@
 ***
 ## 1.2 ~ 1.3 Update: More Powerful
 ***
+## [Release 1.2.7] (2026//)
+### Features:
+- New Items (**Sacred Crystal**, **Bottle of Penance**);
+- New Entities (**Pure Ichor Sprite**);
+### Changes:
+- ;
+### Fixes:
+- Fixed some issues;
+***
 ## [Release 1.2.6] (2026/5/28)
 ### Features:
 - New Items (**Potion of Purification**, **Scroll of Survivor**, **Scroll of Explorer** and **Scroll of Hunter**);

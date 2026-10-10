@@ -1514,6 +1514,9 @@ public class AddonEventHandler {
 
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player && Float.isNaN(player.getHealth()))
+            player.setHealth(1.0F);
+
         if (!OmniconfigAddonHandler.EnableCurseBoost.getValue()) return;
         Entity entity = event.getEntity();
         Predicate<WrappedGoal> meleeOrBow = ((goal) -> goal.getGoal() instanceof MeleeAttackGoal || goal.getGoal() instanceof RangedCrossbowAttackGoal<?> || goal.getGoal() instanceof RangedBowAttackGoal<?>);

@@ -1,9 +1,6 @@
 package auviotre.enigmatic.addon.registries;
 
-import auviotre.enigmatic.addon.contents.effects.FrozenHeart;
-import auviotre.enigmatic.addon.contents.effects.IchorCorrosion;
-import auviotre.enigmatic.addon.contents.effects.PureResistance;
-import auviotre.enigmatic.addon.contents.effects.RemainDragonBreath;
+import auviotre.enigmatic.addon.contents.effects.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
@@ -17,6 +14,8 @@ public class EnigmaticAddonEffects extends AbstractRegistry<MobEffect> {
     public static final PureResistance PURE_RESISTANCE_EFFECT = null;
     @ObjectHolder(value = "enigmaticaddons:ichor_corrosion", registryName = "mob_effect")
     public static final IchorCorrosion ICHOR_CORROSION_EFFECT = null;
+    @ObjectHolder(value = "enigmaticaddons:ichor_curse", registryName = "mob_effect")
+    public static final IchorCurse ICHOR_CURSE_EFFECT = null;
     private static final EnigmaticAddonEffects INSTANCE = new EnigmaticAddonEffects();
 
     private EnigmaticAddonEffects() {
@@ -25,5 +24,6 @@ public class EnigmaticAddonEffects extends AbstractRegistry<MobEffect> {
         this.register("frozen_heart", FrozenHeart::new);
         this.register("pure_resistance", PureResistance::new);
         this.register("ichor_corrosion", IchorCorrosion::new);
+        this.register("ichor_curse", IchorCurse::new);
     }
 }

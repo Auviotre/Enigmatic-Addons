@@ -7,8 +7,8 @@
     }
   ],
   "pattern": [
-    "mem",
-    "tXa",
+    "ama",
+    "sXs",
     "nbn"
   ],
   "key": {
@@ -27,11 +27,8 @@
     "a": {
       "item": "enigmaticaddons:pure_heart"
     },
-    "t": {
-      "item": "enigmaticlegacy:twisted_heart"
-    },
-    "e": {
-      "item": "enigmaticlegacy:cosmic_heart"
+    "s": {
+      "item": "enigmaticaddons:sacred_crystal"
     }
   },
   "result": {
