@@ -9,7 +9,6 @@ import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.FluidTags;
@@ -37,6 +36,7 @@ public class ScorchedCharm extends ItemBaseCurio implements ICursed, IBlessed {
     public static Omniconfig.PerhapsParameter lifestealModifier;
     public static Omniconfig.PerhapsParameter resistanceProbability;
     public List<ResourceKey<DamageType>> immunityList = new ArrayList<>();
+    public static final List<LivingEntity> EQUIP_LIST = new ArrayList<>();
 
     public ScorchedCharm() {
         super(ItemBaseCurio.getDefaultProperties().rarity(Rarity.EPIC).fireResistant());
@@ -77,6 +77,7 @@ public class ScorchedCharm extends ItemBaseCurio implements ICursed, IBlessed {
         if (entity.isInLava()) {
             if (entity.tickCount % 20 == 0) entity.heal((float) lavaHealAmount.getValue());
             if (entity instanceof Player player && !player.isAffectedByFluids()) return;
+            EQUIP_LIST.add(entity);
             CollisionContext collisionContext = CollisionContext.of(entity);
             if (collisionContext.isAbove(LiquidBlock.STABLE_SHAPE, entity.blockPosition(), true) && !entity.level().getFluidState(entity.blockPosition().above()).is(FluidTags.LAVA)) {
                 entity.setOnGround(true);
@@ -92,5 +93,9 @@ public class ScorchedCharm extends ItemBaseCurio implements ICursed, IBlessed {
             return entity instanceof Player player && SuperAddonHandler.isOKOne(player);
         }
         return false;
+    }
+
+    public void onUnequip(SlotContext context, ItemStack newStack, ItemStack stack) {
+        EQUIP_LIST.remove(context.entity());
     }
 }

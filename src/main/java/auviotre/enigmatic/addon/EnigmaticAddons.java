@@ -3,6 +3,7 @@ package auviotre.enigmatic.addon;
 import auviotre.enigmatic.addon.client.handlers.ClientEventHandler;
 import auviotre.enigmatic.addon.contents.brewing.AstralBrewingRecipe;
 import auviotre.enigmatic.addon.contents.entities.IchorSprite;
+import auviotre.enigmatic.addon.contents.items.ScorchedCharm;
 import auviotre.enigmatic.addon.contents.objects.FilePackResources;
 import auviotre.enigmatic.addon.handlers.AddonEventHandler;
 import auviotre.enigmatic.addon.handlers.AddonKeybindHandler;
@@ -198,6 +199,7 @@ public class EnigmaticAddons {
 
     public void performCleanup() {
         AddonEventHandler.NIGHT_SCROLL_BOXES.clear();
+        ScorchedCharm.EQUIP_LIST.clear();
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

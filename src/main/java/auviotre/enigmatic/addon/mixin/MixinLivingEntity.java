@@ -1,6 +1,7 @@
 package auviotre.enigmatic.addon.mixin;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
+import auviotre.enigmatic.addon.contents.items.ScorchedCharm;
 import auviotre.enigmatic.addon.contents.items.TotemOfMalice;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
@@ -144,7 +145,7 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
 
     @Inject(method = "canStandOnFluid", at = @At("RETURN"), cancellable = true)
     public void canStandOnFluidMix(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue() && SuperpositionHandler.hasCurio(this.self(), EnigmaticAddonItems.SCORCHED_CHARM)) {
+        if (!cir.getReturnValue() && ScorchedCharm.EQUIP_LIST.contains(this.self())) {
             if (this.self().isCrouching()) return;
             cir.setReturnValue(fluidState.is(FluidTags.LAVA));
         }
