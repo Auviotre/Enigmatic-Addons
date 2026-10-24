@@ -225,7 +225,7 @@ public class BlessRing extends ItemBaseCurio {
                     betrayal.set(0);
                 } else {
                     if (Helper.getBlessAttribute(stack, CURSE_TIME_LEVEL) == 6)
-                        betrayal.addAndGet(-player.getRandom().nextInt(2) - 2);
+                        betrayal.addAndGet(-player.getRandom().nextInt(4) - 3);
                     betrayal.addAndGet(-player.getRandom().nextInt(3) - 2);
                 }
             }
@@ -367,8 +367,8 @@ public class BlessRing extends ItemBaseCurio {
 
         public static int getMaxBetrayal(ItemStack stack) {
             int extra = 0;
-            if (getBlessAttribute(stack, CURSE_TIME_LEVEL) == 6) extra += 350;
-            return 1250 - getBlessAttribute(stack, BLESS_DURATION) * 100 + extra;
+            if (getBlessAttribute(stack, CURSE_TIME_LEVEL) == 6) extra += 400;
+            return 1600 - getBlessAttribute(stack, BLESS_DURATION) * 100 + extra;
         }
 
         public static int getBlessAttribute(ItemStack stack, String id) {

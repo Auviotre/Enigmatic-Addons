@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "enigmaticaddons:is_enabled",
+      "item": "enigmaticaddons:forger_crystal"
+    }
+  ],
+  "pattern": [
+    " Q ",
+    "QXQ",
+    "EPE"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:gold_ingot"
+    },
+    "P": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "Q": {
+      "item": "enigmaticaddons:sacred_crystal"
+    },
+    "X": {
+      "item": "enigmaticaddons:forger_gem"
+    }
+  },
+  "result": {
+    "item": "enigmaticaddons:forger_crystal"
+  }
+}

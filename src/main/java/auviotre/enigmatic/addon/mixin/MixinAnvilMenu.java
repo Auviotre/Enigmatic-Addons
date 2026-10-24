@@ -29,7 +29,7 @@ public abstract class MixinAnvilMenu extends ItemCombinerMenu {
 
     @Inject(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/AnvilMenu;broadcastChanges()V"))
     public void createResultMix(CallbackInfo ci) {
-        if (this.player != null && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.FORGER_GEM)) {
+        if (this.player != null && SuperpositionHandler.hasCurio(player, EnigmaticAddonItems.FORGER_CRYSTAL)) {
             if (ForgerGem.levelNotValue.getValue()) {
                 this.cost.set((this.getCost() + 1) / 2);
             } else {

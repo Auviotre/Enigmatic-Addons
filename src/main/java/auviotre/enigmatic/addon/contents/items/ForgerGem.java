@@ -1,6 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
-import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
+import auviotre.enigmatic.addon.registries.EnigmaticAddonItems;
 import com.aizistral.enigmaticlegacy.api.generic.SubscribeConfig;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
@@ -9,7 +9,6 @@ import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.aizistral.omniconfig.wrappers.OmniconfigWrapper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -64,11 +63,6 @@ public class ForgerGem extends ItemBaseCurio {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgerGem2");
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgerGem3");
-            if (Minecraft.getInstance().player != null && SuperAddonHandler.isOKOne(Minecraft.getInstance().player)) {
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgerGem4");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticaddons.forgerGem5");
-            }
         } else {
             ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.holdShift");
         }
@@ -87,13 +81,9 @@ public class ForgerGem extends ItemBaseCurio {
         return tooltips;
     }
 
-    public boolean isPresent(Player player) {
-        return SuperAddonHandler.isOKOne(player) && SuperpositionHandler.hasCurio(player, this);
-    }
-
     public boolean canEquip(SlotContext context, ItemStack stack) {
         if (context.entity() instanceof Player) {
-            return super.canEquip(context, stack);
+            return super.canEquip(context, stack) && !SuperpositionHandler.hasCurio(context.entity(), EnigmaticAddonItems.FORGER_CRYSTAL);
         }
         return false;
     }

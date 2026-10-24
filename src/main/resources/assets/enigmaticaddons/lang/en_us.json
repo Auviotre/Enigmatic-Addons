@@ -298,7 +298,7 @@
 
   "book.enigmaticaddons.entry.forger_gem.name": "Forger's Gem",
   "book.enigmaticaddons.entry.forger_gem.page.1": "Forging items is an inevitable step to strength enhancement, but before reach the perfection, there will always be concerns due to expensive costs or anvil breakage.<br2/>This accessory will directly inject ancient forging techniques into your hands, effectively reducing the probability of anvil breakage, and utilizing the energy of",
-  "book.enigmaticaddons.entry.forger_gem.page.2": "the gem to reduce the cost, thereby increasing the upper limit of forging.<br2/>In addition, the magic of the Seven Curses also allows you to create some Unbreakable creations with two identical new tools.",
+  "book.enigmaticaddons.entry.forger_gem.page.2": "the gem to reduce the cost, thereby increasing the upper limit of forging.<br2/>Furthermore, the advancement of your craftsmanship also allows you to slightly improve the performance of your creations when forging.",
 
   "item.enigmaticaddons.adventure_charm": "Emblem of Adventurer",
   "item.enigmaticaddons.despair_insignia": "Insignia of Despair",
@@ -385,7 +385,7 @@
   "item.enigmaticaddons.ichor_droplet": "Ichor Droplet",
 
   "book.enigmaticaddons.entry.ichor_droplet.name": "Ichor",
-  "book.enigmaticlegacy.entry.ichor_droplet.heading": "Blood of Gods",
+  "book.enigmaticaddons.entry.ichor_droplet.heading": "Blood of Gods",
   "book.enigmaticaddons.entry.ichor_droplet.page.1": "For this so-called \"blood of gods\", you have finally discovered a stable source to obtain, which is to hunt for screaming ghasts floating in the Nether.<br2/>The power of the curse triggered the tiny residual \"divinity\" in the blood and tears of the ghast, allowing the Ichor to reappear in front of everyone.",
   "book.enigmaticaddons.entry.ichor_droplet.page.2": "However, do not ponder where these 'divinity' actually comes from, as it has long been a secret of ancient times. For you now, all you need to think about is how to utilize and develop this unexpected product. For example, brewing some extreme potions.",
 
@@ -420,7 +420,22 @@
 
   "item.enigmaticaddons.ichor_curse_bottle": "Bottle of Penance",
 
+  "book.enigmaticaddons.entry.bless_potion.name": "Potion of Purification",
+  "book.enigmaticaddons.entry.bless_potion.heading.1": "The Potion Brewing",
+  "book.enigmaticaddons.entry.bless_potion.page.1": "Dissolve a Pure Heart in honey to obtain a fine remedy, though a curse still stirs within it.<br2/>This potion attempts to clear all negative effects you have and converts them into Pure Resistance based on their amplifiers.",
+  "book.enigmaticaddons.entry.bless_potion.page.2": "So please do not drink it casually when you have no negative effects — otherwise, you would be better off simply enjoying the flavor of honey...",
+
   "item.enigmaticaddons.sacred_crystal": "Sacred Crystal",
+
+  "book.enigmaticaddons.entry.ichor_curse_bottle.name": "Bottle of Penance",
+  "book.enigmaticaddons.entry.ichor_curse_bottle.page.1": "By combining an ominous power with Ichor, you can feel the Nether slowly responding to this force.<br2/>The Nether also has mysterious guardian spirits that restore creatures to life when they are on the brink of death, granting them lasting protection until they return to the proper course of their existence. But under the",
+  "book.enigmaticaddons.entry.ichor_curse_bottle.page.2": "erosion of the curse, the guardian spirits not only abandoned their original duty, but even turned toward targets that should never have been protected.",
+  "book.enigmaticaddons.entry.ichor_curse_bottle.page.3": "Now all of this is long gone, but believe that after drinking this potion, you will glimpse those flickers of the past — and feel remorse because of those gleaming, unknown figures.",
+
+  "book.enigmaticaddons.entry.sacred_crystal.name": "Sacred Crystal",
+  "book.enigmaticaddons.entry.sacred_crystal.heading.1": "The Crystal",
+  "book.enigmaticaddons.entry.sacred_crystal.page.1": "Tear apart those seemingly sacred creations and seize the cores of those Pure Ichor Spirits. The crystal is filled with a power unlike any other, pure and sacred, but the curse within your body does not seem to repel it. <br2/>The Pure Ichor Spirit's bizarre resistance and recovery effects have been perfectly inherited in this item, which",
+  "book.enigmaticaddons.entry.sacred_crystal.page.2": "can be used to craft some defense-themed items.<br2/>However, what is intriguing is the relationship between the curse and the power inherent in it. Can it be resisted? Can it be reversed? Can it be replaced?...",
 
   "item.enigmaticaddons.the_bless": "The Bless",
   "item.enigmaticaddons.the_repentance": "The Repentance",
@@ -456,6 +471,14 @@
   "book.enigmaticaddons.entry.bless_amplifier.name": "Tome of Divination",
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "After the baptism of Ichor, the desire for the book has transformed from acquisition to giving, further enhancing the magical power in the item.<br2/>If you allow it to come in close contact with any enchanted item, it'll sacrifice itself and double the level of enchantments in the item.",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "Breaking the limitations of the enchantments to a higher level is its true purpose.<br2/>By the way, not all limitation can be broken, and there are also some enchantments that cannot withstand the power and become ineffective.",
+
+  "item.enigmaticaddons.forger_crystal": "Flawless Forging Gem",
+  "tooltip.enigmaticaddons.forgerCrystal": "§5Unbreakable tools can be used as §dTotems of Undying§5.",
+
+  "book.enigmaticaddons.entry.forger_crystal.name": "Flawless Forging",
+  "book.enigmaticaddons.entry.forger_crystal.page.1": "Once you possess the Crystal, you can further upgrade the Forger Gem.<br2/>After the upgrade, your masterful forging techniques ensure that you will never damage an anvil in the slightest, while still being able to draw on the gem's energy to greatly reduce costs.",
+  "book.enigmaticaddons.entry.forger_crystal.page.2": "In addition, this accessory also allows you to craft certain unbreakable creations, though this requires two identical brand-new tools and a large amount of experience.<br2/>Under the Resonance of",
+  "book.enigmaticaddons.entry.forger_crystal.page.3": "Redemption, this gem can also harness the power of unbreakability to prioritize pulling you free from the predicament of death.",
 
   "item.enigmaticaddons.bless_stone": "Holy Stone",
 

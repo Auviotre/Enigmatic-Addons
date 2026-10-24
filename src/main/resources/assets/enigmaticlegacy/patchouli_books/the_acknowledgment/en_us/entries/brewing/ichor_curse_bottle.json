@@ -1,0 +1,28 @@
+{
+  "name": "book.enigmaticaddons.entry.ichor_curse_bottle.name",
+  "icon": "enigmaticaddons:ichor_curse_bottle",
+  "category": "enigmaticlegacy:brewing",
+  "advancement": "enigmaticaddons:book/brewing/ichor_curse_bottle",
+  "priority": false,
+  "sortnum": 40,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.ichor_curse_bottle.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:ichor_curse_bottle",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.ichor_curse_bottle.page.2"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.ichor_curse_bottle.page.3"
+    },
+    {
+      "type": "empty",
+      "draw_filler": false
+    }
+  ]
+}

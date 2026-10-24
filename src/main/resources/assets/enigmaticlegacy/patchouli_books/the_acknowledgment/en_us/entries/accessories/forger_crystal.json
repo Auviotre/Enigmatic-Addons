@@ -1,0 +1,26 @@
+{
+  "name": "book.enigmaticaddons.entry.forger_crystal.name",
+  "icon": "enigmaticaddons:forger_crystal",
+  "category": "enigmaticlegacy:accessories",
+  "advancement": "enigmaticaddons:book/accessories/forger_crystal",
+  "secret": false,
+  "priority": false,
+  "read_by_default": false,
+  "sortnum": 57,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.forger_crystal.page.1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "enigmaticaddons:forger_crystal",
+      "title": " ",
+      "text": "book.enigmaticaddons.entry.forger_crystal.page.2"
+    },
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.forger_crystal.page.3"
+    }
+  ]
+}

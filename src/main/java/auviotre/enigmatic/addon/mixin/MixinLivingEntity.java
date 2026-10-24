@@ -1,11 +1,13 @@
 package auviotre.enigmatic.addon.mixin;
 
 import auviotre.enigmatic.addon.EnigmaticAddons;
+import auviotre.enigmatic.addon.contents.items.BlessRing;
 import auviotre.enigmatic.addon.contents.items.ScorchedCharm;
 import auviotre.enigmatic.addon.contents.items.TotemOfMalice;
 import auviotre.enigmatic.addon.handlers.OmniconfigAddonHandler;
 import auviotre.enigmatic.addon.handlers.SuperAddonHandler;
 import auviotre.enigmatic.addon.packets.clients.PacketEvilCage;
+import auviotre.enigmatic.addon.packets.clients.PacketForgerCrystal;
 import auviotre.enigmatic.addon.packets.clients.PacketMaliceTotem;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonDamageTypes;
 import auviotre.enigmatic.addon.registries.EnigmaticAddonEffects;
@@ -16,11 +18,15 @@ import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.ByteTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Attackable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -106,7 +112,8 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
 
     @Inject(method = "checkTotemDeathProtection", at = @At("RETURN"), cancellable = true)
     public void checkMix(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && this.self() instanceof Player player && TotemOfMalice.isEnable(player, true)) {
+        if (cir.getReturnValue() || source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) || !(this.self() instanceof Player player)) return;
+        if (TotemOfMalice.isEnable(player, true)) {
             ItemStack stack = ItemStack.EMPTY;
             if (!TotemOfMalice.getValidTotem(player).isEmpty()) {
                 ItemStack itemStack = TotemOfMalice.getValidTotem(player);
@@ -138,6 +145,32 @@ public abstract class MixinLivingEntity extends Entity implements Attackable, IF
                 }
                 this.setHealth(this.getMaxHealth());
                 this.removeAllEffects();
+                cir.setReturnValue(true);
+                return;
+            }
+        }
+        ItemStack stack = SuperpositionHandler.getCurioStack(player, EnigmaticAddonItems.FORGER_CRYSTAL);
+        if (!stack.isEmpty() && BlessRing.Helper.blessAvailable(player)) {
+            Iterable<ItemStack> slots = this.self().getAllSlots();
+            ItemStack unbreakable = null;
+            for (ItemStack slot : slots) {
+                if (slot.getOrCreateTag().getBoolean("Unbreakable")) {
+                    unbreakable = slot;
+                    break;
+                }
+            }
+            if (unbreakable != null) {
+                unbreakable.addTagElement("Unbreakable", ByteTag.valueOf(false));
+
+                this.setHealth(Math.max(2.0F, this.getMaxHealth() * 0.1F));
+                this.self().addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
+                this.self().addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
+                this.self().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+                if (level() instanceof ServerLevel level) {
+                    PacketDistributor.PacketTarget packet = PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(this.getX(), this.getY(), this.getZ(), 64.0, level().dimension()));
+                    EnigmaticAddons.packetInstance.send(packet, new PacketForgerCrystal(this.getX(), this.getY(), this.getZ(), unbreakable.copy()));
+                }
+
                 cir.setReturnValue(true);
             }
         }

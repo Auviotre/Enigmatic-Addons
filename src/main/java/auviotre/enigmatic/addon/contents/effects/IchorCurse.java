@@ -30,8 +30,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class IchorCurse extends MobEffect {
+    private static final UUID HEALTH_UUID = UUID.fromString("C20ADE53-F025-4254-8DE8-825ABA5BC18F");
+
     public IchorCurse() {
         super(MobEffectCategory.NEUTRAL, 0xFFBF4B);
         MinecraftForge.EVENT_BUS.register(this);
@@ -46,7 +49,7 @@ public class IchorCurse extends MobEffect {
                 double yOffset = monster.getBbHeight() / 4;
                 ParticleOptions particle = EnigmaticAddonParticles.ICHOR_CURSE;
                 server.sendParticles(particle, monster.getX(), monster.getY(0.5), monster.getZ(), 1, hOffset, yOffset, hOffset, 0);
-                monster.getAttributes().addTransientAttributeModifiers(ImmutableMultimap.of(Attributes.MAX_HEALTH, new AttributeModifier("ichor_curse_boost", 0.6, AttributeModifier.Operation.MULTIPLY_TOTAL)));
+                monster.getAttributes().addTransientAttributeModifiers(ImmutableMultimap.of(Attributes.MAX_HEALTH, new AttributeModifier(HEALTH_UUID, "ichor_curse_boost", 0.6, AttributeModifier.Operation.MULTIPLY_TOTAL)));
             }
         }
     }

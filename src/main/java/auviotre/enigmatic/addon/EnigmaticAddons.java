@@ -105,6 +105,7 @@ public class EnigmaticAddons {
         builder.add(UUID.fromString("40f094c1-c795-415b-9bba-127e9cdb64d5"));
         builder.add(UUID.fromString("03190dde-5929-4743-b877-f30558deac41"));
         builder.add(UUID.fromString("120f1c6d-25a7-4a37-9fa8-c8913b7af0c7"));
+        builder.add(UUID.fromString("50ec50ed-d8f3-4cae-b26c-bab7d38432f5"));
         Acceptors = builder.build();
     }
 
@@ -155,6 +156,7 @@ public class EnigmaticAddons {
         packetInstance.registerMessage(8, PacketEtheriumShieldSync.class, PacketEtheriumShieldSync::encode, PacketEtheriumShieldSync::decode, PacketEtheriumShieldSync::handle);
         packetInstance.registerMessage(9, PacketForgottenIce.class, PacketForgottenIce::encode, PacketForgottenIce::decode, PacketForgottenIce::handle);
         packetInstance.registerMessage(10, PacketPlaySound.class, PacketPlaySound::encode, PacketPlaySound::decode, PacketPlaySound::handle);
+        packetInstance.registerMessage(11, PacketForgerCrystal.class, PacketForgerCrystal::encode, PacketForgerCrystal::decode, PacketForgerCrystal::handle);
         LOGGER.info("Common setup phase finished successfully.");
     }
 
@@ -314,7 +316,8 @@ public class EnigmaticAddons {
             putAfter(entries, EnigmaticAddonItems.SACRED_CRYSTAL, EnigmaticAddonItems.THE_BLESS);
             putAfter(entries, EnigmaticAddonItems.THE_BLESS, EnigmaticAddonItems.BLESS_AMPLIFIER);
             putAfter(entries, EnigmaticAddonItems.BLESS_AMPLIFIER, EnigmaticAddonItems.SCORCHED_CHARM);
-            putAfter(entries, EnigmaticAddonItems.SCORCHED_CHARM, EnigmaticAddonItems.EARTH_PROMISE);
+            putAfter(entries, EnigmaticAddonItems.SCORCHED_CHARM, EnigmaticAddonItems.FORGER_CRYSTAL);
+            putAfter(entries, EnigmaticAddonItems.FORGER_CRYSTAL, EnigmaticAddonItems.EARTH_PROMISE);
             putAfter(entries, EnigmaticAddonItems.EARTH_PROMISE, EnigmaticAddonItems.BLESS_STONE);
             putAfter(entries, EnigmaticAddonItems.BLESS_STONE, EnigmaticAddonItems.BLESS_RING);
             putAfter(entries, EnigmaticAddonItems.BLESS_RING, EnigmaticItems.DARKEST_SCROLL);

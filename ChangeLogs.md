@@ -1,12 +1,13 @@
 ***
 ## 1.2 ~ 1.3 Update: More Powerful
 ***
-## [Release 1.2.7] (2026//)
+## [Release 1.2.7] (2026/10/24)
 ### Features:
-- New Items (**Sacred Crystal**, **Bottle of Penance**);
+- New Items (**Sacred Crystal**, **Bottle of Penance**, **Flawless Forging Crystal**);
 - New Entities (**Pure Ichor Sprite**);
 ### Changes:
-- ;
+- Remade the function of **Forger's Gem**;
+- Adjusted a lot of recipes related to **Redemption**;
 ### Fixes:
 - Fixed some issues;
 ***

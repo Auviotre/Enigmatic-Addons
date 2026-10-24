@@ -151,6 +151,9 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
     @ConfigurableItem("Forgers Gem")
     @ObjectHolder(value = "enigmaticaddons:forger_gem", registryName = "item")
     public static final ForgerGem FORGER_GEM = null;
+    @ConfigurableItem("Flawless Forging Gem")
+    @ObjectHolder(value = "enigmaticaddons:forger_crystal", registryName = "item")
+    public static final ForgerCrystal FORGER_CRYSTAL = null;
     @ConfigurableItem("Charm of Scorched Sun")
     @ObjectHolder(value = "enigmaticaddons:scorched_charm", registryName = "item")
     public static final ScorchedCharm SCORCHED_CHARM = null;
@@ -222,7 +225,7 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("pure_heart", PureHeart::new);
         this.register("ichor_curse_bottle", IchorCurseBottle::new);
         this.register("sacred_crystal", SacredCrystal::new);
-        this.register("the_bless", TheBless::new);;
+        this.register("the_bless", TheBless::new);
         this.register("the_repentance", TheRepentance::new);
         this.register("bless_amplifier", BlessAmplifier::new);
         this.register("thunder_scroll", ThunderScroll::new);
@@ -231,6 +234,7 @@ public class EnigmaticAddonItems extends AbstractRegistry<Item> {
         this.register("broken_ring", BlessRing.Broken::new);
         this.register("etherium_core", EtheriumCore::new);
         this.register("forger_gem", ForgerGem::new);
+        this.register("forger_crystal", ForgerCrystal::new);
         this.register("scorched_charm", ScorchedCharm::new);
         this.register("evil_dagger", EvilDagger::new);
         this.register("totem_of_malice", TotemOfMalice::new);

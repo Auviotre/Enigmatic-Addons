@@ -16,7 +16,7 @@
       "type": "spotlight",
       "item": "enigmaticaddons:ichor_droplet",
       "link_recipe": true,
-      "title": "book.enigmaticlegacy.entry.ichor_droplet.heading",
+      "title": "book.enigmaticaddons.entry.ichor_droplet.heading",
       "text": "book.enigmaticaddons.entry.ichor_droplet.page.2"
     }
   ]

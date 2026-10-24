@@ -1305,7 +1305,7 @@ public class AddonEventHandler {
         ItemStack right = event.getRight();
         if (!left.isEmpty() && !right.isEmpty()) {
             ItemStack copy = left.copy();
-            if (player != null && FORGER_GEM.isPresent(player) && SuperAddonHandler.isOKOne(player)) {
+            if (player != null && FORGER_CRYSTAL.isPresent(player) && SuperAddonHandler.isOKOne(player)) {
                 boolean check = left.isDamageableItem() && !ForgerGem.blackList.contains(ForgeRegistries.ITEMS.getKey(left.getItem()));
                 if (check && ForgerGem.strictUnbreakableForge.getValue()) {
                     check = left.isRepairable() && (left.getItem() instanceof TieredItem || left.getItem() instanceof ArmorItem);
@@ -1339,8 +1339,12 @@ public class AddonEventHandler {
     @SubscribeEvent
     public void onAnvilRepair(AnvilRepairEvent event) {
         Player player = event.getEntity();
-        if (player != null && !player.level().isClientSide && SuperpositionHandler.hasCurio(player, FORGER_GEM)) {
-            event.setBreakChance(event.getBreakChance() / 6);
+        if (player != null && !player.level().isClientSide) {
+            if (SuperpositionHandler.hasCurio(player, FORGER_GEM)) {
+                event.setBreakChance(event.getBreakChance() / 6);
+            } else if (SuperpositionHandler.hasCurio(player, FORGER_CRYSTAL)) {
+                event.setBreakChance(event.getBreakChance() / 10);
+            }
         }
     }
 

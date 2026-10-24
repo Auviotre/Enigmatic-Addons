@@ -20,7 +20,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
@@ -48,6 +47,7 @@ import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
+import java.util.UUID;
 
 public class IchorSprite extends PathfinderMob implements TraceableEntity {
     public static final int BEAM_RANGE = 8;
@@ -77,6 +77,8 @@ public class IchorSprite extends PathfinderMob implements TraceableEntity {
     private LivingEntity clientSideCachedAttackTarget;
     private int clientAnimationTime;
     private int clientAnimationTime0;
+    @Nullable
+    private LivingEntity cachedOwner;
 
     public IchorSprite(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
@@ -146,9 +148,9 @@ public class IchorSprite extends PathfinderMob implements TraceableEntity {
                 }
             }
             this.setAttackTimer(Math.min(64, attackTimer + 1));
-            if ((this.getOwner() == null || !this.getOwner().isAlive()) && !this.level().isClientSide) {
-                if (this.level() instanceof ServerLevel level)
-                    level.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0);
+            LivingEntity owner = this.getOwner();
+            if (this.level() instanceof ServerLevel level && this.tickCount > 24 && (owner == null || !owner.isAlive())) {
+                level.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0);
                 this.discard();
             }
         }
@@ -235,12 +237,23 @@ public class IchorSprite extends PathfinderMob implements TraceableEntity {
         if (entity instanceof IchorSprite sprite) this.setOwner(sprite.getOwner());
     }
 
-    public LivingEntity getOwner() {
-        return this.getBrain().getMemory(EnigmaticAddonMemories.ICHOR_SPRITE_OWNER).orElse(null);
+    public @Nullable LivingEntity getOwner() {
+        if (this.cachedOwner != null && !this.cachedOwner.isRemoved()) return this.cachedOwner;
+        if (this.level() instanceof ServerLevel level) {
+            Optional<UUID> memory = this.getBrain().getMemory(EnigmaticAddonMemories.ICHOR_SPRITE_OWNER);
+            if (memory.isEmpty()) return null;
+            Entity entity = level.getEntity(memory.get());
+            if (entity instanceof LivingEntity livingEntity) {
+                this.cachedOwner = livingEntity;
+                return this.cachedOwner;
+            }
+        }
+        return null;
     }
 
-    public void setOwner(LivingEntity owner) {
-        this.getBrain().setMemory(EnigmaticAddonMemories.ICHOR_SPRITE_OWNER, owner);
+    public void setOwner(@Nullable LivingEntity owner) {
+        if (owner == null) return;
+        this.getBrain().setMemory(EnigmaticAddonMemories.ICHOR_SPRITE_OWNER, owner.getUUID());
     }
 
     @Nullable
@@ -291,15 +304,11 @@ public class IchorSprite extends PathfinderMob implements TraceableEntity {
         return this.entityData.get(DATA_ID_ATTACK_TARGET) != 0;
     }
 
-    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack itemInHand = player.getItemInHand(hand);
-        if (this.getMainHandItem().isEmpty() && this.isEffectiveAi() && this.getBrain().isActive(Activity.IDLE) && itemInHand.isEmpty()) {
-            this.setItemInHand(InteractionHand.MAIN_HAND, itemInHand.copyWithCount(1));
-            if (!player.getAbilities().instabuild) itemInHand.shrink(1);
-            return InteractionResult.sidedSuccess(player.level().isClientSide());
-        }
-        return super.mobInteract(player, hand);
-    }
+    /*
+     * protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+     *     return super.mobInteract(player, hand);
+     * }
+     */
 
     private static class FollowOwner extends Behavior<IchorSprite> {
         final int range;
@@ -343,7 +352,6 @@ public class IchorSprite extends PathfinderMob implements TraceableEntity {
                 this.transTimer++;
                 if (this.transTimer > 100) {
                     ItemStack copy = sprite.getMainHandItem().copy();
-//                    copy.set(EnigmaticComponents.BLESSED, true);
                     BehaviorUtils.throwItem(sprite, copy, sprite.position());
                     sprite.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
                     sprite.swing(InteractionHand.MAIN_HAND);
@@ -369,9 +377,11 @@ public class IchorSprite extends PathfinderMob implements TraceableEntity {
 
         protected void start(ServerLevel level, IchorSprite sprite, long gameTime) {
             LivingEntity owner = sprite.getOwner();
-            if (owner != null && sprite.tickCount % 4 == 0) {
+            if (owner != null && sprite.tickCount % 5 == 0) {
                 float amount = Math.max(0.1F, (owner.getMaxHealth() - owner.getHealth()) * 0.1F);
-                owner.heal(Math.min(amount, Math.max(sprite.getHealth() / 5.0F, 1.0F)));
+                amount = Math.min(amount, Math.max(sprite.getHealth() / 5.0F, 0.5F));
+                if (owner instanceof Player) amount *= 0.5F;
+                owner.heal(amount);
                 if (owner.getRandom().nextBoolean() && sprite.tickCount % 40 == 0) {
                     owner.addEffect(new MobEffectInstance(EnigmaticAddonEffects.PURE_RESISTANCE_EFFECT, 100));
                 }
@@ -529,34 +539,33 @@ public class IchorSprite extends PathfinderMob implements TraceableEntity {
         }
 
         private static Optional<? extends LivingEntity> getOwnerTarget(Mob mob) {
-            Optional<LivingEntity> memory = mob.getBrain().getMemory(EnigmaticAddonMemories.ICHOR_SPRITE_OWNER);
-            if (memory.isPresent()) {
-                LivingEntity owner = memory.get();
-                LivingEntity hurtByMob = owner.getLastHurtByMob();
-                LivingEntity lastHurtMob = owner.getLastHurtMob();
-                if (hurtByMob != null && hurtByMob != owner) return Optional.of(hurtByMob);
-                if (owner instanceof Mob mobOwner && mobOwner.getTarget() != null)
+            Optional<LivingEntity> owner = BehaviorUtils.getLivingEntityFromUUIDMemory(mob, EnigmaticAddonMemories.ICHOR_SPRITE_OWNER);
+            if (owner.isPresent() && mob instanceof IchorSprite sprite && sprite.level() instanceof ServerLevel level) {
+                LivingEntity hurtByMob = owner.get().getLastHurtByMob();
+                LivingEntity lastHurtMob = owner.get().getLastHurtMob();
+                if (hurtByMob != null && hurtByMob != owner.get() && hurtByMob != mob) return Optional.of(hurtByMob);
+                if (owner.get() instanceof Mob mobOwner && mobOwner.getTarget() != null && mobOwner.getTarget() != mob)
                     return Optional.of(mobOwner.getTarget());
-                if (lastHurtMob != owner) return Optional.ofNullable(lastHurtMob);
+                if (lastHurtMob != owner.get() && lastHurtMob != mob) return Optional.ofNullable(lastHurtMob);
             }
             return Optional.empty();
         }
 
         private static Optional<? extends LivingEntity> findNearestValidAttackTarget(Mob mob) {
-            Optional<LivingEntity> owner = mob.getBrain().getMemory(EnigmaticAddonMemories.ICHOR_SPRITE_OWNER);
+            Optional<LivingEntity> owner = BehaviorUtils.getLivingEntityFromUUIDMemory(mob, EnigmaticAddonMemories.ICHOR_SPRITE_OWNER);
             Optional<LivingEntity> optional = BehaviorUtils.getLivingEntityFromUUIDMemory(mob, MemoryModuleType.ANGRY_AT);
-            if (optional.isPresent() && optional.get() != owner.orElse(null) && Sensor.isEntityAttackableIgnoringLineOfSight(mob, optional.get())) {
+            if (optional.isPresent() && optional.get() != owner.orElse(null) && optional.get() != mob && Sensor.isEntityAttackableIgnoringLineOfSight(mob, optional.get())) {
                 return optional;
             } else {
                 Optional<? extends LivingEntity> optional1 = getTargetIfWithinRange(mob);
                 Optional<? extends LivingEntity> entity = optional1.isPresent() ? optional1 : mob.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_NEMESIS);
-                return entity.orElse(null) != owner.orElse(null) ? entity : Optional.empty();
+                return entity.isPresent() && entity.get() != owner.orElse(null) && entity.get() != mob ? entity : Optional.empty();
             }
         }
 
         public static Optional<? extends LivingEntity> getHurtBy(Mob mob) {
-            Optional<LivingEntity> optional = mob.getBrain().getMemory(EnigmaticAddonMemories.ICHOR_SPRITE_OWNER);
-            return mob.getBrain().getMemory(MemoryModuleType.HURT_BY).map(DamageSource::getEntity).filter((entity) -> entity instanceof LivingEntity && entity != optional.orElse(null)).map((entity) -> (LivingEntity) entity);
+            Optional<LivingEntity> owner = BehaviorUtils.getLivingEntityFromUUIDMemory(mob, EnigmaticAddonMemories.ICHOR_SPRITE_OWNER);
+            return mob.getBrain().getMemory(MemoryModuleType.HURT_BY).map(DamageSource::getEntity).filter((entity) -> entity instanceof LivingEntity && entity != owner.orElse(null)).map((entity) -> (LivingEntity) entity);
         }
 
         private static Optional<? extends LivingEntity> getTargetIfWithinRange(Mob mob) {

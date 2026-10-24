@@ -299,7 +299,7 @@
 
   "book.enigmaticaddons.entry.forger_gem.name": "锻造者的宝石",
   "book.enigmaticaddons.entry.forger_gem.page.1": "锻造工具与武器，是增强实力的过程中难以避免的一步，但在登峰造极的那一刻前，总会因为昂贵的造价或是濒临破裂的铁砧而担忧。<br2/>这个饰品则会直接将古老的锻造技巧注入你的双手，能够有效降低铁砧破裂的概率，并能够借助宝石的能量，将造价大幅降低，从而提高了锻造的上限。",
-  "book.enigmaticaddons.entry.forger_gem.page.2": "此外，七咒的魔力也允许你去打造一些不可破坏的造物，虽然这需要两把相同的崭新工具和大量的经验。<br2/>有时你也能在一些箱子里发现这些作物旧时代遗物的宝石。",
+  "book.enigmaticaddons.entry.forger_gem.page.2": "此外，技术的提升也让你在锻造时，略微改善造物的性能。<br2/>有时你也能在一些箱子里发现这些作物旧时代遗物的宝石。",
 
   "item.enigmaticaddons.adventure_charm": "冒险者之证",
   "item.enigmaticaddons.despair_insignia": "绝望者证章",
@@ -386,7 +386,7 @@
   "item.enigmaticaddons.ichor_droplet": "灵液滴",
 
   "book.enigmaticaddons.entry.ichor_droplet.name": "灵液",
-  "book.enigmaticlegacy.entry.ichor_droplet.heading": "众神之血",
+  "book.enigmaticaddons.entry.ichor_droplet.heading": "众神之血",
   "book.enigmaticaddons.entry.ichor_droplet.page.1": "对于这所谓的“众神之血”，你终于发现一种能够稳定获取的来源，那便是去狩猎漂浮在下界中的尖叫不断的恶魂。<br2/>诅咒之力激发了恶魂血泪之中意外残留的些微“神性”，才能够让灵液这一物质重新显现在众人眼前。",
   "book.enigmaticaddons.entry.ichor_droplet.page.2": "不过，请勿思考这些“神性”到底来自何处，那早已是古旧时代的秘密。对于现在的你而言，只需要思考如何去利用开发这一意外产物，比如说酿造一些极端化的药水。",
 
@@ -430,9 +430,24 @@
   "tooltip.enigmaticaddons.blessPotion1": "§5消除所有负面效果",
   "tooltip.enigmaticaddons.blessPotion2": "§5并依据消除数量给予§6纯化抗性§5效果",
 
+  "book.enigmaticaddons.entry.bless_potion.name": "纯化药水",
+  "book.enigmaticaddons.entry.bless_potion.heading.1": "药水酿造",
+  "book.enigmaticaddons.entry.bless_potion.page.1": "将纯化之心融于蜂蜜之中，获得一份优质的良药，虽然依旧有诅咒在其中躁动。<br2/>该药水会尝试清除你带有的所有负面药水效果，并根据其强度转化出纯化抗性效果。",
+  "book.enigmaticaddons.entry.bless_potion.page.2": "所以还请不要在没有负面效果时而随意饮用，不然，还是建议你去直接享受蜂蜜的风味吧……",
+
   "item.enigmaticaddons.ichor_curse_bottle": "悔孽之瓶",
 
+  "book.enigmaticaddons.entry.ichor_curse_bottle.name": "悔孽之瓶",
+  "book.enigmaticaddons.entry.ichor_curse_bottle.page.1": "将不详之力与灵液结合，你能感受到下界正在慢慢响应这份力量。<br2/>下界也存在着神秘的守护灵，在生物濒危之时让它们重获新生，并给予它们长久的守护，知道它们回归自己的生存正轨。但在诅咒力量的侵蚀下，守护灵不仅背弃了原有的工作，甚至转向了不应被守护的目标。",
+  "book.enigmaticaddons.entry.ichor_curse_bottle.page.2": "如今这一切早已不知所踪，但请相信在饮用该药水之后，你会见识那些过去的闪烁，也因为那些金闪闪的未知身影而感到忏悔。",
+  "book.enigmaticaddons.entry.ichor_curse_bottle.page.3": "",
+
   "item.enigmaticaddons.sacred_crystal": "神圣灵晶",
+
+  "book.enigmaticaddons.entry.sacred_crystal.name": "神圣灵晶",
+  "book.enigmaticaddons.entry.sacred_crystal.heading.1": "灵晶",
+  "book.enigmaticaddons.entry.sacred_crystal.page.1": "撕裂那些看似神圣的造物，夺取那些纯化晶灵的核心。晶莹的水晶之中涌动着不同以往的力量，纯粹而神圣，但你体内的诅咒似乎并没有排斥它。<br2/>纯化晶灵诡异的抗性与回复效果，在此物之中得到了完好的继承，可以用它来制作一些以防御为主题的物品。",
+  "book.enigmaticaddons.entry.sacred_crystal.page.2": "不过令人感兴趣的还是诅咒与此间所蕴含之力的关系。能否与之抗衡，能否将其扭转，能否取而代之……",
 
   "item.enigmaticaddons.the_bless": "恩惠之典",
   "item.enigmaticaddons.the_repentance": "忏悔之音",
@@ -457,6 +472,14 @@
   "book.enigmaticaddons.entry.bless_amplifier.name": "神化之书",
   "book.enigmaticaddons.entry.bless_amplifier.page.1": "经过灵液的洗礼，求知之书的愿望从获得转化成了给予，将进一步提升物品中的魔法力量。<br2/>如果你将它与任何附魔物品紧密接触，它就会牺牲掉自己，加倍存在于物品之中的魔力。<br2/>但如果仅仅是如此，那就太愧对于这其中的神化之力。",
   "book.enigmaticaddons.entry.bless_amplifier.page.2": "打破魔咒的限制，将物品中的魔力更升一等，才是它的真正用途。<br2/>顺带一提，并不是一切的魔咒都能够被突破，也有些魔咒在突破后无法承受力量而失效。",
+
+  "item.enigmaticaddons.forger_crystal": "无暇锻造之石",
+  "tooltip.enigmaticaddons.forgerCrystal": "§5不可破坏的工具可被视作§d不死图腾§5使用",
+
+  "book.enigmaticaddons.entry.forger_crystal.name": "无瑕锻造",
+  "book.enigmaticaddons.entry.forger_crystal.page.1": "在拥有灵晶之后，你便可以将锻造宝石进一步的升级了。<br2/>在升级之后，精湛的锻造技巧使你再也不会损坏铁砧的一分一毫，并且依旧能够借助宝石的能量，大幅降低造价。<br2/>除此之外，该饰品也允许你去打造一些不可破坏的造物，虽然这需要两把相同的",
+  "book.enigmaticaddons.entry.forger_crystal.page.2": "崭新工具和大量的经验。<br2/>在救赎的共鸣下，这枚宝石还能够利用不可破坏之力，优先使你挣脱于死亡的困境之中。",
+  "book.enigmaticaddons.entry.forger_crystal.page.3": "",
 
   "item.enigmaticaddons.bless_stone": "神圣之石",
 

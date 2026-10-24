@@ -1,0 +1,21 @@
+{
+  "name": "book.enigmaticaddons.entry.bless_potion.name",
+  "icon": "enigmaticaddons:bless_potion",
+  "category": "enigmaticlegacy:brewing",
+  "advancement": "enigmaticaddons:book/brewing/bless_potion",
+  "priority": false,
+  "sortnum": 35,
+  "pages": [
+    {
+      "type": "text",
+      "text": "book.enigmaticaddons.entry.bless_potion.page.1"
+    },
+    {
+      "type": "enigmaticlegacy:brewing_addon",
+      "recipe": "enigmaticaddons:bless_potion",
+      "index": 0,
+      "heading": "book.enigmaticaddons.entry.bless_potion.heading.1",
+      "text": "book.enigmaticaddons.entry.bless_potion.page.2"
+    }
+  ]
+}

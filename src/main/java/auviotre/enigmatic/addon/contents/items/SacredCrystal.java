@@ -1,6 +1,6 @@
 package auviotre.enigmatic.addon.contents.items;
 
-import auviotre.enigmatic.addon.api.items.IBetrayed;
+import auviotre.enigmatic.addon.api.items.IBlessed;
 import com.aizistral.enigmaticlegacy.api.items.ICursed;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBase;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class SacredCrystal extends ItemBase implements ICursed, IBetrayed {
+public class SacredCrystal extends ItemBase implements ICursed, IBlessed {
     public SacredCrystal() {
         super(ItemBase.getDefaultProperties().rarity(Rarity.RARE));
     }
